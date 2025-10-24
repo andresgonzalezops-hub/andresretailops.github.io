@@ -1,49 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Portafolio — Luis Andrés González Martínez</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luis Andrés González Martínez — Portafolio Profesional</title>
+<meta name="description" content="Portafolio de Luis Andrés González Martínez — Retail Operations & Sales Manager con experiencia en Luuna, GAP y liderazgo multitienda.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0e1116;--ink:#eef3ff;--muted:#98a7bd;--accent:#4da3ff;--card:#151a22;--border:#222a36}
-  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Arial}
-  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-  .wrap{max-width:980px;margin:auto;padding:28px 16px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px}
-  header{display:flex;gap:18px;align-items:center}
-  header .photo{width:120px;height:120px;border-radius:14px;overflow:hidden;border:1px solid var(--border);flex:0 0 120px}
-  header h1{margin:0 0 6px;font-size:28px}
-  .muted{color:var(--muted)}
-  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-  .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#10151d;color:var(--ink)}
-  .grid{display:grid;gap:14px}
-  .g-2{grid-template-columns:1fr 1fr} .g-3{grid-template-columns:repeat(3,1fr)}
-  @media (max-width:900px){.g-2,.g-3{grid-template-columns:1fr}}
-  section{margin-top:22px}
-  .box{padding:16px}
-  h2{margin:0 0 8px;font-size:22px}
-  ul{margin:8px 0 0 18px}
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .kpi{background:#121720;border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
-  .kpi .n{font-weight:800;font-size:22px}
-  /* galería sencilla */
-  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--border);cursor:zoom-in}
-  /* lightbox */
-  .lb{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:30}
-  .lb img{max-width:92vw;max-height:90vh;border:2px solid #fff3;border-radius:12px}
-  footer{border-top:1px solid var(--border);margin-top:28px}
-  .foot{display:flex;justify-content:space-between;align-items:center;padding:16px;color:var(--muted)}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0b0c10;
+  color:#e8f0ff;
+  margin:0;
+  line-height:1.5;
+}
+a{color:#4da3ff;text-decoration:none}
+header{background:#0c1016cc;backdrop-filter:blur(8px);border-bottom:1px solid #1f2630;position:sticky;top:0;z-index:10}
+nav{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 18px}
+nav a{margin:0 6px;padding:8px 10px;border-radius:8px}
+nav a:hover{background:#141922}
+.container{max-width:960px;margin:auto;padding:40px 18px}
+h1,h2{margin-top:0}
+h1{font-size:clamp(28px,5vw,42px)}
+h2{font-size:clamp(22px,4vw,30px)}
+.card{background:#141922;border:1px solid #1f2630;border-radius:14px;padding:22px;margin-bottom:32px}
+img{max-width:100%;border-radius:10px;border:1px solid #1f2630}
+footer{border-top:1px solid #1f2630;text-align:center;color:#9fb0c6;padding:18px}
+.gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+button{background:#4da3ff;color:#0b0c10;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+button:hover{background:#67b1ff}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- HERO MUY SENCILLO -->
-    <div class="card box">
-      <header>
-        <div class="photo">
-          <!-- TU FOTO: base64 que venía en tu HTML -->
-          <img alt="Foto de Andrés" style="width:100%;height:100%;object-fit:cover"
-               src="data:image/jpeg;base64,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
+
+<header>
+  <nav>
+    <strong>Andrés Manager</strong>
+    <div>
+      <a href="#inicio">Inicio</a>
+      <a href="#cv">CV</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+</header>
+
+<section id="inicio" class="container">
+  <div class="card" style="text-align:center">
+    <img src="HUBSPOT.jpg" alt="Foto profesional de Luis Andrés González Martínez" style="max-width:260px;margin:auto;border-radius:50%">
+    <h1>Luis Andrés González Martínez</h1>
+    <p><b>Retail Operations & Sales Manager</b></p>
+    <p>Profesional con más de 10 años liderando operaciones y equipos de venta multitienda para marcas como Luuna y GAP. 
+    Experto en indicadores comerciales, control de inventario, capacitación y mejora continua enfocada en la experiencia del cliente.</p>
+  </div>
+</section>
+
+<section id="cv" class="container">
+  <div class="card">
+    <h2>Currículum</h2>
+    <p>Puedes ver o descargar mi CV completo en formato PDF:</p>
+    <p><a href="CV_Andres_Gonzalez.pdf" target="_blank"><button>📄 Ver CV completo</button></a></p>
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Imagen decorativa CV">
+  </div>
+</section>
+
+<section id="certificados" class="container">
+  <div class="card">
+    <h2>Certificados y Logros</h2>
+    <div class="gallery">
+      <div>
+        <h3>Lean Six Sigma White Belt</h3>
+        <img src="Certification_Issued_Lean_Six_Sigma_White_Belt.pdf" alt="Certificado Lean Six Sigma White Belt">
+        <p><a href="Certification_Issued_Lean_Six_Sigma_White_Belt.pdf" target="_blank">Ver documento</a></p>
+      </div>
+      <div>
+        <h3>AWS Academy Graduate — Cloud Foundations</h3>
+        <img src="AWS_Academy_Graduate__Cloud_Foundation.pdf" alt="Certificado AWS Cloud Foundations">
+        <p><a href="AWS_Academy_Graduate__Cloud_Foundation.pdf" target="_blank">Ver documento</a></p>
+      </div>
+      <div>
+        <h3>Python Essentials 1</h3>
+        <img src="PythonEssentials1Update20251024-29-y7ctpro0.pdf" alt="Certificado Python Essentials 1">
+        <p><a href="PythonEssentials1Update20251024-29-y7ctpro0.pdf" target="_blank">Ver documento</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="container">
+  <div class="card" style="text-align:center">
+    <h2>Contacto</h2>
+    <p>📧 <a href="mailto:tuemail@correo.com">tuemail@correo.com</a></p>
+    <p>💼 <a href="https://www.linkedin.com/" target="_blank">LinkedIn: Luis Andrés González Martínez</a></p>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Luis Andrés González Martínez — Portafolio Profesional
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
