@@ -11,13 +11,12 @@
 :root {
   --primary: #004aad;
   --text: #1a1a1a;
-  --muted: #666;
-  --bg: #ffffff;
+  --muted: #555;
   --border: #e5e7eb;
 }
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
+  background: #ffffff;
   color: var(--text);
   margin: 0;
   line-height: 1.6;
@@ -28,11 +27,11 @@ header {
   border-bottom: 1px solid var(--border);
 }
 header img {
-  width: 160px;
-  height: 160px;
+  width: 170px;
+  height: 170px;
   object-fit: cover;
-  border-radius: 100%;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  border-radius: 50%;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
 }
 h1 {
   font-size: clamp(24px, 4vw, 36px);
@@ -66,13 +65,13 @@ p.subtitle {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: #fff;
+  transition: .25s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 .card img {
   width: 100%;
@@ -101,17 +100,12 @@ a.btn {
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background 0.2s;
 }
 a.btn:hover {
   background: #003b8c;
 }
 .contact {
   text-align: center;
-}
-.contact a {
-  color: var(--primary);
-  text-decoration: none;
 }
 footer {
   background: #f7f7f7;
@@ -127,7 +121,7 @@ footer {
 <body>
 
 <header>
-  <img src="Imagen de WhatsApp 2025-08-26 a las 20.46.48_2fdfdcce.jpg" alt="Foto profesional de Andrés González">
+  <img src="Imagen%20de%20WhatsApp%202025-08-26%20a%20las%2020.46.48_2fdfdcce.jpg" alt="Foto profesional de Andrés González">
   <h1>Andrés González</h1>
   <p class="subtitle">Retail Operations and Sales Manager</p>
 </header>
@@ -136,17 +130,17 @@ footer {
 
   <section class="section">
     <h2>Perfil Profesional</h2>
-    <p>Soy un Retail Operations and Sales Manager con amplia experiencia en liderazgo comercial, gestión de equipos multitienda, optimización de inventarios y desarrollo de estrategias de ventas basadas en indicadores. Me apasiona transformar la experiencia del cliente y los procesos de operación en resultados medibles y sostenibles.</p>
+    <p>Soy un Retail Operations and Sales Manager con experiencia en liderazgo comercial, gestión de equipos multitienda, optimización de inventarios y desarrollo de estrategias de ventas basadas en KPIs. Me apasiona transformar la experiencia del cliente y los procesos operativos en resultados medibles.</p>
   </section>
 
   <section class="section">
     <h2>Currículum</h2>
     <div class="cards">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=900&q=80" alt="Currículum Andrés González">
+        <img src="https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=900&q=80" alt="CV de Andrés González">
         <div class="card-content">
           <h3>CV Andrés González</h3>
-          <p>Versión completa del currículum en PDF.</p>
+          <p>Versión completa de mi currículum en PDF.</p>
           <a href="CV_Andres_Gonzalez.pdf" target="_blank" class="btn">Ver CV</a>
         </div>
       </div>
@@ -161,7 +155,7 @@ footer {
         <img src="https://images.unsplash.com/photo-1581091870622-3b6a4d39d1c5?auto=format&fit=crop&w=900&q=80" alt="Certificado AWS">
         <div class="card-content">
           <h3>AWS Academy Graduate — Cloud Foundations</h3>
-          <p>Certificación de fundamentos en servicios y arquitectura de la nube.</p>
+          <p>Fundamentos en servicios y arquitectura de la nube.</p>
           <a href="AWS_Academy_Graduate__Cloud_Foundation.pdf" target="_blank" class="btn">Ver certificado</a>
         </div>
       </div>
@@ -179,7 +173,7 @@ footer {
         <img src="https://images.unsplash.com/photo-1648737960294-84a39cf0bcb9?auto=format&fit=crop&w=900&q=80" alt="Python Essentials 1">
         <div class="card-content">
           <h3>Python Essentials 1</h3>
-          <p>Certificación de Cisco Networking Academy en fundamentos de programación.</p>
+          <p>Certificación en fundamentos de programación.</p>
           <a href="PythonEssentials1Update20251024-29-y7ctpro0.pdf" target="_blank" class="btn">Ver certificado</a>
         </div>
       </div>
