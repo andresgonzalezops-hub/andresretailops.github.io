@@ -3,436 +3,47 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Andrés González — Retail & Sales Operations Manager</title>
-<meta name="description" content="Portafolio de Luis Andrés González Martínez, Retail & Sales Operations Manager. Optimización de operaciones, experiencia del cliente, KPIs y crecimiento rentable."/>
+<title>Portafolio — Luis Andrés González Martínez</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0b0c10; --ink:#e8f0ff; --muted:#9fb0c6; --accent:#4da3ff; --accent2:#7be495;
-  --card:#12161d; --border:#1f2630; --chip:#10151d; --warn:#ffce6b; --good:#3ddc97; --bad:#ff6b6b;
-}
-*{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Arial}
-a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
-img{max-width:100%;display:block}
-.container{max-width:1150px;margin:auto;padding:64px 20px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--chip);color:var(--muted);font-size:13px}
-.btn{display:inline-flex;align-items:center;gap:10px;margin:10px 10px 0 0;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#0f1218;color:var(--ink);cursor:pointer}
-.btn.primary{background:linear-gradient(90deg,var(--accent),#7c8cff);border-color:transparent;color:#041126}
-.btn.ghost{background:transparent}
-.btn:active{transform:translateY(1px)}
-.chips .badge{margin:6px 6px 0 0}
-.section-title{font-size:clamp(24px,3.5vw,32px);margin:0 0 4px}
-.section-sub{color:var(--muted);margin:0 0 22px}
-.grid-2{display:grid;gap:22px;grid-template-columns:1.2fr .8fr}
-.grid-3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
-.grid-4{display:grid;gap:16px;grid-template-columns:repeat(4,1fr)}
-@media(max-width:1024px){.grid-2{grid-template-columns:1fr}.grid-3,.grid-4{grid-template-columns:1fr}}
-.navbar{position:sticky;top:0;z-index:20;background:#0c1016cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.navwrap{max-width:1150px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800}
-.brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent2)}
-.navlinks a{margin:0 6px;padding:9px 12px;border-radius:10px}
-.navlinks a:hover,.navlinks a.active{background:#0f1218;border:1px solid var(--border)}
-.theme{display:flex;gap:8px;align-items:center}
-.toggle{width:44px;height:26px;border-radius:20px;background:var(--chip);border:1px solid var(--border);position:relative;cursor:pointer}
-.toggle i{position:absolute;width:20px;height:20px;border-radius:999px;background:var(--ink);top:50%;transform:translateY(-50%);left:3px;transition:.25s}
-
-/* HERO */
-.hero{display:grid;gap:28px;grid-template-columns:1.2fr .9fr}
-.hero .panel{padding:28px}
-.hero h1{font-size:clamp(30px,5vw,44px);margin:10px 0}
-.subtitle{color:var(--muted);font-size:18px}
-.photo{border-radius:20px;overflow:hidden;border:1px solid var(--border)}
-.photo img{aspect-ratio:1/1;object-fit:cover}
-
-/* KPIs */
-.kpis{display:grid;gap:14px;grid-template-columns:repeat(4,1fr)}
-.kpi{background:#10151d;border:1px solid var(--border);padding:18px;border-radius:14px;text-align:center}
-.kpi .num{font-size:28px;font-weight:800}
-.kpi .lbl{color:var(--muted);font-size:13px}
-
-/* SKILLS */
-.skill{background:#10151d;border:1px solid var(--border);padding:16px;border-radius:14px}
-.skill .top{display:flex;align-items:center;justify-content:space-between}
-.bar{height:10px;background:#0e1420;border-radius:999px;overflow:hidden;margin-top:10px;border:1px solid #0f1a2a}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#7c8cff)}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:22px}
-.timeline:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:2px;background:#1a2330}
-.titem{position:relative;margin:0 0 18px;padding:14px 16px;background:#10151d;border:1px solid var(--border);border-radius:12px}
-.titem:before{content:"";position:absolute;left:-3px;top:18px;width:10px;height:10px;border-radius:999px;background:var(--accent)}
-.tmeta{color:var(--muted);font-size:12px;margin-bottom:8px}
-
-/* PROJECTS */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.filters .btn{padding:8px 12px;font-size:14px}
-.card.item{overflow:hidden}
-.item img{width:100%;height:180px;object-fit:cover;border-bottom:1px solid var(--border)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.tag{font-size:12px;color:var(--muted);background:#0e1420;border:1px solid var(--border);padding:6px 8px;border-radius:999px}
-
-/* GALLERY */
-.gallery{display:grid;gap:10px;grid-template-columns:repeat(3,1fr)}
-.gallery img{height:200px;object-fit:cover;border-radius:12px;border:1px solid var(--border);cursor:zoom-in}
-.lightbox{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:50}
-.lightbox img{max-width:92vw;max-height:88vh;border-radius:12px;border:2px solid #fff3}
-
-/* TESTIMONIOS */
-.carousel{position:relative;overflow:hidden}
-.slide{display:none;padding:18px}
-.slide.active{display:block}
-.dotnav{display:flex;gap:6px;justify-content:center;margin-top:8px}
-.dotnav b{width:8px;height:8px;border-radius:999px;background:#2a3342;display:inline-block;cursor:pointer}
-.dotnav b.active{background:var(--accent)}
-
-/* BLOG */
-.post img{height:140px;object-fit:cover;border-bottom:1px solid var(--border)}
-.meta{color:var(--muted);font-size:13px}
-
-/* CONTACTO */
-.contact{display:grid;gap:16px;grid-template-columns:1.1fr .9fr}
-input,textarea,select{width:100%;background:#0f141c;border:1px solid var(--border);color:var(--ink);padding:12px 12px;border-radius:10px;font-family:inherit}
-label{font-size:14px;color:var(--muted)}
-.form-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-@media(max-width:900px){.form-row{grid-template-columns:1fr}.hero,.contact{grid-template-columns:1fr}}
-footer{border-top:1px solid var(--border);background:#0c1016}
-.foot{max-width:1150px;margin:auto;padding:26px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
-.social a{margin-right:10px}
-
-/* light theme */
-.light{--bg:#f7f9fc; --ink:#0b1220; --muted:#5a6b85; --card:#ffffff; --border:#e6ebf3; --chip:#f1f5fb; --accent:#2b7bff; --accent2:#00b894}
-.light .btn{background:#f5f7fb;color:#0b1220;border-color:#e6ebf3}
-.light .navlinks a:hover,.light .navlinks a.active{background:#eef3fb;border-color:#e6ebf3}
+  :root{--bg:#0e1116;--ink:#eef3ff;--muted:#98a7bd;--accent:#4da3ff;--card:#151a22;--border:#222a36}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Arial}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:980px;margin:auto;padding:28px 16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px}
+  header{display:flex;gap:18px;align-items:center}
+  header .photo{width:120px;height:120px;border-radius:14px;overflow:hidden;border:1px solid var(--border);flex:0 0 120px}
+  header h1{margin:0 0 6px;font-size:28px}
+  .muted{color:var(--muted)}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#10151d;color:var(--ink)}
+  .grid{display:grid;gap:14px}
+  .g-2{grid-template-columns:1fr 1fr} .g-3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:900px){.g-2,.g-3{grid-template-columns:1fr}}
+  section{margin-top:22px}
+  .box{padding:16px}
+  h2{margin:0 0 8px;font-size:22px}
+  ul{margin:8px 0 0 18px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .kpi{background:#121720;border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .kpi .n{font-weight:800;font-size:22px}
+  /* galería sencilla */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--border);cursor:zoom-in}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:30}
+  .lb img{max-width:92vw;max-height:90vh;border:2px solid #fff3;border-radius:12px}
+  footer{border-top:1px solid var(--border);margin-top:28px}
+  .foot{display:flex;justify-content:space-between;align-items:center;padding:16px;color:var(--muted)}
 </style>
 </head>
 <body>
-<!-- NAV -->
-<nav class="navbar">
-  <div class="navwrap">
-    <div class="brand"><span class="dot"></span> Andrés • Retail & Sales Ops</div>
-    <div class="navlinks">
-      <a href="#inicio" class="active">Inicio</a>
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#galeria">Galería</a>
-      <a href="#blog">Blog</a>
-      <a href="#contacto">Contacto</a>
-    </div>
-    <div class="theme">
-      <small class="subtitle">Tema</small>
-      <div class="toggle" id="toggle"><i></i></div>
-    </div>
-  </div>
-</nav>
-
-<main id="inicio" class="container">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="panel card">
-      <span class="badge">Retail & Sales Operations Manager</span>
-      <h1>Luis Andrés González Martínez</h1>
-      <p class="subtitle">Líder de operaciones y retail con +10 años en entornos multitienda (Luuna, GAP). Convierto equipos y procesos en <b>motores de crecimiento</b> a través de <b>KPIs claros</b>, <b>experiencia del cliente</b> y <b>optimización de inventario</b>.</p>
-
-      <div class="chips">
-        <span class="badge">Omnicanalidad</span>
-        <span class="badge">Gestión de inventarios</span>
-        <span class="badge">Merchandising</span>
-        <span class="badge">Entrenamiento de equipos</span>
-        <span class="badge">Power BI & Excel avanzado</span>
-        <span class="badge">Salesforce & Zendesk</span>
-      </div>
-
-      <div>
-        <a class="btn primary" href="CV_Andres_Gonzalez.pdf" target="_blank">📄 Descargar CV</a>
-        <a class="btn" href="#contacto">📬 Hablemos</a>
-        <a class="btn ghost" href="#proyectos">🧭 Ver proyectos</a>
-      </div>
-    </div>
-
-    <div class="card" style="padding:18px">
-      <div class="photo">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Retrato profesional" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- KPIs -->
-  <section style="margin-top:28px">
-    <div class="kpis">
-      <div class="kpi"><div class="num" data-count="32">0</div><div class="lbl">Tiendas gestionadas</div></div>
-      <div class="kpi"><div class="num" data-count="18">0</div><div class="lbl">% Mejora NPS promedio</div></div>
-      <div class="kpi"><div class="num" data-count="25">0</div><div class="lbl">% Reducción de mermas</div></div>
-      <div class="kpi"><div class="num" data-count="15">0</div><div class="lbl">% Aumento ticket promedio</div></div>
-    </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi" style="margin-top:46px">
-    <h2 class="section-title">Sobre mí</h2>
-    <p class="section-sub">Operaciones pragmáticas, obsesión por el cliente y liderazgo con propósito.</p>
-    <div class="grid-3">
-      <div class="skill">
-        <div class="top"><b>Operaciones & KPIs</b><small class="subtitle">OKR • Dashboarding</small></div>
-        <div class="bar"><i style="width:92%"></i></div>
-        <p style="color:var(--muted)">Construyo tableros en Power BI/Excel que conectan ventas, inventario y CX. Implemento cadencias semanales de seguimiento y planes de acción.</p>
-      </div>
-      <div class="skill">
-        <div class="top"><b>Experiencia del cliente</b><small class="subtitle">NPS • CSAT • VOC</small></div>
-        <div class="bar"><i style="width:88%"></i></div>
-        <p style="color:var(--muted)">Mapeo journeys, cierro loops de retro y entreno a equipos en técnicas de venta consultiva y hospitality.</p>
-      </div>
-      <div class="skill">
-        <div class="top"><b>Abastecimiento & Inventario</b><small class="subtitle">S&OP • Mermas</small></div>
-        <div class="bar"><i style="width:85%"></i></div>
-        <p style="color:var(--muted)">Pronósticos, rotación y cobertura por SKU; reducción de faltantes, control de mermas y layout/planogramas efectivos.</p>
-      </div>
-    </div>
-
-    <div class="chips" style="margin-top:10px">
-      <span class="badge">Power BI</span><span class="badge">Excel (PowerQuery, VBA)</span><span class="badge">Salesforce</span>
-      <span class="badge">Zendesk</span><span class="badge">SAP</span><span class="badge">Google Workspace</span>
-    </div>
-  </section>
-
-  <!-- EXPERIENCIA -->
-  <section id="experiencia" style="margin-top:46px">
-    <h2 class="section-title">Experiencia</h2>
-    <p class="section-sub">Resultados destacados y responsabilidades clave.</p>
-    <div class="timeline">
-      <div class="titem">
-        <div class="tmeta">2021—2025 · <b>Retail Operations Manager</b> · Luuna</div>
-        <ul>
-          <li>Escalé la operación de <b>12 → 28 tiendas</b> manteniendo <b>NPS +18%</b> y <b>mermas −22%</b>.</li>
-          <li>Implementé S&OP y reposición por <b>rotación/SKU</b>, reduciendo <b>faltantes −30%</b>.</li>
-          <li>Desarrollé tableros unificados (ventas, tráfico, conversión, UPT, ATP) en Power BI.</li>
-          <li>Diseñé playbooks de apertura y <b>onboarding</b> para gerentes de tienda (time-to-productivity −35%).</li>
-        </ul>
-      </div>
-      <div class="titem">
-        <div class="tmeta">2016—2021 · <b>Sales & Store Manager</b> · GAP México</div>
-        <ul>
-          <li>Responsable de P&L, staffing y visual merchandising en 4 ubicaciones clave.</li>
-          <li>+15% en ticket promedio y +12% en conversión con entrenamiento en venta consultiva.</li>
-          <li>Optimicé inventarios ciclo-a-ciclo (shrinkage −19%).</li>
-        </ul>
-      </div>
-      <div class="titem">
-        <div class="tmeta">2013—2016 · <b>Coordinador de Operaciones</b> · Retail multimarcas</div>
-        <ul>
-          <li>Coordinación logística última milla y control de inventarios para 20 PDVs.</li>
-          <li>Implementación de estándares de piso de venta y auditorías operativas.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROYECTOS -->
-  <section id="proyectos" style="margin-top:46px">
-    <h2 class="section-title">Proyectos seleccionados</h2>
-    <p class="section-sub">Casos reales de optimización, experiencia y ejecución.</p>
-
-    <div class="filters">
-      <button class="btn ghost fbtn active" data-filter="all">Todos</button>
-      <button class="btn ghost fbtn" data-filter="operaciones">Operaciones</button>
-      <button class="btn ghost fbtn" data-filter="cx">Experiencia (CX)</button>
-      <button class="btn ghost fbtn" data-filter="ventas">Ventas</button>
-    </div>
-
-    <div class="grid-3" id="plist">
-      <article class="card item" data-cat="operaciones">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Operaciones y logística" loading="lazy">
-        <div style="padding:14px">
-          <h3 style="margin:6px 0">S&OP y reposición por rotación</h3>
-          <p class="meta">Luuna · 2023</p>
-          <p>Modelo de pronóstico y cobertura por tienda/SKU; reducción de faltantes <b>−30%</b> y mermas <b>−22%</b>.</p>
-          <div class="tags"><span class="tag">Power BI</span><span class="tag">Forecasting</span><span class="tag">Inventarios</span></div>
-        </div>
-      </article>
-
-      <article class="card item" data-cat="cx">
-        <img src="https://images.unsplash.com/photo-1515165562835-c3b8e437ab3c?auto=format&fit=crop&w=1200&q=80" alt="Experiencia en tienda" loading="lazy">
-        <div style="padding:14px">
-          <h3 style="margin:6px 0">Programa de CX & NPS</h3>
-          <p class="meta">GAP · 2019</p>
-          <p>Rediseño de journey, cierre de loops y capacitación; incremento de NPS <b>+18%</b> y CSAT <b>+12pt</b>.</p>
-          <div class="tags"><span class="tag">NPS</span><span class="tag">VOC</span><span class="tag">Capacitación</span></div>
-        </div>
-      </article>
-
-      <article class="card item" data-cat="ventas">
-        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80" alt="Ventas y desempeño" loading="lazy">
-        <div style="padding:14px">
-          <h3 style="margin:6px 0">Playbook de venta consultiva</h3>
-          <p class="meta">Retail multitienda · 2020</p>
-          <p>Implementación de técnicas SPIN + cross/upselling; ticket promedio <b>+15%</b>, UPT <b>+12%</b>.</p>
-          <div class="tags"><span class="tag">Sales Enablement</span><span class="tag">Formación</span></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- GALERÍA -->
-  <section id="galeria" style="margin-top:46px">
-    <h2 class="section-title">Galería</h2>
-    <p class="section-sub">Ejecución en piso, visual, trainings y operaciones.</p>
-    <div class="gallery" id="gal">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Backstore & Inventario" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" alt="Dashboarding" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1523473827532-8a054a30f2c1?auto=format&fit=crop&w=1200&q=80" alt="Formación de equipos" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1556740712-9a703fc1d29f?auto=format&fit=crop&w=1200&q=80" alt="Logística & Etiquetado" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1200&q=80" alt="Visual Merchandising" loading="lazy">
-      <img src="https://images.unsplash.com/photo-1519281400814-1a4b56d1b1b9?auto=format&fit=crop&w=1200&q=80" alt="Atención al cliente" loading="lazy">
-    </div>
-    <div class="lightbox" id="lightbox"><img alt="preview"></div>
-  </section>
-
-  <!-- TESTIMONIOS -->
-  <section style="margin-top:46px">
-    <h2 class="section-title">Testimonios</h2>
-    <div class="card carousel" id="car">
-      <div class="slide active">
-        <p>“Andrés llevó nuestras tiendas a otro nivel. Su enfoque en KPIs y personas se tradujo en resultados consistentes.”</p>
-        <p class="meta">— Directora Retail, Luuna</p>
-      </div>
-      <div class="slide">
-        <p>“Marcó un antes y un después en procesos de inventario y experiencia del cliente.”</p>
-        <p class="meta">— Gerente Regional, GAP</p>
-      </div>
-      <div class="slide">
-        <p>“Excelente entrenador: equipos motivados y con método para vender mejor.”</p>
-        <p class="meta">— HR Business Partner</p>
-      </div>
-      <div class="dotnav" id="dots"></div>
-    </div>
-  </section>
-
-  <!-- BLOG -->
-  <section id="blog" style="margin-top:46px">
-    <h2 class="section-title">Notas & blog</h2>
-    <p class="section-sub">Ideas prácticas sobre retail, operaciones y CX.</p>
-    <div class="grid-3">
-      <article class="card post">
-        <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80" alt="KPIs Retail" loading="lazy">
-        <div style="padding:14px">
-          <h3>5 KPIs que mueven la aguja en retail</h3>
-          <p class="meta">Oct 2025 · 6 min</p>
-          <p>UPT, ATP, conversión, rotación y NPS: cómo conectarlos a planes de acción semanales.</p>
-        </div>
-      </article>
-      <article class="card post">
-        <img src="https://images.unsplash.com/photo-1520975922284-8b456906c813?auto=format&fit=crop&w=1200&q=80" alt="Inventario Sano" loading="lazy">
-        <div style="padding:14px">
-          <h3>Inventario sano sin sacrificar ventas</h3>
-          <p class="meta">Sep 2025 · 5 min</p>
-          <p>Reposición por rotación/SKU, cobertura y cómo reducir mermas con disciplina simple.</p>
-        </div>
-      </article>
-      <article class="card post">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Playbook de Venta" loading="lazy">
-        <div style="padding:14px">
-          <h3>Mi playbook de venta consultiva</h3>
-          <p class="meta">Ago 2025 · 7 min</p>
-          <p>Preguntas que abren necesidades, señales de compra y cierres sin fricción.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto" class="contact" style="margin-top:46px">
-    <div class="card" style="padding:18px">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-sub">¿Platicamos? Respondo en menos de 24 h.</p>
-
-      <form action="https://formsubmit.co/" method="POST">
-        <div class="form-row">
-          <div><label>Nombre</label><input required name="name" placeholder="Tu nombre"></div>
-          <div><label>Email</label><input required type="email" name="email" placeholder="tu@correo.com"></div>
-        </div>
-        <div class="form-row">
-          <div><label>Asunto</label><input name="subject" placeholder="Interés / Vacante / Proyecto"></div>
-          <div>
-            <label>Urgencia</label>
-            <select name="urgency"><option>Baja</option><option>Media</option><option>Alta</option></select>
-          </div>
-        </div>
-        <div><label>Mensaje</label><textarea name="message" rows="5" placeholder="Cuéntame sobre tu proyecto o vacante"></textarea></div>
-        <button class="btn primary" type="submit">Enviar mensaje</button>
-        <a class="btn" href="https://wa.me/5215555555555" target="_blank">💬 WhatsApp</a>
-      </form>
-    </div>
-    <div class="card" style="overflow:hidden">
-      <iframe
-        title="Ubicación CDMX"
-        width="100%" height="100%" style="min-height:420px;border:0"
-        loading="lazy" allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120420.291!2d-99.232!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92a5f21f!2sCiudad%20de%20México!5e0!3m2!1ses-419!2smx!4v1697050000">
-      </iframe>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="foot">
-    <div>© <span id="year"></span> Andrés González · Retail & Sales Ops</div>
-    <div class="social">
-      <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-      <a href="mailto:tu@correo.com">Email</a>
-      <a href="CV_Andres_Gonzalez.pdf" target="_blank">CV</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Año dinámico
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Toggle tema
-const toggle=document.getElementById('toggle');
-toggle.addEventListener('click',()=>{
-  document.body.classList.toggle('light');
-  toggle.querySelector('i').style.left = document.body.classList.contains('light') ? '21px':'3px';
-});
-
-// KPIs count-up
-document.querySelectorAll('.num').forEach(el=>{
-  const target=+el.dataset.count; let c=0;
-  const step=Math.ceil(target/60);
-  const t=setInterval(()=>{ c+=step; if(c>=target){c=target; clearInterval(t)}; el.textContent=c; },20);
-});
-
-// Filtros proyectos
-document.querySelectorAll('.fbtn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const cat = btn.dataset.filter;
-    document.querySelectorAll('#plist .item').forEach(card=>{
-      card.style.display = (cat==='all' || card.dataset.cat===cat)?'block':'none';
-    });
-  });
-});
-
-// Lightbox galería
-const lb=document.getElementById('lightbox'), lbImg=lb.querySelector('img');
-document.querySelectorAll('#gal img').forEach(img=>{
-  img.addEventListener('click',()=>{ lbImg.src=img.src; lb.style.display='flex'; });
-});
-lb.addEventListener('click',()=>lb.style.display='none');
-
-// Carousel testimonios
-const slides=[...document.querySelectorAll('.slide')];
-const dots=document.getElementById('dots');
-slides.forEach((_,i)=>{ const b=document.createElement('b'); if(i===0)b.classList.add('active'); b.onclick=()=>go(i); dots.appendChild(b);});
-let idx=0;
-function go(i){ slides[idx].classList.remove('active'); dots.children[idx].classList.remove('active'); idx=i; slides[idx].classList.add('active'); dots.children[idx].classList.add('active');}
-setInterval(()=>go((idx+1)%slides.length),5000);
-</script>
-</body>
-</html>
+  <div class="wrap">
+    <!-- HERO MUY SENCILLO -->
+    <div class="card box">
+      <header>
+        <div class="photo">
+          <!-- TU FOTO: base64 que venía en tu HTML -->
+          <img alt="Foto de Andrés" style="width:100%;height:100%;object-fit:cover"
+               src="data:image/jpeg;base64,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
