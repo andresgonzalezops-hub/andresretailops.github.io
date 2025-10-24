@@ -1,106 +1,206 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Luis Andrés González Martínez — Portafolio Profesional</title>
-<meta name="description" content="Portafolio de Luis Andrés González Martínez — Retail Operations & Sales Manager con experiencia en Luuna, GAP y liderazgo multitienda.">
+<title>Andrés González — Retail Operations and Sales Manager</title>
+<meta name="description" content="Portafolio profesional de Andrés González — Retail Operations and Sales Manager con experiencia en liderazgo comercial, análisis de KPIs y mejora de procesos.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body{
-  font-family:'Inter',sans-serif;
-  background:#0b0c10;
-  color:#e8f0ff;
-  margin:0;
-  line-height:1.5;
+:root {
+  --primary: #004aad;
+  --text: #1a1a1a;
+  --muted: #666;
+  --bg: #ffffff;
+  --border: #e5e7eb;
 }
-a{color:#4da3ff;text-decoration:none}
-header{background:#0c1016cc;backdrop-filter:blur(8px);border-bottom:1px solid #1f2630;position:sticky;top:0;z-index:10}
-nav{max-width:960px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 18px}
-nav a{margin:0 6px;padding:8px 10px;border-radius:8px}
-nav a:hover{background:#141922}
-.container{max-width:960px;margin:auto;padding:40px 18px}
-h1,h2{margin-top:0}
-h1{font-size:clamp(28px,5vw,42px)}
-h2{font-size:clamp(22px,4vw,30px)}
-.card{background:#141922;border:1px solid #1f2630;border-radius:14px;padding:22px;margin-bottom:32px}
-img{max-width:100%;border-radius:10px;border:1px solid #1f2630}
-footer{border-top:1px solid #1f2630;text-align:center;color:#9fb0c6;padding:18px}
-.gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-button{background:#4da3ff;color:#0b0c10;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600}
-button:hover{background:#67b1ff}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+header {
+  text-align: center;
+  padding: 60px 20px 30px;
+  border-bottom: 1px solid var(--border);
+}
+header img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 100%;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+}
+h1 {
+  font-size: clamp(24px, 4vw, 36px);
+  margin: 18px 0 6px;
+}
+h2 {
+  font-size: 24px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+p.subtitle {
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+.section {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+.card-content {
+  padding: 16px 18px 24px;
+}
+.card-content h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: var(--primary);
+}
+.card-content p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+a.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+a.btn:hover {
+  background: #003b8c;
+}
+.contact {
+  text-align: center;
+}
+.contact a {
+  color: var(--primary);
+  text-decoration: none;
+}
+footer {
+  background: #f7f7f7;
+  color: var(--muted);
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  border-top: 1px solid var(--border);
+}
 </style>
 </head>
+
 <body>
 
 <header>
-  <nav>
-    <strong>Andrés Manager</strong>
-    <div>
-      <a href="#inicio">Inicio</a>
-      <a href="#cv">CV</a>
-      <a href="#certificados">Certificados</a>
-      <a href="#contacto">Contacto</a>
-    </div>
-  </nav>
+  <img src="Imagen de WhatsApp 2025-08-26 a las 20.46.48_2fdfdcce.jpg" alt="Foto profesional de Andrés González">
+  <h1>Andrés González</h1>
+  <p class="subtitle">Retail Operations and Sales Manager</p>
 </header>
 
-<section id="inicio" class="container">
-  <div class="card" style="text-align:center">
-    <img src="HUBSPOT.jpg" alt="Foto profesional de Luis Andrés González Martínez" style="max-width:260px;margin:auto;border-radius:50%">
-    <h1>Luis Andrés González Martínez</h1>
-    <p><b>Retail Operations & Sales Manager</b></p>
-    <p>Profesional con más de 10 años liderando operaciones y equipos de venta multitienda para marcas como Luuna y GAP. 
-    Experto en indicadores comerciales, control de inventario, capacitación y mejora continua enfocada en la experiencia del cliente.</p>
-  </div>
-</section>
+<main class="container">
 
-<section id="cv" class="container">
-  <div class="card">
+  <section class="section">
+    <h2>Perfil Profesional</h2>
+    <p>Soy un Retail Operations and Sales Manager con amplia experiencia en liderazgo comercial, gestión de equipos multitienda, optimización de inventarios y desarrollo de estrategias de ventas basadas en indicadores. Me apasiona transformar la experiencia del cliente y los procesos de operación en resultados medibles y sostenibles.</p>
+  </section>
+
+  <section class="section">
     <h2>Currículum</h2>
-    <p>Puedes ver o descargar mi CV completo en formato PDF:</p>
-    <p><a href="CV_Andres_Gonzalez.pdf" target="_blank"><button>📄 Ver CV completo</button></a></p>
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Imagen decorativa CV">
-  </div>
-</section>
-
-<section id="certificados" class="container">
-  <div class="card">
-    <h2>Certificados y Logros</h2>
-    <div class="gallery">
-      <div>
-        <h3>Lean Six Sigma White Belt</h3>
-        <img src="Certification_Issued_Lean_Six_Sigma_White_Belt.pdf" alt="Certificado Lean Six Sigma White Belt">
-        <p><a href="Certification_Issued_Lean_Six_Sigma_White_Belt.pdf" target="_blank">Ver documento</a></p>
-      </div>
-      <div>
-        <h3>AWS Academy Graduate — Cloud Foundations</h3>
-        <img src="AWS_Academy_Graduate__Cloud_Foundation.pdf" alt="Certificado AWS Cloud Foundations">
-        <p><a href="AWS_Academy_Graduate__Cloud_Foundation.pdf" target="_blank">Ver documento</a></p>
-      </div>
-      <div>
-        <h3>Python Essentials 1</h3>
-        <img src="PythonEssentials1Update20251024-29-y7ctpro0.pdf" alt="Certificado Python Essentials 1">
-        <p><a href="PythonEssentials1Update20251024-29-y7ctpro0.pdf" target="_blank">Ver documento</a></p>
+    <div class="cards">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=900&q=80" alt="Currículum Andrés González">
+        <div class="card-content">
+          <h3>CV Andrés González</h3>
+          <p>Versión completa del currículum en PDF.</p>
+          <a href="CV_Andres_Gonzalez.pdf" target="_blank" class="btn">Ver CV</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contacto" class="container">
-  <div class="card" style="text-align:center">
+  <section class="section">
+    <h2>Certificados</h2>
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581091870622-3b6a4d39d1c5?auto=format&fit=crop&w=900&q=80" alt="Certificado AWS">
+        <div class="card-content">
+          <h3>AWS Academy Graduate — Cloud Foundations</h3>
+          <p>Certificación de fundamentos en servicios y arquitectura de la nube.</p>
+          <a href="AWS_Academy_Graduate__Cloud_Foundation.pdf" target="_blank" class="btn">Ver certificado</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616587895295-4f6b5a7dd278?auto=format&fit=crop&w=900&q=80" alt="Lean Six Sigma">
+        <div class="card-content">
+          <h3>Lean Six Sigma White Belt</h3>
+          <p>Metodología de mejora continua y eficiencia operativa.</p>
+          <a href="Certification_Issued_Lean_Six_Sigma_White_Belt.pdf" target="_blank" class="btn">Ver certificado</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1648737960294-84a39cf0bcb9?auto=format&fit=crop&w=900&q=80" alt="Python Essentials 1">
+        <div class="card-content">
+          <h3>Python Essentials 1</h3>
+          <p>Certificación de Cisco Networking Academy en fundamentos de programación.</p>
+          <a href="PythonEssentials1Update20251024-29-y7ctpro0.pdf" target="_blank" class="btn">Ver certificado</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section contact">
     <h2>Contacto</h2>
-    <p>📧 <a href="mailto:tuemail@correo.com">tuemail@correo.com</a></p>
-    <p>💼 <a href="https://www.linkedin.com/" target="_blank">LinkedIn: Luis Andrés González Martínez</a></p>
-  </div>
-</section>
+    <p>📧 <a href="mailto:andres.gonzalez@email.com">andres.gonzalez@email.com</a></p>
+    <p>💼 <a href="https://www.linkedin.com/in/andresgonzalez" target="_blank">LinkedIn: andresgonzalez</a></p>
+  </section>
+
+</main>
 
 <footer>
-  © <span id="year"></span> Luis Andrés González Martínez — Portafolio Profesional
+  © <span id="year"></span> Andrés González — Retail Operations and Sales Manager
 </footer>
 
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
