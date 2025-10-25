@@ -5,78 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrés González | Portafolio Profesional</title>
 
-  <meta name="description" content="Portafolio de Andrés González Martínez: Retail Operations & Sales Manager con +10 años en retail, liderazgo de equipos 30+, CX y analítica; formación en AWS y Python." />
+  <meta name="description" content="Portafolio de Andrés González Martínez: Retail Operations & Sales Manager con liderazgo 30+, experiencia en CX, control de inventarios y base técnica en AWS y Python." />
   <meta property="og:title" content="Andrés González | Portafolio Profesional" />
-  <meta property="og:description" content="Retail Ops & Sales Manager · CX · Operación · AWS · Python" />
+  <meta property="og:description" content="Retail · Operaciones · CX · Inventarios · AWS · Python" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="andres-gonzalez-foto-perfil.jpg" />
   <link rel="icon" href="andres-gonzalez-foto-perfil.jpg" />
 
   <style>
     :root{
-      --bg:#f5f6f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
-      --brand:#0077b6; --brand-2:#00aaff; --dark:#1b1f23;
-      --shadow:0 10px 28px rgba(0,0,0,.08);
-      --radius:16px;
+      --bg:#f6f7fb; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
+      --brand:#0b76c6; --brand-2:#66c1ff; --dark:#171b22;
+      --shadow:0 10px 28px rgba(0,0,0,.08); --radius:16px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{ margin:0; font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); }
-    a{ color:var(--brand); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
+    body{margin:0;font-family:system-ui,-apple-system,Inter,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
 
-    /* HERO */
-    .hero{ background:linear-gradient(180deg,var(--dark) 0%,#1f2530 100%); color:#fff; padding:48px 16px 32px; }
-    .hero-wrap{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.2fr .9fr; gap:28px; align-items:center; }
-    @media (max-width:960px){ .hero-wrap{ grid-template-columns:1fr; text-align:center } }
-    .portrait{ width:100%; max-width:480px; justify-self:end; aspect-ratio:4/5; object-fit:cover; border-radius:22px; border:3px solid var(--brand-2); box-shadow:0 12px 30px rgba(0,0,0,.35); }
-    @media (max-width:960px){ .portrait{ justify-self:center } }
-    h1{ margin:6px 0 8px; font-size:36px; letter-spacing:.2px }
-    .sub{ margin:0; color:#d1d5db }
-    .actions{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap }
-    @media (max-width:960px){ .actions{ justify-content:center } }
-    .btn{ padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; transition:.25s ease; }
-    .btn.primary{ background:var(--brand); color:#fff }
-    .btn.primary:hover{ background:#005f8a; transform:translateY(-1px) }
-    .btn.ghost{ border:1px solid #374151; color:#e5e7eb; background:transparent }
-    .btn.ghost:hover{ background:#111827 }
+    /* HERO – foto moderada a la derecha */
+    .hero{background:linear-gradient(180deg,var(--dark),#212733);color:#fff;padding:44px 16px 28px}
+    .hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.3fr .7fr;gap:26px;align-items:center}
+    @media (max-width:960px){.hero-wrap{grid-template-columns:1fr;text-align:center}}
+    .portrait{width:100%;max-width:320px;justify-self:end;aspect-ratio:4/5;object-fit:cover;border-radius:18px;border:3px solid var(--brand-2);box-shadow:0 10px 26px rgba(0,0,0,.32)}
+    @media (max-width:960px){.portrait{justify-self:center}}
+    .hero h1{margin:6px 0 6px;font-size:30px}
+    .sub{margin:0;color:#cdd3db}
+    .actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+    @media (max-width:960px){.actions{justify-content:center}}
+    .btn{padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:.25s ease}
+    .btn.primary{background:var(--brand);color:#fff}.btn.primary:hover{background:#085e9e;transform:translateY(-1px)}
+    .btn.ghost{border:1px solid #384150;color:#e5e7eb;background:transparent}.btn.ghost:hover{background:#131922}
 
     /* LAYOUT */
-    main{ max-width:1100px; margin:0 auto; padding:32px 16px 80px }
-    section{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px; margin:28px 0 }
-    h2{ margin:0 0 10px; color:var(--brand); border-bottom:2px solid var(--brand); padding-bottom:8px; font-size:22px }
-    .lead{ font-size:17px; line-height:1.8; color:#374151; margin-top:8px }
-    .muted{ color:#6b7280 }
-    .split{ display:grid; grid-template-columns:1fr 1fr; gap:22px }
-    @media (max-width:900px){ .split{ grid-template-columns:1fr } }
+    main{max-width:1100px;margin:0 auto;padding:28px 16px 70px}
+    section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin:24px 0}
+    h2{margin:0 0 10px;color:var(--brand);border-bottom:2px solid var(--brand);padding-bottom:8px;font-size:21px}
+    .lead{font-size:16.5px;line-height:1.8;color:#374151;margin-top:6px}
+    .muted{color:var(--muted)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{background:#eef6ff;color:#075985;padding:8px 10px;border-radius:999px;font-size:13px;border:1px solid #cfe8ff}
 
-    /* Chips */
-    .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
-    .chip{ background:#eef6ff; color:#075985; padding:8px 10px; border-radius:999px; font-size:13px; border:1px solid #cfe8ff }
+    /* tarjetas simples */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+    .card h4{margin:0;font-size:15.5px}.card p{margin:0;color:#4b5563}.small{font-size:12px;color:#6b7280}
 
-    /* Cards */
-    .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
-    @media (max-width:1000px){ .cards{ grid-template-columns:repeat(2,1fr) } }
-    @media (max-width:640px){ .cards{ grid-template-columns:1fr } }
-    .card{ background:#f9fafb; border:1px solid #e5e7eb; border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:8px }
-    .card h4{ margin:0; font-size:16px }
-    .card p{ margin:0; color:#4b5563 }
-    .card .small{ font-size:12px; color:#6b7280 }
+    /* certificados */
+    .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    @media (max-width:1100px){.cert-grid{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:800px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.cert-grid{grid-template-columns:1fr}}
+    .cert{text-align:center;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px}
+    .cert img{width:100%;border-radius:10px}
+    .cert h4{margin:8px 0 4px;font-size:14px}
+    .links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
 
-    /* Certificados */
-    .cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
-    @media (max-width:1000px){ .cert-grid{ grid-template-columns:repeat(2,1fr) } }
-    @media (max-width:640px){ .cert-grid{ grid-template-columns:1fr } }
-    .cert{ background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:14px; text-align:center }
-    .cert img{ width:100%; border-radius:10px }
-    .cert h4{ margin:8px 0 4px; font-size:15px }
-    .cert .links{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap }
+    /* CV imagen */
+    .cvimage{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff}
+    .cvimage img{width:100%;display:block}
 
-    /* CV Imagen */
-    .cvimage{ border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#fff }
-    .cvimage img{ width:100%; display:block }
-
-    footer{ text-align:center; color:#9ca3af; padding:28px 12px 50px }
+    footer{text-align:center;color:#9ca3af;padding:24px 12px 46px}
   </style>
 </head>
 <body>
@@ -86,9 +79,9 @@
     <div class="hero-wrap">
       <div>
         <h1>Andrés González Martínez</h1>
-        <p class="sub">Retail Operations & Sales Manager · Customer Experience · Eficiencia Operativa · AWS · Python</p>
+        <p class="sub">Retail Operations & Sales Manager · Experiencia en CX, inventarios, KPIs · AWS & Python</p>
         <div class="actions">
-          <a class="btn primary" href="#sobre-mi">Conóceme</a>
+          <a class="btn primary" href="#sobre-mi">Sobre mí</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn ghost" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
         </div>
@@ -104,60 +97,52 @@
       <div>
         <h2>Sobre mí</h2>
         <p class="lead">
-          Ejecutivo de <strong>Retail & Operaciones</strong> con más de diez años liderando tiendas boutique y departamentales
-          (GAP bajo Liverpool, Luuna). He gestionado <strong>equipos de 30+ personas</strong> y varias sucursales,
-          elevando ventas, conversión y la experiencia del cliente mediante procesos claros, visual merchandising y coaching continuo.
-        </p>
-        <p class="lead">
-          Estudio <strong>Ingeniería en Desarrollo de Software</strong> (Tecmilenio) y complemento mi perfil con
-          <strong>AWS Cloud Foundations</strong> y <strong>Python</strong> para automatizar reportes, construir tableros
-          y apoyar decisiones con datos. Me apasiona unir <em>operación + CX + analítica</em> para acelerar resultados.
+          Profesional de <strong>Retail & Operaciones</strong> con más de una década gestionando tiendas boutique y departamentales.
+          Lidero <strong>equipos de 30+ personas</strong>, cuido la disciplina operativa y la experiencia del cliente, y traduzco métricas
+          en acciones simples para el equipo. Complemento mi perfil con <strong>AWS Cloud Foundations</strong> y <strong>Python</strong> para
+          automatizar reportes y dar visibilidad clara al negocio.
         </p>
         <div class="skills">
-          <span class="chip">Liderazgo multi‑sucursal</span>
+          <span class="chip">Gestión multi-sucursal</span>
           <span class="chip">CX & Visual Merchandising</span>
-          <span class="chip">P&L · KPIs (UPT, ATV, Conversión)</span>
+          <span class="chip">KPIs (conversión, UPT, ATV)</span>
           <span class="chip">Inventarios & mermas</span>
-          <span class="chip">Onboarding & coaching</span>
           <span class="chip">Google Sheets (dashboards)</span>
           <span class="chip">AWS Foundations</span>
-          <span class="chip">Python (automatización)</span>
+          <span class="chip">Python básico</span>
         </div>
       </div>
 
       <div>
         <h2>Logros destacados</h2>
-        <ul class="lead" style="padding-left:18px; line-height:1.8; margin:0">
-          <li>Aceleré reapertura/relanzamiento con plan 30/60/90, estabilizando operación y piso en 12 semanas.</li>
-          <li>Mejoré conversión y ticket medio con rutinas comerciales y coaching en piso.</li>
-          <li>Reduje mermas mediante conteos cíclicos y control de backroom.</li>
-          <li>Implementé tableros semanales para decisiones rápidas y seguimiento por vendedor.</li>
-          <li>Formé equipos con onboarding estructurado y feedback 1:1 continuo.</li>
+        <ul class="lead" style="padding-left:18px;line-height:1.8;margin:0">
+          <li>Dirección de operación diaria y estándares de piso en formatos boutique/departamental.</li>
+          <li>Mejora de conversión y ticket medio a través de rutinas comerciales y coaching en piso.</li>
+          <li>Reducción de mermas mediante conteos cíclicos y control de backroom.</li>
+          <li>Tableros semanales para seguimiento por vendedor y decisiones rápidas.</li>
+          <li>Formación de equipos: onboarding, feedback 1:1 y cultura de servicio.</li>
         </ul>
       </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos">
-      <h2>Proyectos y Casos</h2>
+    <!-- EXPERIENCIA (texto neutro basado en tu CV) -->
+    <section id="experiencia">
+      <h2>Experiencia</h2>
       <div class="cards">
         <article class="card">
-          <h4>Relanzamiento de tienda (30/60/90)</h4>
-          <p>Plan para estabilizar operación, ordenar backroom y elevar estándares de piso. Recuperación de conversión
-             y mejora en UPT/ATV en el trimestre.</p>
-          <p class="small">Rol: Store / Ops Manager · Boutique & departamental</p>
+          <h4>Retail / Store & Operations Management</h4>
+          <p>Gestión de plantilla 30+, turnos, caja, inventarios, visual y objetivos comerciales con enfoque en CX.</p>
+          <p class="small">Ambiente: boutique y departamental</p>
         </article>
-
         <article class="card">
-          <h4>Dashboard comercial en Google Sheets</h4>
-          <p>Consolidación automática de ventas por hora, metas y comparativos vs. LY. Semáforos y seguimiento por vendedor.</p>
-          <p class="small">Herramientas: Google Sheets · (opcional) AppScript</p>
+          <h4>Análisis y reporting</h4>
+          <p>Consolidación de ventas y productividad en Google Sheets para seguimiento por hora y por vendedor.</p>
+          <p class="small">Apoyo con automatización básica (Python)</p>
         </article>
-
         <article class="card">
-          <h4>Control de inventarios & mermas</h4>
-          <p>Conteos cíclicos, layout de backroom y agenda de auditorías. Mayor disponibilidad sin sobrestock.</p>
-          <p class="small">Aplicable a operaciones con alta rotación de SKU</p>
+          <h4>Control operativo</h4>
+          <p>Conteos cíclicos, auditorías, rotación y disponibilidad en piso para reducir mermas y quiebres.</p>
+          <p class="small">Procesos claros y medibles</p>
         </article>
       </div>
     </section>
@@ -166,16 +151,14 @@
     <section id="certificaciones">
       <h2>Certificaciones</h2>
       <div class="cert-grid">
-
         <div class="cert">
           <img src="certificado-aws-academy-cloud-foundations.png" alt="AWS Academy Graduate - Cloud Foundations" />
           <h4>AWS Academy Graduate — Cloud Foundations</h4>
           <div class="links">
             <a href="certificado-aws-academy-cloud-foundations.pdf" target="_blank" rel="noopener">Abrir PDF</a>
-            <a href="https://www.credly.com/go/YKGbfVO1" target="_blank" rel="noopener">Ver en Credly</a>
+            <a href="https://www.credly.com/go/YKGbfVO1" target="_blank" rel="noopener">Credly</a>
           </div>
         </div>
-
         <div class="cert">
           <img src="certificado-cisco-python-essentials-1.png" alt="Cisco Networking Academy - Python Essentials 1" />
           <h4>Cisco Networking Academy — Python Essentials 1</h4>
@@ -183,23 +166,20 @@
             <a href="certificado-cisco-python-essentials-1.pdf" target="_blank" rel="noopener">Abrir PDF</a>
           </div>
         </div>
-
         <div class="cert">
-          <img src="certificado-hubspot-ventas.jpg" alt="HubSpot Academy — Software de ventas" />
+          <img src="certificado-hubspot-ventas.jpg" alt="HubSpot — Software de Ventas" />
           <h4>HubSpot — Software de Ventas</h4>
           <div class="links">
             <a href="certificado-hubspot-ventas.jpg" target="_blank" rel="noopener">Ver imagen</a>
           </div>
         </div>
-
         <div class="cert">
-          <img src="certificado-hubspot-ventas.jpg" alt="Lean Six Sigma White Belt (icono representativo)" />
+          <img src="certificado-hubspot-ventas.jpg" alt="Lean Six Sigma White Belt (icono)" />
           <h4>Lean Six Sigma — White Belt</h4>
           <div class="links">
             <a href="certificado-lean-six-sigma-white-belt.pdf" target="_blank" rel="noopener">Abrir PDF</a>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -207,7 +187,7 @@
     <section id="formacion" class="split">
       <div>
         <h2>Formación</h2>
-        <ul class="lead" style="padding-left:18px; line-height:1.8; margin:0">
+        <ul class="lead" style="padding-left:18px;line-height:1.8;margin:0">
           <li><strong>Ingeniería en Desarrollo de Software</strong> — Universidad Tecmilenio (en curso)</li>
           <li><strong>AWS Academy Cloud Foundations</strong> — Trained</li>
           <li><strong>Cisco Networking Academy — Python Essentials 1</strong></li>
@@ -218,23 +198,22 @@
       <div>
         <h2>Contacto</h2>
         <p class="lead">
-          📧 <a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a><br>
+          📧 <a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a><br/>
           🔗 <a href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">linkedin.com/in/andresgonzalezops</a>
         </p>
       </div>
     </section>
 
-    <!-- CV (como imagen al final) -->
+    <!-- CV COMO IMAGEN (vista rápida) -->
     <section id="cv">
       <h2>Currículum</h2>
       <p class="muted" style="margin-top:0">
-        Vista rápida como imagen abajo. Para calidad completa: 
-        <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a> o 
+        Vista rápida abajo (sube un archivo <code>cv-preview.jpg</code>). Para verlo completo:
+        <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a> o
         <a href="CV_Andres_Gonzalez.pdf" download>descargar</a>.
       </p>
       <div class="cvimage">
-        <!-- Reemplaza el SRC de abajo por una imagen de tu CV (por ejemplo 'cv-preview.jpg') cuando la tengas en el repositorio -->
-        <img src="cv-preview.jpg" alt="Vista previa del CV de Andrés González (sube 'cv-preview.jpg' para verla aquí)">
+        <img src="cv-preview.jpg" alt="Vista previa del CV de Andrés González (sube 'cv-preview.jpg' a tu repo)">
       </div>
     </section>
 
