@@ -1,7 +1,0 @@
-Portafolio de archivos renombrados de Andrés González
-Estructura incluida:
- - andres-gonzalez-foto-perfil.jpg
- - certificado-aws-academy-cloud-foundations.png
- - certificado-aws-academy-cloud-foundations.pdf
- - certificado-cisco-python-essentials-1.png
- - certificado-cisco-python-essentials-1.pdf
