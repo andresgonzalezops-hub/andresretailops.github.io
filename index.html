@@ -4,24 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrés González | Retail & Operaciones</title>
-<meta name="description" content="Retail & Operations Manager con liderazgo 30+, CX, inventarios, KPIs; base técnica en AWS y Python.">
+<meta name="description" content="Retail & Operations Manager con liderazgo 30+, ejecución en piso, control de inventarios, estándares operativos y reporting. Enfoque total en resultados.">
 <link rel="icon" href="andres-gonzalez-foto-perfil.jpg">
 <style>
-  :root{--brand:#0ea5e9;--txt:#1f2937;--muted:#6b7280;--bg:#f7fafc;--card:#fff;--dark:#0b1220;}
+  :root{
+    --brand:#0ea5e9;--txt:#111827;--muted:#6b7280;--bg:#f7fafc;--card:#ffffff;--dark:#0b1220;
+  }
   *{box-sizing:border-box} html{scroll-behavior:smooth}
   body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--txt);background:var(--bg)}
   a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
 
   /* NAV */
-  .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(6px);background:rgba(255,255,255,.9);border-bottom:1px solid #e5e7eb}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #e5e7eb}
   .nav .wrap{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 14px}
   .brand{font-weight:800;letter-spacing:.2px;color:#0f172a}
   .menu a{font-weight:600;margin:0 8px;color:#0f172a}
   .cta{background:var(--brand);color:#fff;padding:8px 12px;border-radius:10px}
 
   /* HERO */
-  .hero{background:linear-gradient(180deg,#0b1220 0%,#111827 100%);color:#e5e7eb;padding:48px 14px 28px}
-  .hero .wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.4fr .6fr;gap:22px;align-items:center}
+  .hero{background:linear-gradient(180deg,#0b1220 0%,#111827 100%);color:#e5e7eb;padding:46px 14px 28px}
+  .hero .wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.45fr .55fr;gap:22px;align-items:center}
   @media (max-width:900px){.hero .wrap{grid-template-columns:1fr;text-align:center}}
   .hero h1{margin:0 0 10px;font-size:30px;color:#fff}
   .hero p{margin:0;color:#cbd5e1}
@@ -30,10 +32,10 @@
   .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:700}
   .btn.primary{background:var(--brand);color:#fff}
   .btn.ghost{border:1px solid #334155;color:#e2e8f0}
-  .portrait{width:100%;max-width:220px;justify-self:end;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:3px solid rgba(255,255,255,.25)}
+  .portrait{width:100%;max-width:200px;justify-self:end;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:3px solid rgba(255,255,255,.25)}
   @media (max-width:900px){.portrait{justify-self:center}}
 
-  /* SECCIONES */
+  /* LAYOUT */
   main{max-width:980px;margin:0 auto;padding:24px 14px 60px}
   section{background:var(--card);border:1px solid #e5e7eb;border-radius:14px;padding:22px;margin:20px 0}
   h2{margin:0 0 10px;color:#0ea5e9;border-bottom:2px solid #bae6fd;padding-bottom:6px;font-size:20px}
@@ -43,21 +45,20 @@
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
   .chip{background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:6px 10px;border-radius:999px;font-size:13px}
 
-  /* CERTIFICADOS */
-  .certs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  @media (max-width:1000px){.certs{grid-template-columns:repeat(3,1fr)}}
-  @media (max-width:700px){.certs{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:460px){.certs{grid-template-columns:1fr}}
-  .cert{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:10px;text-align:center}
-  .cert img{width:100%;border-radius:8px}
-  .cert h4{margin:6px 0 4px;font-size:14px}
-  .links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  /* Cards de experiencia */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.cards{grid-template-columns:1fr}}
+  .card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px}
+  .card h3{margin:0 0 6px;font-size:15.5px}
+  .card p{margin:0;color:#4b5563}
+  .small{font-size:12px;color:#6b7280}
 
-  /* CV */
-  .viewer{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#0b1220;height:620px}
-  .viewer object,.viewer iframe{width:100%;height:100%;border:0}
+  /* CV imagen */
+  .cvimg{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff}
+  .cvimg img{width:100%;display:block}
 
-  /* FOOTER */
+  /* Footer */
   footer{text-align:center;color:#6b7280;padding:26px 12px 40px}
 </style>
 </head>
@@ -69,8 +70,8 @@
   <div class="wrap">
     <div class="brand">Andrés González</div>
     <div class="menu">
-      <a href="#sobre-mi">Sobre mí</a>
-      <a href="#certificaciones">Certificaciones</a>
+      <a href="#resumen">Resumen</a>
+      <a href="#experiencia">Experiencia</a>
       <a href="#cv">CV</a>
       <a href="#contacto" class="cta">Contacto</a>
     </div>
@@ -82,10 +83,11 @@
   <div class="wrap">
     <div>
       <h1>Retail & Operations Manager</h1>
-      <p>Equipo de <strong>30+ personas</strong>, CX, inventarios, KPIs. Base técnica en <strong>AWS</strong> y <strong>Python</strong>.</p>
+      <p>Dirección de operación y ventas con liderazgo de <strong>30+ personas</strong>, control de inventarios y
+         ejecución en piso. Reportes claros para decisiones rápidas.</p>
       <div class="actions">
-        <a class="btn primary" href="#cv">Ver CV</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">Ver LinkedIn</a>
+        <a class="btn ghost" href="#cv">Ver CV</a>
         <a class="btn ghost" href="mailto:andresgonzalez.ops@gmail.com">Email</a>
       </div>
     </div>
@@ -95,79 +97,74 @@
 
 <main>
 
-  <!-- SOBRE MÍ -->
-  <section id="sobre-mi" class="grid-2">
+  <!-- RESUMEN (solo lo clave) -->
+  <section id="resumen" class="grid-2">
     <div>
-      <h2>Sobre mí</h2>
+      <h2>Resumen profesional</h2>
       <p class="lead">
-        Profesional de <strong>Retail & Operaciones</strong> con más de una década en formatos boutique y departamentales.
-        Me enfoco en estandarizar procesos, formar equipos y convertir los datos de ventas en acciones simples.
-        Complemento con <strong>AWS Cloud Foundations</strong> y <strong>Python</strong> para automatizar reportes y armar tableros claros.
+        Más de diez años en retail boutique y departamental. Especialista en estándares operativos, control de
+        inventarios y cultura de servicio. Traduce métricas de ventas en rutinas simples para el equipo, con reporting
+        quincenal/mensual/trimestral que habilita decisiones a nivel gerencia y dirección.
       </p>
       <div class="chips">
-        <span class="chip">Gestión multi-sucursal</span>
-        <span class="chip">CX & Visual</span>
-        <span class="chip">KPIs: conversión, UPT, ATV</span>
+        <span class="chip">Liderazgo 30+ · multisucursal</span>
+        <span class="chip">Ejecución en piso & CX</span>
+        <span class="chip">KPIs (conversión, UPT, ATV)</span>
         <span class="chip">Inventarios & mermas</span>
-        <span class="chip">Google Sheets dashboards</span>
-        <span class="chip">AWS Foundations</span>
-        <span class="chip">Python básico</span>
+        <span class="chip">Reportes de ventas</span>
       </div>
     </div>
     <div>
-      <h2>Lo que hago</h2>
+      <h2>Fortalezas</h2>
       <ul class="lead">
-        <li>Operación diaria, roles y rutinas por turno.</li>
-        <li>Coaching en piso para elevar conversión y ticket.</li>
-        <li>Control de backroom, conteos cíclicos y auditorías.</li>
-        <li>Tableros semanales para decisiones rápidas por vendedor.</li>
+        <li>Estándares y disciplina operativa (apertura–cierre, caja, backroom).</li>
+        <li>Coaching de mandos medios y clima de servicio.</li>
+        <li>Seguimiento de metas y bitácoras por vendedor.</li>
+        <li>Inventario confiable y disponibilidad en piso.</li>
       </ul>
     </div>
   </section>
 
-  <!-- CERTIFICACIONES -->
-  <section id="certificaciones">
-    <h2>Certificaciones</h2>
-    <div class="certs">
-      <article class="cert">
-        <img src="certificado-aws-academy-cloud-foundations.png" alt="AWS Academy Graduate - Cloud Foundations">
-        <h4>AWS Academy — Cloud Foundations</h4>
-        <div class="links">
-          <a href="certificado-aws-academy-cloud-foundations.pdf" target="_blank" rel="noopener">PDF</a>
-          <a href="https://www.credly.com/go/YKGbfVO1" target="_blank" rel="noopener">Credly</a>
-        </div>
+  <!-- EXPERIENCIA (extraída de tu CV real) -->
+  <section id="experiencia">
+    <h2>Experiencia</h2>
+    <div class="cards">
+
+      <article class="card">
+        <h3>Store Manager · Boutique Showroom</h3>
+        <p>Operación comercial y administrativa, diseño de estrategias orientadas a resultados y cumplimiento de KPIs.
+           Control de inventarios y procesos internos; reportes multitienda e indicadores para decisiones estratégicas.</p>
+        <p class="small">Reconocimiento nacional por cumplimiento de metas 2023 (índice 10). Liderazgo de equipos en 15+ sucursales.</p>
       </article>
-      <article class="cert">
-        <img src="certificado-cisco-python-essentials-1.png" alt="Cisco Networking Academy - Python Essentials 1">
-        <h4>Cisco — Python Essentials 1</h4>
-        <div class="links"><a href="certificado-cisco-python-essentials-1.pdf" target="_blank" rel="noopener">PDF</a></div>
+
+      <article class="card">
+        <h3>Gerente de Boutique · GAP</h3>
+        <p>100% de operaciones comerciales: apertura/cierre, manejo de valores, piso de ventas y control de mercancía.
+           Optimización de inventarios y reporting frecuente con sistemas corporativos.</p>
+        <p class="small">Inventario confiable de 85% → 98.88%. Gestión y motivación de equipos hasta 30 personas.</p>
       </article>
-      <article class="cert">
-        <img src="certificado-hubspot-ventas.jpg" alt="HubSpot — Software de Ventas">
-        <h4>HubSpot — Software de Ventas</h4>
-        <div class="links"><a href="certificado-hubspot-ventas.jpg" target="_blank" rel="noopener">Ver</a></div>
+
+      <article class="card">
+        <h3>Gestión de indicadores & reporting</h3>
+        <p>Elaboración de reportes por sección y artículo (quincenal, mensual, trimestral, anual) con KPIs de venta y
+           productividad; tableros de seguimiento para coaching y metas.</p>
+        <p class="small">Enfoque en visibilidad y acción — no en datos por los datos.</p>
       </article>
-      <article class="cert">
-        <img src="certificado-hubspot-ventas.jpg" alt="Lean Six Sigma (icono)">
-        <h4>Lean Six Sigma — White Belt</h4>
-        <div class="links"><a href="certificado-lean-six-sigma-white-belt.pdf" target="_blank" rel="noopener">PDF</a></div>
-      </article>
+
     </div>
   </section>
 
-  <!-- CV -->
+  <!-- CV (visible) -->
   <section id="cv">
     <h2>Currículum</h2>
     <p class="lead" style="margin-top:0">
-      Puedes verlo aquí o abrirlo / descargarlo:
+      Vista previa debajo. Para calidad completa:
       <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">abrir</a> ·
       <a href="CV_Andres_Gonzalez.pdf" download>descargar</a>
     </p>
-    <div class="viewer">
-      <object data="CV_Andres_Gonzalez.pdf#view=FitH&pagemode=none" type="application/pdf">
-        <iframe src="CV_Andres_Gonzalez.pdf#view=FitH&pagemode=none"></iframe>
-        <div style="background:#fff;color:#111;padding:16px">No se pudo mostrar el PDF. <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">Ábrelo aquí</a>.</div>
-      </object>
+    <div class="cvimg">
+      <!-- Sube una imagen llamada 'cv-preview.jpg' (por ejemplo la página 1 del CV) -->
+      <img src="cv-preview.jpg" alt="Vista previa del CV de Andrés González">
     </div>
   </section>
 
@@ -184,9 +181,10 @@
       <h2>Descargables</h2>
       <ul class="lead">
         <li><a href="CV_Andres_Gonzalez.pdf" download>CV (PDF)</a></li>
-        <li><a href="certificado-aws-academy-cloud-foundations.pdf" download>AWS — PDF</a></li>
-        <li><a href="certificado-cisco-python-essentials-1.pdf" download>Cisco — PDF</a></li>
       </ul>
+      <p class="small" style="margin-top:8px;color:#6b7280">
+        Certificaciones disponibles a solicitud (complemento académico).
+      </p>
     </div>
   </section>
 
