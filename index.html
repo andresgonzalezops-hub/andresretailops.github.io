@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrés González | Portafolio Profesional</title>
+  <meta name="description" content="Portafolio de Andrés González Martínez: Retail Operations & Sales Manager con +10 años en retail, liderazgo multi‑sucursal, CX y analítica; formación en AWS Cloud Foundations y Python.">
+  <meta property="og:title" content="Andrés González | Portafolio Profesional">
+  <meta property="og:description" content="Retail Ops & Sales Manager · Liderazgo multi‑sucursal · CX · KPIs · AWS · Python">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="andres-gonzalez-foto-perfil.jpg">
+  <link rel="icon" href="andres-gonzalez-foto-perfil.jpg">
+
+  <style>
+    :root{
+      --bg:#f5f6f8; --card:#ffffff; --text:#1f2937; --muted:#6b7280;
+      --brand:#0077b6; --brand-2:#00aaff; --dark:#1b1f23;
+      --shadow:0 10px 28px rgba(0,0,0,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{ margin:0; font-family:system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); }
+    a{ color:var(--brand); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .hero{ background:linear-gradient(180deg,var(--dark) 0%,#1f2530 100%); color:#fff; padding:48px 16px 32px; }
+    .hero-wrap{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.2fr .9fr; gap:28px; align-items:center; }
+    @media (max-width:960px){ .hero-wrap{ grid-template-columns:1fr; text-align:center } }
+    .portrait{ width:100%; max-width:460px; justify-self:end; aspect-ratio:4/5; object-fit:cover; border-radius:22px; border:3px solid var(--brand-2); box-shadow:0 12px 30px rgba(0,0,0,.35); }
+    @media (max-width:960px){ .portrait{ justify-self:center } }
+    h1{ margin:6px 0 8px; font-size:36px; letter-spacing:.2px }
+    .sub{ margin:0; color:#d1d5db }
+    .actions{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap }
+    @media (max-width:960px){ .actions{ justify-content:center } }
+    .btn{ padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; transition:.25s ease; }
+    .btn.primary{ background:var(--brand); color:#fff }
+    .btn.primary:hover{ background:#005f8a; transform:translateY(-1px) }
+    .btn.ghost{ border:1px solid #374151; color:#e5e7eb; background:transparent }
+    .btn.ghost:hover{ background:#111827 }
+
+    main{ max-width:1100px; margin:0 auto; padding:32px 16px 80px }
+    section{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px; margin:28px 0 }
+    h2{ margin:0 0 10px; color:var(--brand); border-bottom:2px solid var(--brand); padding-bottom:8px; font-size:22px }
+    .lead{ font-size:17px; line-height:1.8; color:#374151; margin-top:8px }
+    .muted{ color:#6b7280 }
+    .split{ display:grid; grid-template-columns:1fr 1fr; gap:22px }
+    @media (max-width:900px){ .split{ grid-template-columns:1fr } }
+    .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
+    .chip{ background:#eef6ff; color:#075985; padding:8px 10px; border-radius:999px; font-size:13px; border:1px solid #cfe8ff }
+    .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+    @media (max-width:1000px){ .cards{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width:640px){ .cards{ grid-template-columns:1fr } }
+    .card{ background:#f9fafb; border:1px solid #e5e7eb; border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:8px }
+    .card h4{ margin:0; font-size:16px }
+    .card p{ margin:0; color:#4b5563 }
+    .card .small{ font-size:12px; color:#6b7280 }
+    .card .links{ margin-top:8px; display:flex; gap:10px; flex-wrap:wrap }
+    .cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px }
+    @media (max-width:1000px){ .cert-grid{ grid-template-columns:repeat(2,1fr) } }
+    @media (max-width:640px){ .cert-grid{ grid-template-columns:1fr } }
+    .cert{ background:#f9fafb; border:1px solid #e5e7eb; border-radius:12px; padding:14px; text-align:center }
+    .cert img{ width:100%; border-radius:10px }
+    .cert h4{ margin:8px 0 4px; font-size:15px }
+    .cert .links{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap }
+    .viewer{ border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; background:#111; height:700px }
+    .viewer object,.viewer iframe{ width:100%; height:100%; border:0 }
+    footer{ text-align:center; color:#9ca3af; padding:28px 12px 50px }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-wrap">
+      <div>
+        <h1>Andrés González Martínez</h1>
+        <p class="sub">Retail Operations & Sales Manager · Customer Experience · Eficiencia Operativa · AWS · Python</p>
+        <div class="actions">
+          <a class="btn primary" href="#sobre-mi">Conóceme</a>
+          <a class="btn ghost" href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">Abrir CV</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
+        </div>
+      </div>
+      <img class="portrait" src="andres-gonzalez-foto-perfil.jpg" alt="Foto profesional de Andrés González" />
+    </div>
+  </section>
+
+  <main>
+
+    <section id="sobre-mi" class="split">
+      <div>
+        <h2>Sobre mí</h2>
+        <p class="lead">
+          Ejecutivo de <strong>Retail & Operaciones</strong> con más de diez años liderando tiendas boutique y departamentales
+          (GAP bajo Liverpool, Luuna, Vans). He gestionado <strong>equipos de 15+ personas</strong> y varias sucursales,
+          elevando ventas, conversión y la experiencia del cliente mediante procesos claros, visual merchandising y coaching continuo.
+        </p>
+        <p class="lead">
+          Estudio <strong>Ingeniería en Desarrollo de Software</strong> (Tecmilenio) y complemento mi perfil con
+          <strong>AWS Cloud Foundations</strong> y <strong>Python</strong> para automatizar reportes, construir tableros
+          y apoyar decisiones con datos. Me apasiona unir <em>operación + CX + analítica</em> para acelerar resultados.
+        </p>
+        <div class="skills">
+          <span class="chip">Liderazgo multi‑sucursal</span>
+          <span class="chip">CX & Visual Merchandising</span>
+          <span class="chip">P&L · KPIs (UPT, ATV, Conversión)</span>
+          <span class="chip">Inventarios & mermas</span>
+          <span class="chip">Onboarding & coaching</span>
+          <span class="chip">Google Sheets (dashboards)</span>
+          <span class="chip">AWS Foundations</span>
+          <span class="chip">Python (automatización)</span>
+        </div>
+      </div>
+
+      <div>
+        <h2>En qué te ayudo</h2>
+        <ul class="lead" style="padding-left:18px; line-height:1.8; margin:0">
+          <li>Estandarizar operación diaria, roles y rutinas por turno.</li>
+          <li>Mejorar conversión y ticket medio con coaching en piso y focos diarios.</li>
+          <li>Dar visibilidad con tableros semanales y bitácoras simples.</li>
+          <li>Reducir mermas con conteos cíclicos y control de backroom.</li>
+          <li>Impulsar cultura de servicio y storytelling de producto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <h2>Proyectos y Casos</h2>
+      <div class="cards">
+
+        <article class="card">
+          <h4>Relanzamiento de tienda (30/60/90)</h4>
+          <p>Plan para estabilizar operación, ordenar backroom y elevar estándares de piso. Recuperación de conversión
+             y mejora en UPT/ATV en el trimestre.</p>
+          <p class="small">Rol: Store / Ops Manager · Entornos boutique & departamental</p>
+        </article>
+
+        <article class="card">
+          <h4>Dashboard comercial en Google Sheets</h4>
+          <p>Consolidación automática de ventas por hora, metas y comparativos vs. LY. Semáforos y seguimiento por vendedor
+             para coaching en tiempo real.</p>
+          <p class="small">Herramientas: Google Sheets · (opcional) AppScript</p>
+          <div class="links"><a href="#contacto">Solicitar demo</a></div>
+        </article>
+
+        <article class="card">
+          <h4>Control de inventarios & mermas</h4>
+          <p>Conteos cíclicos, layout de backroom y agenda de auditorías. Menos incidencias y mayor disponibilidad sin sobrestock.</p>
+          <p class="small">Aplicable a tiendas con alta rotación de SKU</p>
+        </article>
+
+        <article class="card">
+          <h4>Rutinas de CX y Visual Merchandising</h4>
+          <p>Checklists por franja horaria (apertura, reposición, focos comerciales, cierre) para elevar la tasa de compra.</p>
+          <p class="small">Adaptado a Liverpool/GAP, Luuna, Vans y similares</p>
+        </article>
+
+        <article class="card">
+          <h4>Automatización de reportes con Python</h4>
+          <p>Limpieza de CSVs de ventas/inventarios y generación de resúmenes semanales por vendedor y categoría.</p>
+          <p class="small">Stack: Python · Pandas</p>
+        </article>
+
+        <article class="card">
+          <h4>Onboarding & Coaching de equipo</h4>
+          <p>Programa de integración, entrenamiento en piso y feedback 1:1 con metas claras. Mayor productividad y clima de servicio.</p>
+          <p class="small">Resultados medibles en 8–12 semanas</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="certificaciones">
+      <h2>Certificaciones</h2>
+      <div class="cert-grid">
+
+        <div class="cert">
+          <img src="certificado-aws-academy-cloud-foundations.png" alt="AWS Academy Graduate - Cloud Foundations">
+          <h4>AWS Academy Graduate — Cloud Foundations</h4>
+          <div class="links">
+            <a href="certificado-aws-academy-cloud-foundations.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+            <a href="https://www.credly.com/go/YKGbfVO1" target="_blank" rel="noopener">Ver en Credly</a>
+          </div>
+        </div>
+
+        <div class="cert">
+          <img src="certificado-cisco-python-essentials-1.png" alt="Cisco Networking Academy - Python Essentials 1">
+          <h4>Cisco Networking Academy — Python Essentials 1</h4>
+          <div class="links">
+            <a href="certificado-cisco-python-essentials-1.pdf" target="_blank" rel="noopener">Abrir PDF</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="cv">
+      <h2>Currículum</h2>
+      <p class="muted" style="margin-top:0">
+        Puedes <strong>verlo en línea abajo</strong> o
+        <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">abrir en pestaña nueva</a> /
+        <a href="CV_Andres_Gonzalez.pdf" download>descargar</a>.
+      </p>
+      <div class="viewer">
+        <object data="CV_Andres_Gonzalez.pdf#view=FitH&pagemode=none" type="application/pdf">
+          <iframe src="CV_Andres_Gonzalez.pdf#view=FitH&pagemode=none"></iframe>
+          <div style="padding:16px; background:#fff; color:#111">
+            No se pudo mostrar el PDF. <a href="CV_Andres_Gonzalez.pdf" target="_blank" rel="noopener">Ábrelo aquí</a>.
+          </div>
+        </object>
+      </div>
+    </section>
+
+    <section id="contacto" class="split">
+      <div>
+        <h2>Contacto</h2>
+        <p class="lead">Abierto a roles de liderazgo en Retail/Operaciones y posiciones híbridas con enfoque en datos y experiencia de cliente.</p>
+        <p>📧 <a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a><br>
+           🔗 <a href="https://www.linkedin.com/in/andresgonzalezops" target="_blank" rel="noopener">linkedin.com/in/andresgonzalezops</a></p>
+      </div>
+      <div>
+        <h2>Descargables</h2>
+        <ul class="lead" style="padding-left:18px; line-height:1.8; margin:0">
+          <li><a href="CV_Andres_Gonzalez.pdf" download>CV (PDF)</a></li>
+          <li><a href="certificado-aws-academy-cloud-foundations.pdf" download>AWS — Cloud Foundations (PDF)</a></li>
+          <li><a href="certificado-cisco-python-essentials-1.pdf" download>Cisco — Python Essentials 1 (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 Andrés González Martínez · <a href="#sobre-mi">Volver arriba</a>
+  </footer>
+</body>
+</html>
