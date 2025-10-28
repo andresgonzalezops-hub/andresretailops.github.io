@@ -20,7 +20,9 @@
       --radius:20px; --shadow:0 14px 36px rgba(0,0,0,.38);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto;
+      color:var(--text);
       background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
       line-height:1.6;
     }
@@ -103,8 +105,8 @@
       <div class="bd">
         <p>
           Profesional del retail con más de 10 años de experiencia liderando equipos y operaciones multitienda.
-          Especialista en estrategias comerciales, control de inventarios y optimización de KPIs. Reconocido a nivel nacional por
-          el mejor cumplimiento de metas (2023) y estándares de eficiencia operativa (2024). Actualmente cursa
+          Especialista en estrategias comerciales, control de inventarios y optimización de KPIs. Reconocido por
+          el mejor cumplimiento de metas (2023) y eficiencia operativa (2024). Actualmente cursa
           <strong>Ingeniería en Desarrollo de Software (Tecmilenio)</strong> integrando gestión comercial con visión tecnológica.
         </p>
         <div class="kpis">
@@ -123,10 +125,10 @@
           <h4>Store Manager – Luuna</h4>
           <div class="meta">04/2022 – 06/2025</div>
           <ul>
-            <li>Reconocimiento nacional en 2023 por el mejor cumplimiento de metas.</li>
+            <li>Reconocimiento nacional por el mejor cumplimiento de metas 2023.</li>
             <li>Capacitación y desarrollo de equipos en 15+ sucursales.</li>
             <li>Supervisión de procesos, auditorías e indicadores operativos.</li>
-            <li>Optimización de reportes administrativos y control de inventarios.</li>
+            <li>Optimización de reportes administrativos e inventarios.</li>
           </ul>
         </div>
         <div class="exp-item">
@@ -172,8 +174,8 @@
     <section class="card">
       <div class="bd" style="text-align:center">
         <a class="btn primary" id="btnViewCV">Ver CV dentro del sitio</a>
-        <a class="btn" href="assets/Andres González CV.pdf.pdf" target="_blank">Abrir en nueva pestaña</a>
-        <a class="btn" href="assets/Andres González CV.pdf.pdf" download="Andres_Gonzalez_CV.pdf">Descargar PDF</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank">Abrir en nueva pestaña</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" download="CV-Andres-Gonzalez.pdf">Descargar PDF</a>
       </div>
     </section>
   </main>
@@ -200,23 +202,32 @@
     const btnViewCV = document.getElementById('btnViewCV');
     const canvas = document.getElementById('cvCanvas');
     const ctx = canvas.getContext('2d');
-    const CV_URL = 'assets/Andres González CV.pdf.pdf';
+    const CV_URL = 'assets/CV-Andres-Gonzalez.pdf';
 
     btnViewCV.addEventListener('click', async ()=>{
-      cvModal.showModal();
-      const pdf = await pdfjsLib.getDocument(CV_URL).promise;
-      const page = await pdf.getPage(1);
-      const viewport = page.getViewport({ scale:1.4 });
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      await page.render({ canvasContext: ctx, viewport }).promise;
+      try {
+        cvModal.showModal();
+        const pdf = await pdfjsLib.getDocument(CV_URL).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale:1.4 });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        await page.render({ canvasContext: ctx, viewport }).promise;
+      } catch (err) {
+        alert('No se pudo cargar el CV. Verifica que el archivo esté en /assets/');
+        console.error(err);
+      }
     });
 
     function showCert(src,title,detail){
       const d=document.createElement('dialog');
       d.innerHTML=`
-        <div class="modal-hd"><strong>${title}</strong><button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div>
-        <div class="modal-bd"><img src="${src}" alt="${title}" style="max-width:100%;border-radius:14px;"><p class="mute">${detail}</p></div>`;
+        <div class="modal-hd"><strong>${title}</strong>
+          <button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div>
+        <div class="modal-bd">
+          <img src="${src}" alt="${title}" style="max-width:100%;border-radius:14px;">
+          <p class="mute">${detail}</p>
+        </div>`;
       document.body.appendChild(d);
       d.showModal();
     }
