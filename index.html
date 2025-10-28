@@ -1,93 +1,256 @@
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: Retail Operations & Desarrollo Comercial con alcance regional. Experiencia en liderazgo multitienda, estrategias comerciales, KPIs y mejora operativa." />
+  <meta name="description" content="Portafolio profesional de Andrés González: Retail Operations Manager con experiencia multitienda, liderazgo, KPIs y rentabilidad.">
   <meta property="og:title" content="Portafolio – Andrés González" />
   <meta property="og:description" content="Retail Operations & Desarrollo Comercial con 10+ años de experiencia. KPIs, inventarios, liderazgo multitienda y rentabilidad." />
-  <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/profile.jpg" />
-  <meta property="og:url" content="." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b0d12; --surface:#12151d; --card:#171b24; --text:#e6e9ef; --muted:#9aa3b2; --brand:#2aa1ff; --brand-2:#00d1b2;
-      --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35);
+    :root {
+      --bg: #0b0d10;
+      --surface: #13171d;
+      --card: #1a1f27;
+      --wood: #2f241b;
+      --text: #e9ecf2;
+      --muted: #9ba4b5;
+      --brand: #00b4ff;
+      --brand2: #00d1b2;
+      --radius: 20px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0; padding:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; color:var(--text); background:radial-gradient(1200px 800px at 80% -10%,#0e1625 0%, var(--bg) 45%), var(--bg);}
-    a{color:var(--brand); text-decoration:none}
-    img{max-width:100%; display:block}
-    .container{max-width:1100px; margin:0 auto; padding:0 20px}
-    header{position:sticky; top:0; z-index:20; background:rgba(12,15,22,.8); backdrop-filter:blur(8px); border-bottom:1px solid #1f2430}
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .nav a.logo{font-weight:800; letter-spacing:.5px; color:#fff}
-    .nav ul{list-style:none; display:flex; gap:18px; margin:0; padding:0}
-    .nav a.btn{padding:10px 14px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#091017; font-weight:700}
 
-    .hero{display:grid; grid-template-columns: 160px 1fr; gap:24px; padding:48px 0 28px}
-    .avatar{width:160px; height:160px; border-radius:22px; overflow:hidden; box-shadow:var(--shadow); border:1px solid #222}
-    .hero h1{font-size:34px; line-height:1.15; margin:0 0 10px}
-    .title{color:var(--muted); font-size:16px}
-    .badges{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
-    .chip{padding:6px 10px; border:1px solid #2a3343; border-radius:999px; color:#b9c3d4; font-size:12px; background:rgba(255,255,255,.02)}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(180deg, #0b0d10 0%, #12161c 80%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-    .grid{display:grid; grid-template-columns: 1fr; gap:18px}
-    @media(min-width:960px){ .grid{ grid-template-columns: 1.2fr .9fr } }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(20, 24, 30, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2a313b;
+      z-index: 10;
+    }
 
-    section{margin:18px 0}
-    .card{background:linear-gradient(180deg,#121722, #0f1520); border:1px solid #1e2633; border-radius:var(--radius); box-shadow:var(--shadow)}
-    .card .hd{padding:18px 18px 0; color:#b9c3d4; font-size:13px; letter-spacing:.06em; text-transform:uppercase}
-    .card .bd{padding:18px}
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+    }
 
-    .kpis{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
-    @media(min-width:760px){ .kpis{grid-template-columns:repeat(4,1fr)} }
-    .kpi{background:#12161f; border:1px dashed #263042; border-radius:14px; padding:14px}
-    .kpi .n{font-size:24px; font-weight:800}
-    .kpi .l{color:var(--muted); font-size:12px}
+    .nav a.logo {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
 
-    .exp-item{border-left:3px solid var(--brand); padding-left:14px; margin:0 0 22px}
-    .exp-item h4{margin:0 0 6px}
-    .exp-item .meta{color:var(--muted); font-size:13px; margin-bottom:8px}
-    .exp-item ul{margin:8px 0 0 18px}
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+    }
 
-    .certs{display:grid; grid-template-columns:1fr; gap:14px}
-    @media(min-width:760px){ .certs{grid-template-columns:repeat(3,1fr)} }
-    .cert{background:#0f141f; border:1px solid #1f2a3a; border-radius:14px; padding:12px}
-    .cert img{border-radius:10px}
-    .cert .ttl{font-weight:700; margin:10px 0 4px}
+    .nav a.btn {
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: #0b0d10;
+      font-weight: 700;
+    }
 
-    .contact{display:grid; grid-template-columns:1fr; gap:10px}
-    @media(min-width:560px){ .contact{grid-template-columns: repeat(2,1fr)} }
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
-    .btn{display:inline-flex; align-items:center; gap:8px; border:1px solid #263246; background:#0c1320; color:#cfe4ff; padding:10px 14px; border-radius:12px; font-weight:600}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0a1017; border:none}
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-    footer{padding:40px 0; color:#8e9aaf; text-align:center}
+    .hero {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      padding: 48px 0 28px;
+    }
 
-    dialog{border:none; border-radius:16px; padding:0; width:min(1000px,95vw); background:#0b111b}
-    dialog::backdrop{background:rgba(2,6,14,.7)}
-    .modal-hd{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #1e2635; background:#0e1522}
-    .modal-bd{padding:0}
-    .close{background:none; color:#cbd5e1; border:1px solid #334155; padding:8px 10px; border-radius:10px; cursor:pointer}
-    .pdf{width:100%; height:min(78vh,900px); border:0}
-    .mute{color:var(--muted)}
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid #222;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #2c3643;
+      border-radius: 999px;
+      font-size: 12px;
+      padding: 6px 10px;
+      color: #b9c3d4;
+    }
+
+    section.card {
+      background: linear-gradient(180deg, #181c22, #12161b);
+      border: 1px solid #1f2a33;
+      border-radius: var(--radius);
+      margin: 20px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .hd {
+      padding: 18px 18px 0;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    .bd {
+      padding: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 12px;
+      border: 1px solid #2f3743;
+      padding: 10px 14px;
+      background: #0f141b;
+      color: #d8e7f9;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #0b0d10;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 177, 255, 0.3);
+    }
+
+    footer {
+      padding: 40px 0;
+      color: #8e9aaf;
+      text-align: center;
+    }
+
+    /* CERTIFICADOS */
+    .certs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+    .cert {
+      background: #0f141b;
+      border: 1px solid #1f2a3a;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .cert:hover { transform: scale(1.02); }
+    .cert .ttl { font-weight: 700; margin: 10px 0 4px; }
+    .cert .mute { color: var(--muted); font-size: 13px; }
+
+    /* MODAL CV */
+    dialog {
+      border: none;
+      border-radius: 20px;
+      padding: 0;
+      width: min(1000px, 95vw);
+      background: #0b111b;
+      box-shadow: var(--shadow);
+    }
+    dialog::backdrop {
+      background: rgba(5, 10, 15, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    .modal-hd {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #0b0d10;
+      padding: 14px 18px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .modal-bd {
+      padding: 18px;
+      text-align: center;
+    }
+    .cv-img {
+      max-width: 100%;
+      border-radius: 14px;
+      border: 1px solid #2a3643;
+      box-shadow: var(--shadow);
+    }
+    .close {
+      background: #0e1522;
+      border: 1px solid #334155;
+      color: #d8e7f9;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media(max-width:760px){
+      .hero{grid-template-columns:1fr;text-align:center}
+      .avatar{margin:0 auto}
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="container nav">
+    <div class="nav">
       <a class="logo" href="#">ANDRÉS GONZÁLEZ</a>
       <ul>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#experiencia">Experiencia</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a class="btn" href="#cv" id="openCV">Ver CV</a></li>
+        <li><a class="btn primary" id="openCV">Ver CV</a></li>
       </ul>
     </div>
   </header>
@@ -95,106 +258,51 @@
   <main class="container">
     <section class="hero">
       <div class="avatar">
-        <img src="assets/profile.jpg" alt="Foto de Andrés González"/>
+        <img src="assets/profile.jpg" alt="Foto de Andrés González" />
       </div>
       <div>
-        <h1>Retail Operations & Desarrollo Comercial<br><span class="title">Alcance regional · KPIs · Inventarios · Liderazgo multitienda</span></h1>
+        <h1>Retail Operations & Desarrollo Comercial<br><span class="title">Estrategia · Liderazgo · KPIs · Rentabilidad</span></h1>
         <div class="badges">
           <span class="chip">Gestión operativa</span>
           <span class="chip">Estrategia comercial</span>
           <span class="chip">Optimización de inventarios</span>
-          <span class="chip">Análisis y reporteo de ventas</span>
+          <span class="chip">Análisis y reporteo</span>
           <span class="chip">HubSpot · SAP</span>
         </div>
-        <div class="cta">
-          <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div style="margin-top:14px;">
+          <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
           <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
-          <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
-          <a class="btn" href="https://wa.me/523323430043" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <div class="grid">
-      <section id="sobre-mi" class="card">
-        <div class="hd">Resumen profesional</div>
-        <div class="bd">
-          <p>
-            Profesional del retail con más de diez años liderando equipos y operaciones de tiendas por departamentos.
-            Especialista en estrategias comerciales e inventario enfocadas en maximización de resultados, rentabilidad y KPIs.
-          </p>
-          <div class="kpis">
-            <div class="kpi"><div class="n">15+</div><div class="l">Sucursales impactadas con capacitación y estandarización</div></div>
-            <div class="kpi"><div class="n">98.88%</div><div class="l">Confiabilidad de inventario alcanzada</div></div>
-            <div class="kpi"><div class="n">Top 2</div><div class="l">Eficiencia operativa nacional 2023</div></div>
-            <div class="kpi"><div class="n">11/10</div><div class="l">Eficiencia operativa 2024 – modelo replicable</div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="hd">Habilidades clave</div>
-        <div class="bd">
-          <ul>
-            <li>Liderazgo multitienda y gestión de operaciones comerciales.</li>
-            <li>Planeación de inventarios: precisión, disponibilidad y rotación.</li>
-            <li>Análisis y reporteo de ventas: quincenal, mensual, trimestral y anual.</li>
-            <li>Implementación de auditorías, planes de acción y mejora continua.</li>
-            <li>Herramientas: HubSpot (Sales/CRM), SAP Inventarios, Friedman.</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-
-    <section id="experiencia" class="card">
-      <div class="hd">Experiencia profesional</div>
+    <section id="sobre-mi" class="card">
+      <div class="hd">Resumen profesional</div>
       <div class="bd">
-        <div class="exp-item">
-          <h4>Store Manager Boutique Showroom</h4>
-          <div class="meta">04/2022 – 06/2025 · Alcance regional</div>
-          <ul>
-            <li>Estrategias orientadas a objetivos mensuales basados en KPIs.</li>
-            <li>Control de inventarios, activos y procesos internos para eficiencia operativa.</li>
-            <li>Capacitación y desarrollo de equipos en más de 15 sucursales.</li>
-            <li>Reportes multitienda y análisis de indicadores para decisiones regionales.</li>
-            <li>Top 2 nacional en metas 2023 (índice de eficiencia 10).</li>
-            <li>Eficiencia operativa de 11 en 2024, modelo replicable.</li>
-          </ul>
-        </div>
-        <div class="exp-item">
-          <h4>Gerente de Boutique · GAP</h4>
-          <div class="meta">10/2014 – 07/2021</div>
-          <ul>
-            <li>Gestión integral de operaciones y control de valores.</li>
-            <li>Optimización de inventarios y disponibilidad de stock.</li>
-            <li>Impulso de ROI y cumplimiento de objetivos comerciales.</li>
-            <li>Confiabilidad de inventario de 85% a 98.88%.</li>
-            <li>Reportes con SAP y Friedman.</li>
-            <li>Liderazgo de equipos de hasta 30 personas.</li>
-          </ul>
-        </div>
+        <p>
+          Retail Operations Manager con más de una década liderando equipos, procesos y estrategias comerciales. Experto en optimización de inventarios, planeación de ventas y análisis de desempeño.  
+          Actualmente cursando <strong>Ingeniería en Desarrollo de Software</strong> en Universidad Tecmilenio, integrando tecnología para la gestión de operaciones y eficiencia empresarial.
+        </p>
       </div>
     </section>
 
     <section id="certificaciones" class="card">
-      <div class="hd">Certificaciones (selección)</div>
+      <div class="hd">Certificaciones destacadas</div>
       <div class="bd">
         <div class="certs">
-          <div class="cert">
-            <img src="assets/certs/hubspot.jpg" alt="Certificado HubSpot Sales Software"/>
-            <div class="ttl">HubSpot – Software de Ventas</div>
+          <div class="cert" onclick="showCert('assets/certs/hubspot.jpg','HubSpot – Sales Software','2025–2026')">
+            <img src="assets/certs/hubspot.jpg" alt="HubSpot Sales Software" />
+            <div class="ttl">HubSpot – Sales Software</div>
             <div class="mute">Vigencia 2025–2026</div>
           </div>
-          <div class="cert">
-            <a href="assets/certs/lean_six_sigma_white_belt.pdf" target="_blank" rel="noopener">
-              <div class="ttl">Lean Six Sigma – White Belt</div>
-            </a>
+          <div class="cert" onclick="showCert('assets/certs/aws_cloud_foundations.jpg','AWS Cloud Foundations','2025')">
+            <img src="assets/certs/aws_cloud_foundations.jpg" alt="AWS Foundations" />
+            <div class="ttl">AWS Cloud Foundations</div>
             <div class="mute">Emitido 2025</div>
           </div>
-          <div class="cert">
-            <a href="assets/certs/aws_cloud_foundations.pdf" target="_blank" rel="noopener">
-              <div class="ttl">AWS Academy – Cloud Foundations</div>
-            </a>
+          <div class="cert" onclick="showCert('assets/certs/lean_six_sigma_white_belt.jpg','Lean Six Sigma – White Belt','2025')">
+            <img src="assets/certs/lean_six_sigma_white_belt.jpg" alt="Lean Six Sigma White Belt" />
+            <div class="ttl">Lean Six Sigma – White Belt</div>
             <div class="mute">2025</div>
           </div>
         </div>
@@ -204,66 +312,63 @@
     <section id="contacto" class="card">
       <div class="hd">Contacto</div>
       <div class="bd">
-        <div class="contact">
-          <div>
-            <strong>Correo</strong>
-            <p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p>
-          </div>
-          <div>
-            <strong>Teléfono</strong>
-            <p><a href="tel:+523323430043">+52 33 2343 0043</a></p>
-          </div>
-          <div>
-            <strong>LinkedIn</strong>
-            <p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener noreferrer">/in/andresglez89</a></p>
-          </div>
-          <div>
-            <strong>Ubicación</strong>
-            <p>Zapopan, Jalisco, México</p>
-          </div>
-        </div>
+        <p><strong>Correo:</strong> <a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p>
+        <p><strong>Teléfono:</strong> <a href="tel:+523323430043">+52 33 2343 0043</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/andresglez89/" target="_blank">/in/andresglez89</a></p>
+        <p><strong>Ubicación:</strong> Zapopan, Jalisco, México</p>
       </div>
     </section>
-
-    <section id="cv" class="card">
-      <div class="hd">Currículum (visualiza y descarga)</div>
-      <div class="bd">
-        <div class="cta">
-          <button class="btn primary" id="btnOpenCV">Ver CV en pantalla</button>
-          <a class="btn" href="assets/cv.pdf" download="Andres_Gonzalez_CV.pdf">Descargar PDF</a>
-          <a class="btn" href="assets/cv.pdf" target="_blank" rel="noopener">Abrir en nueva pestaña</a>
-        </div>
-        <p class="mute">El visor integrado funciona en navegadores modernos.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer class="container">
     <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
   </footer>
 
-  <dialog id="cvModal" aria-label="Visor de CV en PDF">
+  <!-- Modal CV -->
+  <dialog id="cvModal">
     <div class="modal-hd">
       <strong>CV – Andrés González</strong>
-      <button class="close" id="btnCloseCV" aria-label="Cerrar">Cerrar</button>
+      <button class="close" id="closeCV">Cerrar</button>
     </div>
     <div class="modal-bd">
-      <object class="pdf" data="assets/cv.pdf" type="application/pdf">Tu navegador no puede mostrar PDFs integrados. <a href="assets/cv.pdf" target="_blank" rel="noopener">Abrir aquí</a>.</object>
+      <img src="assets/cv_preview.jpg" alt="CV de Andrés González" class="cv-img">
+      <div style="margin-top:14px;">
+        <a class="btn primary" href="assets/cv_preview.jpg" target="_blank">Ver en pantalla completa</a>
+        <a class="btn" href="assets/cv.pdf" download="Andres_Gonzalez_CV.pdf">Descargar PDF</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal Certificados -->
+  <dialog id="certModal">
+    <div class="modal-hd">
+      <strong id="certTitle">Certificado</strong>
+      <button class="close" id="closeCert">Cerrar</button>
+    </div>
+    <div class="modal-bd">
+      <img id="certImage" src="" alt="Certificado" class="cv-img">
+      <p id="certDetails" class="mute" style="margin-top:10px;"></p>
     </div>
   </dialog>
 
   <script>
-    const year = document.getElementById('year');
-    year.textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const cvModal = document.getElementById('cvModal');
-    const open1 = document.getElementById('openCV');
-    const open2 = document.getElementById('btnOpenCV');
-    const closeBtn = document.getElementById('btnCloseCV');
+    const cvModal = document.getElementById("cvModal");
+    const openCV = document.getElementById("openCV");
+    const closeCV = document.getElementById("closeCV");
+    openCV.addEventListener("click", e => { e.preventDefault(); cvModal.showModal(); });
+    closeCV.addEventListener("click", () => cvModal.close());
 
-    [open1, open2].forEach(btn => btn && btn.addEventListener('click', (e)=>{ e.preventDefault(); cvModal.showModal(); }));
-    closeBtn.addEventListener('click', ()=> cvModal.close());
+    const certModal = document.getElementById("certModal");
+    const closeCert = document.getElementById("closeCert");
+    closeCert.addEventListener("click", () => certModal.close());
+    function showCert(src, title, detail) {
+      document.getElementById("certImage").src = src;
+      document.getElementById("certTitle").textContent = title;
+      document.getElementById("certDetails").textContent = detail;
+      certModal.showModal();
+    }
   </script>
 </body>
 </html>
