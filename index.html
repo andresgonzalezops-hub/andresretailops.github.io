@@ -181,7 +181,11 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     const cvModal = document.getElementById('cvModal');
+
+    // ✅ Ambos botones abren el mismo modal
+    document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
     document.getElementById('btnVerCV').addEventListener('click',()=>cvModal.showModal());
+
     function showCert(src,title,detail){
       const d=document.createElement('dialog');
       d.innerHTML=`<div class="modal-hd"><strong>${title}</strong><button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div><div class="modal-bd"><img src="${src}" alt="${title}" class="cv-img"><p class="mute">${detail}</p></div>`;
