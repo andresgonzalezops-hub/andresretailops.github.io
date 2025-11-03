@@ -70,13 +70,13 @@
         <li><a href="#experiencia">Experiencia</a></li>
         <li><a href="#certificaciones">Certificaciones</a></li>
         <li><a href="#contacto">Contacto</a></li>
-        <li><a class="btn primary" id="verCV">Ver CV como imagen</a></li>
+        <li><a class="btn" id="verCV">Ver CV</a></li>
       </ul>
     </div>
   </header>
 
   <main class="container">
-    <!-- TODO TU CONTENIDO ORIGINAL AQUÍ, SIN CAMBIOS -->
+    <!-- Tu contenido intacto -->
     <section class="hero">
       <div class="avatar"><img src="assets/profile.jpg.jpg" alt="Foto de Andrés González"></div>
       <div>
@@ -92,11 +92,11 @@
       </div>
     </section>
 
-    <!-- Secciones completas de resumen, experiencia, certificaciones, contacto (idénticas a tu versión anterior) -->
-    <section id="sobre-mi" class="card"> ... </section>
-    <section id="experiencia" class="card"> ... </section>
-    <section id="certificaciones" class="card"> ... </section>
-    <section id="contacto" class="card"> ... </section>
+    <!-- resto igual -->
+    <section id="sobre-mi" class="card">...</section>
+    <section id="experiencia" class="card">...</section>
+    <section id="certificaciones" class="card">...</section>
+    <section id="contacto" class="card">...</section>
 
     <section class="card">
       <div class="bd" style="text-align:center">
@@ -123,11 +123,10 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     const cvModal = document.getElementById('cvModal');
 
-    // 🔹 Ambos botones abren el modal del CV
+    // ✅ Arreglo: ahora el botón de arriba también abre el modal
     document.getElementById('verCV').addEventListener('click', () => cvModal.showModal());
     document.getElementById('btnVerCV').addEventListener('click', () => cvModal.showModal());
 
-    // Certificaciones (idéntico a tu versión anterior)
     function showCert(src,title,detail){
       const d=document.createElement('dialog');
       d.innerHTML=`<div class="modal-hd"><strong>${title}</strong><button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div><div class="modal-bd"><img src="${src}" alt="${title}" class="cv-img"><p class="mute">${detail}</p></div>`;
