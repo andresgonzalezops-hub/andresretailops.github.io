@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: Retail Operations & Desarrollo Comercial, liderazgo multitienda, KPIs, inventarios y mejora operativa.">
-  <meta property="og:image" content="assets/profile.jpg.jpg" />
+  <title>Andrés González | Retail Leadership & Desarrollo Comercial</title>
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo retail, desarrollo comercial, KPIs, eficiencia operativa y equipos de alto desempeño.">
+  <meta property="og:image" content="assets/profile.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -14,183 +14,102 @@
       --brand:#00b4ff; --brand2:#00d1b2;
       --radius:20px; --shadow:0 14px 36px rgba(0,0,0,.38);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto;color:var(--text);
-      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);line-height:1.6;}
-    a{color:var(--brand);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    header{background:#0d1219;box-shadow:0 4px 14px rgba(0,0,0,.4);position:sticky;top:0;z-index:10}
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;flex-wrap:wrap}
-    .nav a.logo{font-weight:800;color:#fff;font-size:1.2rem}
-    .nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
-    .nav a.btn{padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061018;font-weight:800}
-
-    .hero{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:48px 0 28px}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center}.avatar{margin:0 auto}}
-    .avatar{width:160px;height:160px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:2px solid #1f2a38}
-    h1{font-size:34px;line-height:1.2;margin-bottom:10px}
-    .title{color:var(--muted);font-size:15px}
-    .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-    .chip{padding:6px 10px;border:1px solid #2a3343;border-radius:999px;color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)}
-
-    section.card{background:#141a24;border:1px solid #223043;border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow)}
-    .hd{padding:18px 18px 0;color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-    .bd{padding:18px}
-    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    @media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}}
-    .kpi{background:#101723;border:1px dashed #2a3a52;border-radius:14px;padding:14px;text-align:center}
-    .kpi .n{font-size:24px;font-weight:900}
-    .kpi .l{color:var(--muted);font-size:12px}
-    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #2b3a4f;background:#0e141f;color:#d6e9ff;padding:10px 14px;border-radius:12px;font-weight:700;transition:.2s}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#051018;border:none}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
-    footer{padding:40px 0;color:#8e9aaf;text-align:center}
-    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
-    .exp-item h4{margin:0 0 6px}
-    .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
-    .exp-item ul{margin:8px 0 0 18px}
-    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-    .cert{background:#0e151f;border:1px solid #1f2b3d;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
-    .cert:hover{transform:scale(1.02)}
-    dialog{border:none;border-radius:20px;padding:0;width:min(1000px,95vw);background:#0b111b;box-shadow:var(--shadow)}
-    dialog::backdrop{background:rgba(4,10,16,.8);backdrop-filter:blur(4px)}
-    .modal-hd{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061018;padding:14px 18px;border-top-left-radius:20px;border-top-right-radius:20px}
-    .modal-bd{padding:18px;text-align:center}
-    .close{background:#0e1522;border:1px solid #334155;color:#d8e7f9;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:700}
-    .cv-img{max-width:100%;border-radius:14px;border:1px solid #2a3643;box-shadow:var(--shadow)}
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+    body{background:var(--bg);color:var(--text);line-height:1.6;}
+    header{padding:60px 20px;text-align:center;}
+    header img{width:140px;height:140px;border-radius:50%;object-fit:cover;margin-bottom:20px;box-shadow:var(--shadow);}
+    header h1{font-size:2rem;font-weight:800;}
+    header p{color:var(--muted);}
+    section{max-width:900px;margin:60px auto;padding:0 20px;}
+    h2{color:var(--brand);font-size:1.8rem;margin-bottom:10px;}
+    p{margin-bottom:16px;}
+    .card{background:var(--card);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:30px;}
+    a.button{display:inline-block;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;padding:12px 22px;border-radius:var(--radius);text-decoration:none;font-weight:600;box-shadow:0 0 20px rgba(0,180,255,.3);transition:.3s;}
+    a.button:hover{opacity:.9;transform:translateY(-2px);}
+    footer{text-align:center;color:var(--muted);padding:40px 0;font-size:.9rem;}
   </style>
 </head>
 <body>
+
   <header>
-    <div class="container nav">
-      <a class="logo" href="#">ANDRÉS GONZÁLEZ</a>
-      <ul>
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#experiencia">Experiencia</a></li>
-        <li><a href="#certificaciones">Certificaciones</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a class="btn" id="verCV">Ver CV</a></li>
-      </ul>
+    <img src="assets/profile.jpg" alt="Foto de perfil de Andrés González">
+    <h1>Andrés González</h1>
+    <p>Retail Operations | Liderazgo Comercial | Desarrollo de Equipos</p>
+    <div style="margin-top:20px;">
+      <a href="assets/CV-Andres-Gonzalez.pdf" class="button" target="_blank">📄 Ver CV</a>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="avatar"><img src="assets/profile.jpg.jpg" alt="Foto de Andrés González"></div>
-      <div>
-        <h1>Retail Operations & Desarrollo Comercial<br><span class="title">Estrategia · Liderazgo · KPIs · Rentabilidad</span></h1>
-        <div class="badges">
-          <span class="chip">Gestión operativa</span><span class="chip">Estrategia comercial</span><span class="chip">Optimización de inventarios</span><span class="chip">Análisis y reporteo</span><span class="chip">HubSpot · SAP</span>
-        </div>
-        <div class="badges" style="margin-top:14px">
-          <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
-          <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
-          <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
-        </div>
-      </div>
-    </section>
+  <section id="sobre-mi">
+    <h2>Sobre mí</h2>
+    <div class="card">
+      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales multitienda</strong> en el sector retail, especializado en maximizar resultados a través de <strong>personas, procesos y propósito</strong>.</p>
+      <p>Mi liderazgo se basa en la <strong>cercanía y la claridad</strong>: formar equipos que entienden el <em>por qué</em> detrás de cada indicador, empoderándolos para tomar decisiones que impacten directamente en la experiencia del cliente y en la rentabilidad del negocio.</p>
+      <p>A lo largo de mi trayectoria he gestionado <strong>operaciones de alto volumen</strong>, dirigiendo equipos de más de 30 colaboradores, implementando estrategias de mejora continua, control de inventarios y cumplimiento de KPIs operativos con resultados sobresalientes.</p>
+      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> en <strong>Universidad Tecmilenio</strong>, porque creo firmemente que el futuro del retail está en la integración entre <strong>liderazgo humano y tecnología inteligente</strong> — líderes capaces de conectar la data con las personas, y las personas con los resultados.</p>
+    </div>
+  </section>
 
-    <section id="sobre-mi" class="card">
-      <div class="hd">Resumen profesional</div>
-      <div class="bd">
-        <p>Profesional del retail con más de 10 años de experiencia liderando equipos y operaciones multitienda. Especialista en estrategias comerciales, control de inventarios y optimización de KPIs. Reconocido por el mejor cumplimiento de metas (2023) y eficiencia operativa (2024). Actualmente cursa <strong>Ingeniería en Desarrollo de Software (Tecmilenio)</strong>, integrando gestión comercial con visión tecnológica.</p>
-        <div class="kpis">
-          <div class="kpi"><div class="n">15+</div><div class="l">Sucursales estandarizadas</div></div>
-          <div class="kpi"><div class="n">98.88%</div><div class="l">Confiabilidad de inventario</div></div>
-          <div class="kpi"><div class="n">Top 2</div><div class="l">Eficiencia operativa 2023</div></div>
-          <div class="kpi"><div class="n">11/10</div><div class="l">Eficiencia operativa 2024</div></div>
-        </div>
-      </div>
-    </section>
+  <section id="experiencia">
+    <h2>Experiencia</h2>
 
-    <section id="experiencia" class="card">
-      <div class="hd">Experiencia profesional</div>
-      <div class="bd">
-        <div class="exp-item">
-          <h4>Store Manager – Luuna</h4>
-          <div class="meta">04/2022 – 06/2025</div>
-          <ul>
-            <li>Reconocimiento nacional por el mejor cumplimiento de metas 2023.</li>
-            <li>Capacitación y desarrollo de equipos en 15+ sucursales.</li>
-            <li>Supervisión de procesos, auditorías e indicadores operativos.</li>
-            <li>Optimización de reportes administrativos e inventarios.</li>
-          </ul>
-        </div>
-        <div class="exp-item">
-          <h4>Gerente de Boutique – GAP</h4>
-          <div class="meta">10/2014 – 07/2021</div>
-          <ul>
-            <li>Gestión completa de operaciones, ventas y servicio al cliente.</li>
-            <li>Confiabilidad de inventario aumentada de 85% a 98.88%.</li>
-            <li>Reducción de pérdidas y mejoras de rentabilidad.</li>
-            <li>Liderazgo de equipos de hasta 30 personas.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <h3>Luuna | Boutique Showroom Manager</h3>
+      <p><strong>Resultados Clave:</strong></p>
+      <ul>
+        <li>Alcancé <strong>índices operativos históricos</strong> en la marca: Inventario 98.88 % y Eficiencia 11.0, posicionando mi showroom entre los más rentables a nivel nacional.</li>
+        <li>Implementé un modelo de <strong>gestión de experiencia del cliente</strong> basado en seguimiento postventa, aumentando la recompra en +25 %.</li>
+        <li>Formé un equipo de alto desempeño que duplicó la <strong>tasa de conversión en tienda</strong> de 15 % a más del 30 % en seis meses.</li>
+        <li>Reconocido por <strong>liderazgo y mejora operativa</strong>, siendo referencia en aperturas y entrenamiento de nuevos managers.</li>
+      </ul>
+    </div>
 
-    <section id="certificaciones" class="card">
-      <div class="hd">Certificaciones destacadas</div>
-      <div class="bd">
-        <div class="certs">
-          <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
-            <img src="assets/certs/HUBSPOT.jpg.jpg" alt="HubSpot Sales Software">
-          </div>
-          <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
-            <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg.jpg" alt="AWS Academy Cloud Foundations">
-          </div>
-          <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg.jpg','Cisco Networking Academy – Python Essentials 1','Emitido 2025')">
-            <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg.jpg" alt="Cisco Python Essentials 1">
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <h3>GAP / Banana Republic | Store Manager</h3>
+      <p><strong>Resultados Clave:</strong></p>
+      <ul>
+        <li>Incrementé las <strong>ventas en doble dígito año contra año</strong> mediante una estrategia basada en coaching, rotación inteligente y experiencia visual.</li>
+        <li>Coordiné más de 25 colaboradores, alcanzando los primeros lugares nacionales en <strong>satisfacción y productividad</strong>.</li>
+        <li>Reduje la <strong>rotación de personal en 40 %</strong> con planes de desarrollo y liderazgo participativo.</li>
+        <li>Certificado en <strong>Visual Merchandising y KPI Management</strong>, fortaleciendo la alineación entre marca, equipo y objetivos.</li>
+      </ul>
+    </div>
 
-    <section id="contacto" class="card">
-      <div class="hd">Contacto</div>
-      <div class="bd" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
-        <div><strong>Correo</strong><p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p></div>
-        <div><strong>Teléfono</strong><p><a href="tel:+523323430043">+52 33 2343 0043</a></p></div>
-        <div><strong>LinkedIn</strong><p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank">/in/andresglez89</a></p></div>
-        <div><strong>Ubicación</strong><p>Zapopan, Jalisco, México</p></div>
-      </div>
-    </section>
+  </section>
 
-    <section class="card">
-      <div class="bd" style="text-align:center">
-        <a class="btn primary" id="btnVerCV">Ver CV como imagen</a>
-      </div>
-    </section>
-  </main>
+  <section id="vision">
+    <h2>Mi visión del retail y del liderazgo</h2>
+    <div class="card">
+      <p>Creo en un retail que no se trata solo de vender, sino de <strong>crear conexiones humanas memorables</strong>.</p>
+      <p>Un líder hoy no solo dirige: <strong>inspira, escucha y desarrolla</strong>. El verdadero éxito de una tienda no está en las cifras, sino en las personas que las hacen posibles.</p>
+      <p>Mi propósito es seguir evolucionando como <strong>líder que une estrategia, tecnología y empatía</strong>, construyendo equipos que generen resultados medibles y experiencias que dejen huella.</p>
+    </div>
+  </section>
 
-  <footer class="container">
-    <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
+  <section id="certificados">
+    <h2>Certificaciones</h2>
+    <div class="card">
+      <ul>
+        <li><strong>AWS Academy Cloud Foundations</strong> – comprensión de la nube y su aplicación en optimización de operaciones retail.</li>
+        <li><strong>Cisco Python Essentials</strong> – automatización y análisis de datos aplicados a procesos comerciales.</li>
+        <li><strong>HubSpot Academy</strong> – inbound marketing y gestión de experiencia del cliente.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="card">
+      <p><strong>📍 Zapopan, Jalisco, México</strong></p>
+      <p>📧 <a href="mailto:andresglez89@gmail.com" style="color:var(--brand)">andresglez89@gmail.com</a></p>
+      <p>🔗 <a href="https://linkedin.com/in/andresglez89" target="_blank" style="color:var(--brand2)">linkedin.com/in/andresglez89</a></p>
+      <p>Estoy abierto a conectar sobre roles en <strong>Retail, Liderazgo y Tecnología</strong>. Escríbeme o agenda una llamada de 15 min para conversar sobre proyectos que impulsen resultados reales.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Andrés González — Retail Leadership & Desarrollo Comercial
   </footer>
 
-  <dialog id="cvModal">
-    <div class="modal-hd">
-      <strong>CV – Andrés González</strong>
-      <button class="close" onclick="cvModal.close()">Cerrar</button>
-    </div>
-    <div class="modal-bd">
-      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
-    </div>
-  </dialog>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const cvModal = document.getElementById('cvModal');
-
-    // ✅ Ambos botones abren el mismo modal
-    document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
-    document.getElementById('btnVerCV').addEventListener('click',()=>cvModal.showModal());
-
-    function showCert(src,title,detail){
-      const d=document.createElement('dialog');
-      d.innerHTML=`<div class="modal-hd"><strong>${title}</strong><button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div><div class="modal-bd"><img src="${src}" alt="${title}" class="cv-img"><p class="mute">${detail}</p></div>`;
-      document.body.appendChild(d); d.showModal();
-    }
-  </script>
 </body>
 </html>
