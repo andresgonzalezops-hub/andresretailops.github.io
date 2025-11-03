@@ -76,7 +76,6 @@
   </header>
 
   <main class="container">
-    <!-- Tu contenido intacto -->
     <section class="hero">
       <div class="avatar"><img src="assets/profile.jpg.jpg" alt="Foto de Andrés González"></div>
       <div>
@@ -92,11 +91,71 @@
       </div>
     </section>
 
-    <!-- resto igual -->
-    <section id="sobre-mi" class="card">...</section>
-    <section id="experiencia" class="card">...</section>
-    <section id="certificaciones" class="card">...</section>
-    <section id="contacto" class="card">...</section>
+    <section id="sobre-mi" class="card">
+      <div class="hd">Resumen profesional</div>
+      <div class="bd">
+        <p>Profesional del retail con más de 10 años de experiencia liderando equipos y operaciones multitienda. Especialista en estrategias comerciales, control de inventarios y optimización de KPIs. Reconocido por el mejor cumplimiento de metas (2023) y eficiencia operativa (2024). Actualmente cursa <strong>Ingeniería en Desarrollo de Software (Tecmilenio)</strong>, integrando gestión comercial con visión tecnológica.</p>
+        <div class="kpis">
+          <div class="kpi"><div class="n">15+</div><div class="l">Sucursales estandarizadas</div></div>
+          <div class="kpi"><div class="n">98.88%</div><div class="l">Confiabilidad de inventario</div></div>
+          <div class="kpi"><div class="n">Top 2</div><div class="l">Eficiencia operativa 2023</div></div>
+          <div class="kpi"><div class="n">11/10</div><div class="l">Eficiencia operativa 2024</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="card">
+      <div class="hd">Experiencia profesional</div>
+      <div class="bd">
+        <div class="exp-item">
+          <h4>Store Manager – Luuna</h4>
+          <div class="meta">04/2022 – 06/2025</div>
+          <ul>
+            <li>Reconocimiento nacional por el mejor cumplimiento de metas 2023.</li>
+            <li>Capacitación y desarrollo de equipos en 15+ sucursales.</li>
+            <li>Supervisión de procesos, auditorías e indicadores operativos.</li>
+            <li>Optimización de reportes administrativos e inventarios.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <h4>Gerente de Boutique – GAP</h4>
+          <div class="meta">10/2014 – 07/2021</div>
+          <ul>
+            <li>Gestión completa de operaciones, ventas y servicio al cliente.</li>
+            <li>Confiabilidad de inventario aumentada de 85% a 98.88%.</li>
+            <li>Reducción de pérdidas y mejoras de rentabilidad.</li>
+            <li>Liderazgo de equipos de hasta 30 personas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificaciones" class="card">
+      <div class="hd">Certificaciones destacadas</div>
+      <div class="bd">
+        <div class="certs">
+          <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
+            <img src="assets/certs/HUBSPOT.jpg.jpg" alt="HubSpot Sales Software">
+          </div>
+          <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
+            <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg.jpg" alt="AWS Academy Cloud Foundations">
+          </div>
+          <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg.jpg','Cisco Networking Academy – Python Essentials 1','Emitido 2025')">
+            <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg.jpg" alt="Cisco Python Essentials 1">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="card">
+      <div class="hd">Contacto</div>
+      <div class="bd" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+        <div><strong>Correo</strong><p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p></div>
+        <div><strong>Teléfono</strong><p><a href="tel:+523323430043">+52 33 2343 0043</a></p></div>
+        <div><strong>LinkedIn</strong><p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank">/in/andresglez89</a></p></div>
+        <div><strong>Ubicación</strong><p>Zapopan, Jalisco, México</p></div>
+      </div>
+    </section>
 
     <section class="card">
       <div class="bd" style="text-align:center">
@@ -122,11 +181,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     const cvModal = document.getElementById('cvModal');
-
-    // ✅ Arreglo: ahora el botón de arriba también abre el modal
-    document.getElementById('verCV').addEventListener('click', () => cvModal.showModal());
-    document.getElementById('btnVerCV').addEventListener('click', () => cvModal.showModal());
-
+    document.getElementById('btnVerCV').addEventListener('click',()=>cvModal.showModal());
     function showCert(src,title,detail){
       const d=document.createElement('dialog');
       d.innerHTML=`<div class="modal-hd"><strong>${title}</strong><button class="close" onclick="this.closest('dialog').close()">Cerrar</button></div><div class="modal-bd"><img src="${src}" alt="${title}" class="cv-img"><p class="mute">${detail}</p></div>`;
