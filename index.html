@@ -157,7 +157,7 @@
       border:none;
       border-radius:20px;
       padding:0;
-      width:min(1200px,96vw);
+      width:min(1400px,98vw); /* más ancho para CV */
       background:#0b111b;
       box-shadow:var(--shadow);
     }
@@ -175,21 +175,21 @@
       background:#0e1522;border:1px solid #334155;color:#d8e7f9;
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
-    .modal-bd{padding:18px;text-align:center}
-    /* IMPORTANTE: que se vea completa sin mover + más grande */
+    .modal-bd{padding:14px 18px;text-align:center}
+
+    /* CV más grande + lectura clara */
     .modal-img{
       width:100%;
       max-width:100%;
-      max-height:90vh;
+      max-height:94vh;   /* más alto */
       object-fit:contain;
       border-radius:16px;
       border:1px solid #2a3643;
-      box-shadow:0 20px 50px rgba(0,0,0,.6);
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
       background:#0b111b;
     }
     .modal-sub{margin-top:10px;color:var(--muted);font-size:13px}
 
-    /* Formato extra para la sección "visión" (punch suave) */
     .vision p{
       font-size:16px;
       line-height:1.75;
@@ -208,6 +208,13 @@
       background:linear-gradient(90deg,var(--brand),var(--brand2));
       border-radius:2px;
       margin-bottom:10px;
+    }
+
+    /* Botón final para descargar CV */
+    .cta{
+      display:flex;
+      justify-content:center;
+      padding:10px 0 40px;
     }
 
     footer{padding:40px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
@@ -352,6 +359,11 @@
     </div>
   </section>
 
+  <!-- Botón final para descargar CV -->
+  <div class="cta">
+    <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
+  </div>
+
 </main>
 
 <footer class="container">
@@ -365,7 +377,7 @@
   </div>
   <div class="modal-bd">
     <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="modal-img">
-    <div class="modal-sub">Tip: si quieres descargar o ver en otra pestaña, usa “Ver CV (PDF)” arriba.</div>
+    <div class="modal-sub">Tip: si quieres abrirlo en otra pestaña, usa “Ver CV (PDF)” arriba o el botón de descarga al final.</div>
   </div>
 </dialog>
 
