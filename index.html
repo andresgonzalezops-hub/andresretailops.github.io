@@ -89,6 +89,7 @@
       padding:10px 14px;border-radius:12px;
       font-weight:800;
       transition:.18s;
+      cursor:pointer;
     }
     .btn.primary{
       background:linear-gradient(135deg,var(--brand),var(--brand2));
@@ -120,7 +121,7 @@
     .exp-item ul{margin:8px 0 0 18px}
     .exp-item li{margin:6px 0}
 
-    /* ===== CERTS (AJUSTADO: MÁS CHICO Y “NORMAL”) ===== */
+    /* ===== CERTS (COMO ANTES: tarjetas “normales” + modal que muestra la imagen COMPLETA) ===== */
     .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .cert{
       background:#0e151f;
@@ -133,8 +134,8 @@
     .cert:hover{transform:translateY(-2px)}
     .cert img{
       width:100%;
-      height:150px;           /* antes 180 -> más controlado */
-      object-fit:cover;       /* se ve “bonito” en tarjeta */
+      height:150px;     /* miniatura en tarjeta */
+      object-fit:cover; /* se ve bien en tarjeta */
       background:#0b111b;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
@@ -147,7 +148,7 @@
       border:none;
       border-radius:20px;
       padding:0;
-      width:min(1600px,99vw);
+      width:min(1400px,96vw);
       background:#0b111b;
       box-shadow:var(--shadow);
     }
@@ -166,53 +167,47 @@
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
 
-    /* CV (zoom) */
-    .modal-bd.cv{padding:12px;background:#0b111b}
-    .cv-frame{
+    /* ✅ CV: SIN RECORTE. Se ajusta completo en pantalla con scroll si hace falta.
+       Y un poquito más grande (sin exagerar). */
+    .modal-bd{padding:14px 18px}
+    .cv-wrap{
       width:100%;
-      height:calc(96vh - 64px);
+      height:calc(92vh - 64px);      /* ocupa casi toda la pantalla */
       border-radius:16px;
       border:1px solid #2a3643;
-      overflow:auto;
       background:#0b111b;
+      overflow:auto;                 /* si el CV es alto, haces scroll */
       box-shadow:0 22px 60px rgba(0,0,0,.65);
       display:flex;
-      align-items:flex-start;
       justify-content:center;
-      padding:12px;
+      padding:14px;
     }
-    .cv-zoom{
-      width:1500px;
-      max-width:1800px;
-      transform:scale(1.25);
-      transform-origin: top center;
-    }
-    .cv-zoom img{
-      width:100%;
+    .cv-img{
+      width:min(1100px, 98%);        /* más grande */
       height:auto;
       border-radius:12px;
       background:#ffffff;
     }
-    @media(max-width:900px){
-      .cv-zoom{width:980px;transform:scale(1.15)}
-    }
-    @media(max-width:520px){
-      .cv-zoom{width:820px;transform:scale(1.05)}
-    }
 
-    /* Certificados modal: SE VE COMPLETO, NO GIGANTE */
-    .modal-bd.cert{padding:14px 18px;text-align:center}
+    /* ✅ Certificados: SIN “super zoom”. Se ve COMPLETA la imagen.
+       No corta, no exagera: object-fit:contain y max-height */
+    .cert-modal-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px 0 2px;
+    }
     .modal-img{
       width:100%;
-      max-width:min(1100px,96vw); /* límite para que NO se vea exagerado */
-      max-height:82vh;            /* un poco menos alto */
-      object-fit:contain;
+      max-width:min(1100px,96vw);
+      max-height:80vh;
+      object-fit:contain;            /* clave: se ve completa */
       border-radius:16px;
       border:1px solid #2a3643;
       box-shadow:0 22px 60px rgba(0,0,0,.65);
       background:#0b111b;
     }
-    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px}
+    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
 
     .vision p{
       font-size:16px;
@@ -246,7 +241,7 @@
       <li><a href="#experiencia">Experiencia</a></li>
       <li><a href="#certificaciones">Certificaciones</a></li>
       <li><a href="#contacto">Contacto</a></li>
-      <li><button class="btn primary" id="verCV">Ver CV</button></li>
+      <li><button class="btn" id="verCV">Ver CV</button></li>
     </ul>
   </div>
 </header>
@@ -346,13 +341,6 @@
           <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
         </div>
 
-        <!-- ✅ CERTIFICADO OPEN ACADEMY EXTRA (PON AQUÍ EL NOMBRE REAL DEL ARCHIVO) -->
-        <!-- IMPORTANTE: sube tu imagen a /assets/certs/ y pon exactamente el nombre -->
-        <div class="cert" onclick="showCert('assets/certs/OPEN-ACADEMY-3.jpg','(Open Academy) Certificado adicional','Open Academy · 2026')">
-          <img src="assets/certs/OPEN-ACADEMY-3.jpg" alt="Certificado Open Academy adicional">
-          <div class="cap"><strong>Certificado Open Academy (adicional)</strong><span>Open Academy · 2026</span></div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -386,29 +374,29 @@
   <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
-<!-- MODAL CV -->
+<!-- MODAL CV (SIN RECORTE + MÁS GRANDE) -->
 <dialog id="cvModal">
   <div class="modal-hd">
     <strong>CV – Andrés González</strong>
     <button class="close" onclick="cvModal.close()">Cerrar</button>
   </div>
-  <div class="modal-bd cv">
-    <div class="cv-frame">
-      <div class="cv-zoom">
-        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González">
-      </div>
+  <div class="modal-bd">
+    <div class="cv-wrap">
+      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
     </div>
   </div>
 </dialog>
 
-<!-- MODAL CERT -->
+<!-- MODAL CERT (IMAGEN COMPLETA, SIN ZOOM LOCO) -->
 <dialog id="certModal">
   <div class="modal-hd">
     <strong id="certTitle">Certificado</strong>
     <button class="close" onclick="certModal.close()">Cerrar</button>
   </div>
-  <div class="modal-bd cert">
-    <img id="certImg" alt="" class="modal-img">
+  <div class="modal-bd">
+    <div class="cert-modal-wrap">
+      <img id="certImg" alt="" class="modal-img">
+    </div>
     <div id="certDetail" class="modal-sub"></div>
   </div>
 </dialog>
