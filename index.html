@@ -114,18 +114,6 @@
     .bd p{margin:0 0 12px}
     .bd p:last-child{margin-bottom:0}
 
-    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
-    @media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}}
-    .kpi{
-      background:#101723;
-      border:1px dashed #2a3a52;
-      border-radius:14px;
-      padding:14px;
-      text-align:center;
-    }
-    .kpi .n{font-size:24px;font-weight:900}
-    .kpi .l{color:var(--muted);font-size:12px}
-
     .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
     .exp-item h4{margin:0 0 6px}
     .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
@@ -153,15 +141,16 @@
     .cap strong{display:block}
     .cap span{font-size:12px;color:var(--muted)}
 
+    /* ===== MODALES ===== */
     dialog{
       border:none;
       border-radius:20px;
       padding:0;
-      width:min(1400px,98vw); /* más ancho para CV */
+      width:min(1600px,99vw);   /* MÁS ANCHO */
       background:#0b111b;
       box-shadow:var(--shadow);
     }
-    dialog::backdrop{background:rgba(4,10,16,.82);backdrop-filter:blur(4px)}
+    dialog::backdrop{background:rgba(4,10,16,.86);backdrop-filter:blur(4px)}
     .modal-hd{
       display:flex;align-items:center;justify-content:space-between;
       background:linear-gradient(135deg,var(--brand),var(--brand2));
@@ -175,13 +164,52 @@
       background:#0e1522;border:1px solid #334155;color:#d8e7f9;
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
-    .modal-bd{padding:14px 18px;text-align:center}
 
-    /* CV más grande + lectura clara */
+    /* CV: QUÉDESE MÁS CERCA (ZOOM) */
+    .modal-bd.cv{
+      padding:12px;
+      background:#0b111b;
+    }
+    .cv-frame{
+      width:100%;
+      height:calc(96vh - 64px); /* casi toda la pantalla */
+      border-radius:16px;
+      border:1px solid #2a3643;
+      overflow:auto;            /* scroll DENTRO del modal */
+      background:#0b111b;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:12px;
+    }
+    .cv-zoom{
+      width:1500px;             /* ancho base grande */
+      max-width:1800px;
+      transform:scale(1.25);    /* ZOOM real */
+      transform-origin: top center;
+    }
+    .cv-zoom img{
+      width:100%;
+      height:auto;
+      border-radius:12px;
+      background:#ffffff;       /* tu CV es blanco, ayuda a lectura */
+    }
+    @media(max-width:900px){
+      .cv-zoom{width:980px;transform:scale(1.15)}
+    }
+    @media(max-width:520px){
+      .cv-zoom{width:820px;transform:scale(1.05)}
+    }
+
+    /* Certificados: que se vean completos */
+    .modal-bd.cert{
+      padding:14px 18px;text-align:center;
+    }
     .modal-img{
       width:100%;
       max-width:100%;
-      max-height:94vh;   /* más alto */
+      max-height:90vh;
       object-fit:contain;
       border-radius:16px;
       border:1px solid #2a3643;
@@ -196,10 +224,7 @@
       margin-bottom:18px;
     }
     .vision p strong{color:#ffffff}
-    .vision p:first-child{
-      font-size:17px;
-      font-weight:600;
-    }
+    .vision p:first-child{font-size:17px;font-weight:600}
     .vision p::before{
       content:"";
       display:block;
@@ -210,13 +235,7 @@
       margin-bottom:10px;
     }
 
-    /* Botón final para descargar CV */
-    .cta{
-      display:flex;
-      justify-content:center;
-      padding:10px 0 40px;
-    }
-
+    .cta{display:flex;justify-content:center;padding:10px 0 40px}
     footer{padding:40px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
   </style>
 </head>
@@ -359,7 +378,6 @@
     </div>
   </section>
 
-  <!-- Botón final para descargar CV -->
   <div class="cta">
     <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
   </div>
@@ -370,23 +388,31 @@
   <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
+<!-- MODAL CV (ZOOM) -->
 <dialog id="cvModal">
   <div class="modal-hd">
     <strong>CV – Andrés González</strong>
     <button class="close" onclick="cvModal.close()">Cerrar</button>
   </div>
-  <div class="modal-bd">
-    <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="modal-img">
-    <div class="modal-sub">Tip: si quieres abrirlo en otra pestaña, usa “Ver CV (PDF)” arriba o el botón de descarga al final.</div>
+  <div class="modal-bd cv">
+    <div class="cv-frame" title="Puedes hacer scroll aquí para leer todo el CV">
+      <div class="cv-zoom">
+        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González">
+      </div>
+    </div>
+    <div class="modal-sub" style="margin-top:10px">
+      Si lo quieres aún más cerca: cambia <strong>transform: scale(1.25)</strong> por <strong>1.35</strong> en <code>.cv-zoom</code>.
+    </div>
   </div>
 </dialog>
 
+<!-- MODAL CERT -->
 <dialog id="certModal">
   <div class="modal-hd">
     <strong id="certTitle">Certificado</strong>
     <button class="close" onclick="certModal.close()">Cerrar</button>
   </div>
-  <div class="modal-bd">
+  <div class="modal-bd cert">
     <img id="certImg" alt="" class="modal-img">
     <div id="certDetail" class="modal-sub"></div>
   </div>
