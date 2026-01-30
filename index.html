@@ -157,7 +157,7 @@
       border:none;
       border-radius:20px;
       padding:0;
-      width:min(1100px,96vw);
+      width:min(1200px,96vw);
       background:#0b111b;
       box-shadow:var(--shadow);
     }
@@ -175,25 +175,39 @@
       background:#0e1522;border:1px solid #334155;color:#d8e7f9;
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
-    .modal-bd{
-      padding:18px;
-      text-align:center;
-    }
-    /* IMPORTANTE: que se vea completa sin mover */
+    .modal-bd{padding:18px;text-align:center}
+    /* IMPORTANTE: que se vea completa sin mover + más grande */
     .modal-img{
-      width:auto;
+      width:100%;
       max-width:100%;
-      max-height:78vh;
+      max-height:90vh;
       object-fit:contain;
-      border-radius:14px;
+      border-radius:16px;
       border:1px solid #2a3643;
-      box-shadow:var(--shadow);
+      box-shadow:0 20px 50px rgba(0,0,0,.6);
       background:#0b111b;
     }
-    .modal-sub{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:13px;
+    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px}
+
+    /* Formato extra para la sección "visión" (punch suave) */
+    .vision p{
+      font-size:16px;
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+    .vision p strong{color:#ffffff}
+    .vision p:first-child{
+      font-size:17px;
+      font-weight:600;
+    }
+    .vision p::before{
+      content:"";
+      display:block;
+      width:32px;
+      height:3px;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      border-radius:2px;
+      margin-bottom:10px;
     }
 
     footer{padding:40px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
@@ -247,34 +261,26 @@
     <div class="hd">Sobre mí</div>
     <div class="bd">
       <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong> en retail, enfocado en convertir objetivos en resultados a través de <strong>personas, procesos y ejecución</strong>.</p>
-      <p>Mi estilo de liderazgo se basa en <strong>cercanía + claridad</strong>: el equipo entiende el <em>por qué</em> de cada indicador y cómo impacta en conversión, ticket, experiencia y rentabilidad. Eso me permite alinear operación y venta con un plan simple: <strong>prioridades claras, seguimiento diario y coaching en piso</strong>.</p>
+      <p>Mi liderazgo se basa en <strong>cercanía + claridad</strong>: el equipo entiende el <em>por qué</em> de cada indicador y cómo impacta en conversión, ticket, experiencia y rentabilidad. Esto me permite alinear operación y venta con un plan simple: <strong>prioridades claras, seguimiento diario y coaching en piso</strong>.</p>
       <p>He gestionado operaciones de alto volumen, control de inventarios y cumplimiento de KPIs, fortaleciendo disciplina operativa sin perder el foco comercial: <strong>atraer, convertir y fidelizar</strong> con estándares consistentes.</p>
       <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el futuro del retail es la integración de <strong>liderazgo humano + tecnología</strong>: líderes capaces de conectar la data con decisiones prácticas en tienda.</p>
     </div>
   </section>
 
   <section id="experiencia" class="card">
-    <div class="hd">Resumen profesional</div>
+    <div class="hd">Experiencia profesional</div>
     <div class="bd">
-      <p>Especialista en retail con enfoque en <strong>estrategia comercial ejecutable</strong>, control operativo e impulso de desempeño. Enfoco mi trabajo en 3 palancas: <strong>conversión, productividad por hora</strong> y <strong>disciplina operativa</strong> (inventario, estándares, ejecución).</p>
-
-      <div class="kpis">
-        <div class="kpi"><div class="n">15+</div><div class="l">Sucursales estandarizadas</div></div>
-        <div class="kpi"><div class="n">98.88%</div><div class="l">Confiabilidad de inventario</div></div>
-        <div class="kpi"><div class="n">Top</div><div class="l">Desempeño operativo</div></div>
-        <div class="kpi"><div class="n">+</div><div class="l">Coaching y desarrollo</div></div>
-      </div>
-
-      <div style="height:14px"></div>
 
       <div class="exp-item">
-        <h4>Store Manager — Luuna</h4>
+        <h4>Store Manager Boutique Showroom — Luuna</h4>
         <div class="meta">04/2022 – 06/2025</div>
         <ul>
-          <li>Impulsé <strong>estrategia comercial en piso</strong> con rutinas diarias (briefing, objetivos por hora, seguimiento de conversión y ticket) para sostener resultados de forma consistente.</li>
-          <li>Logré <strong>confiabilidad de inventario 98.88%</strong> y estandaricé ejecución operativa para reducir fricción en venta y mejorar disponibilidad.</li>
-          <li>Implementé seguimiento postventa y recuperación de oportunidades para fortalecer <strong>recompra y referidos</strong>.</li>
-          <li>Formé y desarrollé talento mediante coaching, indicadores simples y accountability: <strong>equipos que venden mejor porque entienden el porqué</strong>.</li>
+          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando entre tiendas de la marca por desempeño sostenido.</li>
+          <li>Posicioné una <strong>tienda nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de un año</strong>, consolidando un modelo de ejecución replicable.</li>
+          <li>Diseñé y ejecuté <strong>estrategias comerciales orientadas a resultados</strong> (briefing diario, metas por hora, seguimiento a conversión/ticket y coaching en piso) para sostener crecimiento y disciplina de venta.</li>
+          <li>Supervisé el control de inventarios, activos y procesos internos, logrando <strong>98.88% de confiabilidad</strong> y mayor disponibilidad para venta.</li>
+          <li>Apoyé a Dirección de Distrito en capacitación y desarrollo de equipos en <strong>15+ sucursales</strong>, fortaleciendo estándares comerciales y liderazgo de mandos medios.</li>
+          <li>Implementé auditorías y planes de acción para elevar estándares de productividad y servicio, alineando <strong>operación + experiencia + venta</strong>.</li>
         </ul>
       </div>
 
@@ -282,12 +288,14 @@
         <h4>Gerente de Boutique — GAP</h4>
         <div class="meta">10/2014 – 07/2021</div>
         <ul>
-          <li>Gestión completa de operación y venta: estándares, inventarios, servicio, piso de venta y ejecución comercial.</li>
-          <li>Fortalecí productividad con enfoque en <strong>planificación por tramos horarios</strong>, roles claros y priorización (lo que mueve el número, primero).</li>
-          <li>Mejora de disciplina operativa: conteos, prevención de pérdidas y seguimiento a KPIs clave.</li>
-          <li>Desarrollo de equipos: entrenamiento, feedback, planes de desempeño y cultura de resultados.</li>
+          <li>Recibí una tienda con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong>, estabilizando operación y ejecución comercial.</li>
+          <li>Logré <strong>mantener la rentabilidad durante la pandemia (2020)</strong>, asegurando continuidad operativa mediante control de gasto, disciplina de inventario y enfoque en venta efectiva.</li>
+          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong>, fortaleciendo precisión, disponibilidad de stock y control de merma.</li>
+          <li>Impulsé la lectura y seguimiento de KPIs (venta, productividad, conversión y cumplimiento) para sostener resultados con ejecución diaria.</li>
+          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento, coaching y cultura de estándares, elevando desempeño y consistencia.</li>
         </ul>
       </div>
+
     </div>
   </section>
 
@@ -295,6 +303,7 @@
     <div class="hd">Certificaciones destacadas</div>
     <div class="bd">
       <div class="certs">
+
         <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
           <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
           <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
@@ -319,16 +328,17 @@
           <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
           <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section id="vision" class="card">
+  <section id="vision" class="card vision">
     <div class="hd">Mi visión del retail y del liderazgo</div>
     <div class="bd">
-      <p>Creo en un retail que no se trata solo de vender, sino de <strong>crear conexiones humanas memorables</strong> y sostener resultados con ejecución diaria.</p>
+      <p>Creo en un retail que no se trata solo de vender, sino de <strong>crear conexiones humanas memorables</strong> y sostener resultados con <strong>ejecución diaria</strong>.</p>
       <p>Un líder hoy no solo dirige: <strong>inspira, escucha, entrena</strong> y convierte la estrategia en hábitos simples que el equipo puede repetir.</p>
-      <p>Mi propósito es seguir evolucionando como <strong>líder que une estrategia comercial, disciplina operativa y tecnología</strong> para construir equipos que generen resultados medibles y experiencias que dejen huella.</p>
+      <p>Mi propósito es seguir evolucionando como líder que une <strong>estrategia comercial</strong>, <strong>disciplina operativa</strong> y <strong>tecnología</strong> para construir equipos que generen resultados medibles y experiencias que dejen huella.</p>
     </div>
   </section>
 
@@ -355,7 +365,7 @@
   </div>
   <div class="modal-bd">
     <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="modal-img">
-    <div class="modal-sub">Si prefieres, también puedes abrirlo en PDF desde el botón “Ver CV (PDF)”.</div>
+    <div class="modal-sub">Tip: si quieres descargar o ver en otra pestaña, usa “Ver CV (PDF)” arriba.</div>
   </div>
 </dialog>
 
