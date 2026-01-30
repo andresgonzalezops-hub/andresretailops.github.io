@@ -120,7 +120,8 @@
     .exp-item ul{margin:8px 0 0 18px}
     .exp-item li{margin:6px 0}
 
-    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    /* ===== CERTS (AJUSTADO: MÁS CHICO Y “NORMAL”) ===== */
+    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .cert{
       background:#0e151f;
       border:1px solid #1f2b3d;
@@ -129,16 +130,16 @@
       cursor:pointer;
       transition:.2s;
     }
-    .cert:hover{transform:scale(1.02)}
+    .cert:hover{transform:translateY(-2px)}
     .cert img{
       width:100%;
-      height:180px;
-      object-fit:cover;
+      height:150px;           /* antes 180 -> más controlado */
+      object-fit:cover;       /* se ve “bonito” en tarjeta */
       background:#0b111b;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .cap{padding:12px}
-    .cap strong{display:block}
+    .cap strong{display:block;font-size:14px;line-height:1.25}
     .cap span{font-size:12px;color:var(--muted)}
 
     /* ===== MODALES ===== */
@@ -146,7 +147,7 @@
       border:none;
       border-radius:20px;
       padding:0;
-      width:min(1600px,99vw);   /* MÁS ANCHO */
+      width:min(1600px,99vw);
       background:#0b111b;
       box-shadow:var(--shadow);
     }
@@ -165,17 +166,14 @@
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
 
-    /* CV: QUÉDESE MÁS CERCA (ZOOM) */
-    .modal-bd.cv{
-      padding:12px;
-      background:#0b111b;
-    }
+    /* CV (zoom) */
+    .modal-bd.cv{padding:12px;background:#0b111b}
     .cv-frame{
       width:100%;
-      height:calc(96vh - 64px); /* casi toda la pantalla */
+      height:calc(96vh - 64px);
       border-radius:16px;
       border:1px solid #2a3643;
-      overflow:auto;            /* scroll DENTRO del modal */
+      overflow:auto;
       background:#0b111b;
       box-shadow:0 22px 60px rgba(0,0,0,.65);
       display:flex;
@@ -184,16 +182,16 @@
       padding:12px;
     }
     .cv-zoom{
-      width:1500px;             /* ancho base grande */
+      width:1500px;
       max-width:1800px;
-      transform:scale(1.25);    /* ZOOM real */
+      transform:scale(1.25);
       transform-origin: top center;
     }
     .cv-zoom img{
       width:100%;
       height:auto;
       border-radius:12px;
-      background:#ffffff;       /* tu CV es blanco, ayuda a lectura */
+      background:#ffffff;
     }
     @media(max-width:900px){
       .cv-zoom{width:980px;transform:scale(1.15)}
@@ -202,14 +200,12 @@
       .cv-zoom{width:820px;transform:scale(1.05)}
     }
 
-    /* Certificados: que se vean completos */
-    .modal-bd.cert{
-      padding:14px 18px;text-align:center;
-    }
+    /* Certificados modal: SE VE COMPLETO, NO GIGANTE */
+    .modal-bd.cert{padding:14px 18px;text-align:center}
     .modal-img{
       width:100%;
-      max-width:100%;
-      max-height:90vh;
+      max-width:min(1100px,96vw); /* límite para que NO se vea exagerado */
+      max-height:82vh;            /* un poco menos alto */
       object-fit:contain;
       border-radius:16px;
       border:1px solid #2a3643;
@@ -288,25 +284,22 @@
     <div class="bd">
       <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong> en retail, enfocado en convertir objetivos en resultados a través de <strong>personas, procesos y ejecución</strong>.</p>
       <p>Mi liderazgo se basa en <strong>cercanía + claridad</strong>: el equipo entiende el <em>por qué</em> de cada indicador y cómo impacta en conversión, ticket, experiencia y rentabilidad. Esto me permite alinear operación y venta con un plan simple: <strong>prioridades claras, seguimiento diario y coaching en piso</strong>.</p>
-      <p>He gestionado operaciones de alto volumen, control de inventarios y cumplimiento de KPIs, fortaleciendo disciplina operativa sin perder el foco comercial: <strong>atraer, convertir y fidelizar</strong> con estándares consistentes.</p>
-      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el futuro del retail es la integración de <strong>liderazgo humano + tecnología</strong>: líderes capaces de conectar la data con decisiones prácticas en tienda.</p>
+      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el futuro del retail es la integración de <strong>liderazgo humano + tecnología</strong>.</p>
     </div>
   </section>
 
   <section id="experiencia" class="card">
     <div class="hd">Experiencia profesional</div>
     <div class="bd">
-
       <div class="exp-item">
         <h4>Store Manager Boutique Showroom — Luuna</h4>
         <div class="meta">04/2022 – 06/2025</div>
         <ul>
-          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando entre tiendas de la marca por desempeño sostenido.</li>
-          <li>Posicioné una <strong>tienda nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de un año</strong>, consolidando un modelo de ejecución replicable.</li>
-          <li>Diseñé y ejecuté <strong>estrategias comerciales orientadas a resultados</strong> (briefing diario, metas por hora, seguimiento a conversión/ticket y coaching en piso) para sostener crecimiento y disciplina de venta.</li>
-          <li>Supervisé el control de inventarios, activos y procesos internos, logrando <strong>98.88% de confiabilidad</strong> y mayor disponibilidad para venta.</li>
-          <li>Apoyé a Dirección de Distrito en capacitación y desarrollo de equipos en <strong>15+ sucursales</strong>, fortaleciendo estándares comerciales y liderazgo de mandos medios.</li>
-          <li>Implementé auditorías y planes de acción para elevar estándares de productividad y servicio, alineando <strong>operación + experiencia + venta</strong>.</li>
+          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando por desempeño sostenido.</li>
+          <li>Posicioné una <strong>tienda nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de un año</strong>, consolidando ejecución comercial y disciplina operativa.</li>
+          <li>Diseñé y ejecuté <strong>estrategias comerciales orientadas a resultados</strong> (metas por hora, coaching en piso, seguimiento diario) para sostener crecimiento.</li>
+          <li>Logré <strong>98.88% de confiabilidad</strong> de inventario, mejorando disponibilidad de producto y control de merma.</li>
+          <li>Apoyé a Dirección de Distrito en capacitación y desarrollo de equipos en <strong>15+ sucursales</strong>.</li>
         </ul>
       </div>
 
@@ -314,14 +307,12 @@
         <h4>Gerente de Boutique — GAP</h4>
         <div class="meta">10/2014 – 07/2021</div>
         <ul>
-          <li>Recibí una tienda con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong>, estabilizando operación y ejecución comercial.</li>
-          <li>Logré <strong>mantener la rentabilidad durante la pandemia (2020)</strong>, asegurando continuidad operativa mediante control de gasto, disciplina de inventario y enfoque en venta efectiva.</li>
-          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong>, fortaleciendo precisión, disponibilidad de stock y control de merma.</li>
-          <li>Impulsé la lectura y seguimiento de KPIs (venta, productividad, conversión y cumplimiento) para sostener resultados con ejecución diaria.</li>
-          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento, coaching y cultura de estándares, elevando desempeño y consistencia.</li>
+          <li>Recibí una tienda con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong>.</li>
+          <li>Mantuve <strong>rentabilidad durante la pandemia (2020)</strong>, asegurando continuidad operativa con disciplina comercial y control.</li>
+          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong>.</li>
+          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento y cultura de estándares.</li>
         </ul>
       </div>
-
     </div>
   </section>
 
@@ -353,6 +344,13 @@
         <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
           <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
           <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <!-- ✅ CERTIFICADO OPEN ACADEMY EXTRA (PON AQUÍ EL NOMBRE REAL DEL ARCHIVO) -->
+        <!-- IMPORTANTE: sube tu imagen a /assets/certs/ y pon exactamente el nombre -->
+        <div class="cert" onclick="showCert('assets/certs/OPEN-ACADEMY-3.jpg','(Open Academy) Certificado adicional','Open Academy · 2026')">
+          <img src="assets/certs/OPEN-ACADEMY-3.jpg" alt="Certificado Open Academy adicional">
+          <div class="cap"><strong>Certificado Open Academy (adicional)</strong><span>Open Academy · 2026</span></div>
         </div>
 
       </div>
@@ -388,20 +386,17 @@
   <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
-<!-- MODAL CV (ZOOM) -->
+<!-- MODAL CV -->
 <dialog id="cvModal">
   <div class="modal-hd">
     <strong>CV – Andrés González</strong>
     <button class="close" onclick="cvModal.close()">Cerrar</button>
   </div>
   <div class="modal-bd cv">
-    <div class="cv-frame" title="Puedes hacer scroll aquí para leer todo el CV">
+    <div class="cv-frame">
       <div class="cv-zoom">
         <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González">
       </div>
-    </div>
-    <div class="modal-sub" style="margin-top:10px">
-      Si lo quieres aún más cerca: cambia <strong>transform: scale(1.25)</strong> por <strong>1.35</strong> en <code>.cv-zoom</code>.
     </div>
   </div>
 </dialog>
