@@ -1,179 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo retail, operaciones multitienda, KPIs, inventarios y desarrollo comercial.">
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo retail, operaciones multitienda, KPIs e inventarios.">
   <meta property="og:image" content="assets/profile.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#141a24;
-      --text:#e6edf3;
-      --muted:#9aa4b2;
-      --brand:#00b4ff;
-      --brand2:#00d1b2;
-      --radius:20px;
+      --bg:#0b0f14; --card:#141a24; --text:#e6edf3; --muted:#9aa4b2;
+      --brand:#00b4ff; --brand2:#00d1b2; --radius:20px;
       --shadow:0 14px 36px rgba(0,0,0,.38);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
-      color:var(--text);
-      line-height:1.6;
+      color:var(--text); line-height:1.6;
     }
     a{text-decoration:none;color:var(--brand)}
     img{max-width:100%;display:block}
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:10;
-      background:#0d1219;
-      box-shadow:0 4px 14px rgba(0,0,0,.4);
-    }
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 0;
-      flex-wrap:wrap;
-      gap:12px;
-    }
+
+    header{position:sticky;top:0;z-index:10;background:#0d1219;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;flex-wrap:wrap;gap:12px}
     .nav .logo{font-weight:800;color:#fff}
     .nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap}
-    .nav .btn{
-      padding:10px 14px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#061018;
-      font-weight:800;
-      cursor:pointer;
-    }
+    .nav .btn{padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061018;font-weight:800;cursor:pointer}
 
-    .hero{
-      display:grid;
-      grid-template-columns:160px 1fr;
-      gap:24px;
-      padding:48px 0;
-      align-items:center;
-    }
-    @media(max-width:760px){
-      .hero{grid-template-columns:1fr;text-align:center}
-      .avatar{margin:0 auto}
-      .actions{justify-content:center}
-    }
-    .avatar{
-      width:160px;
-      height:160px;
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      border:2px solid #1f2a38;
-    }
+    .hero{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:48px 0;align-items:center}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center}.avatar{margin:0 auto}.actions{justify-content:center}}
+    .avatar{width:160px;height:160px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:2px solid #1f2a38}
     h1{font-size:34px;line-height:1.2;margin-bottom:10px}
     .title{color:var(--muted);font-size:15px}
     .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-    .chip{
-      padding:6px 10px;
-      border:1px solid #2a3343;
-      border-radius:999px;
-      color:#b9c3d4;
-      font-size:12px;
-      background:rgba(255,255,255,.03);
-    }
+    .chip{padding:6px 10px;border:1px solid #2a3343;border-radius:999px;color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
-    section.card{
-      background:var(--card);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      border:1px solid #223043;
-      margin:24px 0;
-    }
-    .hd{
-      padding:18px 18px 0;
-      color:var(--muted);
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
+    section.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid #223043;margin:24px 0}
+    .hd{padding:18px 18px 0;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
     .bd{padding:18px}
 
-    .kpis{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-      gap:14px;
-      margin-top:14px;
-    }
-    .kpi{
-      background:#101723;
-      border:1px dashed #2a3a52;
-      border-radius:14px;
-      padding:14px;
-      text-align:center;
-    }
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:14px}
+    .kpi{background:#101723;border:1px dashed #2a3a52;border-radius:14px;padding:14px;text-align:center}
     .kpi .n{font-size:24px;font-weight:900}
     .kpi .l{font-size:12px;color:var(--muted)}
 
-    .exp-item{
-      border-left:3px solid var(--brand);
-      padding-left:14px;
-      margin-bottom:22px;
-    }
+    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin-bottom:22px}
     .exp-item .meta{font-size:13px;color:var(--muted)}
     .exp-item ul{margin-left:18px}
 
-    .certs{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:14px;
-    }
-    .cert{
-      background:#0e151f;
-      border:1px solid #1f2b3d;
-      border-radius:14px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:.2s;
-    }
+    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .cert{background:#0e151f;border:1px solid #1f2b3d;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
     .cert:hover{transform:scale(1.02)}
     .cap{padding:12px}
     .cap strong{display:block}
     .cap span{font-size:12px;color:var(--muted)}
 
-    dialog{
-      border:none;
-      border-radius:20px;
-      width:min(1000px,95vw);
-      background:#0b111b;
-      box-shadow:var(--shadow);
-    }
+    dialog{border:none;border-radius:20px;width:min(1000px,95vw);background:#0b111b;box-shadow:var(--shadow)}
     dialog::backdrop{background:rgba(0,0,0,.8)}
-    .modal-hd{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#061018;
-    }
+    .modal-hd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));color:#061018}
     .modal-bd{padding:18px;text-align:center}
-    .close{
-      background:#0e1522;
-      border:1px solid #334155;
-      color:#fff;
-      border-radius:8px;
-      padding:6px 10px;
-      cursor:pointer;
-    }
+    .close{background:#0e1522;border:1px solid #334155;color:#d8e7f9;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:700}
+    .modal-img{max-width:100%;border-radius:14px;border:1px solid #2a3643;box-shadow:var(--shadow)}
 
-    footer{text-align:center;color:var(--muted);padding:40px 0}
+    footer{padding:40px 0;color:#8e9aaf;text-align:center}
   </style>
 </head>
 
@@ -181,10 +75,11 @@
 
 <header>
   <div class="container nav">
-    <span class="logo">ANDRÉS GONZÁLEZ</span>
+    <div class="logo">ANDRÉS GONZÁLEZ</div>
     <ul>
       <li><a href="#certificaciones">Certificaciones</a></li>
-      <li><span class="btn" id="verCV">Ver CV</span></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><button class="btn" id="verCV">Ver CV</button></li>
     </ul>
   </div>
 </header>
@@ -197,54 +92,16 @@
     </div>
     <div>
       <h1>Retail Operations & Desarrollo Comercial</h1>
-      <p class="title">Estrategia · Liderazgo · KPIs · Rentabilidad</p>
-
+      <div class="title">Estrategia · Liderazgo · KPIs · Rentabilidad</div>
       <div class="badges">
-        <span class="chip">Gestión multitienda</span>
+        <span class="chip">Gestión operativa</span>
         <span class="chip">Inventarios</span>
         <span class="chip">KPIs</span>
-        <span class="chip">Liderazgo</span>
+        <span class="chip">HubSpot · AWS · Python</span>
       </div>
-
       <div class="actions">
-        <a class="btn" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
         <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">Email</a>
-        <a class="btn" href="tel:+523323430043">Teléfono</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="hd">Resumen</div>
-    <div class="bd">
-      <p>Líder retail con más de 10 años gestionando operaciones multitienda, equipos de alto desempeño y mejora continua basada en KPIs.</p>
-      <div class="kpis">
-        <div class="kpi"><div class="n">15+</div><div class="l">Sucursales</div></div>
-        <div class="kpi"><div class="n">98.88%</div><div class="l">Inventario</div></div>
-        <div class="kpi"><div class="n">Top 2</div><div class="l">Eficiencia</div></div>
-        <div class="kpi"><div class="n">11/10</div><div class="l">Operación</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="hd">Experiencia</div>
-    <div class="bd">
-      <div class="exp-item">
-        <strong>Luuna — Store Manager</strong>
-        <div class="meta">2022 – 2025</div>
-        <ul>
-          <li>Inventario 98.88% y eficiencia líder nacional</li>
-          <li>Conversión +30% mediante coaching comercial</li>
-        </ul>
-      </div>
-      <div class="exp-item">
-        <strong>GAP / Banana Republic — Store Manager</strong>
-        <div class="meta">2014 – 2021</div>
-        <ul>
-          <li>Liderazgo de equipos de hasta 30 personas</li>
-          <li>Optimización de ventas y visual merchandising</li>
-        </ul>
+        <a class="btn" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
       </div>
     </div>
   </section>
@@ -254,28 +111,28 @@
     <div class="bd">
       <div class="certs">
 
-        <div class="cert" data-src="assets/certs/HUBSPOT.jpg">
-          <img src="assets/certs/HUBSPOT.jpg">
+        <div class="cert" onclick="openCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','2025–2026')">
+          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot">
           <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
         </div>
 
-        <div class="cert" data-src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg">
-          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg">
+        <div class="cert" onclick="openCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','2025')">
+          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS">
           <div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
         </div>
 
-        <div class="cert" data-src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg">
-          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg">
+        <div class="cert" onclick="openCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','2025')">
+          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco">
           <div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
         </div>
 
-        <div class="cert" data-src="assets/certs/171_luis_andres_89@hotmail.com.pdf">
-          <img src="assets/profile.jpg">
+        <div class="cert" onclick="openCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
+          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Agile">
           <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
         </div>
 
-        <div class="cert" data-src="assets/certs/110_luis_andres_89@hotmail.com.pdf">
-          <img src="assets/profile.jpg">
+        <div class="cert" onclick="openCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs','Open Academy · 2026')">
+          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce">
           <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
         </div>
 
@@ -283,44 +140,45 @@
     </div>
   </section>
 
+  <section id="contacto" class="card">
+    <div class="hd">Contacto</div>
+    <div class="bd">
+      <p>📍 Zapopan, Jalisco, México</p>
+      <p>📧 <a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p>
+      <p>🔗 <a href="https://www.linkedin.com/in/andresglez89/" target="_blank">linkedin.com/in/andresglez89</a></p>
+    </div>
+  </section>
+
 </main>
 
-<dialog id="cvModal">
-  <div class="modal-hd">
-    <strong>CV – Andrés González</strong>
-    <button class="close" onclick="cvModal.close()">Cerrar</button>
-  </div>
-  <div class="modal-bd">
-    <img src="assets/CV-Andres-Gonzalez.jpg">
-  </div>
-</dialog>
+<footer>
+  © <span id="year"></span> Andrés González
+</footer>
 
 <dialog id="certModal">
   <div class="modal-hd">
-    <strong>Certificado</strong>
+    <strong id="certTitle"></strong>
     <button class="close" onclick="certModal.close()">Cerrar</button>
   </div>
   <div class="modal-bd">
-    <iframe id="certFrame" style="width:100%;height:80vh;border:none"></iframe>
+    <img id="certImg" class="modal-img" alt="">
+    <p id="certDetail" style="margin-top:10px;color:#9aa4b2"></p>
   </div>
 </dialog>
 
-<footer>
-  © 2026 Andrés González
-</footer>
-
 <script>
-  const cvModal = document.getElementById('cvModal');
-  document.getElementById('verCV').onclick = () => cvModal.showModal();
-
+  document.getElementById('year').textContent = new Date().getFullYear();
   const certModal = document.getElementById('certModal');
-  const certFrame = document.getElementById('certFrame');
-  document.querySelectorAll('.cert').forEach(c=>{
-    c.onclick=()=>{
-      certFrame.src=c.dataset.src;
-      certModal.showModal();
-    }
-  });
+  const certImg = document.getElementById('certImg');
+  const certTitle = document.getElementById('certTitle');
+  const certDetail = document.getElementById('certDetail');
+
+  function openCert(src,title,detail){
+    certImg.src = src;
+    certTitle.textContent = title;
+    certDetail.textContent = detail;
+    certModal.showModal();
+  }
 </script>
 
 </body>
