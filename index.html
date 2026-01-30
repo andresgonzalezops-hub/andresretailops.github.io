@@ -65,7 +65,6 @@
       .top{grid-template-columns:1fr;text-align:center}
       .avatar{margin:0 auto}
       .links{justify-content:center}
-      .links a{justify-content:center}
     }
     .avatar{
       width:160px;height:160px;border-radius:22px;overflow:hidden;
@@ -121,7 +120,7 @@
     .exp-item ul{margin:8px 0 0 18px}
     .exp-item li{margin:6px 0}
 
-    /* ===== CERTS (COMO ANTES: tarjetas “normales” + modal que muestra la imagen COMPLETA) ===== */
+    /* CERTS */
     .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .cert{
       background:#0e151f;
@@ -134,8 +133,8 @@
     .cert:hover{transform:translateY(-2px)}
     .cert img{
       width:100%;
-      height:150px;     /* miniatura en tarjeta */
-      object-fit:cover; /* se ve bien en tarjeta */
+      height:150px;
+      object-fit:cover;
       background:#0b111b;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
@@ -143,7 +142,7 @@
     .cap strong{display:block;font-size:14px;line-height:1.25}
     .cap span{font-size:12px;color:var(--muted)}
 
-    /* ===== MODALES ===== */
+    /* MODALES */
     dialog{
       border:none;
       border-radius:20px;
@@ -167,30 +166,45 @@
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
 
-    /* ✅ CV: SIN RECORTE. Se ajusta completo en pantalla con scroll si hace falta.
-       Y un poquito más grande (sin exagerar). */
+    /* ✅ ARREGLO CV: se ve bonito, centrado, MÁS GRANDE, sin deformar, sin recortes feos.
+       - Fondo “papel” con sombra
+       - Zoom suave (sin pixelar por CSS)
+       - Si no cabe, scroll DENTRO del modal (no se corta) */
     .modal-bd{padding:14px 18px}
-    .cv-wrap{
-      width:100%;
-      height:calc(92vh - 64px);      /* ocupa casi toda la pantalla */
+    .cv-stage{
+      height:calc(92vh - 64px);
       border-radius:16px;
       border:1px solid #2a3643;
-      background:#0b111b;
-      overflow:auto;                 /* si el CV es alto, haces scroll */
-      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:auto;
       display:flex;
       justify-content:center;
+      align-items:flex-start;
+      padding:22px 18px;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+    }
+    .cv-paper{
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
       padding:14px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
     .cv-img{
-      width:min(1100px, 98%);        /* más grande */
+      width:min(1200px, 94vw);     /* más grande */
       height:auto;
-      border-radius:12px;
-      background:#ffffff;
+      border-radius:10px;
+      display:block;
+    }
+    /* mejora la nitidez en algunos navegadores */
+    .cv-img{image-rendering:auto}
+    @media(min-width:1100px){
+      .cv-img{width:1180px}        /* estable en desktop */
     }
 
-    /* ✅ Certificados: SIN “super zoom”. Se ve COMPLETA la imagen.
-       No corta, no exagera: object-fit:contain y max-height */
+    /* ✅ Certificados: completos, SIN zoom loco */
     .cert-modal-wrap{
       display:flex;
       justify-content:center;
@@ -201,7 +215,7 @@
       width:100%;
       max-width:min(1100px,96vw);
       max-height:80vh;
-      object-fit:contain;            /* clave: se ve completa */
+      object-fit:contain;
       border-radius:16px;
       border:1px solid #2a3643;
       box-shadow:0 22px 60px rgba(0,0,0,.65);
@@ -374,20 +388,22 @@
   <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
-<!-- MODAL CV (SIN RECORTE + MÁS GRANDE) -->
+<!-- MODAL CV (ARREGLADO) -->
 <dialog id="cvModal">
   <div class="modal-hd">
     <strong>CV – Andrés González</strong>
     <button class="close" onclick="cvModal.close()">Cerrar</button>
   </div>
   <div class="modal-bd">
-    <div class="cv-wrap">
-      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
+    <div class="cv-stage">
+      <div class="cv-paper">
+        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
+      </div>
     </div>
   </div>
 </dialog>
 
-<!-- MODAL CERT (IMAGEN COMPLETA, SIN ZOOM LOCO) -->
+<!-- MODAL CERT (OK) -->
 <dialog id="certModal">
   <div class="modal-hd">
     <strong id="certTitle">Certificado</strong>
