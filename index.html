@@ -166,10 +166,7 @@
       border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
     }
 
-    /* ✅ ARREGLO CV: se ve bonito, centrado, MÁS GRANDE, sin deformar, sin recortes feos.
-       - Fondo “papel” con sombra
-       - Zoom suave (sin pixelar por CSS)
-       - Si no cabe, scroll DENTRO del modal (no se corta) */
+    /* ✅ ARREGLO CV */
     .modal-bd{padding:14px 18px}
     .cv-stage{
       height:calc(92vh - 64px);
@@ -193,15 +190,14 @@
       align-items:center;
     }
     .cv-img{
-      width:min(1200px, 94vw);     /* más grande */
+      width:min(1200px, 94vw);
       height:auto;
       border-radius:10px;
       display:block;
     }
-    /* mejora la nitidez en algunos navegadores */
     .cv-img{image-rendering:auto}
     @media(min-width:1100px){
-      .cv-img{width:1180px}        /* estable en desktop */
+      .cv-img{width:1180px}
     }
 
     /* ✅ Certificados: completos, SIN zoom loco */
@@ -210,6 +206,7 @@
       justify-content:center;
       align-items:center;
       padding:8px 0 2px;
+      width:100%;
     }
     .modal-img{
       width:100%;
@@ -221,6 +218,17 @@
       box-shadow:0 22px 60px rgba(0,0,0,.65);
       background:#0b111b;
     }
+    /* ✅ Viewer PDF dentro del modal */
+    .modal-pdf{
+      width:100%;
+      max-width:min(1100px,96vw);
+      height:min(80vh, 900px);
+      border-radius:16px;
+      border:1px solid #2a3643;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:#0b111b;
+    }
+    .hidden{display:none !important;}
     .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
 
     .vision p{
@@ -355,6 +363,12 @@
           <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
         </div>
 
+        <!-- ✅ NUEVO CERTIFICADO (PDF) -->
+        <div class="cert" onclick="showCert('assets/certs/896_luis_andres_89@hotmail.com.pdf','English Fundamentals – Boost your job search and CV','Open Academy · Completado 02 Feb 2026')">
+          <img src="assets/certs/english-fundamentals-thumb.jpg" alt="English Fundamentals – Boost your job search and CV">
+          <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -403,7 +417,7 @@
   </div>
 </dialog>
 
-<!-- MODAL CERT (OK) -->
+<!-- MODAL CERT (IMG + PDF) -->
 <dialog id="certModal">
   <div class="modal-hd">
     <strong id="certTitle">Certificado</strong>
@@ -412,6 +426,7 @@
   <div class="modal-bd">
     <div class="cert-modal-wrap">
       <img id="certImg" alt="" class="modal-img">
+      <iframe id="certPdf" class="modal-pdf hidden" title="Certificado PDF"></iframe>
     </div>
     <div id="certDetail" class="modal-sub"></div>
   </div>
@@ -425,13 +440,28 @@
 
   const certModal = document.getElementById('certModal');
   const certImg = document.getElementById('certImg');
+  const certPdf = document.getElementById('certPdf');
   const certTitle = document.getElementById('certTitle');
   const certDetail = document.getElementById('certDetail');
 
   function showCert(src,title,detail){
-    certImg.src = src;
+    const isPdf = /\.pdf(\?.*)?$/i.test(src);
+
     certTitle.textContent = title || 'Certificado';
     certDetail.textContent = detail || '';
+
+    if(isPdf){
+      certImg.classList.add('hidden');
+      certPdf.classList.remove('hidden');
+      certPdf.src = src;
+      certImg.src = '';
+    }else{
+      certPdf.classList.add('hidden');
+      certImg.classList.remove('hidden');
+      certImg.src = src;
+      certPdf.src = '';
+    }
+
     certModal.showModal();
   }
 </script>
