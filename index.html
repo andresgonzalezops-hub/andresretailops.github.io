@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
+<meta name="description" content="Portafolio profesional de Andrés González: liderazgo retail, estrategia comercial, KPIs y eficiencia operativa.">
+<meta property="og:image" content="assets/profile.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -25,9 +27,55 @@ color:var(--text);
 background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
 line-height:1.65;
 }
+a{color:var(--brand);text-decoration:none}
+a:hover{opacity:.95}
 img{max-width:100%;display:block}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
+/* HEADER */
+header{
+position:sticky;top:0;z-index:10;
+background:#0d1219;
+box-shadow:0 4px 14px rgba(0,0,0,.4);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav{
+display:flex;justify-content:space-between;align-items:center;
+padding:16px 0;flex-wrap:wrap;gap:12px;
+}
+.logo{font-weight:900;color:#fff}
+.nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.nav a{color:#b7c2d1;font-weight:700}
+.nav a:hover{color:#fff}
+.nav .btn{
+padding:10px 14px;border-radius:12px;
+background:linear-gradient(135deg,var(--brand),var(--brand2));
+color:#061018;font-weight:900;border:none;cursor:pointer;
+}
+
+/* HERO */
+.top{
+display:grid;
+grid-template-columns:160px 1fr;
+gap:24px;
+padding:42px 0 18px;
+align-items:center;
+}
+.avatar{
+width:160px;height:160px;border-radius:22px;overflow:hidden;
+box-shadow:var(--shadow);
+border:2px solid #1f2a38;
+}
+h1{font-size:34px;margin-bottom:10px}
+.subtitle{color:var(--muted)}
+
+.badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.chip{
+padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
+color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+}
+
+/* SECTIONS */
 section.card{
 background:var(--card);
 border:1px solid var(--stroke);
@@ -43,7 +91,14 @@ letter-spacing:.08em;
 text-transform:uppercase;
 }
 .bd{padding:18px}
+.bd p{margin-bottom:12px}
 
+.exp-item{border-left:3px solid var(--brand);padding-left:14px;margin-bottom:22px}
+.exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.exp-item ul{margin:8px 0 0 18px}
+.exp-item li{margin:6px 0}
+
+/* CERTS */
 .certs{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -66,9 +121,10 @@ background:#0b111b;
 border-bottom:1px solid rgba(255,255,255,.06);
 }
 .cap{padding:12px}
-.cap strong{display:block;font-size:14px;line-height:1.25}
+.cap strong{display:block;font-size:14px}
 .cap span{font-size:12px;color:var(--muted)}
 
+/* MODAL */
 dialog{
 border:none;
 border-radius:20px;
@@ -88,8 +144,6 @@ justify-content:space-between;
 background:linear-gradient(135deg,var(--brand),var(--brand2));
 color:#061018;
 padding:14px 18px;
-border-top-left-radius:20px;
-border-top-right-radius:20px;
 }
 .close{
 background:#0e1522;
@@ -100,10 +154,11 @@ padding:6px 10px;
 cursor:pointer;
 font-weight:800;
 }
-.modal-bd{padding:18px}
+.modal-bd{padding:18px;text-align:center}
 .modal-img{
 width:100%;
-max-height:85vh;
+max-width:min(1100px,96vw);
+max-height:82vh;
 object-fit:contain;
 border-radius:16px;
 border:1px solid #2a3643;
@@ -116,70 +171,109 @@ color:var(--muted);
 font-size:13px;
 text-align:center;
 }
+
+footer{padding:40px 0;color:#8e9aaf;text-align:center}
 </style>
 </head>
 
 <body>
 
+<header>
+<div class="container nav">
+<a class="logo">ANDRÉS GONZÁLEZ</a>
+<ul>
+<li><a href="#sobre-mi">Sobre mí</a></li>
+<li><a href="#experiencia">Experiencia</a></li>
+<li><a href="#certificaciones">Certificaciones</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+</div>
+</header>
+
 <main class="container">
+
+<section class="top">
+<div class="avatar">
+<img src="assets/profile.jpg">
+</div>
+<div>
+<h1>Retail Operations & Desarrollo Comercial</h1>
+<div class="subtitle">Estrategia · Liderazgo · KPIs · Rentabilidad</div>
+<div class="badges">
+<span class="chip">Gestión operativa</span>
+<span class="chip">Estrategia comercial</span>
+<span class="chip">Optimización de inventarios</span>
+<span class="chip">Análisis y reporteo</span>
+</div>
+</div>
+</section>
+
+<section id="sobre-mi" class="card">
+<div class="hd">Sobre mí</div>
+<div class="bd">
+<p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong> en retail.</p>
+<p>Mi liderazgo se basa en <strong>cercanía + claridad</strong> y ejecución diaria enfocada en resultados medibles.</p>
+<p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el futuro del retail es la integración de <strong>liderazgo humano + tecnología</strong>.</p>
+</div>
+</section>
+
+<section id="experiencia" class="card">
+<div class="hd">Experiencia profesional</div>
+<div class="bd">
+
+<div class="exp-item">
+<h4>Store Manager Boutique Showroom — Luuna</h4>
+<div class="meta">04/2022 – 06/2025</div>
+<ul>
+<li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta.</li>
+<li>Posicioné una tienda nueva dentro de las mejores en menos de un año.</li>
+<li>Logré <strong>98.88% de confiabilidad</strong> de inventario.</li>
+<li>Capacitación y desarrollo de equipos en 15+ sucursales.</li>
+</ul>
+</div>
+
+<div class="exp-item">
+<h4>Gerente de Boutique — GAP</h4>
+<div class="meta">10/2014 – 07/2021</div>
+<ul>
+<li>Rentabilidad en menos de un año.</li>
+<li>Mantener rentabilidad durante pandemia (2020).</li>
+<li>Mejora de confiabilidad de inventario de 85% a 98.88%.</li>
+<li>Equipo sólido de hasta 30 personas.</li>
+</ul>
+</div>
+
+</div>
+</section>
 
 <section id="certificaciones" class="card">
 <div class="hd">Certificaciones destacadas</div>
 <div class="bd">
 <div class="certs">
 
-<!-- HUBSPOT -->
 <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','2025–2026')">
 <img src="assets/certs/HUBSPOT.jpg">
-<div class="cap">
-<strong>HubSpot – Software de ventas</strong>
-<span>2025–2026</span>
-</div>
+<div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
 </div>
 
-<!-- AWS -->
 <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','2025')">
 <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg">
-<div class="cap">
-<strong>AWS Academy – Cloud Foundations</strong>
-<span>2025</span>
-</div>
+<div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
 </div>
 
-<!-- CISCO -->
 <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','2025')">
 <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg">
-<div class="cap">
-<strong>Cisco – Python Essentials 1</strong>
-<span>2025</span>
-</div>
+<div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
 </div>
 
-<!-- AGILE -->
-<div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
-<img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg">
-<div class="cap">
-<strong>Gestión de Proyectos y Metodología Agile</strong>
-<span>Open Academy · 2026</span>
-</div>
-</div>
-
-<!-- PYMES -->
 <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs','Open Academy · 2026')">
 <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg">
-<div class="cap">
-<strong>Ecommerce para PyMEs</strong>
-<span>Open Academy · 2026</span>
-</div>
+<div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
 </div>
 
-<!-- ENGLISH -->
 <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
 <img src="assets/certs/english-fundamentals-2026.jpg">
-<div class="cap">
-<strong>English Fundamentals – Boost your job search and CV</strong>
-<span>Open Academy · 2026</span>
-</div>
+<div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
 </div>
 
 </div>
@@ -211,6 +305,14 @@ certTitle.textContent = title;
 certDetail.textContent = detail;
 certModal.showModal();
 }
+</script>
+
+<footer>
+© <span id="year"></span> Andrés González · Portafolio profesional
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
