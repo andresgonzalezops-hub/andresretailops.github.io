@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strategy Lab | Retail Ops (Luis Andrés)</title>
-  <meta name="description" content="Simulador simple de KPIs retail: metas, proyección, estrategia recomendada y comisión estimada." />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Andrés González | Estrategia Comercial & Operaciones</title>
+  <meta name="description" content="Portafolio profesional de Andrés González: estrategia comercial, liderazgo, KPIs, eficiencia operativa y equipos de alto desempeño.">
+  <meta property="og:image" content="assets/profile.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
@@ -18,9 +19,6 @@
       --radius:20px;
       --shadow:0 14px 36px rgba(0,0,0,.38);
       --stroke:#223043;
-      --good:#25d366;
-      --warn:#fbbf24;
-      --bad:#fb7185;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
@@ -30,200 +28,65 @@
       line-height:1.65;
     }
     a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.95}
     img{max-width:100%;display:block}
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
     header{
-      position:sticky;top:0;z-index:20;
+      position:sticky;top:0;z-index:10;
       background:#0d1219;
       box-shadow:0 4px 14px rgba(0,0,0,.4);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .nav{
       display:flex;justify-content:space-between;align-items:center;
-      padding:14px 0;flex-wrap:wrap;gap:12px;
+      padding:16px 0;flex-wrap:wrap;gap:12px;
     }
-    .logo{
-      font-weight:900;color:#fff;letter-spacing:.02em;
-      display:flex;align-items:center;gap:10px;
-    }
-    .tag{
-      font-size:12px;color:#0b1220;font-weight:900;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      padding:6px 10px;border-radius:999px;
-    }
-
-    .tabs{
-      display:flex;gap:10px;flex-wrap:wrap;
-      align-items:center;justify-content:flex-end;
-    }
-    .tab{
-      border:1px solid #2b3a4f;
-      background:#0e141f;
-      color:#d6e9ff;
-      padding:10px 14px;border-radius:12px;
-      font-weight:800;cursor:pointer;transition:.18s;
+    .logo{font-weight:900;color:#fff;letter-spacing:.02em}
+    .nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+    .nav a{color:#b7c2d1;font-weight:700}
+    .nav a:hover{color:#fff}
+    .nav .btn{
       display:inline-flex;align-items:center;gap:8px;
-      user-select:none;
-    }
-    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
-    .tab.active{
-      border:none;color:#051018;
+      padding:10px 14px;border-radius:12px;
       background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#061018;font-weight:900;
+      border:none;cursor:pointer;
     }
 
-    .hero{
-      padding:22px 0 10px;
+    .top{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
+      grid-template-columns:160px 1fr;
+      gap:24px;
+      padding:42px 0 18px;
+      align-items:center;
     }
-    @media(max-width:860px){
-      .hero{grid-template-columns:1fr}
-      .tabs{justify-content:flex-start}
+    @media(max-width:760px){
+      .top{grid-template-columns:1fr;text-align:center}
+      .avatar{margin:0 auto}
+      .links{justify-content:center}
     }
-    .hero h1{font-size:24px;line-height:1.2;margin-bottom:8px}
-    .hero p{color:var(--muted);font-size:14px}
-    .hero .hint{
-      margin-top:10px;
-      display:flex;gap:10px;flex-wrap:wrap;
+    .avatar{
+      width:160px;height:160px;border-radius:22px;overflow:hidden;
+      box-shadow:var(--shadow);
+      border:2px solid #1f2a38;
     }
+    h1{font-size:34px;line-height:1.15;margin-bottom:10px}
+    .subtitle{color:var(--muted);font-size:15px}
+    .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
     .chip{
       padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
       color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
     }
 
-    section.card{
-      background:var(--card);
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      margin:16px 0;
-      box-shadow:var(--shadow);
-    }
-    .hd{
-      padding:16px 18px 0;
-      color:var(--muted);
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .bd{padding:18px}
-
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media(max-width:860px){.grid2{grid-template-columns:1fr}}
-
-    .box{
-      background:#0e151f;
-      border:1px solid #1f2b3d;
-      border-radius:16px;
-      padding:14px;
-    }
-    .box h3{font-size:15px;margin-bottom:6px}
-    .tiny{font-size:12px;color:var(--muted)}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-    @media(max-width:680px){.row{grid-template-columns:1fr}}
-
-    .field label{display:block;font-weight:800;font-size:12px;color:#c9d5e6;margin-bottom:6px}
-    .field input, .field select{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid #2b3a4f;
-      background:#0b111b;
-      color:#e6edf3;
-      outline:none;
-      font-weight:800;
-      appearance:none;
-    }
-    .field input:focus, .field select:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
-
-    /* ===== NUEVO: selector visible de enfoque ===== */
-    .focus-card{
-      margin-top:4px;
-    }
-    .focus-grid{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    @media(max-width:960px){ .focus-grid{grid-template-columns:repeat(2,1fr)} }
-    .focus-btn{
-      border:1px solid #2b3a4f;
-      background:#0b111b;
-      border-radius:16px;
-      padding:12px;
-      cursor:pointer;
-      transition:.18s;
-      text-align:left;
-      min-height:74px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:6px;
-    }
-    .focus-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,180,255,.14)}
-    .focus-btn.active{
-      border:none;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#051018;
-    }
-    .focus-btn .t{font-weight:900}
-    .focus-btn .d{font-size:12px;color:var(--muted)}
-    .focus-btn.active .d{color:rgba(5,16,24,.8)}
-
-    .mini-kpis{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;
-    }
-    @media(max-width:900px){.mini-kpis{grid-template-columns:1fr}}
-    .kpi{
-      background:#0b111b;border:1px solid #223043;border-radius:14px;
-      padding:12px;
-    }
-    .kpi .label{color:#9fb0c9;font-size:12px;font-weight:800;margin-bottom:6px}
-    .kpi .value{font-size:18px;font-weight:900}
-    .kpi .note{color:var(--muted);font-size:12px;margin-top:4px}
-
-    .bar{
-      height:10px;border-radius:999px;background:#101827;border:1px solid #223043;
-      overflow:hidden;margin-top:8px;
-    }
-    .bar > div{
-      height:100%;width:0%;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-    }
-
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border-radius:999px;
-      background:#0b111b;border:1px solid #223043;
-      font-weight:900;font-size:12px;color:#dbe7ff;
-      margin:6px 6px 0 0;
-    }
-    .dot{width:10px;height:10px;border-radius:50%}
-    .dot.good{background:var(--good)}
-    .dot.warn{background:var(--warn)}
-    .dot.bad{background:var(--bad)}
-
-    .list{
-      margin-top:10px;
-      padding-left:18px;
-    }
-    .list li{margin:8px 0}
-    .subttl{margin-top:12px;font-weight:900;color:#dbe7ff}
-    .divider{height:1px;background:rgba(255,255,255,.06);margin:14px 0}
-
-    .actions{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:10px
-    }
+    .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .btn{
       display:inline-flex;align-items:center;gap:8px;
       border:1px solid #2b3a4f;
       background:#0e141f;
       color:#d6e9ff;
       padding:10px 14px;border-radius:12px;
-      font-weight:900;
+      font-weight:800;
       transition:.18s;
       cursor:pointer;
     }
@@ -231,843 +94,434 @@
       background:linear-gradient(135deg,var(--brand),var(--brand2));
       color:#051018;border:none;
     }
-    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
 
-    .hidden{display:none!important}
+    section.card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      margin:22px 0;
+      box-shadow:var(--shadow);
+    }
+    .hd{
+      padding:18px 18px 0;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .bd{padding:18px}
+    .bd p{margin:0 0 12px}
+    .bd p:last-child{margin-bottom:0}
 
-    footer{padding:28px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
+    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
+    .exp-item h4{margin:0 0 6px}
+    .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .exp-item ul{margin:8px 0 0 18px}
+    .exp-item li{margin:6px 0}
+
+    /* CERTS */
+    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .cert{
+      background:#0e151f;
+      border:1px solid #1f2b3d;
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .cert:hover{transform:translateY(-2px)}
+    .cert img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      background:#0b111b;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .cap{padding:12px}
+    .cap strong{display:block;font-size:14px;line-height:1.25}
+    .cap span{font-size:12px;color:var(--muted)}
+
+    /* MODALES */
+    dialog{
+      border:none;
+      border-radius:20px;
+      padding:0;
+      width:min(1400px,96vw);
+      background:#0b111b;
+      box-shadow:var(--shadow);
+    }
+    dialog::backdrop{background:rgba(4,10,16,.86);backdrop-filter:blur(4px)}
+    .modal-hd{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#061018;
+      padding:14px 18px;
+      border-top-left-radius:20px;border-top-right-radius:20px;
+      gap:12px;
+    }
+    .modal-hd strong{font-weight:900}
+    .close{
+      background:#0e1522;border:1px solid #334155;color:#d8e7f9;
+      border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
+    }
+
+    .modal-bd{padding:14px 18px}
+    .cv-stage{
+      height:calc(92vh - 64px);
+      border-radius:16px;
+      border:1px solid #2a3643;
+      background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:auto;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:22px 18px;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+    }
+    .cv-paper{
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      padding:14px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .cv-img{
+      width:min(1200px, 94vw);
+      height:auto;
+      border-radius:10px;
+      display:block;
+    }
+    .cv-img{image-rendering:auto}
+    @media(min-width:1100px){
+      .cv-img{width:1180px}
+    }
+
+    .cert-modal-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px 0 2px;
+    }
+    .modal-img{
+      width:100%;
+      max-width:min(1100px,96vw);
+      max-height:80vh;
+      object-fit:contain;
+      border-radius:16px;
+      border:1px solid #2a3643;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:#0b111b;
+    }
+    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+
+    .vision p{
+      font-size:16px;
+      line-height:1.75;
+      margin-bottom:18px;
+    }
+    .vision p strong{color:#ffffff}
+    .vision p:first-child{font-size:17px;font-weight:600}
+    .vision p::before{
+      content:"";
+      display:block;
+      width:32px;
+      height:3px;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      border-radius:2px;
+      margin-bottom:10px;
+    }
+
+    /* ✅ NUEVO: PROYECTO DESTACADO (Strategy Lab) */
+    .project{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media(max-width:900px){
+      .project{grid-template-columns:1fr}
+    }
+    .project-card{
+      background:#0e151f;
+      border:1px solid #1f2b3d;
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
+    }
+    .project-title{
+      font-size:18px;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+    .project-desc{
+      color:#c8d4e3;
+      margin-bottom:12px;
+    }
+    .project-bullets{
+      margin:10px 0 0 18px;
+      color:#c8d4e3;
+    }
+    .project-bullets li{margin:6px 0}
+    .project-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+
+    .cta{display:flex;justify-content:center;padding:10px 0 40px}
+    footer{padding:40px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
   </style>
 </head>
 
 <body>
+
 <header>
   <div class="container nav">
-    <div class="logo">
-      Strategy Lab
-      <span class="tag">Retail Ops</span>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" data-tab="tab-inputs">🧾 Datos</button>
-      <button class="tab" data-tab="tab-dashboard">📊 Dashboard</button>
-      <button class="tab" data-tab="tab-estrategia">🎯 Estrategia</button>
-      <button class="tab" data-tab="tab-comision">💸 Comisión</button>
-      <button class="tab" id="btnBack">⬅️ Volver</button>
-    </div>
+    <a class="logo" href="#">ANDRÉS GONZÁLEZ</a>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#certificaciones">Certificaciones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><button class="btn" id="verCV">Ver CV</button></li>
+    </ul>
   </div>
 </header>
 
 <main class="container">
 
-  <section class="hero">
-    <section class="card" style="margin:0">
-      <div class="bd">
-        <h1>Simulador rápido: metas, KPIs y plan de acción</h1>
-        <p>
-          Mete tus números reales y listo. Aquí lo chido:
-          <strong>tú eliges el enfoque</strong> y la estrategia cambia al instante.
-        </p>
-        <div class="hint">
-          <span class="chip">Meta mensual + ventas</span>
-          <span class="chip">Días a cierre</span>
-          <span class="chip">KPIs (conv / ticket / UPT)</span>
-          <span class="chip">Estrategia + coaching</span>
-        </div>
-        <div class="actions">
-          <button class="btn primary" id="btnRun">Calcular</button>
-          <button class="btn" id="btnReset">Limpiar</button>
-        </div>
-      </div>
-    </section>
+  <section class="top">
+    <div class="avatar">
+      <img src="assets/profile.jpg" alt="Foto de Andrés González">
+    </div>
 
-    <section class="card" style="margin:0">
-      <div class="bd">
-        <h3 style="margin-bottom:6px">Tip rápido</h3>
-        <p class="tiny">
-          Si eliges un enfoque (abajo), yo te doy:
-          <strong>acciones</strong>, <strong>cómo medir</strong> y <strong>coaching</strong>.
-        </p>
-        <div class="divider"></div>
-        <div class="tiny">
-          Si lo dejas en <strong>Automático</strong>, te digo cuál palanca mover primero.
-        </div>
+    <div>
+      <h1>Estrategia Comercial & Operaciones</h1>
+      <div class="subtitle">Ejecución · Liderazgo · KPIs · Rentabilidad</div>
+
+      <div class="badges">
+        <span class="chip">Gestión operativa</span>
+        <span class="chip">Estrategia comercial</span>
+        <span class="chip">Optimización de inventarios</span>
+        <span class="chip">Análisis y reporteo</span>
+        <span class="chip">HubSpot · SAP</span>
       </div>
-    </section>
+
+      <div class="links" style="margin-top:14px">
+        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
+        <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener">📄 Ver CV (PDF)</a>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== NUEVO: ENFOQUE VISIBLE EN BOTONES ===== -->
-  <section class="card focus-card">
-    <div class="hd">¿Cómo quieres tu estrategia?</div>
+  <section id="sobre-mi" class="card">
+    <div class="hd">Sobre mí</div>
     <div class="bd">
-      <div class="focus-grid" id="focusGrid">
-        <button class="focus-btn active" data-focus="auto" type="button">
-          <div class="t">🤖 Automático</div>
-          <div class="d">Yo elijo la palanca más urgente</div>
-        </button>
-        <button class="focus-btn" data-focus="conv" type="button">
-          <div class="t">🎯 Conversión</div>
-          <div class="d">Convertir mejor lo que entra</div>
-        </button>
-        <button class="focus-btn" data-focus="ticket" type="button">
-          <div class="t">🧾 Ticket promedio</div>
-          <div class="d">Subir ticket sin forzar</div>
-        </button>
-        <button class="focus-btn" data-focus="upt" type="button">
-          <div class="t">🧩 Unidades por ticket (UPT)</div>
-          <div class="d">Attach rate: % tickets con extra</div>
-        </button>
-        <button class="focus-btn" data-focus="traffic" type="button">
-          <div class="t">🚪 Tráfico</div>
-          <div class="d">Más oportunidades y citas</div>
-        </button>
-      </div>
-
-      <!-- Select oculto para que el motor use un valor único -->
-      <select id="focusMode" class="hidden" aria-hidden="true">
-        <option value="auto" selected>Automático</option>
-        <option value="conv">Conversión</option>
-        <option value="ticket">Ticket</option>
-        <option value="upt">UPT</option>
-        <option value="traffic">Tráfico</option>
-        <option value="exec">Ejecución</option>
-      </select>
-
-      <div class="tiny" style="margin-top:10px">
-        *Puedes cambiar el enfoque cuando quieras y recalcula.
-      </div>
+      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong>, enfocado en convertir objetivos en resultados a través de <strong>personas, procesos y ejecución</strong>.</p>
+      <p>Mi liderazgo se basa en <strong>cercanía + claridad</strong>: el equipo entiende el <em>por qué</em> de cada indicador y cómo impacta en conversión, ticket, experiencia y rentabilidad. Esto me permite alinear operación y venta con un plan simple: <strong>prioridades claras, seguimiento diario y coaching en piso</strong>.</p>
+      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el crecimiento sostenible viene de integrar <strong>liderazgo humano + datos + tecnología</strong> para tomar mejores decisiones y ejecutar más rápido.</p>
     </div>
   </section>
 
-  <!-- TAB: INPUTS -->
-  <section id="tab-inputs" class="card">
-    <div class="hd">Datos</div>
-    <div class="bd grid2">
-      <div class="box">
-        <h3>Meta mensual</h3>
-        <p class="tiny">Lo básico para proyección y ritmo diario.</p>
-
-        <div class="row">
-          <div class="field">
-            <label>Meta del mes (MXN)</label>
-            <input id="monthGoal" type="number" min="0" step="1000" placeholder="Ej. 550000">
-          </div>
-          <div class="field">
-            <label>Venta acumulada actual (MXN)</label>
-            <input id="monthSales" type="number" min="0" step="1000" placeholder="Ej. 310000">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label>Días restantes a cierre</label>
-            <input id="daysLeft" type="number" min="0" step="1" placeholder="Ej. 10">
-          </div>
-          <div class="field">
-            <label>Tráfico diario (opcional)</label>
-            <input id="trafficDaily" type="number" min="0" step="1" placeholder="Ej. 85">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label>Nombre de la tienda (opcional)</label>
-            <input id="storeName" type="text" placeholder="Ej. Andares / Midtown / etc.">
-          </div>
-          <div class="field">
-            <label>Notas (opcional)</label>
-            <input id="notes" type="text" placeholder="Ej. promo, baja afluencia, etc.">
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">
-          Si vas a usar Tráfico, mete tráfico diario y conversión/ticket.
-        </div>
-      </div>
-
-      <div class="box">
-        <h3>Metas de KPIs</h3>
-        <p class="tiny">Para que el plan tenga dirección.</p>
-
-        <div class="row">
-          <div class="field">
-            <label>Conversión actual (%)</label>
-            <input id="convNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 18">
-          </div>
-          <div class="field">
-            <label>Meta conversión (%)</label>
-            <input id="convGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 22">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label>Ticket actual (MXN)</label>
-            <input id="ticketNow" type="number" min="0" step="1" placeholder="Ej. 1250">
-          </div>
-          <div class="field">
-            <label>Meta ticket (MXN)</label>
-            <input id="ticketGoal" type="number" min="0" step="1" placeholder="Ej. 1400">
-          </div>
-        </div>
-
-        <!-- NUEVO: Attach Rate (UPT simple) -->
-        <div class="row">
-          <div class="field">
-            <label>% tickets con extra (actual)</label>
-            <input id="attachNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 35">
-          </div>
-          <div class="field">
-            <label>Meta % tickets con extra</label>
-            <input id="attachGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 45">
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">
-          “% tickets con extra” = attach rate (UPT simplificado).
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TAB: DASHBOARD -->
-  <section id="tab-dashboard" class="card hidden">
-    <div class="hd">Dashboard</div>
+  <section id="experiencia" class="card">
+    <div class="hd">Experiencia profesional</div>
     <div class="bd">
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">% avance a meta mensual</div>
-          <div class="value" id="dashPct">—</div>
-          <div class="bar"><div id="barPct"></div></div>
-          <div class="note" id="dashPctNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Venta diaria requerida</div>
-          <div class="value" id="dashDailyNeed">—</div>
-          <div class="note" id="dashDailyNeedNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Lo que falta para cerrar meta</div>
-          <div class="value" id="dashRemaining">—</div>
-          <div class="note">Meta − Venta actual</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">Conversión: actual vs meta</div>
-          <div class="value" id="dashConv">—</div>
-          <div class="note" id="dashConvNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Ticket: actual vs meta</div>
-          <div class="value" id="dashTicket">—</div>
-          <div class="note" id="dashTicketNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">UPT: % tickets con extra</div>
-          <div class="value" id="dashAttach">—</div>
-          <div class="note" id="dashAttachNote">—</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">Enfoque seleccionado</div>
-          <div class="value" id="dashFocus">—</div>
-          <div class="note" id="dashFocusNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Proyección por tráfico (si aplica)</div>
-          <div class="value" id="dashTrafficProj">—</div>
-          <div class="note" id="dashTrafficProjNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Notas</div>
-          <div class="value" id="dashNotes">—</div>
-          <div class="note">Contexto</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <div id="dashPills"></div>
-    </div>
-  </section>
-
-  <!-- TAB: ESTRATEGIA -->
-  <section id="tab-estrategia" class="card hidden">
-    <div class="hd">Estrategia (clara)</div>
-    <div class="bd grid2">
-      <div class="box">
-        <h3 id="strTitle">—</h3>
-        <p class="tiny" id="strIntro">Haz clic en Calcular.</p>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Acciones (7 días)</div>
-        <ul class="list" id="strActions"></ul>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Cómo medir (sin complicarte)</div>
-        <ul class="list" id="strMeasure"></ul>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Coaching al equipo</div>
-        <ul class="list" id="strCoaching"></ul>
-      </div>
-
-      <div class="box">
-        <h3>Checklist de piso (rápido)</h3>
-        <p class="tiny">Esto es lo que yo haría hoy, sin drama.</p>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Hoy (20 min total)</div>
-        <ul class="list" id="todayList">
-          <li><strong>Brief 5 min:</strong> 1 KPI del día + 1 enfoque (claro).</li>
-          <li><strong>Roleplay 7 min:</strong> apertura + 1 objeción.</li>
-          <li><strong>Revisión 8 min:</strong> mitad de jornada: ajustar y seguir.</li>
+      <div class="exp-item">
+        <h4>Store Manager Boutique Showroom — Luuna</h4>
+        <div class="meta">04/2022 – 06/2025</div>
+        <ul>
+          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando por desempeño sostenido.</li>
+          <li>Posicioné una <strong>unidad nueva</strong> dentro de las <strong>mejores</strong> en <strong>menos de un año</strong>, consolidando ejecución comercial y disciplina operativa.</li>
+          <li>Diseñé y ejecuté <strong>estrategias orientadas a resultados</strong> (metas por hora, coaching en piso, seguimiento diario) para sostener crecimiento.</li>
+          <li>Logré <strong>98.88% de confiabilidad</strong> de inventario, mejorando disponibilidad de producto y control de merma.</li>
+          <li>Capacité y desarrollé equipos en <strong>15+ unidades</strong>, fortaleciendo estándares comerciales y liderazgo de mandos medios.</li>
         </ul>
+      </div>
 
-        <div class="divider"></div>
-
-        <div class="subttl">Mensaje de WhatsApp listo</div>
-        <div class="kpi" style="margin-top:10px">
-          <div class="label">Texto</div>
-          <div class="note" id="waText" style="margin-top:8px;white-space:pre-wrap">Haz clic en Calcular.</div>
-        </div>
+      <div class="exp-item">
+        <h4>Gerente de Boutique — GAP</h4>
+        <div class="meta">10/2014 – 07/2021</div>
+        <ul>
+          <li>Recibí una unidad con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong>.</li>
+          <li>Mantuve <strong>rentabilidad durante la pandemia (2020)</strong>, asegurando continuidad operativa con disciplina comercial y control.</li>
+          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong>.</li>
+          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento y cultura de estándares.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- TAB: COMISIÓN -->
-  <section id="tab-comision" class="card hidden">
-    <div class="hd">Comisión (estimada)</div>
+  <section id="certificaciones" class="card">
+    <div class="hd">Certificaciones destacadas</div>
     <div class="bd">
-      <div class="box">
-        <h3>¿Cuánto comisiona el asesor?</h3>
-        <p class="tiny">
-          Meta + venta actual + % comisión. Te calculo avance y comisión <strong>(sin impuestos)</strong>.
-        </p>
+      <div class="certs">
 
-        <div class="row">
-          <div class="field">
-            <label>Meta del asesor (MXN)</label>
-            <input id="sellerGoal" type="number" min="0" step="100" placeholder="Ej. 180000">
-          </div>
-          <div class="field">
-            <label>Venta actual del asesor (MXN)</label>
-            <input id="sellerSales" type="number" min="0" step="100" placeholder="Ej. 125000">
-          </div>
+        <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
+          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
+          <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>% de avance a meta</label>
-            <input id="sellerPct" type="text" value="—" disabled style="opacity:.95">
-          </div>
-          <div class="field">
-            <label>% de comisión (editable)</label>
-            <input id="sellerCommPct" type="number" min="0" max="30" step="0.1" placeholder="Ej. 1.5">
-          </div>
+        <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
+          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS Academy – Cloud Foundations">
+          <div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
         </div>
 
-        <div class="mini-kpis" style="margin-top:12px">
-          <div class="kpi">
-            <div class="label">Comisión estimada (sin impuestos)</div>
-            <div class="value" id="outCommission">$—</div>
-            <div class="note" id="outCommNote">—</div>
-          </div>
-
-          <div class="kpi">
-            <div class="label">Lo que falta para meta</div>
-            <div class="value" id="outToGoal">$—</div>
-            <div class="note">Meta − Venta actual</div>
-          </div>
-
-          <div class="kpi">
-            <div class="label">Mensaje rápido</div>
-            <div class="value" id="outCommMsg">—</div>
-            <div class="note">Para explicarlo fácil</div>
-          </div>
+        <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','Emitido 2025')">
+          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco – Python Essentials 1">
+          <div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
         </div>
 
-        <div class="tiny" style="margin-top:10px">
-          *Estimado simple: <strong>Comisión = venta × % comisión</strong>. (Sin ISR/IMSS, etc.)
+        <div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
+          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Gestión de Proyectos y Metodología Agile">
+          <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
+          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
+          <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <!-- ✅ ENGLISH (IMAGEN, MISMO MODAL) -->
+        <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
+          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals – Boost your job search and CV">
+          <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ PROYECTO / HERRAMIENTA (Strategy Lab) -->
+  <section id="proyecto" class="card">
+    <div class="hd">Proyecto práctico</div>
+    <div class="bd">
+      <div class="project">
+        <div class="project-card">
+          <div class="project-title">Strategy Lab (KPIs & Ejecución Comercial)</div>
+          <div class="project-desc">
+            Esta mini-herramienta la construí para mostrar cómo me gusta trabajar: convertir metas en ejecución.
+            Metes tus números reales y te devuelve enfoque, ritmo y acciones claras para mover indicadores.
+          </div>
+          <ul class="project-bullets">
+            <li>Define tu objetivo y el tiempo que te queda (días a cierre).</li>
+            <li>Elige en qué quieres enfocarte (conversión, ticket promedio, UPT, mix de producto).</li>
+            <li>Recibe una estrategia accionable (coaching, seguimiento y prioridades).</li>
+          </ul>
+          <div class="project-cta">
+            <!-- 🔁 Si tu archivo NO se llama strategy-lab.html, cambia SOLO el href -->
+            <a class="btn primary" href="strategy-lab.html" target="_blank" rel="noopener">🚀 Abrir Strategy Lab</a>
+            <a class="btn" href="#contacto">¿Quieres que lo adapte a tu negocio?</a>
+          </div>
+          <div class="hint">Es un prototipo pensado para ser simple y práctico: claridad → acción → resultado.</div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">¿Qué evalúa y qué refleja?</div>
+          <div class="project-desc">
+            Para mí, una buena operación comercial no se trata de “hacer más”, sino de hacer mejor:
+            saber qué KPI mover, cómo medirlo y cómo entrenar al equipo para ejecutarlo.
+          </div>
+          <ul class="project-bullets">
+            <li>Priorización: lo que no mueve el KPI, se elimina.</li>
+            <li>Ritmo: seguimiento diario y ajustes rápidos.</li>
+            <li>Liderazgo: coaching y accountability con enfoque humano.</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
+
+  <section id="vision" class="card vision">
+    <div class="hd">Mi visión del negocio y del liderazgo</div>
+    <div class="bd">
+      <p>Creo en construir resultados con <strong>ejecución diaria</strong>, sin perder lo humano: claridad, energía y disciplina para que el equipo sepa exactamente qué hacer y por qué importa.</p>
+
+      <p>Mi visión es simple: los resultados sostenibles se construyen cuando alineas <strong>personas</strong>, <strong>procesos</strong> e <strong>indicadores</strong>. No importa la industria: cuando el sistema está bien diseñado y se ejecuta con consistencia, el crecimiento deja de ser “suerte” y se vuelve un método.</p>
+
+      <p>Un líder hoy no solo dirige: <strong>estructura</strong>, <strong>entrena</strong> y <strong>acompaña</strong>. Me importa que el equipo entienda el “por qué” de cada meta, tenga herramientas para medir su avance y reciba coaching práctico para mejorar semana a semana.</p>
+
+      <p>Mi propósito es seguir evolucionando como un líder que une <strong>estrategia comercial</strong>, <strong>disciplina operativa</strong> y <strong>tecnología</strong> para construir equipos que generen resultados medibles, mejoren la experiencia del cliente y mantengan crecimiento real.</p>
+    </div>
+  </section>
+
+  <section id="contacto" class="card">
+    <div class="hd">Contacto</div>
+    <div class="bd" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+      <div><strong>Correo</strong><p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p></div>
+      <div><strong>Teléfono</strong><p><a href="tel:+523323430043">+52 33 2343 0043</a></p></div>
+      <div><strong>LinkedIn</strong><p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">/in/andresglez89</a></p></div>
+      <div><strong>Ubicación</strong><p>Zapopan, Jalisco, México</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
+  </div>
 
 </main>
 
 <footer class="container">
-  <small>© <span id="year"></span> Strategy Lab · Luis Andrés González</small>
+  <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
+<!-- MODAL CV (ARREGLADO) -->
+<dialog id="cvModal">
+  <div class="modal-hd">
+    <strong>CV – Andrés González</strong>
+    <button class="close" onclick="cvModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cv-stage">
+      <div class="cv-paper">
+        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL CERT (OK) -->
+<dialog id="certModal">
+  <div class="modal-hd">
+    <strong id="certTitle">Certificado</strong>
+    <button class="close" onclick="certModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cert-modal-wrap">
+      <img id="certImg" alt="" class="modal-img">
+    </div>
+    <div id="certDetail" class="modal-sub"></div>
+  </div>
+</dialog>
+
 <script>
-  // ===== Helpers
   document.getElementById('year').textContent = new Date().getFullYear();
-  const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
-  const pctFmt = (n)=> (isFinite(n) ? (n*100).toFixed(1) + "%" : "—");
-  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
 
-  // ===== Tabs
-  const tabs = document.querySelectorAll('.tab[data-tab]');
-  const panels = ['tab-inputs','tab-dashboard','tab-estrategia','tab-comision'].map(id => document.getElementById(id));
-  tabs.forEach(t=>{
-    t.addEventListener('click', ()=>{
-      tabs.forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      panels.forEach(p=>p.classList.add('hidden'));
-      const target = document.getElementById(t.dataset.tab);
-      if(target) target.classList.remove('hidden');
-    });
-  });
+  const cvModal = document.getElementById('cvModal');
+  document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
 
-  // ===== Volver (ya sirve)
-  document.getElementById('btnBack').addEventListener('click', ()=>{
-    try{
-      if(window.history.length > 1) window.history.back();
-      else window.location.href = "index.html";
-    }catch(e){
-      window.location.href = "index.html";
-    }
-  });
+  const certModal = document.getElementById('certModal');
+  const certImg = document.getElementById('certImg');
+  const certTitle = document.getElementById('certTitle');
+  const certDetail = document.getElementById('certDetail');
 
-  // ===== Focus buttons (visible)
-  const focusGrid = document.getElementById('focusGrid');
-  const focusModeSelect = document.getElementById('focusMode');
-
-  function setFocus(mode){
-    focusModeSelect.value = mode;
-
-    // UI active
-    document.querySelectorAll('.focus-btn').forEach(btn=>{
-      btn.classList.toggle('active', btn.dataset.focus === mode);
-    });
-
-    // Si ya hay datos, recalcula
-    const anyData =
-      Number(document.getElementById('monthGoal').value || 0) > 0 ||
-      Number(document.getElementById('monthSales').value || 0) > 0 ||
-      Number(document.getElementById('convNow').value || 0) > 0 ||
-      Number(document.getElementById('ticketNow').value || 0) > 0 ||
-      Number(document.getElementById('attachNow').value || 0) > 0;
-    if(anyData) compute();
+  function showCert(src,title,detail){
+    certImg.src = src;
+    certTitle.textContent = title || 'Certificado';
+    certDetail.textContent = detail || '';
+    certModal.showModal();
   }
-
-  focusGrid.addEventListener('click', (e)=>{
-    const btn = e.target.closest('.focus-btn');
-    if(!btn) return;
-    setFocus(btn.dataset.focus);
-  });
-
-  function focusLabel(mode){
-    switch(mode){
-      case "conv": return "Conversión";
-      case "ticket": return "Ticket promedio";
-      case "upt": return "Unidades por ticket (UPT)";
-      case "traffic": return "Tráfico / Oportunidades";
-      case "exec": return "Ejecución general";
-      default: return "Automático";
-    }
-  }
-
-  // ===== Core compute
-  function compute(){
-    const monthGoal = Number(document.getElementById('monthGoal').value || 0);
-    const monthSales = Number(document.getElementById('monthSales').value || 0);
-    const daysLeft = Number(document.getElementById('daysLeft').value || 0);
-    const trafficDaily = Number(document.getElementById('trafficDaily').value || 0);
-
-    const convNow = Number(document.getElementById('convNow').value || 0) / 100;
-    const convGoal = Number(document.getElementById('convGoal').value || 0) / 100;
-    const ticketNow = Number(document.getElementById('ticketNow').value || 0);
-    const ticketGoal = Number(document.getElementById('ticketGoal').value || 0);
-
-    const attachNow = Number(document.getElementById('attachNow').value || 0) / 100;
-    const attachGoal = Number(document.getElementById('attachGoal').value || 0) / 100;
-
-    const focusMode = (focusModeSelect.value || "auto");
-    const storeName = (document.getElementById('storeName').value || "").trim();
-    const notes = (document.getElementById('notes').value || "").trim();
-
-    const remaining = Math.max(monthGoal - monthSales, 0);
-    const paceNeed = (daysLeft > 0) ? (remaining / daysLeft) : 0;
-    const pct = (monthGoal > 0) ? (monthSales / monthGoal) : 0;
-
-    // gaps (relative)
-    const gapConv = (convGoal > 0) ? ((convGoal - convNow) / convGoal) : 0;
-    const gapTicket = (ticketGoal > 0) ? ((ticketGoal - ticketNow) / ticketGoal) : 0;
-    const gapAttach = (attachGoal > 0) ? ((attachGoal - attachNow) / attachGoal) : 0;
-
-    // Potential daily sales from traffic (if provided)
-    const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0)
-      ? (trafficDaily * convNow * ticketNow)
-      : 0;
-
-    // ===== Decide focusKey
-    let focusKey = "exec";
-    let focus = focusLabel(focusMode);
-    let focusNote = "Selecciona un enfoque y calcula.";
-
-    if(focusMode !== "auto"){
-      focusKey = focusMode;
-      focusNote = `Enfoque manual: ${focus}.`;
-    } else {
-      focusKey = "exec";
-      focus = "Automático";
-      focusNote = "Yo elijo la palanca más urgente según tus datos.";
-
-      if(trafficDaily > 0 && dailySalesPotentialNow > 0 && paceNeed > dailySalesPotentialNow * 1.05){
-        focusKey = "traffic";
-        focus = "Tráfico / Oportunidades";
-        focusNote = "Con el tráfico actual no te da el ritmo. Hay que meter más oportunidades y no desperdiciar piso.";
-      } else {
-        const topGap = Math.max(gapConv, gapTicket, gapAttach);
-        if(topGap <= 0.06){
-          focusKey = "exec";
-          focus = "Ejecución general";
-          focusNote = "Vas cerca de metas. Toca disciplina de piso y seguimiento.";
-        } else {
-          if(topGap === gapConv){
-            focusKey = "conv";
-            focus = "Conversión";
-            focusNote = "Lo que más te mueve la aguja ahorita es convertir mejor lo que ya entra.";
-          } else if(topGap === gapTicket){
-            focusKey = "ticket";
-            focus = "Ticket promedio";
-            focusNote = "Ahorita te conviene subir ticket: bundles y recomendación clara.";
-          } else {
-            focusKey = "upt";
-            focus = "Unidades por ticket (UPT)";
-            focusNote = "Ahorita te conviene subir UPT: más tickets con extra (attach rate).";
-          }
-        }
-      }
-    }
-
-    // ===== Dashboard outputs
-    document.getElementById('dashPct').textContent = pctFmt(pct);
-    document.getElementById('dashPctNote').textContent = `Venta ${money(monthSales)} / Meta ${money(monthGoal)}`;
-    document.getElementById('dashRemaining').textContent = money(remaining);
-    document.getElementById('dashDailyNeed').textContent = (daysLeft>0) ? money(paceNeed) : "—";
-    document.getElementById('dashDailyNeedNote').textContent = (daysLeft>0) ? `${daysLeft} días restantes` : "Pon días restantes";
-
-    document.getElementById('dashConv').textContent = `${(convNow*100).toFixed(1)}% vs ${(convGoal*100).toFixed(1)}%`;
-    document.getElementById('dashTicket').textContent = `${money(ticketNow)} vs ${money(ticketGoal)}`;
-
-    document.getElementById('dashConvNote').textContent = (convGoal>0) ? `Gap: ${Math.max((convGoal-convNow)*100,0).toFixed(1)} pts` : "Pon meta conv";
-    document.getElementById('dashTicketNote').textContent = (ticketGoal>0) ? `Gap: ${money(Math.max(ticketGoal-ticketNow,0))}` : "Pon meta ticket";
-
-    document.getElementById('dashAttach').textContent = `${(attachNow*100).toFixed(1)}% vs ${(attachGoal*100).toFixed(1)}%`;
-    document.getElementById('dashAttachNote').textContent = (attachGoal>0) ? `Gap: ${Math.max((attachGoal-attachNow)*100,0).toFixed(1)} pts` : "Pon meta UPT";
-
-    document.getElementById('dashFocus').textContent = focus;
-    document.getElementById('dashFocusNote').textContent = focusNote;
-
-    document.getElementById('dashTrafficProj').textContent = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
-    document.getElementById('dashTrafficProjNote').textContent = (dailySalesPotentialNow>0) ? "Tráfico × conv × ticket" : "Mete tráfico + conv + ticket";
-    document.getElementById('dashNotes').textContent = notes ? notes : "—";
-
-    const bar = document.getElementById('barPct');
-    bar.style.width = clamp(pct*100, 0, 100).toFixed(1) + "%";
-
-    // Pills (status)
-    const pills = [];
-    function pill(text, state){
-      const dot = state === 'good' ? 'good' : state === 'warn' ? 'warn' : 'bad';
-      return `<span class="pill"><span class="dot ${dot}"></span>${text}</span>`;
-    }
-    if(monthGoal>0 && daysLeft>0){
-      if(remaining === 0) pills.push(pill("Meta del mes: cerrada ✅","good"));
-      else pills.push(pill(`Ritmo requerido: ${money(paceNeed)}`,"warn"));
-    }
-    if(convGoal>0){
-      const st = convNow >= convGoal ? "good" : (convNow >= convGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`Conversión: ${(convNow*100).toFixed(1)}%`, st));
-    }
-    if(ticketGoal>0){
-      const st = ticketNow >= ticketGoal ? "good" : (ticketNow >= ticketGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`Ticket: ${money(ticketNow)}`, st));
-    }
-    if(attachGoal>0){
-      const st = attachNow >= attachGoal ? "good" : (attachNow >= attachGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`UPT: ${(attachNow*100).toFixed(1)}%`, st));
-    }
-    pills.push(pill(`Enfoque: ${focus}`, "warn"));
-    document.getElementById('dashPills').innerHTML = pills.join("");
-
-    // ===== Strategy outputs
-    const strTitle = document.getElementById('strTitle');
-    const strIntro = document.getElementById('strIntro');
-    const strActions = document.getElementById('strActions');
-    const strMeasure = document.getElementById('strMeasure');
-    const strCoaching = document.getElementById('strCoaching');
-    const waText = document.getElementById('waText');
-
-    const dailyNeedTxt = (daysLeft>0) ? money(paceNeed) : "—";
-    const projTxt = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
-    const storeTxt = storeName ? ` (${storeName})` : "";
-
-    let title = `Estrategia base${storeTxt}: ejecución + seguimiento`;
-    let intro = `Hoy necesitas ${dailyNeedTxt} por día para cerrar meta.`;
-    let actions = [
-      "<strong>Brief 5 min:</strong> 1 KPI + 1 foco del día (en una frase).",
-      "<strong>Rondas cortas:</strong> cada 90 min revisa: ¿qué está frenando hoy?",
-      "<strong>Cierre 10 min:</strong> ¿qué repetimos mañana? (claro y sin rollo).",
-      "<strong>Seguimiento:</strong> 10 mensajes por asesor/día + 2 citas reales."
-    ];
-    let measure = [
-      "Venta vs ritmo: mitad de jornada y cierre.",
-      "Notas: qué franja vendió y por qué (2 renglones).",
-      "Conversión: si sube conv, aunque baje tráfico, vas mejor.",
-      "Ticket: bundles/upsell medidos por tickets."
-    ];
-    let coaching = [
-      "Apertura en 10 segundos: pregunta poderosa + guía.",
-      "Roleplay: 3 aperturas + 2 objeciones comunes.",
-      "Feedback corto: 1 cosa bien + 1 cosa a mejorar (máximo)."
-    ];
-
-    if(focusKey === "traffic"){
-      title = `Enfoque${storeTxt}: Tráfico / Oportunidades`;
-      intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter oportunidades y no desperdiciar piso.`;
-      actions = [
-        "<strong>Puerta / Greeter:</strong> saludo + pregunta + dirigir (en picos).",
-        "<strong>Activación rápida:</strong> WhatsApp/CRM: 10 mensajes por asesor + 2 citas cada uno.",
-        "<strong>Staff por franja:</strong> más manos donde sí entra gente.",
-        "<strong>Demo en 2 min:</strong> que cada visita vea el 'wow' rápido.",
-        "<strong>Referidos:</strong> pedir 1 referido por compra (hoy mismo)."
-      ];
-      measure = [
-        "Oportunidades generadas por hora (contactos/citas).",
-        "Asistencias a citas vs agenda.",
-        "Venta por franja (si lo tienes).",
-        "Conversión: si sube, aunque entre menos, mejora."
-      ];
-      coaching = [
-        "Entrenamiento de bienvenida: 2 guiones cortos (directo y suave).",
-        "Roleplay 5 min por asesor con el guion de entrada.",
-        "Regla: nadie se va sin siguiente paso (cita o contacto)."
-      ];
-    }
-
-    if(focusKey === "conv"){
-      title = `Enfoque${storeTxt}: Conversión`;
-      intro = `Hoy no es meter más gente: es convertir mejor lo que ya entra.`;
-      actions = [
-        "<strong>1 cosa hoy:</strong> pasar de 'saludo' a 'diagnóstico' (preguntar y guiar).",
-        "<strong>Regla 2-2-2:</strong> 2 preguntas + 2 opciones + 2 cierres suaves.",
-        "<strong>Demo obligatoria:</strong> sin demo, se cae la venta.",
-        "<strong>Objeciones:</strong> elige 1 objeción del día y practícala.",
-        "<strong>Seguimiento:</strong> quien no compró → cita/contacto (mínimo 1 intento)."
-      ];
-      measure = [
-        "Conversión por franja (mañana/tarde).",
-        "Conversión por asesor (para entrenar, no para regañar).",
-        "Razón de no compra (3 categorías máximo).",
-        "Citas agendadas vs compras inmediatas."
-      ];
-      coaching = [
-        "Guion simple: '¿Qué buscas? ¿Para cuándo? ¿Qué te importa más?'",
-        "Roleplay 7 min: 1 apertura + 1 cierre suave.",
-        "Micro-feedback en piso: 30 segundos por interacción."
-      ];
-    }
-
-    if(focusKey === "ticket"){
-      title = `Enfoque${storeTxt}: Ticket promedio`;
-      intro = `Subir ticket sin forzar: bundles, anclaje y recomendación clara.`;
-      actions = [
-        "<strong>2 bundles listos:</strong> (bueno / mejor). Se ofrecen siempre.",
-        "<strong>Anclaje:</strong> enseña primero el paquete 'mejor' y luego el 'bueno'.",
-        "<strong>Upsell elegante:</strong> 1 mejora por ticket (no 5 cosas).",
-        "<strong>Regla:</strong> cada ticket intenta llevar 1 extra (si aplica).",
-        "<strong>Cierre:</strong> '¿Te lo dejo en el paquete que más te conviene?'"
-      ];
-      measure = [
-        "Ticket promedio por franja.",
-        "% tickets con bundle (sí/no).",
-        "Top 3 extras que suben ticket.",
-        "Tickets con upsell vs sin upsell."
-      ];
-      coaching = [
-        "Ensayar 2 bundles (palabras exactas).",
-        "Practicar anclaje: 'completo' vs 'esencial'.",
-        "Feedback por ticket: 1 oportunidad de bundle detectada."
-      ];
-    }
-
-    // NUEVO: UPT/Attach Rate
-    if(focusKey === "upt"){
-      title = `Enfoque${storeTxt}: Unidades por ticket (UPT)`;
-      intro = `No es “meter accesorios”. Es subir % tickets con extra (attach rate) con recomendación lógica.`;
-      actions = [
-        "<strong>Define 3 combos:</strong> esencial / completo / premium (1 por categoría).",
-        "<strong>Regla:</strong> 1 recomendación extra por ticket (solo 1).",
-        "<strong>Frase mágica:</strong> 'Para que te funcione mejor, te recomiendo X por esta razón'.",
-        "<strong>Exhibición:</strong> combo armado visible (que se entienda en 5 segundos).",
-        "<strong>Meta del día:</strong> subir attach rate hoy (aunque sea +2 pts)."
-      ];
-      measure = [
-        "% tickets con extra (hoy) vs meta.",
-        "Top 5 extras reales que sí salen (no inventes).",
-        "¿En qué franja sube/baja el attach? (mañana/tarde).",
-        "Tickets con recomendación vs sin recomendación."
-      ];
-      coaching = [
-        "Roleplay 10 min: 3 formas de recomendar sin sonar intenso.",
-        "Cada asesor elige 1 combo favorito y lo domina.",
-        "Feedback inmediato cuando lo ofrezcan bien (30 seg)."
-      ];
-    }
-
-    if(focusKey === "exec"){
-      title = `Enfoque${storeTxt}: Ejecución general`;
-      intro = `Vas a cerrar por disciplina: ritmo, seguimiento y coaching corto.`;
-      actions = [
-        "<strong>Ritmo por franja:</strong> define micro-meta por hora (simple).",
-        "<strong>Brief + ajuste:</strong> 5 min al inicio y 5 min a media jornada.",
-        "<strong>Seguimiento:</strong> 10 mensajes por asesor + 2 citas.",
-        "<strong>Checar piso:</strong> producto top siempre a la mano y demo lista.",
-        "<strong>Cierre:</strong> lista de pendientes y prioridad de mañana."
-      ];
-      measure = [
-        "Venta vs ritmo (por franja).",
-        "Conversión y ticket (solo ver si suben/bajan).",
-        "Attach rate (si aplica): % tickets con extra.",
-        "Qué acción sí funcionó (1 cosa)."
-      ];
-      coaching = [
-        "Feedback corto: 1 cosa a mejorar hoy por asesor.",
-        "Roleplay 5 min: apertura + cierre.",
-        "Que todos sepan el foco del día en una frase."
-      ];
-    }
-
-    strTitle.textContent = title;
-    strIntro.textContent = intro;
-    strActions.innerHTML = actions.map(x=>`<li>${x}</li>`).join("");
-    strMeasure.innerHTML = measure.map(x=>`<li>${x}</li>`).join("");
-    strCoaching.innerHTML = coaching.map(x=>`<li>${x}</li>`).join("");
-
-    const wa = [
-      "Equipo 👊",
-      storeName ? `Hoy en ${storeName}:` : "Hoy:",
-      `Foco: ${focus.toUpperCase()}.`,
-      (daysLeft>0 && monthGoal>0) ? `Ritmo requerido: ${money(paceNeed)} por día.` : "",
-      "1 cosa clara: ejecutar sin rollo.",
-      "A media jornada revisamos 5 min y ajustamos. Va?"
-    ].filter(Boolean).join("\n");
-    waText.textContent = wa;
-
-    // Switch a Dashboard
-    document.querySelector('.tab[data-tab="tab-dashboard"]').click();
-
-    computeCommissionOnly();
-  }
-
-  // ===== Commission compute (simple)
-  function computeCommissionOnly(){
-    const goal = Number(document.getElementById('sellerGoal')?.value || 0);
-    const sales = Number(document.getElementById('sellerSales')?.value || 0);
-    const commPct = Number(document.getElementById('sellerCommPct')?.value || 0);
-
-    const pct = (goal > 0) ? (sales / goal) : 0;
-    const pctTxt = (goal > 0) ? (pct*100).toFixed(1) + "%" : "—";
-
-    const commission = sales * (commPct/100);
-    const toGoal = Math.max(goal - sales, 0);
-
-    const sellerPctEl = document.getElementById('sellerPct');
-    if(sellerPctEl) sellerPctEl.value = pctTxt;
-
-    const outCommission = document.getElementById('outCommission');
-    const outCommNote = document.getElementById('outCommNote');
-    const outToGoal = document.getElementById('outToGoal');
-    const outCommMsg = document.getElementById('outCommMsg');
-
-    if(outCommission) outCommission.textContent = money(commission);
-    if(outCommNote) outCommNote.textContent = `Venta ${money(sales)} × ${commPct.toFixed(1)}%`;
-    if(outToGoal) outToGoal.textContent = money(toGoal);
-
-    let msg = "Mete meta y venta";
-    if(commPct <= 0) msg = "Falta % de comisión";
-    else if(goal > 0){
-      if(pct >= 1.0) msg = "Ya está en meta ✅";
-      else if(pct >= 0.85) msg = "Ya casi, aprieta cierre";
-      else if(pct >= 0.60) msg = "Vas bien, acelera por franja";
-      else msg = "Vas bajo, enfócate en 1 cosa hoy";
-    }
-    if(outCommMsg) outCommMsg.textContent = msg;
-  }
-
-  // ===== Events
-  document.getElementById('btnRun').addEventListener('click', compute);
-
-  document.getElementById('btnReset').addEventListener('click', ()=>{
-    [
-      'monthGoal','monthSales','daysLeft','trafficDaily',
-      'convNow','convGoal','ticketNow','ticketGoal',
-      'attachNow','attachGoal',
-      'sellerGoal','sellerSales','sellerCommPct',
-      'storeName','notes'
-    ].forEach(id=>{
-      const el = document.getElementById(id);
-      if(el) el.value = "";
-    });
-
-    setFocus("auto");
-
-    document.getElementById('dashPct').textContent = "—";
-    document.getElementById('dashPctNote').textContent = "—";
-    document.getElementById('dashRemaining').textContent = "—";
-    document.getElementById('dashDailyNeed').textContent = "—";
-    document.getElementById('dashDailyNeedNote').textContent = "—";
-    document.getElementById('dashConv').textContent = "—";
-    document.getElementById('dashTicket').textContent = "—";
-    document.getElementById('dashAttach').textContent = "—";
-    document.getElementById('dashConvNote').textContent = "—";
-    document.getElementById('dashTicketNote').textContent = "—";
-    document.getElementById('dashAttachNote').textContent = "—";
-    document.getElementById('dashFocus').textContent = "—";
-    document.getElementById('dashFocusNote').textContent = "—";
-    document.getElementById('dashTrafficProj').textContent = "—";
-    document.getElementById('dashTrafficProjNote').textContent = "—";
-    document.getElementById('dashNotes').textContent = "—";
-    document.getElementById('dashPills').innerHTML = "";
-    document.getElementById('barPct').style.width = "0%";
-
-    document.getElementById('strTitle').textContent = "—";
-    document.getElementById('strIntro').textContent = "Haz clic en Calcular.";
-    document.getElementById('strActions').innerHTML = "";
-    document.getElementById('strMeasure').innerHTML = "";
-    document.getElementById('strCoaching').innerHTML = "";
-    document.getElementById('waText').textContent = "Haz clic en Calcular.";
-
-    document.querySelector('.tab[data-tab="tab-inputs"]').click();
-    computeCommissionOnly();
-  });
-
-  ['sellerGoal','sellerSales','sellerCommPct'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.addEventListener('input', computeCommissionOnly);
-  });
-
-  computeCommissionOnly();
 </script>
+
 </body>
 </html>
