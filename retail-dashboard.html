@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Retail Dashboard | Andrés González</title>
-  <meta name="description" content="Planner + dashboard simple: metas, KPIs y estrategia accionable para retail.">
+  <meta name="description" content="Dashboard simple para cierre de mes + estrategia + comisión por asesor.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0b0f14;
       --card:#141a24;
+      --card2:#0e151f;
       --text:#e6edf3;
       --muted:#9aa4b2;
       --brand:#00b4ff;
@@ -27,7 +28,7 @@
       font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
-      line-height:1.65;
+      line-height:1.55;
     }
     a{color:var(--brand);text-decoration:none}
     a:hover{opacity:.95}
@@ -52,15 +53,17 @@
       background:#0e141f;
       color:#d6e9ff;
       padding:10px 14px;border-radius:12px;
-      font-weight:800;
+      font-weight:900;
       transition:.18s;
       cursor:pointer;
+      user-select:none;
     }
     .btn.primary{
       background:linear-gradient(135deg,var(--brand),var(--brand2));
       color:#051018;border:none;
     }
     .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
+    .btn:active{transform:translateY(0px);box-shadow:none}
 
     .card{
       background:var(--card);
@@ -69,25 +72,35 @@
       box-shadow:var(--shadow);
     }
     .hd{
-      padding:18px 18px 0;
+      padding:16px 16px 0;
       color:var(--muted);
       font-size:12px;
       letter-spacing:.08em;
       text-transform:uppercase;
     }
-    .bd{padding:18px}
-    h1{font-size:28px;line-height:1.2;margin-bottom:10px}
-    .sub{color:var(--muted);font-size:14px}
-    .tiny{color:var(--muted);font-size:12px;margin-top:10px}
+    .bd{padding:16px}
 
-    .grid{
+    h1{font-size:26px;line-height:1.15;margin-bottom:8px}
+    .sub{color:var(--muted);font-size:14px}
+
+    /* Layout: 2 columnas, y abajo 2 columnas, para evitar scroll */
+    .top-grid{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin:18px 0;
+      grid-template-columns:1.05fr .95fr;
+      gap:14px;
+      margin:14px 0;
       align-items:start;
     }
-    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
+    @media(max-width:980px){ .top-grid{grid-template-columns:1fr} }
+
+    .bottom-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin:14px 0 24px;
+      align-items:start;
+    }
+    @media(max-width:980px){ .bottom-grid{grid-template-columns:1fr} }
 
     .form{display:grid;gap:10px}
     .row{
@@ -100,11 +113,11 @@
     .field{
       border:1px solid #1f2b3d;
       border-radius:14px;
-      background:#0e151f;
+      background:var(--card2);
       padding:12px;
     }
     .field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
-    .field input, .field select{
+    .field input{
       width:100%;
       border:1px solid #2b3a4f;
       background:#0b111b;
@@ -112,9 +125,29 @@
       padding:10px 10px;
       border-radius:12px;
       outline:none;
-      font-weight:700;
+      font-weight:800;
     }
-    .field input:focus, .field select:focus{border-color:rgba(0,180,255,.55)}
+    .field input:focus{border-color:rgba(0,180,255,.55)}
+
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:9px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:#cfe7ff;
+      font-weight:900;
+      font-size:12px;
+      cursor:pointer;
+      transition:.16s;
+      user-select:none;
+    }
+    .chip:hover{transform:translateY(-1px)}
+    .chip.active{
+      border:none;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#051018;
+    }
 
     .dash{
       display:grid;
@@ -127,7 +160,7 @@
       padding:12px;
       border-radius:16px;
       border:1px solid #1f2b3d;
-      background:#0e151f;
+      background:var(--card2);
     }
     .kpi .label{color:var(--muted);font-size:12px}
     .kpi .value{font-size:18px;font-weight:900;margin-top:2px}
@@ -141,7 +174,6 @@
       color:#cfe7ff;
       font-weight:900;
       font-size:12px;
-      margin-top:10px;
       width:max-content;
     }
     .pill.ok{background:rgba(0,209,178,.16);border-color:rgba(0,209,178,.30);color:#bff7ef}
@@ -152,49 +184,29 @@
       padding:14px;
       border-radius:16px;
       border:1px solid #1f2b3d;
-      background:#0e151f;
+      background:var(--card2);
     }
     .box h3{font-size:14px;margin-bottom:6px}
     .box p{color:var(--muted);font-size:13px;margin-bottom:10px}
     .box ul{margin:0 0 0 18px}
     .box li{margin:6px 0;color:#dfe8f3;font-size:13px}
 
-    .sections{
+    .mini-kpis{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin:16px 0 28px;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:10px;
     }
-    @media(max-width:980px){ .sections{grid-template-columns:1fr} }
+    @media(max-width:720px){ .mini-kpis{grid-template-columns:1fr} }
 
-    canvas{
-      width:100%;
-      height:170px;
-      display:block;
-      background:#0b111b;
-      border:1px solid #1f2b3d;
-      border-radius:16px;
-    }
+    .tiny{color:var(--muted);font-size:12px}
+    footer{padding:22px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
 
-    .table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      overflow:hidden;
-      border-radius:16px;
-      border:1px solid #1f2b3d;
-      background:#0e151f;
+    .divider{
+      height:1px;
+      background:rgba(255,255,255,.06);
+      margin:12px 0;
     }
-    .table th, .table td{
-      padding:10px 12px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      font-size:13px;
-    }
-    .table th{color:var(--muted);text-align:left;font-weight:900;background:rgba(255,255,255,.02)}
-    .table tr:last-child td{border-bottom:none}
-
-    footer{padding:26px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
-    code{background:rgba(255,255,255,.05);padding:2px 6px;border-radius:8px;border:1px solid rgba(255,255,255,.08)}
   </style>
 </head>
 
@@ -204,28 +216,39 @@
     <a class="logo" href="./index.html">ANDRÉS GONZÁLEZ</a>
     <div class="nav-right">
       <a class="btn" href="./index.html">Volver</a>
-      <button class="btn primary" id="calcBtn" type="button">Calcular</button>
+      <button class="btn primary" id="calcBtn" type="button">Actualizar dashboard</button>
     </div>
   </div>
 </header>
 
 <main class="container">
-  <section class="card" style="margin:18px 0">
-    <div class="hd">Retail Planner (simple)</div>
+  <!-- Intro -->
+  <section class="card" style="margin:14px 0 0">
+    <div class="hd">Retail Dashboard</div>
     <div class="bd">
-      <h1>Dashboard de cierre (simple y entendible)</h1>
+      <h1>Cierre de mes + estrategia (sin rollos)</h1>
       <div class="sub">
-        Metes tu meta, venta acumulada y tus KPIs. Te devuelve: ritmo, proyección y un plan claro según el escenario.
+        Metes tus números reales, y te digo <strong>si vas en ruta</strong>, qué ajustar y cómo bajarlo a piso con el equipo.
       </div>
-      <div class="tiny">
-        Fórmula base: <code>Ventas/día = Tráfico × Conversión × Ticket</code>. Y cierre: <code>(Meta − Acumulado) / Días restantes</code>.
+
+      <div class="chips" aria-label="Escenarios">
+        <span class="chip active" data-scenario="auto">Auto</span>
+        <span class="chip" data-scenario="normal">Normal</span>
+        <span class="chip" data-scenario="traffic_down">Bajó tráfico</span>
+        <span class="chip" data-scenario="conv_down">Bajó conversión</span>
+        <span class="chip" data-scenario="ticket_down">Bajó ticket/UPT</span>
+        <span class="chip" data-scenario="inv_down">Quiebres/Inventario</span>
+      </div>
+
+      <div class="tiny" style="margin-top:10px">
+        Fórmulas base: <strong>Ventas/día = Tráfico × Conversión × Ticket</strong> · <strong>Ritmo = (Meta − Acumulado) / Días restantes</strong>
       </div>
     </div>
   </section>
 
-  <section class="grid">
-    <!-- INPUTS -->
-    <div class="card">
+  <section class="top-grid">
+    <!-- Inputs -->
+    <section class="card">
       <div class="hd">Tus datos</div>
       <div class="bd">
         <div class="form">
@@ -279,27 +302,18 @@
               <input id="associates" type="number" min="1" step="1" placeholder="Ej. 6">
             </div>
             <div class="field">
-              <label>Escenario (para recomendar estrategia)</label>
-              <select id="scenario">
-                <option value="auto">Auto (según tus datos)</option>
-                <option value="normal">Normal (solo ejecutar mejor)</option>
-                <option value="traffic_down">Bajó el tráfico</option>
-                <option value="conv_down">Bajó la conversión</option>
-                <option value="ticket_down">Bajó el ticket/UPT</option>
-                <option value="inv_down">Hay quiebres / inventario bajo</option>
-              </select>
+              <label>Horas operativas al día</label>
+              <input id="hours" type="number" min="1" step="1" placeholder="Ej. 8">
             </div>
           </div>
 
-          <div class="tiny">
-            Si no sabes inventario, pon 96–98%. Si hay quiebres, pon 90–94%.
-          </div>
+          <div class="tiny">Tip rápido: si no sabes inventario, pon 96–98%. Si hay quiebres, 90–94%.</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- DASHBOARD -->
-    <div class="card">
+    <!-- Dashboard -->
+    <section class="card">
       <div class="hd">Dashboard</div>
       <div class="bd">
         <div class="dash">
@@ -308,166 +322,134 @@
             <div class="value" id="outRemaining">$—</div>
             <div class="note" id="outRemainingNote">—</div>
           </div>
-
           <div class="kpi">
             <div class="label">Días restantes</div>
             <div class="value" id="outDays">—</div>
             <div class="note" id="outDaysNote">—</div>
           </div>
-
           <div class="kpi">
-            <div class="label">Venta diaria requerida</div>
+            <div class="label">Ritmo requerido (por día)</div>
             <div class="value" id="outDaily">$—</div>
-            <div class="note">Tu ritmo de cierre</div>
+            <div class="note">Lo que necesitas vender diario</div>
           </div>
-
           <div class="kpi">
-            <div class="label">Venta esperada por día</div>
+            <div class="label">Proyección con tus KPIs (por día)</div>
             <div class="value" id="outExpected">$—</div>
-            <div class="note">Con tus KPIs actuales</div>
+            <div class="note">Lo que “debería” salir hoy</div>
           </div>
         </div>
 
-        <div id="statusPill" class="pill" style="display:none"></div>
-        <div id="focusPill" class="pill" style="display:none"></div>
-
-        <div style="margin-top:12px">
-          <div class="tiny" style="margin-bottom:8px;color:var(--muted)">
-            Grafiquita: requerido vs esperado
-          </div>
-          <canvas id="miniChart" width="900" height="170"></canvas>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center">
+          <span id="statusPill" class="pill" style="display:none"></span>
+          <span id="focusPill" class="pill" style="display:none"></span>
         </div>
+
+        <div class="mini-kpis">
+          <div class="kpi">
+            <div class="label">Meta por asesor (día)</div>
+            <div class="value" id="outPerAssociate">$—</div>
+            <div class="note">Para bajarlo a piso</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Meta por hora</div>
+            <div class="value" id="outPerHour">$—</div>
+            <div class="note">Usa tus horas reales</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Qué te conviene mover</div>
+            <div class="value" id="outMove">—</div>
+            <div class="note">Una palanca, no 10</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="tiny" id="explainLine">—</div>
       </div>
-    </div>
+    </section>
   </section>
 
-  <section class="sections">
-    <div class="card">
-      <div class="hd">Estrategia recomendada</div>
+  <section class="bottom-grid">
+    <!-- Estrategia -->
+    <section class="card">
+      <div class="hd">Estrategia (clara)</div>
       <div class="bd">
         <div class="box" id="strategyBox">
-          <h3>Tu plan va a aparecer aquí</h3>
-          <p>Presiona <strong>Calcular</strong> para ver una estrategia clara según tu escenario.</p>
+          <h3>Tu plan aparece aquí</h3>
+          <p>Presiona <strong>Actualizar dashboard</strong> y te pongo un plan accionable (en buen español).</p>
           <ul>
-            <li>Acciones de 7 días (simple)</li>
-            <li>Qué atacar primero</li>
-            <li>Cómo medir que sí funciona</li>
+            <li>Qué hacer esta semana</li>
+            <li>Cómo medir si sí sirve</li>
+            <li>Qué decir en coaching</li>
           </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="hd">Metas simples (por asesor)</div>
+    <!-- Comisión -->
+    <section class="card">
+      <div class="hd">Comisión por asesor</div>
       <div class="bd">
         <div class="box">
-          <h3>Metas operativas</h3>
-          <p>Para que baje a ejecución con el equipo.</p>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Concepto</th>
-                <th>Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Venta diaria requerida</td>
-                <td id="tDaily">$—</td>
-              </tr>
-              <tr>
-                <td>Meta por asesor / día</td>
-                <td id="tPerAssociate">$—</td>
-              </tr>
-              <tr>
-                <td>Meta por hora (8h)</td>
-                <td id="tPerHour">$—</td>
-              </tr>
-              <tr>
-                <td>Si NO cambia el tráfico, conv objetivo</td>
-                <td id="tConvTarget">—</td>
-              </tr>
-              <tr>
-                <td>Si NO cambia la conversión, ticket objetivo</td>
-                <td id="tTicketTarget">—</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="tiny" style="margin-top:10px;color:var(--muted)">
-            (Estos dos últimos salen de: requerido ÷ (tráfico×ticket) y requerido ÷ (tráfico×conv).)
+          <h3>¿Cuánto podría comisionar?</h3>
+          <p class="tiny">
+            Mete la venta del asesor, su % de cumplimiento de meta y el % de comisión que aplique. Listo.
+          </p>
+
+          <div class="row">
+            <div class="field">
+              <label>Venta del asesor (MXN)</label>
+              <input id="sellerSales" type="number" min="0" step="100" placeholder="Ej. 65000">
+            </div>
+            <div class="field">
+              <label>% de meta cumplida (0–200)</label>
+              <input id="sellerGoalPct" type="number" min="0" max="200" step="1" placeholder="Ej. 105">
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:10px">
+            <label>% de comisión</label>
+            <div class="chips" style="margin-top:8px">
+              <span class="chip active" data-comm="1">1%</span>
+              <span class="chip" data-comm="2">2%</span>
+              <span class="chip" data-comm="3">3%</span>
+              <span class="chip" data-comm="5">5%</span>
+            </div>
+            <div class="tiny" style="margin-top:8px">
+              Tip: si tu esquema paga más por sobre-meta, activa el switch de abajo.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Boost por sobre-meta (opcional)</label>
+              <input id="boostOnOver" type="number" min="0" max="5" step="0.5" placeholder="Ej. +1 (suma 1% si >100%)">
+            </div>
+            <div class="field">
+              <label>Tope de comisión % (opcional)</label>
+              <input id="commCap" type="number" min="0" max="30" step="1" placeholder="Ej. 8 (máximo 8%)">
+            </div>
+          </div>
+
+          <div class="mini-kpis">
+            <div class="kpi">
+              <div class="label">Comisión estimada</div>
+              <div class="value" id="outCommission">$—</div>
+              <div class="note" id="outCommNote">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">% comisión aplicado</div>
+              <div class="value" id="outCommPct">—</div>
+              <div class="note">Con boost/tope</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Mensaje rápido</div>
+              <div class="value" id="outCommMsg">—</div>
+              <div class="note">Para explicarlo fácil</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="card" style="margin:0 0 16px">
-    <div class="hd">Cómo medir y coachar (simple)</div>
-    <div class="bd">
-      <div class="box" id="coachBox">
-        <h3>Guía rápida por asesor</h3>
-        <p>Va a cambiar según el escenario (conversión/ticket/tráfico/inventario).</p>
-        <ul>
-          <li>Qué medir hoy (en piso)</li>
-          <li>Qué decir en coaching (1 ajuste)</li>
-          <li>Qué revisar al cierre (10 min)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="card" style="margin:0 0 28px">
-    <div class="hd">Calculadora: comisión (neto estimado)</div>
-    <div class="bd">
-      <div class="box">
-        <h3>Comisión neta (ISR estimado)</h3>
-        <p>
-          Metes tu <strong>sueldo bruto mensual</strong> y tu <strong>comisión bruta mensual</strong>.
-          Te da un <strong>estimado</strong> de ISR usando tarifa mensual 2026 (sin IMSS/subsidio/deducciones). :contentReference[oaicite:1]{index=1}
-        </p>
-
-        <div class="row">
-          <div class="field">
-            <label>Sueldo bruto mensual (MXN)</label>
-            <input id="salaryGross" type="number" min="0" step="100" placeholder="Ej. 25000">
-          </div>
-          <div class="field">
-            <label>Comisión bruta mensual (MXN)</label>
-            <input id="commissionGross" type="number" min="0" step="100" placeholder="Ej. 12000">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="kpi">
-            <div class="label">Ingreso gravable aprox</div>
-            <div class="value" id="outTaxBase">$—</div>
-            <div class="note">Sueldo + comisión</div>
-          </div>
-          <div class="kpi">
-            <div class="label">ISR estimado</div>
-            <div class="value" id="outIsr">$—</div>
-            <div class="note">Tarifa mensual 2026</div>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:10px">
-          <div class="kpi">
-            <div class="label">Comisión neta estimada</div>
-            <div class="value" id="outCommissionNet">$—</div>
-            <div class="note">Comisión − ISR proporcional</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Ingreso neto estimado</div>
-            <div class="value" id="outTotalNet">$—</div>
-            <div class="note">Ingreso − ISR</div>
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px;color:var(--muted)">
-          Nota: En la vida real influyen IMSS, subsidio, deducciones, etc. Esto es para darte un “orden de magnitud”.
-        </div>
-      </div>
-    </div>
+    </section>
   </section>
 </main>
 
@@ -481,7 +463,34 @@
   const $ = (id)=>document.getElementById(id);
   const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
   const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
-  const pct = (n)=> (n*100).toFixed(1) + "%";
+  const pctTxt = (x)=> (x*100).toFixed(1) + "%";
+
+  // Estado de chips
+  let selectedScenario = "auto";
+  let selectedCommPct = 1;
+
+  function setChipActive(groupSelector, activeEl){
+    document.querySelectorAll(groupSelector).forEach(el=>el.classList.remove("active"));
+    activeEl.classList.add("active");
+  }
+
+  // Escenarios (chips)
+  document.querySelectorAll('.chip[data-scenario]').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      selectedScenario = chip.getAttribute('data-scenario');
+      setChipActive('.chip[data-scenario]', chip);
+      compute(); // dinámico
+    });
+  });
+
+  // Comisión % (chips)
+  document.querySelectorAll('.chip[data-comm]').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      selectedCommPct = Number(chip.getAttribute('data-comm') || 1);
+      setChipActive('.chip[data-comm]', chip);
+      computeCommissionOnly();
+    });
+  });
 
   // Defaults fechas: hoy y fin de mes
   (function initDates(){
@@ -494,145 +503,16 @@
     const em = String(end.getMonth()+1).padStart(2,'0');
     const ed = String(end.getDate()).padStart(2,'0');
     $('end').value = `${end.getFullYear()}-${em}-${ed}`;
+    $('hours').value = 8;
   })();
 
   function daysBetween(a,b){
     const A = new Date(a + "T00:00:00");
     const B = new Date(b + "T00:00:00");
-    const diff = Math.ceil((B - A) / (1000*60*60*24));
-    return diff;
+    return Math.ceil((B - A) / (1000*60*60*24));
   }
 
-  // --- Estrategias simples por escenario ---
-  function getStrategyPack(key, ctx){
-    const { dailyRequired, expected, gapPct, associates } = ctx;
-
-    const base = [
-      "Briefing 5 min: objetivo del día + 1 foco + rol por franja.",
-      "Metas por bloques (cada 90 min): revisar y ajustar.",
-      "Cierre 10 min: qué funcionó / qué repetimos mañana."
-    ];
-
-    const kpiLine = expected ? `Hoy estás proyectando ${money(expected)} vs requerido ${money(dailyRequired)}.` : `Te falta llenar tráfico/conv/ticket para proyectar ventas.`;
-
-    if(key === "inv_down"){
-      return {
-        focus: "Enfoque: Inventario (disponibilidad)",
-        status: `Prioridad porque hay riesgo de perder ventas por quiebres. ${kpiLine}`,
-        actions: [
-          ...base,
-          "Top 20 SKUs críticos: checklist de quiebres y reposición (diario).",
-          "Conteo cíclico 20 min (A/B): atacar causas raíz (recibo, traspasos, etiquetado).",
-          "Asignar dueño por categoría y revisar variaciones 2 veces por semana."
-        ],
-        measure: [
-          "Hoy: lista de quiebres + causas (recepción/merma/registro).",
-          "Semana: confiabilidad por categoría + top SKUs fuera de stock.",
-          "Impacto: ventas perdidas por quiebre (estimado)."
-        ],
-        coach: [
-          "Mensaje clave: “Lo que no se registra no existe”.",
-          "Coaching: hábitos (recibir, registrar, acomodar, evidenciar).",
-          "Regla: 1 responsable claro por categoría."
-        ]
-      };
-    }
-
-    if(key === "traffic_down"){
-      return {
-        focus: "Enfoque: Tráfico (más oportunidades)",
-        status: `La tienda necesita más oportunidades o compensar con mejor conversión/ticket. ${kpiLine}`,
-        actions: [
-          ...base,
-          "Activación simple: citas por WhatsApp/CRM (10 mensajes por asesor/día).",
-          "Greeter por franja: saludo + pregunta rápida + dirigir a demo.",
-          "Refuerza staffing en picos: más manos donde sí hay tráfico."
-        ],
-        measure: [
-          "Hoy: tráfico por franja + tickets por franja.",
-          "Semana: citas agendadas vs asistencias.",
-          "Impacto: tickets/día y conversión (si sube, la activación sirve)."
-        ],
-        coach: [
-          "Coaching: apertura en 10 segundos (pregunta poderosa).",
-          "Roleplay: 3 aperturas + 3 objeciones comunes.",
-          `Meta por asesor/día (si aplica): ${associates>0 ? money(dailyRequired/associates) : "—"}.`
-        ]
-      };
-    }
-
-    if(key === "ticket_down"){
-      return {
-        focus: "Enfoque: Ticket/UPT (venta efectiva)",
-        status: `La palanca más rápida suele ser ticket/UPT con bundles bien hechos. ${kpiLine}`,
-        actions: [
-          ...base,
-          "3 bundles por categoría (básico/mejor/premium) y practicar el speech.",
-          "Upsell natural: pregunta de uso/escenario antes de recomendar.",
-          "Visual de add-ons cerca del punto de decisión."
-        ],
-        measure: [
-          "Hoy: ticket promedio + UPT por asesor (2 revisiones: medio día y cierre).",
-          "Semana: % tickets con bundle (definir “bundle mínimo”).",
-          "Impacto: ticket sube → ventas/día sube sin depender de tráfico."
-        ],
-        coach: [
-          "Coaching: “te recomiendo esto por X necesidad” (no empuje).",
-          "Revisión de 5 tickets por asesor: detectar patrón (falta de propuesta).",
-          "Regla: 1 recomendación extra por interacción real."
-        ]
-      };
-    }
-
-    if(key === "conv_down"){
-      return {
-        focus: "Enfoque: Conversión (cerrar mejor)",
-        status: `La conversión es conducta + consistencia. ${kpiLine}`,
-        actions: [
-          ...base,
-          "Checklist conductual: saludo → demo → propuesta → cierre (sí o sí).",
-          "Micro-metas por bloque: # demos y # cierres intentados.",
-          "El líder modela 1 venta completa al día (que el equipo lo vea)."
-        ],
-        measure: [
-          "Hoy: interacciones reales por asesor + demos + tickets.",
-          "Semana: conversión por franja (picos vs valle).",
-          "Impacto: si suben demos y cierres intentados, la conversión sube."
-        ],
-        coach: [
-          "Coaching: 1 ajuste inmediato (no 10).",
-          "Roleplay: objeción de precio / comparación / indecisión.",
-          `Meta por asesor/día (si aplica): ${associates>0 ? money(dailyRequired/associates) : "—"}.`
-        ]
-      };
-    }
-
-    // normal/auto fallback
-    return {
-      focus: "Enfoque: Ejecución (hacer lo básico excelente)",
-      status: `Vamos por orden: ritmo + disciplina diaria. ${kpiLine}`,
-      actions: [
-        ...base,
-        "Metas claras por franja (picos y valles) y seguimiento visible.",
-        "1 KPI foco por día (no todos a la vez).",
-        "Cierre con aprendizaje: 1 cosa que repetimos mañana."
-      ],
-      measure: [
-        "Hoy: venta vs ritmo (requerido/esperado).",
-        "Semana: consistencia por franja.",
-        "Impacto: estabilidad en KPIs y cierre sin pánico."
-      ],
-      coach: [
-        "Coaching: refuerzo positivo + 1 ajuste.",
-        "Observa conducta, no solo resultados.",
-        "Alinea al equipo: ‘qué significa ganar hoy’."
-      ]
-    };
-  }
-
-  // --- Detección simple (sin “cuello de botella”) ---
-  function chooseScenarioAuto(ctx){
-    const { inv, conv, ticket, traffic } = ctx;
+  function chooseScenarioAuto({ inv, conv, ticket, traffic }){
     if(inv !== null && inv < 0.945) return "inv_down";
     if(traffic > 0 && traffic < 180) return "traffic_down";
     if(conv > 0 && conv < 0.16) return "conv_down";
@@ -640,86 +520,175 @@
     return "normal";
   }
 
-  // --- Mini chart (requerido vs esperado) ---
-  function drawMiniChart(required, expected){
-    const c = $('miniChart');
-    const ctx = c.getContext('2d');
+  function strategyPack(key, ctx){
+    const { dailyRequired, expected, associates } = ctx;
+    const kpiLine = expected ? `Hoy proyectas ${money(expected)} vs requerido ${money(dailyRequired)}.` :
+                              `Si llenas tráfico/conv/ticket te doy proyección más fina.`;
 
-    // limpiar
-    ctx.clearRect(0,0,c.width,c.height);
+    const baseAcciones = [
+      "Briefing 5 min: objetivo + 1 foco (hoy).",
+      "Revisión por bloques (cada 90 min): ajustar y seguir.",
+      "Cierre 10 min: qué repetimos mañana (sin drama)."
+    ];
 
-    // fondo
-    ctx.fillStyle = '#0b111b';
-    ctx.fillRect(0,0,c.width,c.height);
+    const baseMedicion = [
+      "Venta vs ritmo (requerido) a media jornada y al cierre.",
+      "Notas rápidas: qué franja vendió y por qué.",
+      "Una decisión diaria: qué mover mañana."
+    ];
 
-    // grilla
-    ctx.globalAlpha = 0.6;
-    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-    ctx.lineWidth = 1;
-    for(let i=1;i<=4;i++){
-      const y = (c.height/5)*i;
-      ctx.beginPath(); ctx.moveTo(20,y); ctx.lineTo(c.width-20,y); ctx.stroke();
+    if(key === "traffic_down"){
+      return {
+        focus:"Enfoque: levantar oportunidades (tráfico)",
+        why:`${kpiLine} Si baja el tráfico, hay que generar oportunidades y exprimir mejor cada interacción.`,
+        acciones:[
+          ...baseAcciones,
+          "Activación simple: WhatsApp/CRM (10 mensajes por asesor/día) + citas.",
+          "Rol de recepción (greeter) en picos: saludo + pregunta + dirigir a demo.",
+          "Staffing por franja: más manos donde sí entra gente."
+        ],
+        medir:[
+          ...baseMedicion,
+          "Tráfico por franja + tickets por franja.",
+          "Citas agendadas vs asistencias.",
+          "Conversión: si sube aunque el tráfico esté bajo, vas bien."
+        ],
+        coaching:[
+          "Apertura en 10 segundos (pregunta poderosa).",
+          "Roleplay: 3 aperturas + 3 objeciones comunes.",
+          `Meta por asesor/día: ${associates>0 ? money(dailyRequired/associates) : "—"}.`
+        ],
+        move:"Tráfico"
+      };
     }
-    ctx.globalAlpha = 1;
 
-    // valores
-    const maxVal = Math.max(required || 0, expected || 0, 1);
-    const barW = 220;
-    const baseY = c.height - 26;
+    if(key === "conv_down"){
+      return {
+        focus:"Enfoque: vender mejor (conversión)",
+        why:`${kpiLine} Conversión es conducta + consistencia (no magia).`,
+        acciones:[
+          ...baseAcciones,
+          "Checklist en piso: saludo → demo → propuesta → cierre (sí o sí).",
+          "Micro-metas por bloque: # demos y # cierres intentados.",
+          "El líder modela 1 venta completa al día (que lo vean)."
+        ],
+        medir:[
+          ...baseMedicion,
+          "Interacciones reales por asesor (observadas) + demos + tickets.",
+          "Conversión por franja (picos vs valle).",
+          "Si suben demos y cierres intentados, la conversión sube."
+        ],
+        coaching:[
+          "Un ajuste, no 10: ‘haz esto distinto en la siguiente interacción’.",
+          "Roleplay: precio / comparación / indecisión.",
+          "Regla: feedback inmediato y corto."
+        ],
+        move:"Conversión"
+      };
+    }
 
-    const reqH = Math.round((required/maxVal) * (c.height-60));
-    const expH = Math.round((expected/maxVal) * (c.height-60));
+    if(key === "ticket_down"){
+      return {
+        focus:"Enfoque: subir ticket/UPT (venta efectiva)",
+        why:`${kpiLine} Ticket/UPT es la palanca más rápida si el equipo sabe recomendar bien.`,
+        acciones:[
+          ...baseAcciones,
+          "3 bundles por categoría (básico/mejor/premium) con speech corto.",
+          "Upsell natural: pregunta de uso antes de recomendar.",
+          "Coloca add-ons en puntos de decisión (sin estorbar)."
+        ],
+        medir:[
+          ...baseMedicion,
+          "Ticket promedio + UPT por asesor (revisar a medio día).",
+          "% tickets con bundle (define ‘bundle mínimo’).",
+          "Si sube ticket, sube venta sin depender de tráfico."
+        ],
+        coaching:[
+          "Recomendación por necesidad (no empuje).",
+          "Revisar 5 tickets por asesor: detectar patrón.",
+          "Regla: 1 recomendación extra por interacción real."
+        ],
+        move:"Ticket/UPT"
+      };
+    }
 
-    // barras
-    // requerido
-    ctx.fillStyle = 'rgba(0,180,255,0.85)';
-    ctx.fillRect(180, baseY-reqH, barW, reqH);
-    // esperado
-    ctx.fillStyle = 'rgba(0,209,178,0.85)';
-    ctx.fillRect(500, baseY-expH, barW, expH);
+    if(key === "inv_down"){
+      return {
+        focus:"Enfoque: no perder ventas por quiebre (inventario)",
+        why:`${kpiLine} Si no hay producto, aunque vendas cabrón, se cae el resultado.`,
+        acciones:[
+          ...baseAcciones,
+          "Top 20 SKUs críticos: revisión diaria y reposición visible.",
+          "Conteo cíclico 20 min: atacar causas raíz (recibo/registro/traspasos).",
+          "Dueño por categoría: responsable claro y seguimiento."
+        ],
+        medir:[
+          ...baseMedicion,
+          "Lista de quiebres + causa (hoy).",
+          "Confiabilidad por categoría (semanal).",
+          "Ventas perdidas por quiebre (estimado)."
+        ],
+        coaching:[
+          "‘Lo que no se registra no existe’.",
+          "Hábitos: recibir → registrar → acomodar → evidenciar.",
+          "Regla: responsables claros y rutina corta."
+        ],
+        move:"Disponibilidad"
+      };
+    }
 
-    // labels
-    ctx.fillStyle = 'rgba(230,237,243,0.95)';
-    ctx.font = '700 18px Inter, system-ui, sans-serif';
-    ctx.fillText('Requerido', 180, 28);
-    ctx.fillText('Esperado', 500, 28);
-
-    ctx.font = '800 20px Inter, system-ui, sans-serif';
-    ctx.fillText(required ? money(required) : '$—', 180, 54);
-    ctx.fillText(expected ? money(expected) : '$—', 500, 54);
-
-    // eje
-    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
-    ctx.beginPath(); ctx.moveTo(20, baseY+1); ctx.lineTo(c.width-20, baseY+1); ctx.stroke();
+    return {
+      focus:"Enfoque: ejecución simple (sin complicarte)",
+      why:`${kpiLine} La neta: orden + rutina + seguimiento diario.`,
+      acciones:[
+        ...baseAcciones,
+        "1 KPI foco por día (no todos).",
+        "Metas claras por franja (picos y valles).",
+        "Seguimiento visible: si va corto, ajustas en el momento."
+      ],
+      medir: baseMedicion,
+      coaching:[
+        "Refuerzo + 1 ajuste inmediato.",
+        "Observa conducta, no solo número.",
+        "Alinea: ‘qué significa ganar hoy’."
+      ],
+      move:"Ejecución"
+    };
   }
 
-  // --- ISR 2026 mensual (simplificado) ---
-  // Basado en tarifa mensual sueldos y salarios 2026 (SAT / RMF Anexo 8).
-  const isrBracketsMonthly2026 = [
-    { li: 0.01,    ls: 844.59,    cuota: 0.00,    tasa: 0.0192 },
-    { li: 844.60,  ls: 7168.51,   cuota: 16.22,   tasa: 0.0640 },
-    { li: 7168.52, ls: 12598.02,  cuota: 420.95,  tasa: 0.1088 },
-    { li: 12598.03,ls: 14644.64,  cuota: 1011.68, tasa: 0.1600 },
-    { li: 14644.65,ls: 17533.64,  cuota: 1339.14, tasa: 0.1792 },
-    { li: 17533.65,ls: 35362.83,  cuota: 1856.84, tasa: 0.2136 },
-    // Para mantenerlo simple, incluimos el siguiente tramo como referencia general.
-    // (Si lo quieres ultra exacto con todos los tramos, te lo dejo completo en la siguiente iteración.)
-    { li: 35362.84,ls: 55632.31,  cuota: 5664.84, tasa: 0.2352 },
-    { li: 55632.32,ls: 105113.45, cuota: 10413.48,tasa: 0.3000 },
-    { li: 105113.46,ls: 140619.82,cuota: 25235.16,tasa: 0.3200 },
-    { li: 140619.83,ls: 421859.46,cuota: 36586.25,tasa: 0.3400 },
-    { li: 421859.47,ls: Infinity,  cuota: 132585.36,tasa: 0.3500 }
-  ];
+  function computeCommissionOnly(){
+    const sales = Number($('sellerSales').value || 0);
+    const goalPct = Number($('sellerGoalPct').value || 0);
+    const boost = Number($('boostOnOver').value || 0);
+    const cap = Number($('commCap').value || 0);
 
-  function calcIsrMonthly(income){
-    if(!income || income <= 0) return 0;
-    const x = income;
-    const b = isrBracketsMonthly2026.find(r => x >= r.li && x <= r.ls);
-    if(!b) return 0;
-    return (b.cuota + (x - b.li) * b.tasa);
+    let pct = selectedCommPct;
+
+    // si sobre-meta, sumamos boost
+    if(goalPct > 100 && boost > 0) pct += boost;
+
+    // cap opcional
+    if(cap > 0) pct = Math.min(pct, cap);
+
+    const commission = sales * (pct/100);
+
+    $('outCommission').textContent = money(commission);
+    $('outCommPct').textContent = pct.toFixed(1) + "%";
+
+    const msg =
+      sales <= 0 ? "Mete la venta" :
+      goalPct <= 0 ? "Mete % de meta" :
+      goalPct < 100 ? "Vas abajo de meta" :
+      "Vas arriba de meta";
+
+    $('outCommMsg').textContent = msg;
+
+    const note = `Venta ${money(sales)} × ${pct.toFixed(1)}%`;
+    $('outCommNote').textContent = note;
   }
 
   function compute(){
+    // Dashboard
     const goal = Number($('goal').value || 0);
     const current = Number($('current').value || 0);
     const today = $('today').value;
@@ -730,16 +699,27 @@
     const ticket = Number($('ticket').value || 0);
     const invPct = Number($('inv').value || 0);
     const associates = Number($('associates').value || 0);
+    const hours = Number($('hours').value || 8) || 8;
 
-    // Comisión
-    const salaryGross = Number($('salaryGross').value || 0);
-    const commissionGross = Number($('commissionGross').value || 0);
-
-    // Validación base
     if(!goal || !today || !end){
       $('outRemaining').textContent = "$—";
       $('outRemainingNote').textContent = "Falta meta mensual y/o fechas.";
-      drawMiniChart(0,0);
+      $('outDays').textContent = "—";
+      $('outDaysNote').textContent = "—";
+      $('outDaily').textContent = "$—";
+      $('outExpected').textContent = "$—";
+      $('statusPill').style.display = "none";
+      $('focusPill').style.display = "none";
+      $('strategyBox').innerHTML = `
+        <h3>Faltan datos</h3>
+        <p>Con meta y fechas ya puedo armar el dashboard.</p>
+        <ul><li>Meta mensual</li><li>Venta acumulada</li><li>Fechas</li></ul>
+      `;
+      $('outPerAssociate').textContent = "$—";
+      $('outPerHour').textContent = "$—";
+      $('outMove').textContent = "—";
+      $('explainLine').textContent = "—";
+      computeCommissionOnly();
       return;
     }
 
@@ -757,33 +737,37 @@
       expected = traffic * conv * ticket * invAdj;
     }
 
-    // Estado simple
+    // status simple
     let statusText = "En ruta";
     let statusClass = "ok";
+    let explain = "";
+
     if(expected !== null){
-      const gapPct = expected > 0 ? (dailyRequired/expected) : 2;
-      if(gapPct > 1.20){ statusText = "Vas corto (ajuste fuerte)"; statusClass = "bad"; }
-      else if(gapPct > 1.05){ statusText = "Vas corto (ajuste ligero)"; statusClass = "warn"; }
+      const ratio = dailyRequired / expected; // >1 va corto
+      if(ratio > 1.20){ statusText = "Vas corto (ajuste fuerte)"; statusClass = "bad"; }
+      else if(ratio > 1.05){ statusText = "Vas corto (ajuste ligero)"; statusClass = "warn"; }
+      else { statusText = "Vas bien"; statusClass = "ok"; }
+
+      explain = `Requerido ${money(dailyRequired)} vs proyectado ${money(expected)} por día.`;
     }else{
-      statusText = "Falta info para proyectar (tráfico/conv/ticket)";
+      statusText = "Completa KPIs para proyectar";
       statusClass = "warn";
+      explain = "Si llenas tráfico + conversión + ticket, te doy proyección y ajuste más fino.";
     }
 
-    // Scenario
-    const scenarioChoice = $('scenario').value;
+    // scenario
     const autoKey = chooseScenarioAuto({ inv, conv, ticket, traffic });
-    const key = scenarioChoice === "auto" ? autoKey : scenarioChoice;
+    const key = (selectedScenario === "auto") ? autoKey : selectedScenario;
 
-    const gapPct = (expected && expected>0) ? (dailyRequired/expected) : null;
-    const pack = getStrategyPack(key, {
-      dailyRequired, expected, gapPct, associates
-    });
+    const pack = strategyPack(key, { dailyRequired, expected, associates });
 
-    // Dashboard outputs
+    // outputs
     $('outRemaining').textContent = money(remaining);
     $('outRemainingNote').textContent = `Meta ${money(goal)} · Acumulado ${money(current)}`;
+
     $('outDays').textContent = String(daysUsable);
     $('outDaysNote').textContent = `De ${today} a ${end}`;
+
     $('outDaily').textContent = money(dailyRequired);
     $('outExpected').textContent = expected === null ? "$—" : money(expected);
 
@@ -797,65 +781,49 @@
     focusPill.className = "pill";
     focusPill.textContent = pack.focus;
 
-    drawMiniChart(dailyRequired, expected || 0);
+    $('outPerAssociate').textContent = associates>0 ? money(dailyRequired/associates) : "$—";
+    $('outPerHour').textContent = money(dailyRequired / Math.max(hours,1));
+    $('outMove').textContent = pack.move;
 
-    // Metas por asesor + objetivos conv/ticket
-    $('tDaily').textContent = money(dailyRequired);
-    $('tPerAssociate').textContent = associates>0 ? money(dailyRequired/associates) : "$—";
-    $('tPerHour').textContent = money(dailyRequired/8);
+    $('explainLine').textContent = explain;
 
-    // conv objetivo si ticket fijo
-    if(traffic>0 && ticket>0){
-      const convTarget = clamp(dailyRequired/(traffic*ticket), 0, 1);
-      $('tConvTarget').textContent = pct(convTarget);
-    }else{
-      $('tConvTarget').textContent = "—";
-    }
-
-    // ticket objetivo si conv fijo
-    if(traffic>0 && conv>0){
-      const ticketTarget = dailyRequired/(traffic*conv);
-      $('tTicketTarget').textContent = money(ticketTarget);
-    }else{
-      $('tTicketTarget').textContent = "—";
-    }
-
-    // Strategy box
     $('strategyBox').innerHTML = `
       <h3>${pack.focus}</h3>
-      <p>${pack.status}</p>
-      <div class="pill" style="margin-top:8px">Acciones (7 días)</div>
-      <ul style="margin-top:6px">${pack.actions.map(x=>`<li>${x}</li>`).join("")}</ul>
-      <div class="pill" style="margin-top:12px">Cómo medir</div>
-      <ul style="margin-top:6px">${pack.measure.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <p>${pack.why}</p>
+
+      <div class="divider"></div>
+      <div class="pill">Acciones (7 días)</div>
+      <ul style="margin-top:8px">${pack.acciones.map(x=>`<li>${x}</li>`).join("")}</ul>
+
+      <div class="divider"></div>
+      <div class="pill">Cómo medir</div>
+      <ul style="margin-top:8px">${pack.medir.map(x=>`<li>${x}</li>`).join("")}</ul>
+
+      <div class="divider"></div>
+      <div class="pill">Coaching</div>
+      <ul style="margin-top:8px">${pack.coaching.map(x=>`<li>${x}</li>`).join("")}</ul>
     `;
 
-    // Coach box (simplificado y cambia)
-    $('coachBox').innerHTML = `
-      <h3>Guía rápida por asesor</h3>
-      <p>${pack.focus}. Manténlo simple: mide 2–3 cosas y da 1 ajuste.</p>
-      <div class="pill" style="margin-top:8px">Coaching</div>
-      <ul style="margin-top:6px">${pack.coach.map(x=>`<li>${x}</li>`).join("")}</ul>
-    `;
-
-    // Comisión (ISR estimado)
-    const taxBase = Math.max((salaryGross + commissionGross), 0);
-    const isr = calcIsrMonthly(taxBase);
-
-    // Proporción del ISR asignada a la comisión (simple, para estimar “neto de comisión”)
-    const commShare = (taxBase > 0) ? (commissionGross / taxBase) : 0;
-    const isrOnCommission = isr * commShare;
-
-    const commNet = Math.max(commissionGross - isrOnCommission, 0);
-    const totalNet = Math.max(taxBase - isr, 0);
-
-    $('outTaxBase').textContent = money(taxBase);
-    $('outIsr').textContent = money(isr);
-    $('outCommissionNet').textContent = money(commNet);
-    $('outTotalNet').textContent = money(totalNet);
+    // comisión
+    computeCommissionOnly();
   }
 
+  // Botón principal
   $('calcBtn').addEventListener('click', compute);
+
+  // Auto-cálculo cuando cambian inputs (más “dinámico”)
+  ['goal','current','today','end','traffic','conv','ticket','inv','associates','hours','sellerSales','sellerGoalPct','boostOnOver','commCap']
+    .forEach(id=>{
+      const el = $(id);
+      if(el) el.addEventListener('input', ()=> {
+        // para no estar “saltando” mientras tecleas meta, lo dejamos suave:
+        // si quieres inmediato 100%, lo puedes dejar así
+        compute();
+      });
+    });
+
+  // Primer render
+  compute();
 </script>
 </body>
 </html>
