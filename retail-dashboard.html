@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Andrés González | Estrategia y Desarrollo Comercial</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y equipos de alto desempeño.">
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y desarrollo de equipos de alto desempeño.">
   <meta property="og:image" content="assets/profile.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -114,23 +114,106 @@
     .bd p{margin:0 0 12px}
     .bd p:last-child{margin-bottom:0}
 
+    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
+    .exp-item h4{margin:0 0 6px}
+    .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .exp-item ul{margin:8px 0 0 18px}
+    .exp-item li{margin:6px 0}
+
+    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .cert{
+      background:#0e151f;
+      border:1px solid #1f2b3d;
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .cert:hover{transform:translateY(-2px)}
+    .cert img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      background:#0b111b;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .cap{padding:12px}
+    .cap strong{display:block;font-size:14px;line-height:1.25}
+    .cap span{font-size:12px;color:var(--muted)}
+
+    dialog{
+      border:none;
+      border-radius:20px;
+      padding:0;
+      width:min(1400px,96vw);
+      background:#0b111b;
+      box-shadow:var(--shadow);
+    }
+    dialog::backdrop{background:rgba(4,10,16,.86);backdrop-filter:blur(4px)}
+    .modal-hd{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#061018;
+      padding:14px 18px;
+      border-top-left-radius:20px;border-top-right-radius:20px;
+      gap:12px;
+    }
+    .modal-hd strong{font-weight:900}
+    .close{
+      background:#0e1522;border:1px solid #334155;color:#d8e7f9;
+      border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
+    }
+
+    .modal-bd{padding:14px 18px}
+    .cv-stage{
+      height:calc(92vh - 64px);
+      border-radius:16px;
+      border:1px solid #2a3643;
+      background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:auto;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:22px 18px;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+    }
+    .cv-paper{
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      padding:14px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .cv-img{
+      width:min(1200px, 94vw);
+      height:auto;
+      border-radius:10px;
+      display:block;
+    }
+
+    .cert-modal-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px 0 2px;
+    }
+    .modal-img{
+      width:100%;
+      max-width:min(1100px,96vw);
+      max-height:80vh;
+      object-fit:contain;
+      border-radius:16px;
+      border:1px solid #2a3643;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:#0b111b;
+    }
+
     .vision p{
       font-size:16px;
-      line-height:1.8;
-      margin-bottom:22px;
-    }
-    .vision p:first-child{
-      font-size:18px;
-      font-weight:600;
-    }
-    .vision p::before{
-      content:"";
-      display:block;
-      width:40px;
-      height:3px;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      border-radius:2px;
-      margin-bottom:12px;
+      line-height:1.75;
+      margin-bottom:18px;
     }
 
     .cta{display:flex;justify-content:center;padding:10px 0 40px}
@@ -155,53 +238,59 @@
 
 <main class="container">
 
-<section class="top">
-  <div class="avatar">
-    <img src="assets/profile.jpg" alt="Foto de Andrés González">
-  </div>
-
-  <div>
-    <h1>Estrategia y Desarrollo Comercial</h1>
-    <div class="subtitle">Liderazgo · Crecimiento · KPIs · Rentabilidad</div>
-
-    <div class="badges">
-      <span class="chip">Gestión comercial</span>
-      <span class="chip">Estrategia de crecimiento</span>
-      <span class="chip">Optimización operativa</span>
-      <span class="chip">Análisis y toma de decisiones</span>
-      <span class="chip">HubSpot · SAP</span>
+  <section class="top">
+    <div class="avatar">
+      <img src="assets/profile.jpg" alt="Foto de Andrés González">
     </div>
 
-    <div class="links" style="margin-top:14px">
-      <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
-      <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">Correo</a>
-      <a class="btn" href="tel:+523323430043">Teléfono</a>
-      <a class="btn primary" href="strategy-lab/index.html" target="_blank">Strategy Lab</a>
+    <div>
+      <h1>Estrategia y Desarrollo Comercial</h1>
+      <div class="subtitle">Liderazgo · KPIs · Rentabilidad · Ejecución</div>
+
+      <div class="badges">
+        <span class="chip">Gestión operativa</span>
+        <span class="chip">Estrategia comercial</span>
+        <span class="chip">Optimización de procesos</span>
+        <span class="chip">Análisis y reporteo</span>
+        <span class="chip">HubSpot · SAP</span>
+      </div>
+
+      <div class="links" style="margin-top:14px">
+        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
+        <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
+        <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank">📄 Ver CV (PDF)</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="vision" class="card vision">
-  <div class="hd">Mi visión del negocio y del liderazgo</div>
-  <div class="bd">
-    <p>Creo en construir organizaciones que no dependan del impulso momentáneo, sino de estructuras sólidas, disciplina estratégica y liderazgo consciente.</p>
+  <section id="sobre-mi" class="card">
+    <div class="hd">Sobre mí</div>
+    <div class="bd">
+      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y desarrollando estrategias comerciales</strong>, enfocado en transformar objetivos en resultados sostenibles a través de <strong>estructura, ejecución y desarrollo humano</strong>.</p>
+      <p>Mi enfoque combina claridad estratégica con acompañamiento constante: cada indicador tiene propósito, cada meta tiene dirección y cada acción impacta directamente en rentabilidad, conversión y crecimiento.</p>
+      <p>Creo firmemente que el liderazgo moderno integra negocio, datos y tecnología. Actualmente estudio Ingeniería en Desarrollo de Software para fortalecer esa visión integral.</p>
+    </div>
+  </section>
 
-    <p>Para mí, liderar no es supervisar: es desarrollar criterio, formar mentalidad y crear equipos que entiendan el impacto real de su desempeño en el crecimiento del negocio.</p>
-
-    <p>Mi enfoque combina claridad estratégica, ejecución diaria y desarrollo humano. No importa la industria: cuando existen metas claras, indicadores bien definidos y una cultura fuerte, los resultados llegan.</p>
-
-    <p>Mi propósito profesional es generar crecimiento sostenible, fortalecer equipos de alto desempeño y construir modelos comerciales que funcionen incluso cuando el entorno cambia.</p>
-  </div>
-</section>
+  <section id="vision" class="card vision">
+    <div class="hd">Mi visión del negocio y del liderazgo</div>
+    <div class="bd">
+      <p>No creo en negocios que dependen de la suerte. Creo en estructuras sólidas, claridad estratégica y disciplina diaria.</p>
+      <p>Un verdadero líder no solo dirige: forma criterio, desarrolla mentalidad y construye equipos que entienden cómo cada acción impacta en los resultados.</p>
+      <p>Cuando existe alineación entre indicadores, cultura y ejecución, el crecimiento deja de ser una meta aspiracional y se convierte en consecuencia natural.</p>
+      <p>Mi propósito profesional es impulsar crecimiento sostenible, construir equipos de alto desempeño y evolucionar constantemente como estratega comercial.</p>
+    </div>
+  </section>
 
 </main>
 
 <footer class="container">
-  <small>© <span id="year"></span> Andrés González · Estrategia Comercial</small>
+  <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
