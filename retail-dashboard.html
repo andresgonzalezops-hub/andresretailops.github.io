@@ -2,16 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Retail Dashboard | Andrés González</title>
-  <meta name="description" content="Dashboard simple para cierre de mes + estrategia + comisión por asesor.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategy Lab | Retail Ops (Luis Andrés)</title>
+  <meta name="description" content="Simulador simple de KPIs retail: metas, proyección, estrategia recomendada y comisión estimada." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0b0f14;
       --card:#141a24;
-      --card2:#0e151f;
       --text:#e6edf3;
       --muted:#9aa4b2;
       --brand:#00b4ff;
@@ -19,23 +18,23 @@
       --radius:20px;
       --shadow:0 14px 36px rgba(0,0,0,.38);
       --stroke:#223043;
-      --ok:#00d1b2;
-      --warn:#ffd166;
-      --bad:#ff5d5d;
+      --good:#25d366;
+      --warn:#fbbf24;
+      --bad:#fb7185;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
-      line-height:1.55;
+      line-height:1.65;
     }
     a{color:var(--brand);text-decoration:none}
-    a:hover{opacity:.95}
-    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
     header{
-      position:sticky;top:0;z-index:10;
+      position:sticky;top:0;z-index:20;
       background:#0d1219;
       box-shadow:0 4px 14px rgba(0,0,0,.4);
       border-bottom:1px solid rgba(255,255,255,.06);
@@ -44,9 +43,143 @@
       display:flex;justify-content:space-between;align-items:center;
       padding:14px 0;flex-wrap:wrap;gap:12px;
     }
-    .logo{font-weight:900;color:#fff;letter-spacing:.02em}
-    .nav-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .logo{
+      font-weight:900;color:#fff;letter-spacing:.02em;
+      display:flex;align-items:center;gap:10px;
+    }
+    .tag{
+      font-size:12px;color:#0b1220;font-weight:900;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      padding:6px 10px;border-radius:999px;
+    }
 
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap;
+      align-items:center;justify-content:flex-end;
+    }
+    .tab{
+      border:1px solid #2b3a4f;
+      background:#0e141f;
+      color:#d6e9ff;
+      padding:10px 14px;border-radius:12px;
+      font-weight:800;cursor:pointer;transition:.18s;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
+    .tab.active{
+      border:none;color:#051018;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+    }
+
+    .hero{
+      padding:26px 0 10px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media(max-width:860px){
+      .hero{grid-template-columns:1fr}
+      .tabs{justify-content:flex-start}
+    }
+    .hero h1{font-size:24px;line-height:1.2;margin-bottom:8px}
+    .hero p{color:var(--muted);font-size:14px}
+    .hero .hint{
+      margin-top:10px;
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+    .chip{
+      padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
+      color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+    }
+
+    section.card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      margin:16px 0;
+      box-shadow:var(--shadow);
+    }
+    .hd{
+      padding:16px 18px 0;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .bd{padding:18px}
+
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+
+    .box{
+      background:#0e151f;
+      border:1px solid #1f2b3d;
+      border-radius:16px;
+      padding:14px;
+    }
+    .box h3{font-size:15px;margin-bottom:6px}
+    .tiny{font-size:12px;color:var(--muted)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    @media(max-width:680px){.row{grid-template-columns:1fr}}
+
+    .field label{display:block;font-weight:800;font-size:12px;color:#c9d5e6;margin-bottom:6px}
+    .field input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid #2b3a4f;
+      background:#0b111b;
+      color:#e6edf3;
+      outline:none;
+      font-weight:800;
+    }
+    .field input:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
+
+    .mini-kpis{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;
+    }
+    @media(max-width:900px){.mini-kpis{grid-template-columns:1fr}}
+    .kpi{
+      background:#0b111b;border:1px solid #223043;border-radius:14px;
+      padding:12px;
+    }
+    .kpi .label{color:#9fb0c9;font-size:12px;font-weight:800;margin-bottom:6px}
+    .kpi .value{font-size:18px;font-weight:900}
+    .kpi .note{color:var(--muted);font-size:12px;margin-top:4px}
+
+    .bar{
+      height:10px;border-radius:999px;background:#101827;border:1px solid #223043;
+      overflow:hidden;margin-top:8px;
+    }
+    .bar > div{
+      height:100%;width:0%;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+    }
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      background:#0b111b;border:1px solid #223043;
+      font-weight:900;font-size:12px;color:#dbe7ff;
+      margin:6px 6px 0 0;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.good{background:var(--good)}
+    .dot.warn{background:var(--warn)}
+    .dot.bad{background:var(--bad)}
+
+    .list{
+      margin-top:10px;
+      padding-left:18px;
+    }
+    .list li{margin:8px 0}
+    .subttl{margin-top:12px;font-weight:900;color:#dbe7ff}
+    .divider{height:1px;background:rgba(255,255,255,.06);margin:14px 0}
+
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:10px
+    }
     .btn{
       display:inline-flex;align-items:center;gap:8px;
       border:1px solid #2b3a4f;
@@ -56,774 +189,626 @@
       font-weight:900;
       transition:.18s;
       cursor:pointer;
-      user-select:none;
     }
     .btn.primary{
       background:linear-gradient(135deg,var(--brand),var(--brand2));
       color:#051018;border:none;
     }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
-    .btn:active{transform:translateY(0px);box-shadow:none}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    .hd{
-      padding:16px 16px 0;
-      color:var(--muted);
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .bd{padding:16px}
+    .hidden{display:none!important}
 
-    h1{font-size:26px;line-height:1.15;margin-bottom:8px}
-    .sub{color:var(--muted);font-size:14px}
-
-    /* Layout: 2 columnas, y abajo 2 columnas, para evitar scroll */
-    .top-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:14px;
-      margin:14px 0;
-      align-items:start;
-    }
-    @media(max-width:980px){ .top-grid{grid-template-columns:1fr} }
-
-    .bottom-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin:14px 0 24px;
-      align-items:start;
-    }
-    @media(max-width:980px){ .bottom-grid{grid-template-columns:1fr} }
-
-    .form{display:grid;gap:10px}
-    .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-    @media(max-width:640px){ .row{grid-template-columns:1fr} }
-
-    .field{
-      border:1px solid #1f2b3d;
-      border-radius:14px;
-      background:var(--card2);
-      padding:12px;
-    }
-    .field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
-    .field input{
-      width:100%;
-      border:1px solid #2b3a4f;
-      background:#0b111b;
-      color:var(--text);
-      padding:10px 10px;
-      border-radius:12px;
-      outline:none;
-      font-weight:800;
-    }
-    .field input:focus{border-color:rgba(0,180,255,.55)}
-
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      color:#cfe7ff;
-      font-weight:900;
-      font-size:12px;
-      cursor:pointer;
-      transition:.16s;
-      user-select:none;
-    }
-    .chip:hover{transform:translateY(-1px)}
-    .chip.active{
-      border:none;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#051018;
-    }
-
-    .dash{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-    }
-    @media(max-width:520px){ .dash{grid-template-columns:1fr} }
-
-    .kpi{
-      padding:12px;
-      border-radius:16px;
-      border:1px solid #1f2b3d;
-      background:var(--card2);
-    }
-    .kpi .label{color:var(--muted);font-size:12px}
-    .kpi .value{font-size:18px;font-weight:900;margin-top:2px}
-    .kpi .note{font-size:12px;color:#b9c3d4;margin-top:6px}
-
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      color:#cfe7ff;
-      font-weight:900;
-      font-size:12px;
-      width:max-content;
-    }
-    .pill.ok{background:rgba(0,209,178,.16);border-color:rgba(0,209,178,.30);color:#bff7ef}
-    .pill.warn{background:rgba(255,209,102,.16);border-color:rgba(255,209,102,.30);color:#ffe6b2}
-    .pill.bad{background:rgba(255,93,93,.16);border-color:rgba(255,93,93,.30);color:#ffd0d0}
-
-    .box{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid #1f2b3d;
-      background:var(--card2);
-    }
-    .box h3{font-size:14px;margin-bottom:6px}
-    .box p{color:var(--muted);font-size:13px;margin-bottom:10px}
-    .box ul{margin:0 0 0 18px}
-    .box li{margin:6px 0;color:#dfe8f3;font-size:13px}
-
-    .mini-kpis{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    @media(max-width:720px){ .mini-kpis{grid-template-columns:1fr} }
-
-    .tiny{color:var(--muted);font-size:12px}
-    footer{padding:22px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
-
-    .divider{
-      height:1px;
-      background:rgba(255,255,255,.06);
-      margin:12px 0;
-    }
+    footer{padding:28px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
   </style>
 </head>
 
 <body>
 <header>
   <div class="container nav">
-    <a class="logo" href="./index.html">ANDRÉS GONZÁLEZ</a>
-    <div class="nav-right">
-      <a class="btn" href="./index.html">Volver</a>
-      <button class="btn primary" id="calcBtn" type="button">Actualizar dashboard</button>
+    <div class="logo">
+      Strategy Lab
+      <span class="tag">Retail Ops</span>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="tab-inputs">🧾 Datos</button>
+      <button class="tab" data-tab="tab-dashboard">📊 Dashboard</button>
+      <button class="tab" data-tab="tab-estrategia">🎯 Estrategia</button>
+      <button class="tab" data-tab="tab-comision">💸 Comisión</button>
+      <a class="tab" href="/" style="text-decoration:none">⬅️ Volver</a>
     </div>
   </div>
 </header>
 
 <main class="container">
-  <!-- Intro -->
-  <section class="card" style="margin:14px 0 0">
-    <div class="hd">Retail Dashboard</div>
-    <div class="bd">
-      <h1>Cierre de mes + estrategia (sin rollos)</h1>
-      <div class="sub">
-        Metes tus números reales, y te digo <strong>si vas en ruta</strong>, qué ajustar y cómo bajarlo a piso con el equipo.
+  <section class="hero">
+    <section class="card" style="margin:0">
+      <div class="bd">
+        <h1>Simulador rápido: metas, KPIs y plan de acción</h1>
+        <p>
+          Mete tus números reales y te digo <strong>qué atacar primero</strong> (tráfico / conversión / ticket)
+          + un plan de coaching fácil de ejecutar. Sin humo.
+        </p>
+        <div class="hint">
+          <span class="chip">Meta mensual + ventas</span>
+          <span class="chip">Días a cierre</span>
+          <span class="chip">Meta/actual: Conversión</span>
+          <span class="chip">Meta/actual: Ticket</span>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="btnRun">Calcular</button>
+          <button class="btn" id="btnReset">Limpiar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin:0">
+      <div class="bd">
+        <h3 style="margin-bottom:6px">Tip rápido</h3>
+        <p class="tiny">
+          Si no sabes el tráfico: no pasa nada. Con <strong>ventas</strong>, <strong>días</strong>,
+          <strong>conversión</strong> y <strong>ticket</strong> ya sale una recomendación buena.
+        </p>
+        <div class="divider"></div>
+        <div class="tiny">
+          <strong>Regla simple:</strong> si la venta va baja, casi siempre es porque
+          te falla <em>una</em> de estas: <strong>entra poca gente</strong>, <strong>no conviertes</strong> o <strong>ticket bajo</strong>.
+          Aquí te digo cuál.
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- TAB: INPUTS -->
+  <section id="tab-inputs" class="card">
+    <div class="hd">Datos</div>
+    <div class="bd grid2">
+      <div class="box">
+        <h3>Meta mensual</h3>
+        <p class="tiny">Lo básico para proyección y ritmo diario.</p>
+
+        <div class="row">
+          <div class="field">
+            <label>Meta del mes (MXN)</label>
+            <input id="monthGoal" type="number" min="0" step="1000" placeholder="Ej. 550000">
+          </div>
+          <div class="field">
+            <label>Venta acumulada actual (MXN)</label>
+            <input id="monthSales" type="number" min="0" step="1000" placeholder="Ej. 310000">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Días restantes a cierre</label>
+            <input id="daysLeft" type="number" min="0" step="1" placeholder="Ej. 10">
+          </div>
+          <div class="field">
+            <label>Tráfico diario (opcional)</label>
+            <input id="trafficDaily" type="number" min="0" step="1" placeholder="Ej. 85">
+          </div>
+        </div>
       </div>
 
-      <div class="chips" aria-label="Escenarios">
-        <span class="chip active" data-scenario="auto">Auto</span>
-        <span class="chip" data-scenario="normal">Normal</span>
-        <span class="chip" data-scenario="traffic_down">Bajó tráfico</span>
-        <span class="chip" data-scenario="conv_down">Bajó conversión</span>
-        <span class="chip" data-scenario="ticket_down">Bajó ticket/UPT</span>
-        <span class="chip" data-scenario="inv_down">Quiebres/Inventario</span>
-      </div>
+      <div class="box">
+        <h3>Metas de KPIs</h3>
+        <p class="tiny">Para saber qué palanca mover: conversión o ticket.</p>
 
-      <div class="tiny" style="margin-top:10px">
-        Fórmulas base: <strong>Ventas/día = Tráfico × Conversión × Ticket</strong> · <strong>Ritmo = (Meta − Acumulado) / Días restantes</strong>
+        <div class="row">
+          <div class="field">
+            <label>Conversión actual (%)</label>
+            <input id="convNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 18">
+          </div>
+          <div class="field">
+            <label>Meta conversión (%)</label>
+            <input id="convGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 22">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Ticket actual (MXN)</label>
+            <input id="ticketNow" type="number" min="0" step="1" placeholder="Ej. 1250">
+          </div>
+          <div class="field">
+            <label>Meta ticket (MXN)</label>
+            <input id="ticketGoal" type="number" min="0" step="1" placeholder="Ej. 1400">
+          </div>
+        </div>
+
+        <div class="tiny" style="margin-top:10px">
+          Si no tienes una meta formal, pon la que te gustaría lograr. El chiste es <strong>comparar</strong>.
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="top-grid">
-    <!-- Inputs -->
-    <section class="card">
-      <div class="hd">Tus datos</div>
-      <div class="bd">
-        <div class="form">
-          <div class="row">
-            <div class="field">
-              <label>Meta mensual (MXN)</label>
-              <input id="goal" type="number" min="0" step="100" placeholder="Ej. 1200000">
-            </div>
-            <div class="field">
-              <label>Venta acumulada hoy (MXN)</label>
-              <input id="current" type="number" min="0" step="100" placeholder="Ej. 780000">
-            </div>
-          </div>
+  <!-- TAB: DASHBOARD -->
+  <section id="tab-dashboard" class="card hidden">
+    <div class="hd">Dashboard</div>
+    <div class="bd">
+      <div class="mini-kpis">
+        <div class="kpi">
+          <div class="label">% avance a meta mensual</div>
+          <div class="value" id="dashPct">—</div>
+          <div class="bar"><div id="barPct"></div></div>
+          <div class="note" id="dashPctNote">—</div>
+        </div>
 
-          <div class="row">
-            <div class="field">
-              <label>Fecha de hoy</label>
-              <input id="today" type="date">
-            </div>
-            <div class="field">
-              <label>Fin de mes</label>
-              <input id="end" type="date">
-            </div>
-          </div>
+        <div class="kpi">
+          <div class="label">Venta diaria requerida</div>
+          <div class="value" id="dashDailyNeed">—</div>
+          <div class="note" id="dashDailyNeedNote">—</div>
+        </div>
 
-          <div class="row">
-            <div class="field">
-              <label>Tráfico promedio por día (personas)</label>
-              <input id="traffic" type="number" min="0" step="1" placeholder="Ej. 220">
-            </div>
-            <div class="field">
-              <label>Conversión actual (%)</label>
-              <input id="conv" type="number" min="0" max="100" step="0.1" placeholder="Ej. 17.0">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label>Ticket promedio (MXN)</label>
-              <input id="ticket" type="number" min="0" step="1" placeholder="Ej. 1050">
-            </div>
-            <div class="field">
-              <label>Confiabilidad inventario (%)</label>
-              <input id="inv" type="number" min="0" max="100" step="0.1" placeholder="Ej. 96.5">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label># Asesores en piso (promedio)</label>
-              <input id="associates" type="number" min="1" step="1" placeholder="Ej. 6">
-            </div>
-            <div class="field">
-              <label>Horas operativas al día</label>
-              <input id="hours" type="number" min="1" step="1" placeholder="Ej. 8">
-            </div>
-          </div>
-
-          <div class="tiny">Tip rápido: si no sabes inventario, pon 96–98%. Si hay quiebres, 90–94%.</div>
+        <div class="kpi">
+          <div class="label">Lo que falta para cerrar meta</div>
+          <div class="value" id="dashRemaining">—</div>
+          <div class="note">Meta − Venta actual</div>
         </div>
       </div>
-    </section>
 
-    <!-- Dashboard -->
-    <section class="card">
-      <div class="hd">Dashboard</div>
-      <div class="bd">
-        <div class="dash">
-          <div class="kpi">
-            <div class="label">Venta restante</div>
-            <div class="value" id="outRemaining">$—</div>
-            <div class="note" id="outRemainingNote">—</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Días restantes</div>
-            <div class="value" id="outDays">—</div>
-            <div class="note" id="outDaysNote">—</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Ritmo requerido (por día)</div>
-            <div class="value" id="outDaily">$—</div>
-            <div class="note">Lo que necesitas vender diario</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Proyección con tus KPIs (por día)</div>
-            <div class="value" id="outExpected">$—</div>
-            <div class="note">Lo que “debería” salir hoy</div>
-          </div>
+      <div class="divider"></div>
+
+      <div class="mini-kpis">
+        <div class="kpi">
+          <div class="label">Conversión: actual vs meta</div>
+          <div class="value" id="dashConv">—</div>
+          <div class="note" id="dashConvNote">—</div>
         </div>
 
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center">
-          <span id="statusPill" class="pill" style="display:none"></span>
-          <span id="focusPill" class="pill" style="display:none"></span>
+        <div class="kpi">
+          <div class="label">Ticket: actual vs meta</div>
+          <div class="value" id="dashTicket">—</div>
+          <div class="note" id="dashTicketNote">—</div>
         </div>
 
-        <div class="mini-kpis">
-          <div class="kpi">
-            <div class="label">Meta por asesor (día)</div>
-            <div class="value" id="outPerAssociate">$—</div>
-            <div class="note">Para bajarlo a piso</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Meta por hora</div>
-            <div class="value" id="outPerHour">$—</div>
-            <div class="note">Usa tus horas reales</div>
-          </div>
-          <div class="kpi">
-            <div class="label">Qué te conviene mover</div>
-            <div class="value" id="outMove">—</div>
-            <div class="note">Una palanca, no 10</div>
-          </div>
+        <div class="kpi">
+          <div class="label">Lo que te está pegando hoy</div>
+          <div class="value" id="dashFocus">—</div>
+          <div class="note" id="dashFocusNote">—</div>
         </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="dashPills"></div>
+    </div>
+  </section>
+
+  <!-- TAB: ESTRATEGIA -->
+  <section id="tab-estrategia" class="card hidden">
+    <div class="hd">Estrategia (clara)</div>
+    <div class="bd grid2">
+      <div class="box">
+        <h3 id="strTitle">—</h3>
+        <p class="tiny" id="strIntro">Haz clic en Calcular.</p>
 
         <div class="divider"></div>
-        <div class="tiny" id="explainLine">—</div>
-      </div>
-    </section>
-  </section>
 
-  <section class="bottom-grid">
-    <!-- Estrategia -->
-    <section class="card">
-      <div class="hd">Estrategia (clara)</div>
-      <div class="bd">
-        <div class="box" id="strategyBox">
-          <h3>Tu plan aparece aquí</h3>
-          <p>Presiona <strong>Actualizar dashboard</strong> y te pongo un plan accionable (en buen español).</p>
-          <ul>
-            <li>Qué hacer esta semana</li>
-            <li>Cómo medir si sí sirve</li>
-            <li>Qué decir en coaching</li>
-          </ul>
+        <div class="subttl">Acciones (7 días)</div>
+        <ul class="list" id="strActions"></ul>
+
+        <div class="divider"></div>
+
+        <div class="subttl">Cómo medir (sin complicarte)</div>
+        <ul class="list" id="strMeasure"></ul>
+
+        <div class="divider"></div>
+
+        <div class="subttl">Coaching al equipo</div>
+        <ul class="list" id="strCoaching"></ul>
+      </div>
+
+      <div class="box">
+        <h3>Checklist de piso (rápido)</h3>
+        <p class="tiny">Esto es lo que yo haría hoy, sin drama.</p>
+
+        <div class="divider"></div>
+
+        <div class="subttl">Hoy (20 min total)</div>
+        <ul class="list" id="todayList">
+          <li><strong>Brief 5 min:</strong> 1 KPI del día + 1 enfoque (claro).</li>
+          <li><strong>Roleplay 7 min:</strong> apertura + 1 objeción.</li>
+          <li><strong>Revisión 8 min:</strong> mitad de jornada: ajustar y seguir.</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="subttl">Mensaje de WhatsApp listo</div>
+        <div class="kpi" style="margin-top:10px">
+          <div class="label">Texto</div>
+          <div class="note" id="waText" style="margin-top:8px;white-space:pre-wrap">Haz clic en Calcular.</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Comisión -->
-    <section class="card">
-      <div class="hd">Comisión por asesor</div>
-      <div class="bd">
-        <div class="box">
-          <h3>¿Cuánto podría comisionar?</h3>
-          <p class="tiny">
-            Mete la venta del asesor, su % de cumplimiento de meta y el % de comisión que aplique. Listo.
-          </p>
+  <!-- TAB: COMISIÓN -->
+  <section id="tab-comision" class="card hidden">
+    <div class="hd">Comisión (estimada)</div>
+    <div class="bd">
+      <div class="box">
+        <h3>¿Cuánto comisiona el asesor?</h3>
+        <p class="tiny">
+          Meta + venta actual + % comisión. Te calculo avance y comisión <strong>(sin impuestos)</strong>.
+        </p>
 
-          <div class="row">
-            <div class="field">
-              <label>Venta del asesor (MXN)</label>
-              <input id="sellerSales" type="number" min="0" step="100" placeholder="Ej. 65000">
-            </div>
-            <div class="field">
-              <label>% de meta cumplida (0–200)</label>
-              <input id="sellerGoalPct" type="number" min="0" max="200" step="1" placeholder="Ej. 105">
-            </div>
+        <div class="row">
+          <div class="field">
+            <label>Meta del asesor (MXN)</label>
+            <input id="sellerGoal" type="number" min="0" step="100" placeholder="Ej. 180000">
           </div>
-
-          <div class="field" style="margin-top:10px">
-            <label>% de comisión</label>
-            <div class="chips" style="margin-top:8px">
-              <span class="chip active" data-comm="1">1%</span>
-              <span class="chip" data-comm="2">2%</span>
-              <span class="chip" data-comm="3">3%</span>
-              <span class="chip" data-comm="5">5%</span>
-            </div>
-            <div class="tiny" style="margin-top:8px">
-              Tip: si tu esquema paga más por sobre-meta, activa el switch de abajo.
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label>Boost por sobre-meta (opcional)</label>
-              <input id="boostOnOver" type="number" min="0" max="5" step="0.5" placeholder="Ej. +1 (suma 1% si >100%)">
-            </div>
-            <div class="field">
-              <label>Tope de comisión % (opcional)</label>
-              <input id="commCap" type="number" min="0" max="30" step="1" placeholder="Ej. 8 (máximo 8%)">
-            </div>
-          </div>
-
-          <div class="mini-kpis">
-            <div class="kpi">
-              <div class="label">Comisión estimada</div>
-              <div class="value" id="outCommission">$—</div>
-              <div class="note" id="outCommNote">—</div>
-            </div>
-            <div class="kpi">
-              <div class="label">% comisión aplicado</div>
-              <div class="value" id="outCommPct">—</div>
-              <div class="note">Con boost/tope</div>
-            </div>
-            <div class="kpi">
-              <div class="label">Mensaje rápido</div>
-              <div class="value" id="outCommMsg">—</div>
-              <div class="note">Para explicarlo fácil</div>
-            </div>
+          <div class="field">
+            <label>Venta actual del asesor (MXN)</label>
+            <input id="sellerSales" type="number" min="0" step="100" placeholder="Ej. 125000">
           </div>
         </div>
+
+        <div class="row">
+          <div class="field">
+            <label>% de avance a meta</label>
+            <input id="sellerPct" type="text" value="—" disabled style="opacity:.95">
+          </div>
+          <div class="field">
+            <label>% de comisión (editable)</label>
+            <input id="sellerCommPct" type="number" min="0" max="30" step="0.1" placeholder="Ej. 1.5">
+          </div>
+        </div>
+
+        <div class="mini-kpis" style="margin-top:12px">
+          <div class="kpi">
+            <div class="label">Comisión estimada (sin impuestos)</div>
+            <div class="value" id="outCommission">$—</div>
+            <div class="note" id="outCommNote">—</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Lo que falta para meta</div>
+            <div class="value" id="outToGoal">$—</div>
+            <div class="note">Meta − Venta actual</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Mensaje rápido</div>
+            <div class="value" id="outCommMsg">—</div>
+            <div class="note">Para explicarlo fácil</div>
+          </div>
+        </div>
+
+        <div class="tiny" style="margin-top:10px">
+          *Estimado simple: <strong>Comisión = venta × % comisión</strong>. (Sin ISR/IMSS, etc.)
+        </div>
       </div>
-    </section>
+    </div>
   </section>
+
 </main>
 
 <footer class="container">
-  <small>© <span id="year"></span> Andrés González · Retail Dashboard</small>
+  <small>© <span id="year"></span> Strategy Lab · Luis Andrés González</small>
 </footer>
 
 <script>
+  // ===== Helpers
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  const $ = (id)=>document.getElementById(id);
-  const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
   const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
-  const pctTxt = (x)=> (x*100).toFixed(1) + "%";
+  const pctFmt = (n)=> (isFinite(n) ? (n*100).toFixed(1) + "%" : "—");
 
-  // Estado de chips
-  let selectedScenario = "auto";
-  let selectedCommPct = 1;
+  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
 
-  function setChipActive(groupSelector, activeEl){
-    document.querySelectorAll(groupSelector).forEach(el=>el.classList.remove("active"));
-    activeEl.classList.add("active");
-  }
+  // ===== Tabs
+  const tabs = document.querySelectorAll('.tab[data-tab]');
+  const panels = ['tab-inputs','tab-dashboard','tab-estrategia','tab-comision'].map(id => document.getElementById(id));
 
-  // Escenarios (chips)
-  document.querySelectorAll('.chip[data-scenario]').forEach(chip=>{
-    chip.addEventListener('click', ()=>{
-      selectedScenario = chip.getAttribute('data-scenario');
-      setChipActive('.chip[data-scenario]', chip);
-      compute(); // dinámico
+  tabs.forEach(t=>{
+    t.addEventListener('click', ()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      panels.forEach(p=>p.classList.add('hidden'));
+      const target = document.getElementById(t.dataset.tab);
+      if(target) target.classList.remove('hidden');
     });
   });
 
-  // Comisión % (chips)
-  document.querySelectorAll('.chip[data-comm]').forEach(chip=>{
-    chip.addEventListener('click', ()=>{
-      selectedCommPct = Number(chip.getAttribute('data-comm') || 1);
-      setChipActive('.chip[data-comm]', chip);
-      computeCommissionOnly();
-    });
-  });
-
-  // Defaults fechas: hoy y fin de mes
-  (function initDates(){
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth()+1).padStart(2,'0');
-    const dd = String(now.getDate()).padStart(2,'0');
-    $('today').value = `${yyyy}-${mm}-${dd}`;
-    const end = new Date(yyyy, now.getMonth()+1, 0);
-    const em = String(end.getMonth()+1).padStart(2,'0');
-    const ed = String(end.getDate()).padStart(2,'0');
-    $('end').value = `${end.getFullYear()}-${em}-${ed}`;
-    $('hours').value = 8;
-  })();
-
-  function daysBetween(a,b){
-    const A = new Date(a + "T00:00:00");
-    const B = new Date(b + "T00:00:00");
-    return Math.ceil((B - A) / (1000*60*60*24));
-  }
-
-  function chooseScenarioAuto({ inv, conv, ticket, traffic }){
-    if(inv !== null && inv < 0.945) return "inv_down";
-    if(traffic > 0 && traffic < 180) return "traffic_down";
-    if(conv > 0 && conv < 0.16) return "conv_down";
-    if(ticket > 0 && ticket < 950) return "ticket_down";
-    return "normal";
-  }
-
-  function strategyPack(key, ctx){
-    const { dailyRequired, expected, associates } = ctx;
-    const kpiLine = expected ? `Hoy proyectas ${money(expected)} vs requerido ${money(dailyRequired)}.` :
-                              `Si llenas tráfico/conv/ticket te doy proyección más fina.`;
-
-    const baseAcciones = [
-      "Briefing 5 min: objetivo + 1 foco (hoy).",
-      "Revisión por bloques (cada 90 min): ajustar y seguir.",
-      "Cierre 10 min: qué repetimos mañana (sin drama)."
-    ];
-
-    const baseMedicion = [
-      "Venta vs ritmo (requerido) a media jornada y al cierre.",
-      "Notas rápidas: qué franja vendió y por qué.",
-      "Una decisión diaria: qué mover mañana."
-    ];
-
-    if(key === "traffic_down"){
-      return {
-        focus:"Enfoque: levantar oportunidades (tráfico)",
-        why:`${kpiLine} Si baja el tráfico, hay que generar oportunidades y exprimir mejor cada interacción.`,
-        acciones:[
-          ...baseAcciones,
-          "Activación simple: WhatsApp/CRM (10 mensajes por asesor/día) + citas.",
-          "Rol de recepción (greeter) en picos: saludo + pregunta + dirigir a demo.",
-          "Staffing por franja: más manos donde sí entra gente."
-        ],
-        medir:[
-          ...baseMedicion,
-          "Tráfico por franja + tickets por franja.",
-          "Citas agendadas vs asistencias.",
-          "Conversión: si sube aunque el tráfico esté bajo, vas bien."
-        ],
-        coaching:[
-          "Apertura en 10 segundos (pregunta poderosa).",
-          "Roleplay: 3 aperturas + 3 objeciones comunes.",
-          `Meta por asesor/día: ${associates>0 ? money(dailyRequired/associates) : "—"}.`
-        ],
-        move:"Tráfico"
-      };
-    }
-
-    if(key === "conv_down"){
-      return {
-        focus:"Enfoque: vender mejor (conversión)",
-        why:`${kpiLine} Conversión es conducta + consistencia (no magia).`,
-        acciones:[
-          ...baseAcciones,
-          "Checklist en piso: saludo → demo → propuesta → cierre (sí o sí).",
-          "Micro-metas por bloque: # demos y # cierres intentados.",
-          "El líder modela 1 venta completa al día (que lo vean)."
-        ],
-        medir:[
-          ...baseMedicion,
-          "Interacciones reales por asesor (observadas) + demos + tickets.",
-          "Conversión por franja (picos vs valle).",
-          "Si suben demos y cierres intentados, la conversión sube."
-        ],
-        coaching:[
-          "Un ajuste, no 10: ‘haz esto distinto en la siguiente interacción’.",
-          "Roleplay: precio / comparación / indecisión.",
-          "Regla: feedback inmediato y corto."
-        ],
-        move:"Conversión"
-      };
-    }
-
-    if(key === "ticket_down"){
-      return {
-        focus:"Enfoque: subir ticket/UPT (venta efectiva)",
-        why:`${kpiLine} Ticket/UPT es la palanca más rápida si el equipo sabe recomendar bien.`,
-        acciones:[
-          ...baseAcciones,
-          "3 bundles por categoría (básico/mejor/premium) con speech corto.",
-          "Upsell natural: pregunta de uso antes de recomendar.",
-          "Coloca add-ons en puntos de decisión (sin estorbar)."
-        ],
-        medir:[
-          ...baseMedicion,
-          "Ticket promedio + UPT por asesor (revisar a medio día).",
-          "% tickets con bundle (define ‘bundle mínimo’).",
-          "Si sube ticket, sube venta sin depender de tráfico."
-        ],
-        coaching:[
-          "Recomendación por necesidad (no empuje).",
-          "Revisar 5 tickets por asesor: detectar patrón.",
-          "Regla: 1 recomendación extra por interacción real."
-        ],
-        move:"Ticket/UPT"
-      };
-    }
-
-    if(key === "inv_down"){
-      return {
-        focus:"Enfoque: no perder ventas por quiebre (inventario)",
-        why:`${kpiLine} Si no hay producto, aunque vendas cabrón, se cae el resultado.`,
-        acciones:[
-          ...baseAcciones,
-          "Top 20 SKUs críticos: revisión diaria y reposición visible.",
-          "Conteo cíclico 20 min: atacar causas raíz (recibo/registro/traspasos).",
-          "Dueño por categoría: responsable claro y seguimiento."
-        ],
-        medir:[
-          ...baseMedicion,
-          "Lista de quiebres + causa (hoy).",
-          "Confiabilidad por categoría (semanal).",
-          "Ventas perdidas por quiebre (estimado)."
-        ],
-        coaching:[
-          "‘Lo que no se registra no existe’.",
-          "Hábitos: recibir → registrar → acomodar → evidenciar.",
-          "Regla: responsables claros y rutina corta."
-        ],
-        move:"Disponibilidad"
-      };
-    }
-
-    return {
-      focus:"Enfoque: ejecución simple (sin complicarte)",
-      why:`${kpiLine} La neta: orden + rutina + seguimiento diario.`,
-      acciones:[
-        ...baseAcciones,
-        "1 KPI foco por día (no todos).",
-        "Metas claras por franja (picos y valles).",
-        "Seguimiento visible: si va corto, ajustas en el momento."
-      ],
-      medir: baseMedicion,
-      coaching:[
-        "Refuerzo + 1 ajuste inmediato.",
-        "Observa conducta, no solo número.",
-        "Alinea: ‘qué significa ganar hoy’."
-      ],
-      move:"Ejecución"
-    };
-  }
-
-  function computeCommissionOnly(){
-    const sales = Number($('sellerSales').value || 0);
-    const goalPct = Number($('sellerGoalPct').value || 0);
-    const boost = Number($('boostOnOver').value || 0);
-    const cap = Number($('commCap').value || 0);
-
-    let pct = selectedCommPct;
-
-    // si sobre-meta, sumamos boost
-    if(goalPct > 100 && boost > 0) pct += boost;
-
-    // cap opcional
-    if(cap > 0) pct = Math.min(pct, cap);
-
-    const commission = sales * (pct/100);
-
-    $('outCommission').textContent = money(commission);
-    $('outCommPct').textContent = pct.toFixed(1) + "%";
-
-    const msg =
-      sales <= 0 ? "Mete la venta" :
-      goalPct <= 0 ? "Mete % de meta" :
-      goalPct < 100 ? "Vas abajo de meta" :
-      "Vas arriba de meta";
-
-    $('outCommMsg').textContent = msg;
-
-    const note = `Venta ${money(sales)} × ${pct.toFixed(1)}%`;
-    $('outCommNote').textContent = note;
-  }
-
+  // ===== Core compute
   function compute(){
-    // Dashboard
-    const goal = Number($('goal').value || 0);
-    const current = Number($('current').value || 0);
-    const today = $('today').value;
-    const end = $('end').value;
+    const monthGoal = Number(document.getElementById('monthGoal').value || 0);
+    const monthSales = Number(document.getElementById('monthSales').value || 0);
+    const daysLeft = Number(document.getElementById('daysLeft').value || 0);
+    const trafficDaily = Number(document.getElementById('trafficDaily').value || 0);
 
-    const traffic = Number($('traffic').value || 0);
-    const convPct = Number($('conv').value || 0);
-    const ticket = Number($('ticket').value || 0);
-    const invPct = Number($('inv').value || 0);
-    const associates = Number($('associates').value || 0);
-    const hours = Number($('hours').value || 8) || 8;
+    const convNow = Number(document.getElementById('convNow').value || 0) / 100;
+    const convGoal = Number(document.getElementById('convGoal').value || 0) / 100;
+    const ticketNow = Number(document.getElementById('ticketNow').value || 0);
+    const ticketGoal = Number(document.getElementById('ticketGoal').value || 0);
 
-    if(!goal || !today || !end){
-      $('outRemaining').textContent = "$—";
-      $('outRemainingNote').textContent = "Falta meta mensual y/o fechas.";
-      $('outDays').textContent = "—";
-      $('outDaysNote').textContent = "—";
-      $('outDaily').textContent = "$—";
-      $('outExpected').textContent = "$—";
-      $('statusPill').style.display = "none";
-      $('focusPill').style.display = "none";
-      $('strategyBox').innerHTML = `
-        <h3>Faltan datos</h3>
-        <p>Con meta y fechas ya puedo armar el dashboard.</p>
-        <ul><li>Meta mensual</li><li>Venta acumulada</li><li>Fechas</li></ul>
-      `;
-      $('outPerAssociate').textContent = "$—";
-      $('outPerHour').textContent = "$—";
-      $('outMove').textContent = "—";
-      $('explainLine').textContent = "—";
-      computeCommissionOnly();
-      return;
+    const remaining = Math.max(monthGoal - monthSales, 0);
+    const paceNeed = (daysLeft > 0) ? (remaining / daysLeft) : 0;
+    const pct = (monthGoal > 0) ? (monthSales / monthGoal) : 0;
+
+    // KPI gaps (positive = falta)
+    const gapConv = (convGoal > 0) ? ((convGoal - convNow) / convGoal) : 0;
+    const gapTicket = (ticketGoal > 0) ? ((ticketGoal - ticketNow) / ticketGoal) : 0;
+
+    // Focus logic: tráfico only if provided
+    // Potential daily sales from traffic (if provided)
+    const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0) ? (trafficDaily * convNow * ticketNow) : 0;
+
+    let focus = "Ejecución general";
+    let focusNote = "Mete datos y te digo qué atacar primero.";
+    let focusKey = "general";
+
+    // Determine main lever:
+    // 1) if paceNeed > potential and traffic given -> traffic-ish
+    // 2) else prioritize biggest relative gap between conv and ticket
+    if(trafficDaily > 0 && dailySalesPotentialNow > 0 && paceNeed > dailySalesPotentialNow * 1.05){
+      focus = "Tráfico (o más oportunidades)";
+      focusNote = "Tu proyección diaria se queda corta vs lo requerido. Hay que meter más oportunidades y no desperdiciar piso.";
+      focusKey = "traffic";
+    } else {
+      if(gapConv > 0.06 && gapConv >= gapTicket){
+        focus = "Conversión";
+        focusNote = "Ahorita lo que más te mueve la aguja es convertir mejor lo que ya entra.";
+        focusKey = "conv";
+      } else if(gapTicket > 0.06 && gapTicket > gapConv){
+        focus = "Ticket promedio";
+        focusNote = "Ahorita te conviene subir ticket: bundles, upsell y anclaje.";
+        focusKey = "ticket";
+      } else {
+        focus = "Ejecución + seguimiento";
+        focusNote = "Vas cerca de metas de KPI. Enfócate en ritmo diario, seguimiento y cierre.";
+        focusKey = "exec";
+      }
     }
 
-    const remaining = Math.max(goal - current, 0);
-    const days = Math.max(daysBetween(today, end), 0);
-    const daysUsable = days === 0 ? 1 : days;
-    const dailyRequired = remaining / daysUsable;
+    // ===== Dashboard outputs
+    document.getElementById('dashPct').textContent = pctFmt(pct);
+    document.getElementById('dashPctNote').textContent = `Venta ${money(monthSales)} / Meta ${money(monthGoal)}`;
+    document.getElementById('dashRemaining').textContent = money(remaining);
+    document.getElementById('dashDailyNeed').textContent = (daysLeft>0) ? money(paceNeed) : "—";
+    document.getElementById('dashDailyNeedNote').textContent = (daysLeft>0) ? `${daysLeft} días restantes` : "Pon días restantes";
+    document.getElementById('dashConv').textContent = `${(convNow*100).toFixed(1)}% vs ${(convGoal*100).toFixed(1)}%`;
+    document.getElementById('dashTicket').textContent = `${money(ticketNow)} vs ${money(ticketGoal)}`;
+    document.getElementById('dashConvNote').textContent = (convGoal>0) ? `Gap: ${Math.max((convGoal-convNow)*100,0).toFixed(1)} pts` : "Pon meta conv";
+    document.getElementById('dashTicketNote').textContent = (ticketGoal>0) ? `Gap: ${money(Math.max(ticketGoal-ticketNow,0))}` : "Pon meta ticket";
+    document.getElementById('dashFocus').textContent = focus;
+    document.getElementById('dashFocusNote').textContent = focusNote;
 
-    const conv = convPct > 0 ? (convPct/100) : 0;
-    const inv = invPct > 0 ? (invPct/100) : null;
+    const bar = document.getElementById('barPct');
+    const w = clamp(pct*100, 0, 100);
+    bar.style.width = w.toFixed(1) + "%";
 
-    let expected = null;
-    if(traffic > 0 && conv > 0 && ticket > 0){
-      const invAdj = inv === null ? 1 : clamp(0.92 + inv*0.10, 0.85, 1.02);
-      expected = traffic * conv * ticket * invAdj;
+    // Pills (status)
+    const pills = [];
+    function pill(text, state){
+      const dot = state === 'good' ? 'good' : state === 'warn' ? 'warn' : 'bad';
+      return `<span class="pill"><span class="dot ${dot}"></span>${text}</span>`;
     }
 
-    // status simple
-    let statusText = "En ruta";
-    let statusClass = "ok";
-    let explain = "";
-
-    if(expected !== null){
-      const ratio = dailyRequired / expected; // >1 va corto
-      if(ratio > 1.20){ statusText = "Vas corto (ajuste fuerte)"; statusClass = "bad"; }
-      else if(ratio > 1.05){ statusText = "Vas corto (ajuste ligero)"; statusClass = "warn"; }
-      else { statusText = "Vas bien"; statusClass = "ok"; }
-
-      explain = `Requerido ${money(dailyRequired)} vs proyectado ${money(expected)} por día.`;
-    }else{
-      statusText = "Completa KPIs para proyectar";
-      statusClass = "warn";
-      explain = "Si llenas tráfico + conversión + ticket, te doy proyección y ajuste más fino.";
+    // monthly pace status
+    if(monthGoal>0 && daysLeft>0){
+      if(remaining === 0) pills.push(pill("Meta del mes: cerrada ✅","good"));
+      else if(paceNeed > 0) pills.push(pill(`Ritmo diario requerido: ${money(paceNeed)}`,(paceNeed>0?'warn':'good')));
+    }
+    // conv status
+    if(convGoal>0){
+      const st = convNow >= convGoal ? "good" : (convNow >= convGoal*0.9 ? "warn" : "bad");
+      pills.push(pill(`Conversión: ${(convNow*100).toFixed(1)}%`, st));
+    }
+    // ticket status
+    if(ticketGoal>0){
+      const st = ticketNow >= ticketGoal ? "good" : (ticketNow >= ticketGoal*0.9 ? "warn" : "bad");
+      pills.push(pill(`Ticket: ${money(ticketNow)}`, st));
     }
 
-    // scenario
-    const autoKey = chooseScenarioAuto({ inv, conv, ticket, traffic });
-    const key = (selectedScenario === "auto") ? autoKey : selectedScenario;
+    document.getElementById('dashPills').innerHTML = pills.join("");
 
-    const pack = strategyPack(key, { dailyRequired, expected, associates });
+    // ===== Strategy outputs
+    const strTitle = document.getElementById('strTitle');
+    const strIntro = document.getElementById('strIntro');
+    const strActions = document.getElementById('strActions');
+    const strMeasure = document.getElementById('strMeasure');
+    const strCoaching = document.getElementById('strCoaching');
+    const waText = document.getElementById('waText');
 
-    // outputs
-    $('outRemaining').textContent = money(remaining);
-    $('outRemainingNote').textContent = `Meta ${money(goal)} · Acumulado ${money(current)}`;
+    const dailyNeedTxt = (daysLeft>0) ? money(paceNeed) : "—";
+    const projTxt = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
 
-    $('outDays').textContent = String(daysUsable);
-    $('outDaysNote').textContent = `De ${today} a ${end}`;
+    let title = "Estrategia base: ejecución + seguimiento";
+    let intro = `Hoy necesitas ${dailyNeedTxt} por día para cerrar meta.`;
 
-    $('outDaily').textContent = money(dailyRequired);
-    $('outExpected').textContent = expected === null ? "$—" : money(expected);
+    let actions = [
+      "<strong>Brief 5 min:</strong> 1 KPI + 1 foco del día (en una frase).",
+      "<strong>Rondas cortas:</strong> cada 90 min revisa: ¿qué está frenando hoy?",
+      "<strong>Cierre 10 min:</strong> ¿qué repetimos mañana? (sin drama, solo claro).",
+      "<strong>WhatsApp/CRM:</strong> 10 mensajes por asesor/día + 3 citas reales."
+    ];
+    let measure = [
+      "Venta vs ritmo: a media jornada y al cierre.",
+      "Notas rápidas: qué franja vendió y por qué.",
+      "Conversión: aunque baje el tráfico, si sube conv, vas bien.",
+      "Ticket: bundles / upsell medidos por tickets."
+    ];
+    let coaching = [
+      "Apertura en 10 segundos: pregunta poderosa + guía.",
+      "Roleplay: 3 aperturas + 3 objeciones comunes.",
+      "Checklist por asesor: 1 cosa a mejorar hoy (solo una)."
+    ];
 
-    const statusPill = $('statusPill');
-    statusPill.style.display = "inline-flex";
-    statusPill.className = "pill " + statusClass;
-    statusPill.textContent = `Estado: ${statusText}`;
+    if(focusKey === "traffic"){
+      title = "Enfoque: levantar oportunidades (tráfico y contacto)";
+      intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter más oportunidades y no desperdiciar piso.`;
+      actions = [
+        "<strong>Greeter en puerta:</strong> saludo + pregunta + dirigir (picos).",
+        "<strong>Activación rápida:</strong> WhatsApp/CRM: 10 mensajes por asesor + 2 citas cada uno.",
+        "<strong>Staff por franja:</strong> más manos donde sí entra gente.",
+        "<strong>Demo en 2 min:</strong> que cada visita vea el “wow” rápido.",
+        "<strong>Alianzas express:</strong> convenio local / referidos (hoy mismo)."
+      ];
+      measure = [
+        "Oportunidades generadas por hora (contactos/citas).",
+        "Asistencias a citas vs agenda.",
+        "Tráfico por franja (si lo tienes) y venta por franja.",
+        "Conversión: si sube, aunque entre menos, mejora."
+      ];
+      coaching = [
+        "Entrenamiento de bienvenida: 2 guiones cortos (uno directo, uno suave).",
+        "Roleplay: 5 minutos por asesor con el guion de entrada.",
+        "Regla: nadie deja ir a un cliente sin siguiente paso (cita / contacto)."
+      ];
+    }
 
-    const focusPill = $('focusPill');
-    focusPill.style.display = "inline-flex";
-    focusPill.className = "pill";
-    focusPill.textContent = pack.focus;
+    if(focusKey === "conv"){
+      title = "Enfoque: subir conversión (hacer que SÍ compre el que ya entra)";
+      intro = `Tu conversión actual va debajo de meta. No necesitas magia: necesitas consistencia en piso.`;
+      actions = [
+        "<strong>1 foco hoy:</strong> pasar de “saludo” a “diagnóstico” (preguntar y guiar).",
+        "<strong>Regla 2-2-2:</strong> 2 preguntas + 2 opciones + 2 cierres suaves.",
+        "<strong>Demo obligatoria:</strong> sin demo, la venta se cae.",
+        "<strong>Objeciones:</strong> elige 1 objeción del día y practícala.",
+        "<strong>Seguimiento:</strong> quien no compró, se convierte en cita (mínimo 1 intento)."
+      ];
+      measure = [
+        "Conversión por franja (mañana / tarde).",
+        "Conversión por asesor (no para castigar: para entrenar).",
+        "Razón de no compra (3 categorías máximo).",
+        "Citas agendadas vs compra inmediata."
+      ];
+      coaching = [
+        "Guion simple: '¿Qué buscas? ¿Para cuándo? ¿Qué te importa más?'",
+        "Roleplay 7 min: 1 apertura + 1 cierre suave.",
+        "Micro-feedback en piso: 1 cosa bien + 1 cosa a mejorar (máximo)."
+      ];
+    }
 
-    $('outPerAssociate').textContent = associates>0 ? money(dailyRequired/associates) : "$—";
-    $('outPerHour').textContent = money(dailyRequired / Math.max(hours,1));
-    $('outMove').textContent = pack.move;
+    if(focusKey === "ticket"){
+      title = "Enfoque: subir ticket promedio (sin forzar, con bundles)";
+      intro = `Tu ticket va debajo de meta. Aquí se gana con bundles, anclaje y recomendación clara.`;
+      actions = [
+        "<strong>Bundle definido:</strong> 2 combos claros (bueno/mejor) y se ofrecen siempre.",
+        "<strong>Anclaje:</strong> enseña primero el paquete “mejor” y luego el “bueno”.",
+        "<strong>Upsell elegante:</strong> 1 mejora por ticket (no 5 cosas).",
+        "<strong>Regla:</strong> cada ticket debe llevar 1 accesorio/extra (si aplica).",
+        "<strong>Cierre:</strong> '¿Te lo dejo en el paquete que más te conviene?'"
+      ];
+      measure = [
+        "Ticket promedio por franja.",
+        "Tickets con bundle vs sin bundle.",
+        "Top 3 productos extra que suben ticket.",
+        "Porcentaje de tickets con upsell."
+      ];
+      coaching = [
+        "Ensayar 2 bundles (palabras exactas).",
+        "Practicar anclaje: 'este es el completo; este el esencial'.",
+        "Feedback por ticket: 1 oportunidad de bundle detectada."
+      ];
+    }
 
-    $('explainLine').textContent = explain;
+    strTitle.textContent = title;
+    strIntro.textContent = intro;
 
-    $('strategyBox').innerHTML = `
-      <h3>${pack.focus}</h3>
-      <p>${pack.why}</p>
+    strActions.innerHTML = actions.map(x=>`<li>${x}</li>`).join("");
+    strMeasure.innerHTML = measure.map(x=>`<li>${x}</li>`).join("");
+    strCoaching.innerHTML = coaching.map(x=>`<li>${x}</li>`).join("");
 
-      <div class="divider"></div>
-      <div class="pill">Acciones (7 días)</div>
-      <ul style="margin-top:8px">${pack.acciones.map(x=>`<li>${x}</li>`).join("")}</ul>
+    // WhatsApp message
+    const wa = [
+      "Equipo 👊",
+      `Hoy el foco es: ${focus.toUpperCase()}.`,
+      (daysLeft>0 && monthGoal>0) ? `Ritmo requerido: ${money(paceNeed)} por día.` : "",
+      "1 cosa clara: no queremos 'intentar', queremos ejecutar.",
+      "A media jornada revisamos 5 min y ajustamos. Va?"
+    ].filter(Boolean).join("\n");
+    waText.textContent = wa;
 
-      <div class="divider"></div>
-      <div class="pill">Cómo medir</div>
-      <ul style="margin-top:8px">${pack.medir.map(x=>`<li>${x}</li>`).join("")}</ul>
+    // Switch to dashboard automatically after calculate (para que se vea rápido)
+    document.querySelector('.tab[data-tab="tab-dashboard"]').click();
 
-      <div class="divider"></div>
-      <div class="pill">Coaching</div>
-      <ul style="margin-top:8px">${pack.coaching.map(x=>`<li>${x}</li>`).join("")}</ul>
-    `;
-
-    // comisión
+    // Keep commission updated
     computeCommissionOnly();
   }
 
-  // Botón principal
-  $('calcBtn').addEventListener('click', compute);
+  // ===== Commission compute (simple)
+  function computeCommissionOnly(){
+    const goal = Number(document.getElementById('sellerGoal')?.value || 0);
+    const sales = Number(document.getElementById('sellerSales')?.value || 0);
+    const commPct = Number(document.getElementById('sellerCommPct')?.value || 0);
 
-  // Auto-cálculo cuando cambian inputs (más “dinámico”)
-  ['goal','current','today','end','traffic','conv','ticket','inv','associates','hours','sellerSales','sellerGoalPct','boostOnOver','commCap']
-    .forEach(id=>{
-      const el = $(id);
-      if(el) el.addEventListener('input', ()=> {
-        // para no estar “saltando” mientras tecleas meta, lo dejamos suave:
-        // si quieres inmediato 100%, lo puedes dejar así
-        compute();
-      });
+    const pct = (goal > 0) ? (sales / goal) : 0;
+    const pctTxt = (goal > 0) ? (pct*100).toFixed(1) + "%" : "—";
+
+    const commission = sales * (commPct/100);
+    const toGoal = Math.max(goal - sales, 0);
+
+    const sellerPctEl = document.getElementById('sellerPct');
+    if(sellerPctEl) sellerPctEl.value = pctTxt;
+
+    const outCommission = document.getElementById('outCommission');
+    const outCommNote = document.getElementById('outCommNote');
+    const outToGoal = document.getElementById('outToGoal');
+    const outCommMsg = document.getElementById('outCommMsg');
+
+    if(outCommission) outCommission.textContent = money(commission);
+    if(outCommNote) outCommNote.textContent = `Venta ${money(sales)} × ${commPct.toFixed(1)}%`;
+    if(outToGoal) outToGoal.textContent = money(toGoal);
+
+    let msg = "Mete meta y venta";
+    if(commPct <= 0) msg = "Falta % de comisión";
+    else if(goal > 0){
+      if(pct >= 1.0) msg = "Ya está en meta ✅";
+      else if(pct >= 0.85) msg = "Ya casi, aprieta cierre";
+      else if(pct >= 0.60) msg = "Vas bien, acelera por franja";
+      else msg = "Vas bajo, enfócate en 1 cosa hoy";
+    }
+    if(outCommMsg) outCommMsg.textContent = msg;
+  }
+
+  // ===== Events
+  document.getElementById('btnRun').addEventListener('click', compute);
+  document.getElementById('btnReset').addEventListener('click', ()=>{
+    [
+      'monthGoal','monthSales','daysLeft','trafficDaily',
+      'convNow','convGoal','ticketNow','ticketGoal',
+      'sellerGoal','sellerSales','sellerCommPct'
+    ].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.value = "";
     });
 
-  // Primer render
-  compute();
+    // reset visible stuff
+    document.getElementById('dashPct').textContent = "—";
+    document.getElementById('dashPctNote').textContent = "—";
+    document.getElementById('dashRemaining').textContent = "—";
+    document.getElementById('dashDailyNeed').textContent = "—";
+    document.getElementById('dashDailyNeedNote').textContent = "—";
+    document.getElementById('dashConv').textContent = "—";
+    document.getElementById('dashTicket').textContent = "—";
+    document.getElementById('dashConvNote').textContent = "—";
+    document.getElementById('dashTicketNote').textContent = "—";
+    document.getElementById('dashFocus').textContent = "—";
+    document.getElementById('dashFocusNote').textContent = "—";
+    document.getElementById('dashPills').innerHTML = "";
+    document.getElementById('barPct').style.width = "0%";
+
+    document.getElementById('strTitle').textContent = "—";
+    document.getElementById('strIntro').textContent = "Haz clic en Calcular.";
+    document.getElementById('strActions').innerHTML = "";
+    document.getElementById('strMeasure').innerHTML = "";
+    document.getElementById('strCoaching').innerHTML = "";
+    document.getElementById('waText').textContent = "Haz clic en Calcular.";
+
+    document.querySelector('.tab[data-tab="tab-inputs"]').click();
+    computeCommissionOnly();
+  });
+
+  ['sellerGoal','sellerSales','sellerCommPct'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', computeCommissionOnly);
+  });
+
+  // First run commission placeholders
+  computeCommissionOnly();
 </script>
 </body>
 </html>
