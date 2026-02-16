@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Andrés González | Estrategia Comercial & Operaciones</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo estratégico, desarrollo comercial, KPIs, ejecución operativa y crecimiento sostenible.">
+  <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y equipos de alto desempeño (retail y negocio en general).">
   <meta property="og:image" content="assets/profile.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -120,6 +120,41 @@
     .exp-item ul{margin:8px 0 0 18px}
     .exp-item li{margin:6px 0}
 
+    /* BLOQUE STRATEGY LAB */
+    .lab-cta{
+      margin-top:24px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(0,180,255,.28);
+      background:linear-gradient(180deg, rgba(0,180,255,.10), rgba(0,209,178,.06));
+      box-shadow:0 18px 44px rgba(0,0,0,.22);
+    }
+    .lab-cta h3{
+      font-size:15px;
+      margin-bottom:6px;
+      letter-spacing:.01em;
+    }
+    .lab-cta p{
+      color:var(--muted);
+      font-size:13px;
+      margin:0 0 12px;
+      line-height:1.6;
+    }
+    .lab-cta .lab-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:10px;
+    }
+    .lab-cta .note{
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* CERTS */
     .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .cert{
       background:#0e151f;
@@ -141,6 +176,7 @@
     .cap strong{display:block;font-size:14px;line-height:1.25}
     .cap span{font-size:12px;color:var(--muted)}
 
+    /* MODALES */
     dialog{
       border:none;
       border-radius:20px;
@@ -192,6 +228,28 @@
       border-radius:10px;
       display:block;
     }
+    .cv-img{image-rendering:auto}
+    @media(min-width:1100px){
+      .cv-img{width:1180px}
+    }
+
+    .cert-modal-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px 0 2px;
+    }
+    .modal-img{
+      width:100%;
+      max-width:min(1100px,96vw);
+      max-height:80vh;
+      object-fit:contain;
+      border-radius:16px;
+      border:1px solid #2a3643;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:#0b111b;
+    }
+    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
 
     .vision p{
       font-size:16px;
@@ -238,22 +296,22 @@
     </div>
 
     <div>
-      <h1>Estrategia Comercial & Operaciones</h1>
-      <div class="subtitle">Liderazgo · KPIs · Rentabilidad · Ejecución · Crecimiento sostenible</div>
+      <h1>Retail Operations & Desarrollo Comercial</h1>
+      <div class="subtitle">Estrategia · Liderazgo · KPIs · Rentabilidad · Ejecución aplicable a negocio</div>
 
       <div class="badges">
         <span class="chip">Gestión operativa</span>
-        <span class="chip">Desarrollo comercial</span>
+        <span class="chip">Estrategia comercial</span>
         <span class="chip">Optimización de procesos</span>
         <span class="chip">Análisis y reporteo</span>
         <span class="chip">HubSpot · SAP</span>
       </div>
 
       <div class="links" style="margin-top:14px">
-        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
         <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
-        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank">📄 Ver CV (PDF)</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener">📄 Ver CV (PDF)</a>
       </div>
     </div>
   </section>
@@ -261,25 +319,26 @@
   <section id="sobre-mi" class="card">
     <div class="hd">Sobre mí</div>
     <div class="bd">
-      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos, desarrollando estrategias comerciales y estructurando operaciones</strong> en entornos de alto ritmo. Mi experiencia nace en retail, pero mi enfoque es aplicable a <strong>cualquier modelo de negocio que busque crecimiento sostenible</strong>.</p>
-      <p>Trabajo bajo una lógica clara: <strong>prioridades definidas, indicadores accionables y ejecución disciplinada</strong>. No se trata solo de vender, sino de construir sistemas que conviertan estrategia en resultados medibles.</p>
-      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> porque entiendo que el liderazgo moderno integra negocio, datos y tecnología para tomar mejores decisiones.</p>
+      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong> (mi base es retail, pero mi enfoque es <strong>completamente trasladable</strong> a cualquier negocio que viva de <strong>ventas, ejecución, servicio y rentabilidad</strong>).</p>
+      <p>Mi manera de trabajar es simple y muy práctica: <strong>claridad de objetivos</strong>, <strong>KPIs que sí se mueven con acciones</strong> y <strong>seguimiento diario</strong>. Me gusta convertir la estrategia en hábitos: qué revisamos, cuándo, quién lo ejecuta y cómo medimos impacto (conversión, ticket, productividad, inventario, experiencia).</p>
+      <p>Creo en el liderazgo con presencia: <strong>cercanía + claridad</strong>. El equipo entiende el “por qué” de cada indicador y qué acción concreta cambia el resultado. Eso acelera el desempeño sin desgaste.</p>
+      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque el crecimiento hoy se potencia cuando conectas <strong>negocio + datos + tecnología</strong> para decidir mejor y ejecutar más rápido.</p>
     </div>
   </section>
 
   <section id="experiencia" class="card">
     <div class="hd">Experiencia profesional</div>
     <div class="bd">
-
       <div class="exp-item">
         <h4>Store Manager Boutique Showroom — Luuna</h4>
         <div class="meta">04/2022 – 06/2025</div>
         <ul>
-          <li><strong>2º lugar nacional (2023)</strong> en desempeño comercial y KPIs estratégicos.</li>
-          <li>Posicioné una unidad nueva dentro de las <strong>mejores tiendas del país en menos de 12 meses</strong>.</li>
-          <li>Implementé estructuras de seguimiento diario que elevaron conversión y ticket promedio de forma sostenida.</li>
-          <li><strong>98.88% de confiabilidad de inventario</strong>, reduciendo quiebres y pérdida operativa.</li>
-          <li>Participación en capacitación y desarrollo de líderes en <strong>15+ sucursales</strong>.</li>
+          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando por desempeño sostenido.</li>
+          <li>Posicioné una <strong>unidad nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de un año</strong>, consolidando ejecución y disciplina operativa.</li>
+          <li>Diseñé y ejecuté <strong>rutinas de seguimiento</strong> (metas por hora, coaching en piso, priorización por KPI) para sostener crecimiento y consistencia.</li>
+          <li>Logré <strong>98.88% de confiabilidad</strong> de inventario, mejorando disponibilidad de producto y control de merma.</li>
+          <li>Fortalecí la operación con <strong>estándares claros</strong> (roles, productividad, orden de piso y servicio), elevando la experiencia del cliente y la efectividad comercial.</li>
+          <li>Apoyé a Dirección de Distrito en capacitación y desarrollo de equipos en <strong>15+ sucursales</strong>.</li>
         </ul>
       </div>
 
@@ -287,23 +346,29 @@
         <h4>Gerente de Boutique — GAP</h4>
         <div class="meta">10/2014 – 07/2021</div>
         <ul>
-          <li>Transformé una unidad con bajo desempeño en una operación <strong>rentable en menos de un año</strong>.</li>
-          <li>Mantuvimos resultados positivos durante la pandemia mediante disciplina operativa y control financiero.</li>
-          <li>Elevé confiabilidad de inventario de 85% a 98.88% mediante procesos estructurados.</li>
-          <li>Lideré equipos de hasta 30 personas desarrollando cultura de ejecución y responsabilidad por KPI.</li>
+          <li>Recibí una unidad con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong> con enfoque en indicadores, ejecución y equipo.</li>
+          <li>Mantuve <strong>resultados positivos durante la pandemia (2020)</strong>, sosteniendo continuidad operativa con disciplina comercial y control.</li>
+          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong> mediante procesos, auditorías y hábitos de control.</li>
+          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento, cultura de estándares y responsabilidad por KPI.</li>
+          <li>Impulsé <strong>ejecución en piso</strong> (visual, enfoque por franja, coaching y priorización) para convertir tráfico en venta de manera más consistente.</li>
         </ul>
       </div>
 
-      <!-- BOTÓN STRATEGY LAB -->
-      <div style="display:flex;justify-content:center;margin-top:28px;">
-        <a href="/andresretailops.github.io/strategy-lab.html" class="btn primary">
-          🚀 Strategy Lab — Mira cómo estructuro una estrategia real
-        </a>
+      <!-- CTA Strategy Lab (debajo de logros) -->
+      <div class="lab-cta">
+        <div style="text-align:center;">
+          <h3>Proyecto práctico: diagnóstico y ejecución para mejorar tu estrategia</h3>
+          <p>
+            Aquí puedes ver <strong>cómo me gusta trabajar</strong>: analizar un escenario real, elegir prioridades, calcular impacto en KPIs y convertirlo en un plan simple.
+            Es una herramienta que <strong>cualquier negocio</strong> puede usar para aterrizar estrategia a ejecución.
+          </p>
+          <div class="lab-actions">
+            <a class="btn primary" href="strategy-lab.html">🧪 Probar el laboratorio (Strategy Lab)</a>
+            <a class="btn" href="#contacto">Hablar conmigo</a>
+          </div>
+          <div class="note">Tip: elige un escenario, selecciona acciones y revisa el impacto proyectado en indicadores.</div>
+        </div>
       </div>
-
-      <p style="text-align:center;color:var(--muted);margin-top:14px;max-width:750px;margin-left:auto;margin-right:auto;">
-        Un laboratorio práctico donde simulo escenarios reales y muestro cómo priorizo decisiones, impacto KPIs y estructuro crecimiento sostenible en cualquier tipo de negocio.
-      </p>
 
     </div>
   </section>
@@ -312,4 +377,119 @@
     <div class="hd">Certificaciones destacadas</div>
     <div class="bd">
       <div class="certs">
-        <!-- Tus certificaciones se mantienen exactamente igual -->
+
+        <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
+          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
+          <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
+          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS Academy – Cloud Foundations">
+          <div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','Emitido 2025')">
+          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco – Python Essentials 1">
+          <div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
+          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Gestión de Proyectos y Metodología Agile">
+          <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
+          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
+          <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <!-- ✅ ENGLISH (IMAGEN, MISMO MODAL) -->
+        <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
+          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals – Boost your job search and CV">
+          <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="vision" class="card vision">
+    <div class="hd">Mi visión del liderazgo y los resultados</div>
+    <div class="bd">
+      <p>Creo en negocios que crecen por diseño, no por suerte: <strong>claridad, estructura y ejecución</strong>. Mi base es retail, pero el principio es universal: si alineas equipo, proceso e indicadores, el resultado se vuelve repetible.</p>
+      <p>Un líder efectivo no solo dirige: <strong>define prioridades</strong>, <strong>crea hábitos</strong> y construye criterio. Cuando el equipo entiende qué indicador mueve el resultado y qué acción lo cambia, se acelera la productividad sin depender de “héroes”.</p>
+      <p>Me gusta trabajar con una lógica de <strong>ciclos cortos</strong>: medir, ajustar y volver a ejecutar. Eso aplica igual para una tienda, un equipo comercial, un servicio o una operación que busca eficiencia y crecimiento.</p>
+      <p>Mi propósito es seguir evolucionando como líder que une <strong>estrategia comercial</strong>, <strong>disciplina operativa</strong> y <strong>tecnología</strong> para construir equipos de alto desempeño y resultados medibles.</p>
+    </div>
+  </section>
+
+  <section id="contacto" class="card">
+    <div class="hd">Contacto</div>
+    <div class="bd" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
+      <div><strong>Correo</strong><p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p></div>
+      <div><strong>Teléfono</strong><p><a href="tel:+523323430043">+52 33 2343 0043</a></p></div>
+      <div><strong>LinkedIn</strong><p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">/in/andresglez89</a></p></div>
+      <div><strong>Ubicación</strong><p>Zapopan, Jalisco, México</p></div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
+  </div>
+
+</main>
+
+<footer class="container">
+  <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
+</footer>
+
+<!-- MODAL CV (ARREGLADO) -->
+<dialog id="cvModal">
+  <div class="modal-hd">
+    <strong>CV – Andrés González</strong>
+    <button class="close" onclick="cvModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cv-stage">
+      <div class="cv-paper">
+        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL CERT (OK) -->
+<dialog id="certModal">
+  <div class="modal-hd">
+    <strong id="certTitle">Certificado</strong>
+    <button class="close" onclick="certModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cert-modal-wrap">
+      <img id="certImg" alt="" class="modal-img">
+    </div>
+    <div id="certDetail" class="modal-sub"></div>
+  </div>
+</dialog>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const cvModal = document.getElementById('cvModal');
+  document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
+
+  const certModal = document.getElementById('certModal');
+  const certImg = document.getElementById('certImg');
+  const certTitle = document.getElementById('certTitle');
+  const certDetail = document.getElementById('certDetail');
+
+  function showCert(src,title,detail){
+    certImg.src = src;
+    certTitle.textContent = title || 'Certificado';
+    certDetail.textContent = detail || '';
+    certModal.showModal();
+  }
+</script>
+
+</body>
+</html>
