@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Retail Performance Dashboard | Andrés González</title>
+  <meta name="description" content="Planner + dashboard: metas, KPIs, estrategia y coaching accionable.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#141a24;
+      --text:#e6edf3;
+      --muted:#9aa4b2;
+      --brand:#00b4ff;
+      --brand2:#00d1b2;
+      --radius:20px;
+      --shadow:0 14px 36px rgba(0,0,0,.38);
+      --stroke:#223043;
+
+      --ok:#00d1b2;
+      --warn:#ffd166;
+      --bad:#ff5d5d;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
+      line-height:1.65;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.95}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    header{
+      position:sticky;top:0;z-index:10;
+      background:#0d1219;
+      box-shadow:0 4px 14px rgba(0,0,0,.4);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 0;flex-wrap:wrap;gap:12px;
+    }
+    .logo{font-weight:900;color:#fff;letter-spacing:.02em}
+    .nav-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid #2b3a4f;
+      background:#0e141f;
+      color:#d6e9ff;
+      padding:10px 14px;border-radius:12px;
+      font-weight:800;
+      transition:.18s;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#051018;border:none;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hd{
+      padding:18px 18px 0;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .bd{padding:18px}
+    h1{font-size:28px;line-height:1.2;margin-bottom:10px}
+    .sub{color:var(--muted);font-size:14px}
+    .tiny{color:var(--muted);font-size:12px;margin-top:10px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin:18px 0;
+      align-items:start;
+    }
+    @media(max-width:980px){ .grid{grid-template-columns:1fr} }
+
+    .form{
+      display:grid;
+      gap:10px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media(max-width:640px){ .row{grid-template-columns:1fr} }
+
+    .field{
+      border:1px solid #1f2b3d;
+      border-radius:14px;
+      background:#0e151f;
+      padding:12px;
+    }
+    .field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+    .field input, .field select{
+      width:100%;
+      border:1px solid #2b3a4f;
+      background:#0b111b;
+      color:var(--text);
+      padding:10px 10px;
+      border-radius:12px;
+      outline:none;
+      font-weight:700;
+    }
+    .field input:focus, .field select:focus{border-color:rgba(0,180,255,.55)}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:#cfe7ff;
+      font-weight:900;
+      font-size:12px;
+      margin-top:10px;
+      width:max-content;
+    }
+    .pill.ok{background:rgba(0,209,178,.16);border-color:rgba(0,209,178,.30);color:#bff7ef}
+    .pill.warn{background:rgba(255,209,102,.16);border-color:rgba(255,209,102,.30);color:#ffe6b2}
+    .pill.bad{background:rgba(255,93,93,.16);border-color:rgba(255,93,93,.30);color:#ffd0d0}
+
+    .dash{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+    @media(max-width:980px){ .dash{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:520px){ .dash{grid-template-columns:1fr} }
+
+    .kpi{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid #1f2b3d;
+      background:#0e151f;
+    }
+    .kpi .label{color:var(--muted);font-size:12px}
+    .kpi .value{font-size:18px;font-weight:900;margin-top:2px}
+    .kpi .note{font-size:12px;color:#b9c3d4;margin-top:6px}
+
+    .bars{display:grid;gap:10px;margin-top:12px}
+    .bar{
+      border:1px solid #1f2b3d;
+      border-radius:14px;
+      background:#0b111b;
+      padding:10px 12px;
+    }
+    .bar-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .bar-top strong{font-size:13px}
+    .bar-top span{font-size:12px;color:var(--muted)}
+    .track{
+      margin-top:10px;
+      height:10px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      transition:width .55s ease;
+      border-radius:999px;
+    }
+
+    .sections{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin:16px 0 28px;
+    }
+    @media(max-width:980px){ .sections{grid-template-columns:1fr} }
+
+    .playbook{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid #1f2b3d;
+      background:#0e151f;
+    }
+    .playbook h3{font-size:14px;margin-bottom:6px}
+    .playbook p{color:var(--muted);font-size:13px;margin-bottom:10px}
+    .playbook ul{margin:0 0 0 18px}
+    .playbook li{margin:6px 0;color:#dfe8f3;font-size:13px}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid #1f2b3d;
+      background:#0e151f;
+    }
+    .table th, .table td{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+    }
+    .table th{color:var(--muted);text-align:left;font-weight:900;background:rgba(255,255,255,.02)}
+    .table tr:last-child td{border-bottom:none}
+
+    footer{padding:26px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
+    .muted{color:var(--muted)}
+    code{background:rgba(255,255,255,.05);padding:2px 6px;border-radius:8px;border:1px solid rgba(255,255,255,.08)}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="./index.html">ANDRÉS GONZÁLEZ</a>
+    <div class="nav-right">
+      <a class="btn" href="./index.html">Volver al portafolio</a>
+      <button class="btn primary" id="calcBtn" type="button">Generar dashboard</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card" style="margin:18px 0">
+    <div class="hd">Retail Performance Planner</div>
+    <div class="bd">
+      <h1>Dashboard de cierre + estrategia por KPI</h1>
+      <div class="sub">
+        Mete tus datos reales. El sistema calcula lo que falta, el ritmo requerido y te sugiere un playbook de ejecución (con coaching y medición por asesor).
+      </div>
+      <div class="tiny">
+        Transparente: las fórmulas salen de tus inputs. Ventas esperadas = <code>Tráfico × Conversión × Ticket</code>.
+        Venta diaria requerida = <code>(Meta mensual − Acumulado) / Días restantes</code>.
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <!-- INPUTS -->
+    <div class="card">
+      <div class="hd">Inputs</div>
+      <div class="bd">
+        <div class="form">
+          <div class="row">
+            <div class="field">
+              <label>Meta mensual (MXN)</label>
+              <input id="goal" type="number" min="0" step="100" placeholder="Ej. 1200000">
+            </div>
+            <div class="field">
+              <label>Venta acumulada hoy (MXN)</label>
+              <input id="current" type="number" min="0" step="100" placeholder="Ej. 780000">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Fecha de hoy</label>
+              <input id="today" type="date">
+            </div>
+            <div class="field">
+              <label>Fin de mes</label>
+              <input id="end" type="date">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Tráfico promedio por día (personas)</label>
+              <input id="traffic" type="number" min="0" step="1" placeholder="Ej. 220">
+            </div>
+            <div class="field">
+              <label>Ticket promedio actual (MXN)</label>
+              <input id="ticket" type="number" min="0" step="1" placeholder="Ej. 1050">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Conversión actual (%)</label>
+              <input id="conv" type="number" min="0" max="100" step="0.1" placeholder="Ej. 17.0">
+            </div>
+            <div class="field">
+              <label>Confiabilidad inventario (%)</label>
+              <input id="inv" type="number" min="0" max="100" step="0.1" placeholder="Ej. 96.5">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Asesores en piso (promedio por día)</label>
+              <input id="associates" type="number" min="1" step="1" placeholder="Ej. 6">
+            </div>
+            <div class="field">
+              <label>% presupuesto de nómina sobre ventas (opcional)</label>
+              <input id="laborPct" type="number" min="0" max="100" step="0.1" placeholder="Ej. 12.0">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Objetivo principal (si quieres forzar un enfoque)</label>
+            <select id="focus">
+              <option value="auto">Auto (detecta el KPI cuello de botella)</option>
+              <option value="traffic">Tráfico</option>
+              <option value="conversion">Conversión</option>
+              <option value="ticket">Ticket/UPT</option>
+              <option value="inventory">Disponibilidad (inventario)</option>
+            </select>
+          </div>
+
+          <div class="tiny muted">
+            Tip: Si no sabes “confiabilidad”, pon 96–98% como referencia normal. Si tienes quiebres, pon 90–94%.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="card">
+      <div class="hd">Dashboard</div>
+      <div class="bd">
+        <div class="dash">
+          <div class="kpi">
+            <div class="label">Venta restante</div>
+            <div class="value" id="outRemaining">$—</div>
+            <div class="note" id="outRemainingNote">Completa inputs y genera dashboard</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Días restantes</div>
+            <div class="value" id="outDays">—</div>
+            <div class="note" id="outDaysNote">Se calcula con fechas</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Venta diaria requerida</div>
+            <div class="value" id="outDaily">$—</div>
+            <div class="note" id="outDailyNote">Ritmo necesario</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Venta esperada hoy</div>
+            <div class="value" id="outExpected">$—</div>
+            <div class="note" id="outExpectedNote">Tráfico × conv × ticket (ajustada por inv)</div>
+          </div>
+        </div>
+
+        <div class="bars">
+          <div class="bar">
+            <div class="bar-top"><strong>Cumplimiento proyectado vs meta</strong><span id="barMetaTxt">—</span></div>
+            <div class="track"><div class="fill" id="barMeta"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-top"><strong>Salud comercial</strong><span id="barHealthTxt">—</span></div>
+            <div class="track"><div class="fill" id="barHealth"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-top"><strong>Riesgo por inventario</strong><span id="barInvTxt">—</span></div>
+            <div class="track"><div class="fill" id="barInv"></div></div>
+          </div>
+        </div>
+
+        <div id="focusPill" class="pill" style="display:none"></div>
+        <div id="statusPill" class="pill" style="display:none"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sections">
+    <!-- Playbook -->
+    <div class="card">
+      <div class="hd">Estrategia recomendada</div>
+      <div class="bd">
+        <div class="playbook" id="playbookBox">
+          <h3>Playbook</h3>
+          <p class="muted">Genera el dashboard para ver un plan accionable según el KPI prioritario.</p>
+          <ul>
+            <li>Rutina diaria (briefing + metas por bloque)</li>
+            <li>Cómo medir por asesor</li>
+            <li>Coaching sugerido (qué decir y qué observar)</li>
+            <li>Acciones rápidas para 7 días</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presupuesto + Metas -->
+    <div class="card">
+      <div class="hd">Meta, presupuesto y control</div>
+      <div class="bd">
+        <div class="playbook">
+          <h3>Cálculos (transparentes)</h3>
+          <p class="muted">Esto no inventa números: solo traduce tus metas a ritmo y control.</p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Cómo se calcula</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ritmo de cierre</td>
+                <td><code>(Meta − Acumulado) / Días restantes</code></td>
+                <td id="tDaily">$—</td>
+              </tr>
+              <tr>
+                <td>Meta por asesor / día</td>
+                <td><code>Venta diaria requerida / # asesores</code></td>
+                <td id="tPerAssociate">$—</td>
+              </tr>
+              <tr>
+                <td>Presupuesto nómina / día</td>
+                <td><code>Venta diaria requerida × % nómina</code></td>
+                <td id="tLabor">$—</td>
+              </tr>
+              <tr>
+                <td>Meta por hora (8h)</td>
+                <td><code>Venta diaria requerida / 8</code></td>
+                <td id="tPerHour">$—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="tiny muted" style="margin-top:10px">
+            Si tu tienda opera más/menos horas, luego lo ajustamos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin:0 0 28px">
+    <div class="hd">Cómo medir por asesor (simple y útil)</div>
+    <div class="bd">
+      <p class="muted" style="font-size:13px;margin-bottom:10px">
+        Esto es lo que “se ve pro” en entrevistas: cómo conviertes KPIs en hábitos y en coaching.
+      </p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Métrica</th>
+            <th>Definición</th>
+            <th>Cómo medir en piso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Conversión por asesor</strong></td>
+            <td><code>Tickets / Interacciones</code> (o <code>Tickets / Tráfico atendido</code>)</td>
+            <td>Conteo por bloques de 60–90 min. El líder observa “interacciones reales” y registra: saludos, demos, cierres.</td>
+          </tr>
+          <tr>
+            <td><strong>UPT</strong></td>
+            <td>Unidades por ticket</td>
+            <td>Revisar tickets del día. Coaching: “bundle natural” por necesidad (no empuje).</td>
+          </tr>
+          <tr>
+            <td><strong>Ticket promedio</strong></td>
+            <td>Venta / # tickets</td>
+            <td>Briefing con “objetivo de ticket”. Observar: preguntas, recomendación, cierre y add-ons.</td>
+          </tr>
+          <tr>
+            <td><strong>Productividad</strong></td>
+            <td>Venta / hora / asesor</td>
+            <td>Metas por franja (picos vs valle). Reubicar staffing y roles.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="container">
+  <small>© <span id="year"></span> Andrés González · Retail Performance Planner</small>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Helpers
+  const $ = (id)=>document.getElementById(id);
+  const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+  const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+  const pct = (x)=> (x*100).toFixed(1) + "%";
+
+  // Defaults: hoy y fin de mes
+  (function initDates(){
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth()+1).padStart(2,'0');
+    const dd = String(now.getDate()).padStart(2,'0');
+    $('today').value = `${yyyy}-${mm}-${dd}`;
+
+    const end = new Date(yyyy, now.getMonth()+1, 0);
+    const em = String(end.getMonth()+1).padStart(2,'0');
+    const ed = String(end.getDate()).padStart(2,'0');
+    $('end').value = `${end.getFullYear()}-${em}-${ed}`;
+  })();
+
+  // UI outputs
+  const outRemaining = $('outRemaining');
+  const outRemainingNote = $('outRemainingNote');
+  const outDays = $('outDays');
+  const outDaily = $('outDaily');
+  const outExpected = $('outExpected');
+
+  const barMeta = $('barMeta'); const barMetaTxt = $('barMetaTxt');
+  const barHealth = $('barHealth'); const barHealthTxt = $('barHealthTxt');
+  const barInv = $('barInv'); const barInvTxt = $('barInvTxt');
+
+  const focusPill = $('focusPill');
+  const statusPill = $('statusPill');
+
+  const tDaily = $('tDaily');
+  const tPerAssociate = $('tPerAssociate');
+  const tLabor = $('tLabor');
+  const tPerHour = $('tPerHour');
+
+  // Core
+  function daysBetween(a,b){
+    const A = new Date(a + "T00:00:00");
+    const B = new Date(b + "T00:00:00");
+    const diff = Math.ceil((B - A) / (1000*60*60*24));
+    return diff;
+  }
+
+  function buildPlaybook(focus, ctx){
+    const {dailyRequired, traffic, conv, ticket, inv, associates} = ctx;
+
+    // Base routines
+    const base = [
+      "Briefing de 5 min: objetivo del día + foco (1 KPI) + rol por franja.",
+      "Metas por bloques (60–90 min): revisar y ajustar en tiempo real.",
+      "Coaching en piso: observar conducta, no solo resultados (saludo, demo, cierre).",
+      "Cierre del día: 10 min de recap (qué funcionó / qué se repite mañana)."
+    ];
+
+    // KPI-focused playbooks
+    if(focus === "traffic"){
+      return {
+        title: "Prioridad: Tráfico (atraer más oportunidades)",
+        intro: "Si el tráfico cae, tu estrategia es: aumentar oportunidad + elevar conversión para compensar.",
+        bullets: [
+          ...base,
+          "Activación local simple (sin volarte margen): alianzas cercanas, referidos, WhatsApp/CRM con citas.",
+          "Staffing por franja: refuerza picos, reduce valles, asigna ‘greeter’ (captura y guía).",
+          "Estandariza ‘entrada’: saludo + pregunta de necesidad en 10 segundos.",
+          "Métrica diaria: tráfico vs tickets (¿cuántas oportunidades reales estás generando?)."
+        ],
+        coach: [
+          "Coaching: apertura fuerte (primeros 15 segundos), y ‘enganche’ con una pregunta poderosa.",
+          "Roleplay: 3 guiones por categoría: necesidad, objeción, cierre."
+        ],
+        howToMeasure: [
+          "Tráfico (contador) por franja.",
+          "Tickets por franja y por asesor.",
+          "Ratio oportunidad→interacción (observación del líder)."
+        ]
+      }
+    }
+
+    if(focus === "conversion"){
+      const convTarget = traffic>0 && ticket>0 ? clamp(dailyRequired/(traffic*ticket), 0, 1) : null;
+      const convText = convTarget!==null ? `Conversión objetivo aproximada para el ritmo requerido: ${pct(convTarget)}.` : "Agrega tráfico y ticket para estimar conversión objetivo.";
+      return {
+        title: "Prioridad: Conversión (cerrar mejor)",
+        intro: `${convText} En conversión, el juego es conducta + consistencia.`,
+        bullets: [
+          ...base,
+          `Meta por asesor/día: ${associates>0 ? money(dailyRequired/associates) : "—"} (divide por franja).`,
+          "Foco conductual: 1) apertura 2) demo 3) propuesta 4) cierre.",
+          "Checklist de piso (por asesor): # interacciones, # demos, # cierres intentados.",
+          "Manejo de objeciones: precio, comparación, indecisión (3 respuestas estándar + prueba social)."
+        ],
+        coach: [
+          "Coaching en vivo: después de 2 interacciones sin demo, ajustar preguntas.",
+          "Micro-feedback: 1 cosa a mantener + 1 ajuste inmediato (no 10 cosas).",
+          "Regla: el líder modela 1 venta completa al día (ejecución visible)."
+        ],
+        howToMeasure: [
+          "Conversión por asesor = tickets / interacciones (o tráfico atendido).",
+          "Tasa de demo = demos / interacciones (indicador adelantado).",
+          "Tasa de cierre intentado = cierres / demos."
+        ]
+      }
+    }
+
+    if(focus === "ticket"){
+      const ticketTarget = traffic>0 && conv>0 ? (dailyRequired/(traffic*conv)) : null;
+      const tText = ticketTarget!==null ? `Ticket objetivo aproximado para el ritmo requerido: ${money(ticketTarget)}.` : "Agrega tráfico y conversión para estimar ticket objetivo.";
+      return {
+        title: "Prioridad: Ticket/UPT (venta efectiva)",
+        intro: `${tText} Aquí no se trata de ‘meter cosas’, sino de armar soluciones.`,
+        bullets: [
+          ...base,
+          "Estrategia de bundles: 3 combinaciones por categoría (básico / mejor / premium).",
+          "UPT por asesor: coaching en recomendación natural (necesidad → complemento).",
+          "Visual de add-ons: coloca complementos en puntos de decisión.",
+          "Cierre con opción: ‘¿prefieres A o B?’ (elección guiada)."
+        ],
+        coach: [
+          "Coaching: preguntar uso/escenario antes de recomendar.",
+          "Roleplay: 2 bundles por objeción (precio / ‘solo venía por X’).",
+          "Revisión de tickets: 5 tickets por asesor, detectar patrón."
+        ],
+        howToMeasure: [
+          "Ticket promedio por asesor (venta / tickets).",
+          "UPT por asesor (unidades / tickets).",
+          "% de tickets con bundle (definir bundle mínimo)."
+        ]
+      }
+    }
+
+    // inventory
+    return {
+      title: "Prioridad: Disponibilidad (Inventario)",
+      intro: "Si la disponibilidad cae, pierdes ventas aunque el equipo venda bien. Aquí manda la disciplina operativa.",
+      bullets: [
+        ...base,
+        `Confiabilidad actual: ${inv!==null ? (inv*100).toFixed(1) + "%" : "—"} (objetivo típico: 97–99%).`,
+        "Conteo cíclico por categorías A/B (alto impacto) con causas raíz.",
+        "Rutina de recepción y traspasos: checklist (tiempo, responsables, evidencia).",
+        "Prevención de quiebres: top 20 SKUs críticos y reposición visible.",
+        "Control de merma: auditorías cortas y frecuentes (menos fricción, más constancia)."
+      ],
+      coach: [
+        "Coaching: hábitos de orden, etiquetado y registro. ‘Lo que no se registra no existe’.",
+        "Asignar dueño por categoría y revisar variaciones semanalmente."
+      ],
+      howToMeasure: [
+        "Confiabilidad = (stock sistema vs físico) por categoría.",
+        "Quiebres: % de solicitudes sin stock.",
+        "Merma: incidencias / semana y causa principal."
+      ]
+    }
+  }
+
+  function detectFocusAuto(ctx){
+    // Heurística simple: si inventario bajo -> inventory
+    if(ctx.inv !== null && ctx.inv < 0.945) return "inventory";
+
+    // Si no tengo suficiente info, usar dailyRequired como base y pedir completar
+    const {traffic, conv, ticket, dailyRequired} = ctx;
+
+    // Si no hay variables, default conversion (lo más accionable)
+    if(!(traffic>0) || !(conv>0) || !(ticket>0)) return "conversion";
+
+    // Ventas esperadas vs requeridas
+    const expected = traffic * conv * ticket * (0.90 + (ctx.inv ?? 0.96) * 0.10); // ajuste suave por inv
+    const gap = dailyRequired / expected;
+
+    // Si gap es grande, decide qué palanca es más "barata" de mover:
+    // - conversión y ticket suelen ser más movibles que tráfico.
+    // Simplificación: si conv < 0.18 -> conversion, si ticket < 1000 -> ticket, si ambos ok -> traffic.
+    if(conv < 0.18) return "conversion";
+    if(ticket < 1000) return "ticket";
+    if(traffic < 180) return "traffic";
+    return "conversion";
+  }
+
+  function compute(){
+    const goal = Number($('goal').value || 0);
+    const current = Number($('current').value || 0);
+
+    const today = $('today').value;
+    const end = $('end').value;
+
+    const traffic = Number($('traffic').value || 0);
+    const ticket = Number($('ticket').value || 0);
+    const convPct = Number($('conv').value || 0);
+    const invPct = Number($('inv').value || 0);
+
+    const associates = Number($('associates').value || 0);
+    const laborPct = Number($('laborPct').value || 0);
+
+    const focusChoice = $('focus').value;
+
+    // basic validations
+    if(!goal || !today || !end){
+      outRemaining.textContent = "$—";
+      outRemainingNote.textContent = "Falta meta mensual y/o fechas.";
+      return;
+    }
+
+    const remaining = Math.max(goal - current, 0);
+    const days = Math.max(daysBetween(today, end), 0); // días hasta fin (excluye hoy); lo tratamos como restante operativo
+    const daysUsable = days === 0 ? 1 : days;
+
+    const dailyRequired = remaining / daysUsable;
+
+    const conv = convPct > 0 ? (convPct/100) : 0;
+    const inv = invPct > 0 ? (invPct/100) : null;
+
+    // ventas esperadas (si hay info)
+    let expected = null;
+    if(traffic>0 && conv>0 && ticket>0){
+      // ajuste leve por inventario: si inv es 0.90 reduce un poco, si es 0.98 casi sin efecto
+      const invAdj = inv === null ? 1 : clamp(0.92 + inv*0.10, 0.85, 1.02);
+      expected = traffic * conv * ticket * invAdj;
+    }
+
+    // Bars
+    // Meta proyectada simple: venta actual + expected * días restantes (si no hay expected, solo usa ritmo requerido como proxy)
+    const projectedMonthly = expected !== null ? (current + expected * daysUsable) : (current + dailyRequired * daysUsable);
+    const metaPct = goal > 0 ? clamp(projectedMonthly / goal, 0, 1.25) : 0;
+
+    // salud comercial: normaliza conv/ticket/inv
+    const normConv = conv>0 ? clamp((conv - 0.12)/(0.28-0.12), 0, 1) : 0.35;
+    const normTicket = ticket>0 ? clamp((ticket - 750)/(1400-750), 0, 1) : 0.45;
+    const normInv = inv!==null ? clamp((inv - 0.85)/(0.98-0.85), 0, 1) : 0.60;
+    const health = clamp(normConv*0.45 + normTicket*0.30 + normInv*0.25, 0, 1);
+
+    // riesgo por inventario (más bajo inv, más riesgo)
+    const invRisk = inv===null ? 0.35 : clamp(1 - ((inv - 0.85)/(0.98-0.85)), 0, 1);
+
+    // Determine focus
+    const ctx = { dailyRequired, traffic, conv, ticket, inv, associates };
+    let focus = focusChoice === "auto" ? detectFocusAuto(ctx) : focusChoice;
+
+    // Status pill
+    let status = "En ritmo";
+    let statusClass = "ok";
+    if(metaPct < 0.95){ status = "Riesgo de no cumplir"; statusClass = "warn"; }
+    if(metaPct < 0.85){ status = "Alto riesgo"; statusClass = "bad"; }
+
+    // Focus pill
+    const focusMap = {
+      traffic: "KPI prioritario: Tráfico",
+      conversion: "KPI prioritario: Conversión",
+      ticket: "KPI prioritario: Ticket/UPT",
+      inventory: "KPI prioritario: Disponibilidad (Inventario)"
+    };
+
+    // Update UI
+    outRemaining.textContent = money(remaining);
+    outRemainingNote.textContent = `Meta: ${money(goal)} · Acumulado: ${money(current)}`;
+
+    outDays.textContent = String(daysUsable);
+    $('outDaysNote').textContent = `De ${today} a ${end}`;
+
+    $('outDaily').textContent = money(dailyRequired);
+    $('outDailyNote').textContent = "Esto sale de tu meta y fechas";
+
+    $('outExpected').textContent = expected === null ? "$—" : money(expected);
+    $('outExpectedNote').textContent = expected === null
+      ? "Agrega tráfico, conversión y ticket para estimar"
+      : "Tráfico × conv × ticket (ajustada por inv)";
+
+    barMeta.style.width = (metaPct*100).toFixed(0) + "%";
+    barMetaTxt.textContent = `${Math.round(metaPct*100)}%`;
+
+    barHealth.style.width = (health*100).toFixed(0) + "%";
+    barHealthTxt.textContent = `${Math.round(health*100)}%`;
+
+    barInv.style.width = (invRisk*100).toFixed(0) + "%";
+    barInvTxt.textContent = `${Math.round(invRisk*100)}%`;
+
+    focusPill.style.display = "inline-flex";
+    focusPill.className = "pill";
+    focusPill.textContent = focusMap[focus] || "KPI prioritario";
+
+    statusPill.style.display = "inline-flex";
+    statusPill.className = "pill " + statusClass;
+    statusPill.textContent = `Estado: ${status}`;
+
+    // Table outputs
+    tDaily.textContent = money(dailyRequired);
+    tPerAssociate.textContent = associates>0 ? money(dailyRequired/associates) : "$—";
+    tPerHour.textContent = money(dailyRequired/8);
+
+    if(laborPct>0){
+      tLabor.textContent = money(dailyRequired * (laborPct/100));
+    }else{
+      tLabor.textContent = "$—";
+    }
+
+    // Playbook content
+    const pb = buildPlaybook(focus, ctx);
+    const box = $('playbookBox');
+    box.innerHTML = `
+      <h3>${pb.title}</h3>
+      <p>${pb.intro}</p>
+      <ul>${pb.bullets.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <div style="margin-top:12px" class="pill">Coaching</div>
+      <ul style="margin-top:6px">${pb.coach.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <div style="margin-top:12px" class="pill">Cómo medir</div>
+      <ul style="margin-top:6px">${pb.howToMeasure.map(x=>`<li>${x}</li>`).join("")}</ul>
+    `;
+  }
+
+  $('calcBtn').addEventListener('click', compute);
+</script>
+</body>
+</html>
