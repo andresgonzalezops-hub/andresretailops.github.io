@@ -1,327 +1,856 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>Andrés González | Retail Operations & Desarrollo Comercial</title>
-<meta name="description" content="Liderazgo estratégico, ejecución comercial, KPIs y crecimiento sostenible aplicable a retail y cualquier modelo de negocio.">
-<meta property="og:image" content="assets/profile.jpg" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y equipos de alto desempeño (retail y negocio en general).">
+  <meta property="og:image" content="assets/profile.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<style>
-:root{
---bg:#0b0f14;
---card:#141a24;
---text:#e6edf3;
---muted:#9aa4b2;
---brand:#00b4ff;
---brand2:#00d1b2;
---radius:20px;
---shadow:0 14px 36px rgba(0,0,0,.38);
---stroke:#223043;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-font-family:Inter,system-ui,sans-serif;
-color:var(--text);
-background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
-line-height:1.65;
-}
-.container{max-width:1100px;margin:0 auto;padding:0 20px}
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#141a24;
+      --text:#e6edf3;
+      --muted:#9aa4b2;
+      --brand:#00b4ff;
+      --brand2:#00d1b2;
+      --radius:20px;
+      --shadow:0 14px 36px rgba(0,0,0,.38);
+      --stroke:#223043;
 
-header{
-position:sticky;top:0;z-index:10;
-background:#0d1219;
-box-shadow:0 4px 14px rgba(0,0,0,.4);
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav{
-display:flex;justify-content:space-between;align-items:center;
-padding:16px 0;flex-wrap:wrap;gap:12px;
-}
-.logo{font-weight:900;color:#fff}
+      /* extras (sin romper tu paleta) */
+      --glow:0 0 0 rgba(0,0,0,0);
+      --glass:rgba(255,255,255,.04);
+      --soft:#0e151f;
+    }
 
-section.card{
-background:var(--card);
-border:1px solid var(--stroke);
-border-radius:var(--radius);
-margin:28px 0;
-box-shadow:var(--shadow);
-}
+    *{box-sizing:border-box;margin:0;padding:0}
 
-.hd{
-padding:18px 18px 0;
-color:#ffffff;
-font-size:18px;
-font-weight:900;
-letter-spacing:.05em;
-}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
+      line-height:1.65;
+    }
 
-.bd{padding:22px}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.95}
+    img{max-width:100%;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
-.top{
-display:grid;
-grid-template-columns:160px 1fr;
-gap:24px;
-padding:42px 0 18px;
-align-items:center;
-}
+    header{
+      position:sticky;top:0;z-index:10;
+      background:#0d1219;
+      box-shadow:0 4px 14px rgba(0,0,0,.4);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-.avatar{
-width:160px;height:160px;border-radius:22px;
-overflow:hidden;
-box-shadow:var(--shadow);
-border:2px solid #1f2a38;
-}
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 0;flex-wrap:wrap;gap:12px;
+    }
 
-h1{font-size:34px;margin-bottom:10px}
-.subtitle{color:var(--muted)}
+    .logo{font-weight:900;color:#fff;letter-spacing:.02em}
 
-.badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.chip{
-padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
-color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
-}
+    .nav ul{
+      list-style:none;
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center
+    }
 
-.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .nav a{color:#b7c2d1;font-weight:700}
+    .nav a:hover{color:#fff}
 
-.btn{
-display:inline-flex;align-items:center;gap:8px;
-border:1px solid #2b3a4f;
-background:#0e141f;color:#d6e9ff;
-padding:10px 14px;border-radius:12px;
-font-weight:800;cursor:pointer;text-decoration:none;
-transition:.2s;
-}
-.btn.primary{
-background:linear-gradient(135deg,var(--brand),var(--brand2));
-color:#051018;border:none;
-box-shadow:0 8px 25px rgba(0,180,255,.35);
-}
-.btn:hover{transform:translateY(-2px)}
+    .nav .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#061018;font-weight:900;
+      border:none;cursor:pointer;
+    }
 
-.exp-item{
-border-left:3px solid var(--brand);
-padding-left:16px;
-margin-bottom:26px;
-}
-.exp-item h4{font-size:18px;margin-bottom:6px}
-.exp-item ul{margin-left:18px}
+    /* HERO */
+    .top{
+      display:grid;
+      grid-template-columns:160px 1fr;
+      gap:24px;
+      padding:42px 0 18px;
+      align-items:center;
+    }
 
-.lab-cta{
-margin-top:30px;
-padding:28px;
-border-radius:20px;
-background:linear-gradient(135deg, rgba(0,180,255,.15), rgba(0,255,200,.12));
-border:1px solid rgba(0,255,200,.4);
-box-shadow:0 0 50px rgba(0,255,200,.2);
-text-align:center;
-}
-.lab-cta h3{
-font-size:26px;
-font-weight:900;
-color:#00ffe1;
-margin-bottom:12px;
-}
-.lab-cta p{
-max-width:750px;
-margin:0 auto 16px;
-color:var(--muted);
-}
+    @media(max-width:760px){
+      .top{grid-template-columns:1fr;text-align:center}
+      .avatar{margin:0 auto}
+      .links{justify-content:center}
+    }
 
-.vision p{
-font-size:17px;
-margin-bottom:18px;
-}
+    .avatar{
+      width:160px;height:160px;border-radius:22px;overflow:hidden;
+      box-shadow:var(--shadow);
+      border:2px solid #1f2a38;
+      background:linear-gradient(135deg, rgba(0,180,255,.14), rgba(0,209,178,.10));
+      position:relative;
+    }
 
-.certs{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:16px;
-}
+    .avatar::after{
+      content:"";
+      position:absolute; inset:-2px;
+      border-radius:24px;
+      pointer-events:none;
+      background:radial-gradient(600px 200px at 40% 20%, rgba(0,180,255,.18), transparent 60%);
+      opacity:.9;
+    }
 
-.cert{
-background:#0e151f;
-border:1px solid rgba(0,180,255,.25);
-border-radius:16px;
-overflow:hidden;
-transition:.25s;
-cursor:pointer;
-}
-.cert:hover{
-transform:translateY(-4px);
-box-shadow:0 14px 35px rgba(0,180,255,.35);
-}
-.cert img{width:100%;height:150px;object-fit:cover}
-.cap{
-padding:14px;
-text-align:center;
-}
-.cap strong{
-display:block;
-font-size:15px;
-font-weight:900;
-color:#ffffff;
-margin-bottom:6px;
-}
-.cap span{
-color:var(--brand2);
-font-weight:700;
-font-size:12px;
-}
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:relative;
+      z-index:1;
+    }
 
-.contact-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:16px;
-text-align:center;
-}
+    h1{font-size:34px;line-height:1.15;margin-bottom:10px}
+    .subtitle{color:var(--muted);font-size:15px}
 
-.cta{
-display:flex;
-justify-content:center;
-margin:30px 0;
-}
+    .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .chip{
+      padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
+      color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+    }
 
-footer{
-padding:40px 0;
-text-align:center;
-color:#8e9aaf;
-}
-</style>
+    .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid #2b3a4f;
+      background:#0e141f;
+      color:#d6e9ff;
+      padding:10px 14px;border-radius:12px;
+      font-weight:800;
+      transition:.18s;
+      cursor:pointer;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#051018;border:none;
+    }
+
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
+
+    section.card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      margin:22px 0;
+      box-shadow:var(--shadow);
+    }
+
+    /* TITULOS MÁS VISIBLES (lo pediste) */
+    .hd{
+      padding:18px 18px 0;
+      color:#ffffff;               /* antes era muted */
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:900;             /* antes no era tan fuerte */
+      text-shadow:0 0 18px rgba(0,180,255,.10);
+    }
+
+    .hd small{
+      display:block;
+      margin-top:6px;
+      color:rgba(255,255,255,.55);
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:none;
+      font-size:12px;
+    }
+
+    .bd{padding:18px}
+    .bd p{margin:0 0 12px}
+    .bd p:last-child{margin-bottom:0}
+
+    /* LOGROS */
+    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
+    .exp-item h4{margin:0 0 6px}
+    .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .exp-item ul{margin:8px 0 0 18px}
+    .exp-item li{margin:6px 0}
+
+    /* STRATEGY LAB (APARTE, MÁS GRANDE Y MÁS NEÓN) */
+    .lab-card{
+      border:1px solid rgba(0,180,255,.35);
+      background:
+        radial-gradient(900px 360px at 20% 10%, rgba(0,180,255,.18), transparent 62%),
+        radial-gradient(900px 360px at 80% 30%, rgba(0,209,178,.14), transparent 65%),
+        linear-gradient(180deg, rgba(0,180,255,.10), rgba(0,209,178,.06));
+      box-shadow:0 22px 60px rgba(0,0,0,.40);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .lab-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:linear-gradient(135deg, rgba(0,180,255,.22), rgba(0,209,178,.16));
+      opacity:.45;
+      filter:blur(18px);
+      pointer-events:none;
+    }
+
+    .lab-wrap{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
+    }
+
+    @media(max-width:900px){
+      .lab-wrap{grid-template-columns:1fr}
+    }
+
+    .lab-left{
+      padding:18px;
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .lab-right{
+      padding:18px;
+      border-radius:16px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .lab-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(0,180,255,.38);
+      background:rgba(0,180,255,.10);
+      font-weight:900;
+      letter-spacing:.02em;
+      margin-bottom:10px;
+    }
+
+    .lab-title{
+      font-size:22px;
+      line-height:1.25;
+      margin:0 0 10px;
+      font-weight:900;
+    }
+
+    .lab-text{
+      color:rgba(255,255,255,.78);
+      font-size:14px;
+      line-height:1.75;
+      margin:0 0 10px;
+    }
+
+    .lab-points{
+      margin:10px 0 0 18px;
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .lab-points li{ margin:6px 0; }
+
+    .lab-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+      margin-top:12px;
+    }
+
+    .lab-actions .btn.primary{
+      box-shadow:0 10px 26px rgba(0,180,255,.25);
+    }
+
+    .lab-mini{
+      display:grid;
+      gap:10px;
+    }
+
+    .lab-mini .mini{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .mini strong{
+      display:block;
+      font-size:13px;
+      letter-spacing:.01em;
+      margin-bottom:4px;
+    }
+
+    .mini span{
+      display:block;
+      color:rgba(255,255,255,.68);
+      font-size:12px;
+      line-height:1.55;
+    }
+
+    .lab-note{
+      margin-top:10px;
+      font-size:12px;
+      color:rgba(255,255,255,.62);
+    }
+
+    /* CERTS */
+    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .cert{
+      background:#0e151f;
+      border:1px solid #1f2b3d;
+      border-radius:14px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .cert:hover{transform:translateY(-2px); box-shadow:0 14px 38px rgba(0,0,0,.32)}
+    .cert img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      background:#0b111b;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .cap{padding:12px}
+    .cap strong{display:block;font-size:14px;line-height:1.25}
+    .cap span{font-size:12px;color:var(--muted)}
+
+    /* CONTACTO BONITO */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:12px;
+    }
+
+    .contact-card{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .contact-card strong{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:13px;
+      letter-spacing:.02em;
+      margin-bottom:8px;
+    }
+
+    .contact-card a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid #2b3a4f;
+      background:#0e141f;
+      color:#d6e9ff;
+      font-weight:900;
+      transition:.18s;
+    }
+
+    .contact-card a:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 22px rgba(0,180,255,.18);
+    }
+
+    /* MODALES */
+    dialog{
+      border:none;
+      border-radius:20px;
+      padding:0;
+      width:min(1400px,96vw);
+      background:#0b111b;
+      box-shadow:var(--shadow);
+    }
+    dialog::backdrop{background:rgba(4,10,16,.86);backdrop-filter:blur(4px)}
+    .modal-hd{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#061018;
+      padding:14px 18px;
+      border-top-left-radius:20px;border-top-right-radius:20px;
+      gap:12px;
+    }
+    .modal-hd strong{font-weight:900}
+    .close{
+      background:#0e1522;border:1px solid #334155;color:#d8e7f9;
+      border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
+    }
+
+    .modal-bd{padding:14px 18px}
+    .cv-stage{
+      height:calc(92vh - 64px);
+      border-radius:16px;
+      border:1px solid #2a3643;
+      background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:auto;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:22px 18px;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+    }
+    .cv-paper{
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.28);
+      padding:14px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .cv-img{
+      width:min(1200px, 94vw);
+      height:auto;
+      border-radius:10px;
+      display:block;
+    }
+    .cv-img{image-rendering:auto}
+    @media(min-width:1100px){
+      .cv-img{width:1180px}
+    }
+
+    .cert-modal-wrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px 0 2px;
+    }
+    .modal-img{
+      width:100%;
+      max-width:min(1100px,96vw);
+      max-height:80vh;
+      object-fit:contain;
+      border-radius:16px;
+      border:1px solid #2a3643;
+      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      background:#0b111b;
+    }
+    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* VISION (más punch + más texto) */
+    .vision p{
+      font-size:16px;
+      line-height:1.75;
+      margin-bottom:18px;
+      color:rgba(255,255,255,.78);
+    }
+    .vision p strong{color:#ffffff}
+    .vision p:first-child{font-size:17px;font-weight:700;color:#fff}
+
+    .vision p::before{
+      content:"";
+      display:block;
+      width:32px;
+      height:3px;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      border-radius:2px;
+      margin-bottom:10px;
+    }
+
+    .cta{display:flex;justify-content:center;padding:10px 0 40px}
+    footer{padding:40px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
+  </style>
 </head>
 
 <body>
 
+<header>
+  <div class="container nav">
+    <a class="logo" href="#">ANDRÉS GONZÁLEZ</a>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#experiencia">Logros</a></li>
+      <li><a href="#strategy-lab">Strategy Lab</a></li>
+      <li><a href="#vision">Visión</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#certificaciones">Certificaciones</a></li>
+      <li><button class="btn" id="verCV">Ver CV</button></li>
+    </ul>
+  </div>
+</header>
+
 <main class="container">
 
-<section class="top">
-<div class="avatar">
-<img src="assets/profile.jpg" alt="Foto de Andrés González">
-</div>
-<div>
-<h1>Retail Operations & Desarrollo Comercial</h1>
-<div class="subtitle">Estrategia · Liderazgo · KPIs · Rentabilidad · Aplicable a cualquier modelo de negocio</div>
-<div class="badges">
-<span class="chip">Gestión operativa</span>
-<span class="chip">Estrategia comercial</span>
-<span class="chip">Optimización de procesos</span>
-<span class="chip">Análisis y reporteo</span>
-<span class="chip">HubSpot · SAP</span>
-</div>
-<div class="links">
-<a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇ Descargar CV</a>
-<a class="btn" href="mailto:andresgonzalez.ops@gmail.com">📧 Correo</a>
-<a class="btn" href="tel:+523323430043">📞 +52 33 2343 0043</a>
-</div>
-</div>
-</section>
+  <section class="top">
+    <div class="avatar">
+      <img src="assets/profile.jpg" alt="Foto de Andrés González">
+    </div>
 
-<section class="card">
-<div class="hd">Sobre mí</div>
-<div class="bd">
-<p>Soy Luis Andrés González Martínez, profesional con más de 10 años liderando equipos y estructurando crecimiento. Mi base es retail, pero mi enfoque es completamente trasladable a cualquier negocio que viva de resultados, ejecución y experiencia.</p>
-<p>Trabajo con estructura clara, KPIs accionables y disciplina operativa. Me gusta convertir estrategia en hábitos medibles y sostenibles.</p>
-</div>
-</section>
+    <div>
+      <h1>Retail Operations & Desarrollo Comercial</h1>
+      <div class="subtitle">Estrategia · Liderazgo · KPIs · Rentabilidad · Ejecución aplicable a negocio</div>
 
-<section class="card">
-<div class="hd">Experiencia profesional</div>
-<div class="bd">
+      <div class="badges">
+        <span class="chip">Gestión operativa</span>
+        <span class="chip">Estrategia comercial</span>
+        <span class="chip">Optimización de procesos</span>
+        <span class="chip">Análisis y reporteo</span>
+        <span class="chip">HubSpot · SAP</span>
+      </div>
 
-<div class="exp-item">
-<h4>Store Manager — Luuna</h4>
-<ul>
-<li>2º lugar nacional en desempeño comercial.</li>
-<li>Unidad nueva posicionada entre las mejores del país en menos de 12 meses.</li>
-<li>100% de confiabilidad de inventario.</li>
-<li>Capacitación estratégica en 15+ sucursales.</li>
-<li>Ejecución disciplinada de KPIs y crecimiento sostenido.</li>
-</ul>
-</div>
+      <div class="links" style="margin-top:14px">
+        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
+        <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
+        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener">📄 Ver CV (PDF)</a>
+      </div>
+    </div>
+  </section>
 
-<div class="exp-item">
-<h4>Gerente — GAP</h4>
-<ul>
-<li>Transformación de unidad de bajo desempeño a rentable.</li>
-<li>Resultados positivos sostenidos durante pandemia.</li>
-<li>Inventario mejorado de 85% a 98.88%.</li>
-<li>Liderazgo de equipos de hasta 30 personas.</li>
-</ul>
-</div>
+  <section id="sobre-mi" class="card">
+    <div class="hd">Sobre mí
+      <small>Base sólida en retail, mentalidad de negocio para cualquier industria</small>
+    </div>
+    <div class="bd">
+      <p>
+        Soy <strong>Luis Andrés González Martínez</strong>, con más de <strong>10 años liderando equipos y operaciones comerciales</strong>.
+        Mi base es retail, pero lo que hago realmente es <strong>construir ejecución que mueve KPIs</strong> (ventas, conversión, ticket, productividad, inventario y experiencia),
+        y eso es <strong>trasladable a cualquier negocio</strong> que dependa de <strong>ventas, servicio, operación y rentabilidad</strong>.
+      </p>
 
-<div class="lab-cta">
-<h3>🚀 STRATEGY LAB</h3>
-<p>Un proyecto práctico donde puedes ver cómo analizo escenarios reales, elijo prioridades y proyecto impacto en KPIs para cualquier negocio.</p>
-<a class="btn primary" href="strategy-lab.html">Explorar el laboratorio estratégico</a>
-</div>
+      <p>
+        Mi forma de trabajo es muy directa: <strong>objetivos claros</strong>, <strong>indicadores accionables</strong> y <strong>rituales de seguimiento</strong>.
+        No creo en planes “bonitos” que se quedan en PowerPoint; creo en estructura diaria:
+        qué revisamos, cuándo lo revisamos, quién lo ejecuta y cómo medimos el impacto.
+        Eso es lo que vuelve el resultado <strong>repetible</strong>.
+      </p>
 
-</div>
-</section>
+      <p>
+        Mi estilo de liderazgo es <strong>cercanía + claridad</strong>.
+        El equipo entiende el <em>por qué</em> de cada indicador y, sobre todo, la <strong>acción concreta</strong> que lo cambia.
+        Cuando la gente tiene criterio y dirección, mejora el desempeño sin desgaste, sin gritos y sin depender de “héroes”.
+      </p>
 
-<section class="card vision">
-<div class="hd">Mi visión del liderazgo</div>
-<div class="bd">
-<p>El crecimiento no es suerte: es estructura, claridad y disciplina.</p>
-<p>Un líder construye sistemas, no improvisaciones. Define métricas, crea hábitos y convierte estrategia en ejecución diaria.</p>
-<p>Mi objetivo es unir estrategia comercial, operación eficiente y tecnología para generar resultados medibles y sostenibles.</p>
-</div>
-</section>
+      <p>
+        Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que hoy el crecimiento se potencia cuando conectas
+        <strong>negocio + datos + tecnología</strong> para decidir mejor, ejecutar más rápido y escalar procesos sin perder calidad.
+      </p>
+    </div>
+  </section>
 
-<section class="card">
-<div class="hd">Certificaciones destacadas</div>
-<div class="bd">
-<div class="certs">
-<div class="cert">
-<img src="assets/certs/HUBSPOT.jpg">
-<div class="cap">
-<strong>HubSpot – Software de ventas</strong>
-<span>2025–2026</span>
-</div>
-</div>
+  <section id="experiencia" class="card">
+    <div class="hd">Logros principales
+      <small>Resultados, disciplina operativa y ejecución comercial</small>
+    </div>
+    <div class="bd">
 
-<div class="cert">
-<img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg">
-<div class="cap">
-<strong>AWS Academy – Cloud Foundations</strong>
-<span>2025</span>
-</div>
-</div>
+      <div class="exp-item">
+        <h4>Store Manager Boutique Showroom — Luuna</h4>
+        <div class="meta">04/2022 – 06/2025</div>
+        <ul>
+          <li>
+            <strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta:
+            resultado de ejecución sostenida (seguimiento diario, coaching en piso y control de prioridades por KPI).
+          </li>
+          <li>
+            Posicioné una <strong>unidad nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de un año</strong>,
+            consolidando hábitos de operación y venta que se mantuvieron en el tiempo.
+          </li>
+          <li>
+            Implementé <strong>rutinas de seguimiento</strong> (metas por hora, tableros simples, revisión de conversión/ticket, foco por franja)
+            para sostener consistencia sin depender de días “buenos”.
+          </li>
+          <li>
+            Logré <strong>100% de confiabilidad</strong> de inventario, elevando disponibilidad, control y orden operativo.
+          </li>
+          <li>
+            Fortalecí la operación con <strong>estándares claros</strong> (roles, productividad, orden de piso, servicio y disciplina),
+            elevando experiencia del cliente y efectividad comercial.
+          </li>
+          <li>
+            Acompañé a equipos de distintas unidades con capacitación y mejores prácticas en <strong>15+ sucursales</strong>,
+            enfocándome en hábitos repetibles (no teoría).
+          </li>
+        </ul>
+      </div>
 
-<div class="cert">
-<img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg">
-<div class="cap">
-<strong>Cisco – Python Essentials 1</strong>
-<span>2025</span>
-</div>
-</div>
+      <div class="exp-item">
+        <h4>Gerente de Boutique — GAP</h4>
+        <div class="meta">10/2014 – 07/2021</div>
+        <ul>
+          <li>
+            Tomé una unidad con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong> con enfoque en:
+            ejecución comercial, control operativo y desarrollo del equipo.
+          </li>
+          <li>
+            Mantuve <strong>resultados positivos durante la pandemia (2020)</strong> ajustando prioridades, productividad y disciplina operativa
+            para sostener ventas, control y continuidad.
+          </li>
+          <li>
+            Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong> mediante procesos, auditorías y hábitos de control:
+            menos quiebres, mejor disponibilidad y operación más limpia.
+          </li>
+          <li>
+            Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento, cultura de estándares
+            y responsabilidad real por indicadores.
+          </li>
+          <li>
+            Impulsé <strong>ejecución en piso</strong> (visual, enfoque por franja, coaching y priorización)
+            para convertir tráfico en venta de manera más consistente.
+          </li>
+        </ul>
+      </div>
 
-<div class="cert">
-<img src="assets/certs/english-fundamentals-2026.jpg">
-<div class="cap">
-<strong>English Fundamentals</strong>
-<span>2026</span>
-</div>
-</div>
+    </div>
+  </section>
 
-</div>
-</div>
-</section>
+  <!-- STRATEGY LAB (SECCIÓN APARTE, GRANDE, NEÓN, CLARA) -->
+  <section id="strategy-lab" class="card lab-card">
+    <div class="hd">Strategy Lab
+      <small>Proyecto práctico para ver cómo trabajo (diagnóstico → decisiones → KPIs)</small>
+    </div>
+    <div class="bd">
+      <div class="lab-wrap">
 
-<section class="card">
-<div class="hd">Contacto</div>
-<div class="bd contact-grid">
-<div>📧 andresgonzalez.ops@gmail.com</div>
-<div>📞 +52 33 2343 0043</div>
-<div>📍 Zapopan, Jalisco</div>
-</div>
-</section>
+        <div class="lab-left">
+          <div class="lab-badge">🧪⚡ PROYECTO PRÁCTICO · “Strategy Lab”</div>
+
+          <h3 class="lab-title">📈 Generador de Estrategia (KPIs + Ejecución) para tu negocio</h3>
+
+          <p class="lab-text">
+            Este es un proyecto mío para que puedas ver <strong>cómo me gusta trabajar</strong>:
+            tomar un escenario real, elegir prioridades, traducirlo a acciones y medir impacto en indicadores.
+            Aunque mi base es retail, el enfoque aplica a <strong>cualquier negocio</strong> que busque crecer con estructura.
+          </p>
+
+          <p class="lab-text">
+            En pocos minutos puedes simular un caso y ver resultados proyectados: <strong>venta</strong>, <strong>conversión</strong>,
+            <strong>inventario</strong> y un resumen ejecutivo de la estrategia.
+          </p>
+
+          <ul class="lab-points">
+            <li>✅ Diagnóstico rápido (qué está pasando y por qué)</li>
+            <li>✅ Priorización (qué mover primero para que se note)</li>
+            <li>✅ Acciones concretas (ejecución diaria, no teoría)</li>
+            <li>✅ KPIs proyectados (impacto visual y entendible)</li>
+          </ul>
+
+          <div class="lab-actions">
+            <!-- IMPORTANTE: carpeta “Strategy Lab” junto al index -->
+            <a class="btn primary" href="./Strategy Lab/index.html">🚀 Abrir Strategy Lab</a>
+            <a class="btn" href="./Strategy Lab/index.html" target="_blank" rel="noopener">🧭 Abrir en nueva pestaña</a>
+          </div>
+
+          <div class="lab-note">
+            Tip: elige un escenario → selecciona hasta 3 acciones → calcula y revisa el impacto. (Simulación educativa, sin backend).
+          </div>
+        </div>
+
+        <div class="lab-right">
+          <div class="lab-mini">
+            <div class="mini">
+              <strong>🧠 ¿Qué se evalúa?</strong>
+              <span>Tu criterio de priorización: dónde atacar primero, qué sacrificas y qué sostienes.</span>
+            </div>
+            <div class="mini">
+              <strong>🎯 ¿Qué te llevas?</strong>
+              <span>Una lectura ejecutiva y una ruta de ejecución simple (hábitos + KPI + seguimiento).</span>
+            </div>
+            <div class="mini">
+              <strong>⚙️ ¿Para quién sirve?</strong>
+              <span>Retail, servicios, equipos comerciales, operaciones y cualquier negocio con metas y métricas.</span>
+            </div>
+            <div class="mini">
+              <strong>📌 Cómo lo uso yo</strong>
+              <span>Diagnóstico → prioridad → plan diario → revisión por ciclo (día/semana) → ajuste.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="vision" class="card vision">
+    <div class="hd">Mi visión del liderazgo y los resultados
+      <small>Negocio, cultura y ejecución: lo que vuelve el resultado repetible</small>
+    </div>
+    <div class="bd">
+      <p>
+        Creo en negocios que crecen por diseño, no por suerte: <strong>claridad</strong>, <strong>estructura</strong> y <strong>ejecución</strong>.
+        Mi base es retail, pero el principio es universal: si alineas equipo, proceso e indicadores, el resultado deja de ser “una buena racha”
+        y se convierte en una consecuencia natural.
+      </p>
+
+      <p>
+        Para mí, un líder efectivo no solo “administra”: <strong>construye criterio</strong>.
+        Define prioridades, elimina ruido y convierte la estrategia en hábitos simples que se pueden repetir:
+        qué se hace hoy, qué se mide hoy y qué se ajusta mañana.
+        Cuando el equipo entiende la lógica del negocio, la operación se vuelve más ágil y más fuerte.
+      </p>
+
+      <p>
+        Me gusta trabajar con una lógica de <strong>ciclos cortos</strong>: medir, ajustar y volver a ejecutar.
+        Esto aplica para una tienda, un equipo comercial, un servicio o una operación completa:
+        <strong>lo que no se revisa, no mejora</strong>; y lo que se revisa bien, mejora sin tener que “forzar” a la gente.
+      </p>
+
+      <p>
+        Mi enfoque es impulsar crecimiento sostenible con disciplina:
+        <strong>prioridades claras</strong>, <strong>seguimiento constante</strong>, <strong>coaching</strong> y decisiones basadas en datos.
+        Y mi siguiente capa de evolución es conectar esa ejecución con <strong>tecnología</strong> para escalar, automatizar y decidir con más precisión.
+      </p>
+    </div>
+  </section>
+
+  <section id="contacto" class="card">
+    <div class="hd">Contacto
+      <small>Directo, fácil y sin vueltas</small>
+    </div>
+    <div class="bd">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <strong>📩 Correo</strong>
+          <div style="color:rgba(255,255,255,.75);font-size:13px;">andresgonzalez.ops@gmail.com</div>
+          <a href="mailto:andresgonzalez.ops@gmail.com">Enviar correo</a>
+        </div>
+
+        <div class="contact-card">
+          <strong>📞 Teléfono</strong>
+          <div style="color:rgba(255,255,255,.75);font-size:13px;">+52 33 2343 0043</div>
+          <a href="tel:+523323430043">Llamar / WhatsApp</a>
+        </div>
+
+        <div class="contact-card">
+          <strong>💼 LinkedIn</strong>
+          <div style="color:rgba(255,255,255,.75);font-size:13px;">/in/andresglez89</div>
+          <a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">Ver perfil</a>
+        </div>
+
+        <div class="contact-card">
+          <strong>📍 Ubicación</strong>
+          <div style="color:rgba(255,255,255,.75);font-size:13px;">Zapopan, Jalisco, México</div>
+          <a href="#sobre-mi">Volver arriba</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICACIONES AL FINAL (como pediste) -->
+  <section id="certificaciones" class="card">
+    <div class="hd">Certificaciones destacadas
+      <small>Ventas, tecnología y herramientas aplicables al negocio</small>
+    </div>
+    <div class="bd">
+      <div class="certs">
+
+        <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
+          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
+          <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
+          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS Academy – Cloud Foundations">
+          <div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','Emitido 2025')">
+          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco – Python Essentials 1">
+          <div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
+          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Gestión de Proyectos y Metodología Agile">
+          <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
+          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
+          <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+        <!-- ✅ ENGLISH (IMAGEN, MISMO MODAL) -->
+        <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
+          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals – Boost your job search and CV">
+          <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Descargar CV abajo (se queda como lo tenías) -->
+  <div class="cta">
+    <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
+  </div>
 
 </main>
 
-<footer>
-© 2026 Andrés González · Portafolio profesional
+<footer class="container">
+  <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
 </footer>
+
+<!-- MODAL CV (ARREGLADO) -->
+<dialog id="cvModal">
+  <div class="modal-hd">
+    <strong>CV – Andrés González</strong>
+    <button class="close" onclick="cvModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cv-stage">
+      <div class="cv-paper">
+        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- MODAL CERT (OK) -->
+<dialog id="certModal">
+  <div class="modal-hd">
+    <strong id="certTitle">Certificado</strong>
+    <button class="close" onclick="certModal.close()">Cerrar</button>
+  </div>
+  <div class="modal-bd">
+    <div class="cert-modal-wrap">
+      <img id="certImg" alt="" class="modal-img">
+    </div>
+    <div id="certDetail" class="modal-sub"></div>
+  </div>
+</dialog>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const cvModal = document.getElementById('cvModal');
+  document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
+
+  const certModal = document.getElementById('certModal');
+  const certImg = document.getElementById('certImg');
+  const certTitle = document.getElementById('certTitle');
+  const certDetail = document.getElementById('certDetail');
+
+  function showCert(src,title,detail){
+    certImg.src = src;
+    certTitle.textContent = title || 'Certificado';
+    certDetail.textContent = detail || '';
+    certModal.showModal();
+  }
+</script>
 
 </body>
 </html>
