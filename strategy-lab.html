@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Retail Strategy Lab | Andrés González</title>
+  <meta name="description" content="Simulador de estrategia retail: escenarios, decisiones y resultados visuales.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#141a24;
+      --text:#e6edf3;
+      --muted:#9aa4b2;
+      --brand:#00b4ff;
+      --brand2:#00d1b2;
+      --radius:20px;
+      --shadow:0 14px 36px rgba(0,0,0,.38);
+      --stroke:#223043;
+      --danger:#ff5d5d;
+      --warn:#ffd166;
+      --ok:#00d1b2;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
+      line-height:1.65;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.95}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    header{
+      position:sticky;top:0;z-index:10;
+      background:#0d1219;
+      box-shadow:0 4px 14px rgba(0,0,0,.4);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 0;flex-wrap:wrap;gap:12px;
+    }
+    .logo{font-weight:900;color:#fff;letter-spacing:.02em}
+    .nav-right{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid #2b3a4f;
+      background:#0e141f;
+      color:#d6e9ff;
+      padding:10px 14px;border-radius:12px;
+      font-weight:800;
+      transition:.18s;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#051018;border:none;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,180,255,.25)}
+
+    .hero{
+      padding:26px 0 10px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media(max-width:900px){ .hero{grid-template-columns:1fr} }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hd{
+      padding:18px 18px 0;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .bd{padding:18px}
+    h1{font-size:28px;line-height:1.2;margin-bottom:10px}
+    .sub{color:var(--muted);font-size:14px}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .chip{
+      padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
+      color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+    }
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:12px 0 30px}
+    @media(max-width:900px){ .grid{grid-template-columns:1fr} }
+
+    .scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+    .scenario{
+      padding:14px;border-radius:16px;
+      border:1px solid #1f2b3d;
+      background:#0e151f;
+      cursor:pointer;
+      transition:.18s;
+    }
+    .scenario:hover{transform:translateY(-2px)}
+    .scenario.active{
+      border-color:rgba(0,180,255,.55);
+      box-shadow:0 8px 28px rgba(0,180,255,.18);
+    }
+    .scenario h3{font-size:14px;margin-bottom:6px}
+    .scenario p{color:var(--muted);font-size:12px}
+
+    .actions{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:10px;
+    }
+    .action{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:12px;border-radius:16px;
+      border:1px solid #1f2b3d;
+      background:#0e151f;
+      transition:.18s;
+    }
+    .action:hover{transform:translateY(-1px)}
+    .action input{margin-top:4px;transform:scale(1.1)}
+    .action strong{display:block;font-size:13px}
+    .action span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+    .hint{color:var(--muted);font-size:12px;margin-top:10px}
+
+    .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media(max-width:700px){ .kpi-row{grid-template-columns:1fr} }
+    .kpi{
+      padding:12px;border-radius:16px;
+      border:1px solid #1f2b3d;background:#0e151f;
+    }
+    .kpi .label{color:var(--muted);font-size:12px}
+    .kpi .value{font-size:18px;font-weight:900;margin-top:2px}
+    .kpi .delta{font-size:12px;margin-top:6px;color:#b9c3d4}
+
+    .bars{margin-top:14px;display:grid;gap:10px}
+    .bar{
+      border:1px solid #1f2b3d;border-radius:14px;background:#0b111b;padding:10px 12px;
+    }
+    .bar-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .bar-top strong{font-size:13px}
+    .bar-top span{color:var(--muted);font-size:12px}
+    .track{
+      margin-top:10px;
+      height:10px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--brand),var(--brand2));
+      transition:width .55s ease;
+      border-radius:999px;
+    }
+
+    .result-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+    .panel{
+      padding:14px;border-radius:16px;border:1px solid #1f2b3d;background:#0e151f;
+    }
+    .panel h3{font-size:14px;margin-bottom:6px}
+    .panel p{color:var(--muted);font-size:13px}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid #2a3343;background:rgba(255,255,255,.03);
+      color:#cfe7ff;font-weight:800;font-size:12px;
+      margin-top:10px;
+    }
+    .risk{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      font-weight:900;font-size:12px;
+      margin-top:10px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .risk.low{color:#062017;background:rgba(0,209,178,.18);border-color:rgba(0,209,178,.28)}
+    .risk.med{color:#2a1d00;background:rgba(255,209,102,.18);border-color:rgba(255,209,102,.28)}
+    .risk.high{color:#2b0a0a;background:rgba(255,93,93,.18);border-color:rgba(255,93,93,.28)}
+
+    footer{padding:30px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
+    .tiny{color:var(--muted);font-size:12px;margin-top:10px}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="./index.html">ANDRÉS GONZÁLEZ</a>
+    <div class="nav-right">
+      <a class="btn" href="./index.html">Volver al portafolio</a>
+      <button class="btn primary" id="runBtn" type="button">Calcular estrategia</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="card">
+      <div class="hd">Retail Strategy Lab</div>
+      <div class="bd">
+        <h1>Simula un caso real y mira el impacto en KPIs</h1>
+        <div class="sub">
+          Elige un escenario, selecciona hasta <strong>3 acciones</strong> y revisa resultados proyectados (realista + visual).
+        </div>
+        <div class="chips">
+          <span class="chip">Ejecución diaria</span>
+          <span class="chip">Disciplina operativa</span>
+          <span class="chip">KPIs accionables</span>
+          <span class="chip">Decisiones con impacto</span>
+        </div>
+        <div class="tiny">Nota: simulación educativa con reglas de negocio simplificadas (sin IA, sin backend).</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hd">Resultado</div>
+      <div class="bd">
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="label">Venta diaria</div>
+            <div class="value" id="kpiSales">$—</div>
+            <div class="delta" id="kpiSalesDelta">Selecciona escenario</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Conversión</div>
+            <div class="value" id="kpiConv">—%</div>
+            <div class="delta" id="kpiConvDelta">y acciones</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Confiabilidad inv.</div>
+            <div class="value" id="kpiInv">—%</div>
+            <div class="delta" id="kpiInvDelta">para calcular</div>
+          </div>
+        </div>
+
+        <div class="bars">
+          <div class="bar">
+            <div class="bar-top"><strong>Cumplimiento vs meta</strong><span id="barMetaTxt">—</span></div>
+            <div class="track"><div class="fill" id="barMeta"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-top"><strong>Salud comercial</strong><span id="barHealthTxt">—</span></div>
+            <div class="track"><div class="fill" id="barHealth"></div></div>
+          </div>
+          <div class="bar">
+            <div class="bar-top"><strong>Riesgo operativo</strong><span id="barRiskTxt">—</span></div>
+            <div class="track"><div class="fill" id="barRisk"></div></div>
+          </div>
+        </div>
+
+        <div class="result-grid">
+          <div class="panel">
+            <h3>Lectura ejecutiva</h3>
+            <p id="execText">Selecciona un escenario y hasta 3 acciones, luego toca “Calcular estrategia”.</p>
+            <div class="tag" id="profileTag" style="display:none;">Perfil: —</div>
+            <div class="risk low" id="riskPill" style="display:none;">Riesgo: —</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="hd">1) Escenario</div>
+      <div class="bd">
+        <div class="scenario-grid" id="scenarioGrid"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hd">2) Acciones</div>
+      <div class="bd">
+        <div class="actions" id="actionsGrid"></div>
+        <div class="hint" id="pickHint">Puedes elegir hasta <strong>3</strong> acciones.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin:0 0 26px">
+    <div class="hd">Cómo está pensado</div>
+    <div class="bd">
+      <p style="color:var(--muted);font-size:13px;margin-bottom:10px">
+        Este laboratorio está diseñado para mostrar criterio: priorización, trade-offs y ejecución.
+        Los impactos son aproximaciones basadas en prácticas típicas de retail (conversión, ticket, disponibilidad y productividad).
+      </p>
+      <p style="color:var(--muted);font-size:13px">
+        Si quieres que quede más “tú”, luego lo afinamos con tus números típicos: ticket, metas, horarios y mix.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="container">
+  <small>© <span id="year"></span> Andrés González · Retail Strategy Lab</small>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const SCENARIOS = [
+    {
+      id: "sales_drop",
+      title: "📉 Caída de ventas -15%",
+      desc: "Venta por debajo de meta; síntomas mixtos en conversión y ticket.",
+      base: { sales: 52000, target: 60000, conv: 0.185, ticket: 980, inv: 0.965, risk: 0.35 }
+    },
+    {
+      id: "inv_low",
+      title: "📦 Inventario 90% confiabilidad",
+      desc: "Quiebres frecuentes; merma y ajustes afectan disponibilidad.",
+      base: { sales: 56000, target: 60000, conv: 0.195, ticket: 1020, inv: 0.90, risk: 0.55 }
+    },
+    {
+      id: "conv_low",
+      title: "👥 Conversión baja (20%→17%)",
+      desc: "Tráfico estable, pero el cierre y el UPT están flojos.",
+      base: { sales: 50000, target: 60000, conv: 0.17, ticket: 1050, inv: 0.955, risk: 0.42 }
+    },
+    {
+      id: "aggressive_target",
+      title: "💰 Meta +25% sin más tráfico",
+      desc: "Objetivo agresivo; necesitas disciplina comercial y foco por KPI.",
+      base: { sales: 60000, target: 75000, conv: 0.19, ticket: 1100, inv: 0.96, risk: 0.48 }
+    }
+  ];
+
+  const ACTIONS = [
+    {
+      id: "floor_coaching",
+      title: "Coaching en piso + ritual diario",
+      desc: "+Conversión, disciplina de ejecución y seguimiento por KPI.",
+      effect: { conv: 0.012, ticket: 30, inv: 0.0, risk: -0.06, salesMult: 0.03 }
+    },
+    {
+      id: "upt_ticket",
+      title: "Entrenamiento UPT + bundles",
+      desc: "+Ticket promedio y venta efectiva (sin depender solo de tráfico).",
+      effect: { conv: 0.004, ticket: 90, inv: 0.0, risk: -0.03, salesMult: 0.02 }
+    },
+    {
+      id: "cycle_counts",
+      title: "Conteo cíclico + causas raíz",
+      desc: "+Confiabilidad de inventario y menor pérdida por quiebres.",
+      effect: { conv: 0.0, ticket: 0, inv: 0.04, risk: -0.08, salesMult: 0.015 }
+    },
+    {
+      id: "staffing",
+      title: "Staffing por franja + roles claros",
+      desc: "+Conversión en horas pico y productividad sin saturar costo.",
+      effect: { conv: 0.01, ticket: 20, inv: 0.0, risk: -0.04, salesMult: 0.02 }
+    },
+    {
+      id: "local_activation",
+      title: "Activación comercial local",
+      desc: "+Tráfico incremental y urgencia (sin volarte el margen).",
+      effect: { conv: 0.006, ticket: 10, inv: 0.0, risk: +0.02, salesMult: 0.03 }
+    },
+    {
+      id: "layout_visual",
+      title: "Layout + visual merchandising",
+      desc: "+Descubrimiento de producto; empuja ticket/UPT y experiencia.",
+      effect: { conv: 0.006, ticket: 60, inv: 0.0, risk: -0.01, salesMult: 0.02 }
+    }
+  ];
+
+  const scenarioGrid = document.getElementById('scenarioGrid');
+  const actionsGrid = document.getElementById('actionsGrid');
+  const pickHint = document.getElementById('pickHint');
+
+  let selectedScenarioId = null;
+  const selectedActions = new Set();
+
+  function renderScenarios(){
+    scenarioGrid.innerHTML = '';
+    SCENARIOS.forEach(s=>{
+      const el = document.createElement('div');
+      el.className = 'scenario' + (s.id===selectedScenarioId ? ' active' : '');
+      el.innerHTML = `<h3>${s.title}</h3><p>${s.desc}</p>`;
+      el.addEventListener('click', ()=>{
+        selectedScenarioId = s.id;
+        renderScenarios();
+      });
+      scenarioGrid.appendChild(el);
+    });
+  }
+
+  function renderActions(){
+    actionsGrid.innerHTML = '';
+    ACTIONS.forEach(a=>{
+      const wrap = document.createElement('label');
+      wrap.className = 'action';
+      const checked = selectedActions.has(a.id);
+      wrap.innerHTML = `
+        <input type="checkbox" ${checked ? 'checked' : ''} />
+        <div>
+          <strong>${a.title}</strong>
+          <span>${a.desc}</span>
+        </div>
+      `;
+      const cb = wrap.querySelector('input');
+
+      cb.addEventListener('change', (e)=>{
+        if(e.target.checked){
+          if(selectedActions.size >= 3){
+            e.target.checked = false;
+            pickHint.innerHTML = `Máximo <strong>3</strong> acciones. Quita una para agregar otra.`;
+            return;
+          }
+          selectedActions.add(a.id);
+        } else {
+          selectedActions.delete(a.id);
+          pickHint.innerHTML = `Puedes elegir hasta <strong>3</strong> acciones.`;
+        }
+      });
+
+      actionsGrid.appendChild(wrap);
+    });
+  }
+
+  renderScenarios();
+  renderActions();
+
+  const kpiSales = document.getElementById('kpiSales');
+  const kpiSalesDelta = document.getElementById('kpiSalesDelta');
+  const kpiConv = document.getElementById('kpiConv');
+  const kpiConvDelta = document.getElementById('kpiConvDelta');
+  const kpiInv = document.getElementById('kpiInv');
+  const kpiInvDelta = document.getElementById('kpiInvDelta');
+
+  const barMeta = document.getElementById('barMeta');
+  const barMetaTxt = document.getElementById('barMetaTxt');
+  const barHealth = document.getElementById('barHealth');
+  const barHealthTxt = document.getElementById('barHealthTxt');
+  const barRisk = document.getElementById('barRisk');
+  const barRiskTxt = document.getElementById('barRiskTxt');
+
+  const execText = document.getElementById('execText');
+  const profileTag = document.getElementById('profileTag');
+  const riskPill = document.getElementById('riskPill');
+
+  function fmtMoney(n){
+    return n.toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+  }
+  function clamp(v,min,max){ return Math.max(min, Math.min(max,v)); }
+
+  function calc(){
+    const scenario = SCENARIOS.find(s=>s.id===selectedScenarioId);
+    if(!scenario){
+      execText.textContent = "Primero selecciona un escenario.";
+      return;
+    }
+
+    const base = structuredClone(scenario.base);
+    let conv = base.conv;
+    let ticket = base.ticket;
+    let inv = base.inv;
+    let risk = base.risk;
+    let salesMult = 0;
+
+    const chosen = [...selectedActions].map(id => ACTIONS.find(a=>a.id===id));
+    chosen.forEach(a=>{
+      conv += a.effect.conv;
+      ticket += a.effect.ticket;
+      inv += a.effect.inv;
+      risk += a.effect.risk;
+      salesMult += a.effect.salesMult;
+    });
+
+    conv = clamp(conv, 0.10, 0.35);
+    ticket = clamp(ticket, 600, 2500);
+    inv = clamp(inv, 0.80, 0.995);
+    risk = clamp(risk, 0.10, 0.90);
+
+    const availabilityBoost = (inv - base.inv) * 0.6;
+    const convBoost = (conv - base.conv) * 1.4;
+    const ticketBoost = (ticket - base.ticket) / base.ticket * 0.7;
+
+    let projectedSales = base.sales * (1 + salesMult + availabilityBoost + convBoost + ticketBoost);
+
+    if(scenario.id === "aggressive_target"){
+      const hasCommercial = selectedActions.has("floor_coaching") || selectedActions.has("upt_ticket") || selectedActions.has("local_activation");
+      if(!hasCommercial) projectedSales *= 0.96;
+    }
+
+    projectedSales = clamp(projectedSales, base.sales * 0.85, base.sales * 1.45);
+
+    kpiSales.textContent = fmtMoney(Math.round(projectedSales));
+    const deltaSales = (projectedSales - base.sales) / base.sales;
+    kpiSalesDelta.textContent = `Antes: ${fmtMoney(base.sales)} · Δ ${(deltaSales*100).toFixed(1)}%`;
+
+    kpiConv.textContent = (conv*100).toFixed(1) + "%";
+    const deltaConv = (conv - base.conv) * 100;
+    kpiConvDelta.textContent = `Antes: ${(base.conv*100).toFixed(1)}% · Δ ${deltaConv.toFixed(1)} pp`;
+
+    kpiInv.textContent = (inv*100).toFixed(1) + "%";
+    const deltaInv = (inv - base.inv) * 100;
+    kpiInvDelta.textContent = `Antes: ${(base.inv*100).toFixed(1)}% · Δ ${deltaInv.toFixed(1)} pp`;
+
+    const metaPct = clamp(projectedSales / base.target, 0, 1.25);
+    barMeta.style.width = (metaPct*100).toFixed(0) + "%";
+    barMetaTxt.textContent = `${Math.round(metaPct*100)}%`;
+
+    const normConv = clamp((conv - 0.12) / (0.28 - 0.12), 0, 1);
+    const normTicket = clamp((ticket - 750) / (1400 - 750), 0, 1);
+    const normInv = clamp((inv - 0.85) / (0.98 - 0.85), 0, 1);
+    const health = clamp((normConv*0.45 + normTicket*0.30 + normInv*0.25), 0, 1);
+    barHealth.style.width = (health*100).toFixed(0) + "%";
+    barHealthTxt.textContent = `${Math.round(health*100)}%`;
+
+    barRisk.style.width = (risk*100).toFixed(0) + "%";
+    barRiskTxt.textContent = `${Math.round(risk*100)}%`;
+
+    const ops = selectedActions.has("cycle_counts") ? 1 : 0;
+    const people = selectedActions.has("floor_coaching") || selectedActions.has("staffing") ? 1 : 0;
+    const commercial = selectedActions.has("upt_ticket") || selectedActions.has("local_activation") || selectedActions.has("layout_visual") ? 1 : 0;
+
+    let profile = "Estratega Operativo Comercial";
+    if(ops && !commercial && people) profile = "Gestor Analítico (Operación primero)";
+    if(commercial && people && !ops) profile = "Líder Comercial Intensivo";
+    if(ops && commercial && !people) profile = "Estratega de Sistemas (Proceso + Resultado)";
+    if(ops && commercial && people) profile = "Estratega Operativo Comercial";
+
+    profileTag.style.display = "inline-flex";
+    profileTag.textContent = `Perfil: ${profile}`;
+
+    riskPill.style.display = "inline-flex";
+    let riskLabel = "Bajo";
+    riskPill.className = "risk low";
+    if(risk >= 0.55){ riskLabel = "Alto"; riskPill.className = "risk high"; }
+    else if(risk >= 0.38){ riskLabel = "Medio"; riskPill.className = "risk med"; }
+    riskPill.textContent = `Riesgo: ${riskLabel}`;
+
+    const focus = [];
+    if(deltaConv > 0.8) focus.push("conversión");
+    if((ticket - base.ticket) > 60) focus.push("ticket/UPT");
+    if(deltaInv > 2) focus.push("disponibilidad (inventario)");
+    if(!focus.length) focus.push("disciplina de ejecución");
+
+    const rec = chosen.length
+      ? `Acciones elegidas: ${chosen.map(x=>x.title).join(" · ")}.`
+      : "No elegiste acciones (por eso el impacto será limitado).";
+
+    execText.innerHTML =
+      `<strong>Lectura:</strong> estás atacando <strong>${focus.join(", ")}</strong> con un enfoque ${profile.toLowerCase()}.
+       ${rec}<br><br>
+       <strong>Resultado:</strong> venta proyectada ${fmtMoney(Math.round(projectedSales))} vs meta ${fmtMoney(base.target)}.
+       Mantén la ejecución diaria y revisa KPIs en ciclos cortos (día/semana).`;
+  }
+
+  document.getElementById('runBtn').addEventListener('click', calc);
+</script>
+</body>
+</html>
