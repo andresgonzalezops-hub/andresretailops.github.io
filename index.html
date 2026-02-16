@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>Andrés González | Estrategia Comercial & Operaciones</title>
-<meta name="description" content="Portafolio profesional de Andrés González: liderazgo estratégico, operaciones comerciales, KPIs, crecimiento sostenible y ejecución disciplinada.">
+<title>Andrés González | Retail Operations & Desarrollo Comercial</title>
+<meta name="description" content="Liderazgo estratégico, ejecución comercial, KPIs y crecimiento sostenible aplicable a retail y cualquier modelo de negocio.">
+<meta property="og:image" content="assets/profile.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -19,7 +20,6 @@
 --shadow:0 14px 36px rgba(0,0,0,.38);
 --stroke:#223043;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
 body{
 font-family:Inter,system-ui,sans-serif;
@@ -29,8 +29,18 @@ line-height:1.65;
 }
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
-h1{font-size:34px;margin-bottom:10px}
-h2{font-size:24px;font-weight:800;margin-bottom:14px}
+header{
+position:sticky;top:0;z-index:10;
+background:#0d1219;
+box-shadow:0 4px 14px rgba(0,0,0,.4);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav{
+display:flex;justify-content:space-between;align-items:center;
+padding:16px 0;flex-wrap:wrap;gap:12px;
+}
+.logo{font-weight:900;color:#fff}
+
 section.card{
 background:var(--card);
 border:1px solid var(--stroke);
@@ -40,49 +50,88 @@ box-shadow:var(--shadow);
 }
 
 .hd{
-padding:18px;
-font-size:18px;
-font-weight:800;
+padding:18px 18px 0;
 color:#ffffff;
+font-size:18px;
+font-weight:900;
 letter-spacing:.05em;
 }
 
 .bd{padding:22px}
 
-.btn{
-display:inline-flex;
+.top{
+display:grid;
+grid-template-columns:160px 1fr;
+gap:24px;
+padding:42px 0 18px;
 align-items:center;
-gap:8px;
-padding:12px 18px;
-border-radius:14px;
-font-weight:800;
-cursor:pointer;
-border:none;
-text-decoration:none;
 }
 
+.avatar{
+width:160px;height:160px;border-radius:22px;
+overflow:hidden;
+box-shadow:var(--shadow);
+border:2px solid #1f2a38;
+}
+
+h1{font-size:34px;margin-bottom:10px}
+.subtitle{color:var(--muted)}
+
+.badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.chip{
+padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
+color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+}
+
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+.btn{
+display:inline-flex;align-items:center;gap:8px;
+border:1px solid #2b3a4f;
+background:#0e141f;color:#d6e9ff;
+padding:10px 14px;border-radius:12px;
+font-weight:800;cursor:pointer;text-decoration:none;
+transition:.2s;
+}
 .btn.primary{
 background:linear-gradient(135deg,var(--brand),var(--brand2));
-color:#051018;
+color:#051018;border:none;
 box-shadow:0 8px 25px rgba(0,180,255,.35);
 }
-
-.btn.primary:hover{
-transform:translateY(-3px);
-box-shadow:0 12px 35px rgba(0,180,255,.45);
-}
+.btn:hover{transform:translateY(-2px)}
 
 .exp-item{
 border-left:3px solid var(--brand);
-padding-left:14px;
-margin-bottom:24px;
+padding-left:16px;
+margin-bottom:26px;
+}
+.exp-item h4{font-size:18px;margin-bottom:6px}
+.exp-item ul{margin-left:18px}
+
+.lab-cta{
+margin-top:30px;
+padding:28px;
+border-radius:20px;
+background:linear-gradient(135deg, rgba(0,180,255,.15), rgba(0,255,200,.12));
+border:1px solid rgba(0,255,200,.4);
+box-shadow:0 0 50px rgba(0,255,200,.2);
+text-align:center;
+}
+.lab-cta h3{
+font-size:26px;
+font-weight:900;
+color:#00ffe1;
+margin-bottom:12px;
+}
+.lab-cta p{
+max-width:750px;
+margin:0 auto 16px;
+color:var(--muted);
 }
 
-.exp-item h4{margin-bottom:6px}
-
 .vision p{
-margin-bottom:16px;
-font-size:16px;
+font-size:17px;
+margin-bottom:18px;
 }
 
 .certs{
@@ -99,51 +148,39 @@ overflow:hidden;
 transition:.25s;
 cursor:pointer;
 }
-
 .cert:hover{
 transform:translateY(-4px);
 box-shadow:0 14px 35px rgba(0,180,255,.35);
 }
-
-.cert img{
-width:100%;
-height:150px;
-object-fit:cover;
-}
-
+.cert img{width:100%;height:150px;object-fit:cover}
 .cap{
 padding:14px;
 text-align:center;
 }
-
 .cap strong{
 display:block;
-font-size:16px;
+font-size:15px;
 font-weight:900;
 color:#ffffff;
 margin-bottom:6px;
 }
-
 .cap span{
 color:var(--brand2);
 font-weight:700;
 font-size:12px;
 }
 
-/* STRATEGY LAB */
-
-.lab-box{
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px;
 text-align:center;
-padding:40px 30px;
-border:1px solid rgba(0,255,200,.45);
-box-shadow:0 0 40px rgba(0,255,200,.2);
 }
 
-.lab-title{
-font-size:28px;
-font-weight:900;
-color:#00ffe1;
-margin-bottom:16px;
+.cta{
+display:flex;
+justify-content:center;
+margin:30px 0;
 }
 
 footer{
@@ -158,18 +195,33 @@ color:#8e9aaf;
 
 <main class="container">
 
-<section class="card">
-<div class="bd">
-<h1>Estrategia Comercial & Operaciones</h1>
-<p>Liderazgo · KPIs · Rentabilidad · Ejecución · Crecimiento sostenible</p>
+<section class="top">
+<div class="avatar">
+<img src="assets/profile.jpg" alt="Foto de Andrés González">
+</div>
+<div>
+<h1>Retail Operations & Desarrollo Comercial</h1>
+<div class="subtitle">Estrategia · Liderazgo · KPIs · Rentabilidad · Aplicable a cualquier modelo de negocio</div>
+<div class="badges">
+<span class="chip">Gestión operativa</span>
+<span class="chip">Estrategia comercial</span>
+<span class="chip">Optimización de procesos</span>
+<span class="chip">Análisis y reporteo</span>
+<span class="chip">HubSpot · SAP</span>
+</div>
+<div class="links">
+<a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇ Descargar CV</a>
+<a class="btn" href="mailto:andresgonzalez.ops@gmail.com">📧 Correo</a>
+<a class="btn" href="tel:+523323430043">📞 +52 33 2343 0043</a>
+</div>
 </div>
 </section>
 
 <section class="card">
 <div class="hd">Sobre mí</div>
 <div class="bd">
-<p>Soy Luis Andrés González Martínez, profesional con más de 10 años liderando equipos y estructurando estrategias comerciales. Mi experiencia nace en retail, pero mi enfoque es aplicable a cualquier negocio que busque crecimiento sostenible.</p>
-<p>Trabajo con estructura, claridad de métricas y disciplina de ejecución. No se trata solo de vender: se trata de construir sistemas que generen resultados medibles.</p>
+<p>Soy Luis Andrés González Martínez, profesional con más de 10 años liderando equipos y estructurando crecimiento. Mi base es retail, pero mi enfoque es completamente trasladable a cualquier negocio que viva de resultados, ejecución y experiencia.</p>
+<p>Trabajo con estructura clara, KPIs accionables y disciplina operativa. Me gusta convertir estrategia en hábitos medibles y sostenibles.</p>
 </div>
 </section>
 
@@ -183,37 +235,36 @@ color:#8e9aaf;
 <li>2º lugar nacional en desempeño comercial.</li>
 <li>Unidad nueva posicionada entre las mejores del país en menos de 12 meses.</li>
 <li>100% de confiabilidad de inventario.</li>
-<li>Capacitación y desarrollo en 15+ sucursales.</li>
-<li>Optimización de KPIs comerciales con crecimiento sostenido.</li>
+<li>Capacitación estratégica en 15+ sucursales.</li>
+<li>Ejecución disciplinada de KPIs y crecimiento sostenido.</li>
 </ul>
 </div>
 
 <div class="exp-item">
 <h4>Gerente — GAP</h4>
 <ul>
-<li>Transformé operación de bajo desempeño en unidad rentable.</li>
+<li>Transformación de unidad de bajo desempeño a rentable.</li>
 <li>Resultados positivos sostenidos durante pandemia.</li>
-<li>Mejora de inventario de 85% a 98.88%.</li>
+<li>Inventario mejorado de 85% a 98.88%.</li>
 <li>Liderazgo de equipos de hasta 30 personas.</li>
 </ul>
 </div>
 
+<div class="lab-cta">
+<h3>🚀 STRATEGY LAB</h3>
+<p>Un proyecto práctico donde puedes ver cómo analizo escenarios reales, elijo prioridades y proyecto impacto en KPIs para cualquier negocio.</p>
+<a class="btn primary" href="strategy-lab.html">Explorar el laboratorio estratégico</a>
 </div>
-</section>
 
-<section class="card lab-box">
-<div class="lab-title">🚀 STRATEGY LAB</div>
-<p>Un proyecto práctico donde puedes ver cómo estructuro decisiones reales, analizo escenarios y proyecto impacto en KPIs.</p>
-<p>Diseñado para que cualquier negocio pueda aplicar claridad estratégica y ejecución disciplinada.</p>
-<a class="btn primary" href="strategy-lab.html">Explorar Strategy Lab</a>
+</div>
 </section>
 
 <section class="card vision">
 <div class="hd">Mi visión del liderazgo</div>
 <div class="bd">
-<p>El liderazgo no es solo dirigir, es construir sistemas que permitan a las personas ejecutar con claridad.</p>
-<p>Creo en métricas simples, disciplina diaria y decisiones estratégicas basadas en datos.</p>
-<p>Mi objetivo es impulsar crecimiento sostenible combinando estrategia comercial, operación estructurada y tecnología.</p>
+<p>El crecimiento no es suerte: es estructura, claridad y disciplina.</p>
+<p>Un líder construye sistemas, no improvisaciones. Define métricas, crea hábitos y convierte estrategia en ejecución diaria.</p>
+<p>Mi objetivo es unir estrategia comercial, operación eficiente y tecnología para generar resultados medibles y sostenibles.</p>
 </div>
 </section>
 
@@ -221,7 +272,6 @@ color:#8e9aaf;
 <div class="hd">Certificaciones destacadas</div>
 <div class="bd">
 <div class="certs">
-
 <div class="cert">
 <img src="assets/certs/HUBSPOT.jpg">
 <div class="cap">
@@ -246,16 +296,24 @@ color:#8e9aaf;
 </div>
 </div>
 
+<div class="cert">
+<img src="assets/certs/english-fundamentals-2026.jpg">
+<div class="cap">
+<strong>English Fundamentals</strong>
+<span>2026</span>
+</div>
+</div>
+
 </div>
 </div>
 </section>
 
 <section class="card">
 <div class="hd">Contacto</div>
-<div class="bd" style="text-align:center">
-<a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇ Descargar CV (PDF)</a>
-<p style="margin-top:20px;">📧 andresgonzalez.ops@gmail.com</p>
-<p>📍 Zapopan, Jalisco, México</p>
+<div class="bd contact-grid">
+<div>📧 andresgonzalez.ops@gmail.com</div>
+<div>📞 +52 33 2343 0043</div>
+<div>📍 Zapopan, Jalisco</div>
 </div>
 </section>
 
