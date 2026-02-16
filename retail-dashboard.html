@@ -64,6 +64,7 @@
       padding:10px 14px;border-radius:12px;
       font-weight:800;cursor:pointer;transition:.18s;
       display:inline-flex;align-items:center;gap:8px;
+      user-select:none;
     }
     .tab:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
     .tab.active{
@@ -124,7 +125,7 @@
     @media(max-width:680px){.row{grid-template-columns:1fr}}
 
     .field label{display:block;font-weight:800;font-size:12px;color:#c9d5e6;margin-bottom:6px}
-    .field input{
+    .field input, .field select{
       width:100%;
       padding:12px 12px;
       border-radius:12px;
@@ -133,8 +134,9 @@
       color:#e6edf3;
       outline:none;
       font-weight:800;
+      appearance:none;
     }
-    .field input:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
+    .field input:focus, .field select:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
 
     .mini-kpis{
       display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;
@@ -215,25 +217,26 @@
       <button class="tab" data-tab="tab-dashboard">📊 Dashboard</button>
       <button class="tab" data-tab="tab-estrategia">🎯 Estrategia</button>
       <button class="tab" data-tab="tab-comision">💸 Comisión</button>
-      <a class="tab" href="/" style="text-decoration:none">⬅️ Volver</a>
+      <button class="tab" id="btnBack">⬅️ Volver</button>
     </div>
   </div>
 </header>
 
 <main class="container">
+
   <section class="hero">
     <section class="card" style="margin:0">
       <div class="bd">
         <h1>Simulador rápido: metas, KPIs y plan de acción</h1>
         <p>
-          Mete tus números reales y te digo <strong>qué atacar primero</strong> (tráfico / conversión / ticket)
-          + un plan de coaching fácil de ejecutar. Sin humo.
+          Mete tus números reales y te doy un plan simple. Y ahora tú eliges:
+          <strong>¿en qué quieres enfocarte?</strong>
         </p>
         <div class="hint">
           <span class="chip">Meta mensual + ventas</span>
           <span class="chip">Días a cierre</span>
-          <span class="chip">Meta/actual: Conversión</span>
-          <span class="chip">Meta/actual: Ticket</span>
+          <span class="chip">Enfoque manual (o automático)</span>
+          <span class="chip">Estrategia + coaching</span>
         </div>
         <div class="actions">
           <button class="btn primary" id="btnRun">Calcular</button>
@@ -246,14 +249,12 @@
       <div class="bd">
         <h3 style="margin-bottom:6px">Tip rápido</h3>
         <p class="tiny">
-          Si no sabes el tráfico: no pasa nada. Con <strong>ventas</strong>, <strong>días</strong>,
-          <strong>conversión</strong> y <strong>ticket</strong> ya sale una recomendación buena.
+          Si no quieres que yo “adivine” el foco, abajo puedes escogerlo manual:
+          <strong>Conversión</strong>, <strong>Ticket</strong>, <strong>Upsell/Líneas</strong> o <strong>Tráfico</strong>.
         </p>
         <div class="divider"></div>
         <div class="tiny">
-          <strong>Regla simple:</strong> si la venta va baja, casi siempre es porque
-          te falla <em>una</em> de estas: <strong>entra poca gente</strong>, <strong>no conviertes</strong> o <strong>ticket bajo</strong>.
-          Aquí te digo cuál.
+          Si lo dejas en <strong>Automático</strong>, yo te digo cuál palanca mover primero.
         </div>
       </div>
     </section>
@@ -288,11 +289,33 @@
             <input id="trafficDaily" type="number" min="0" step="1" placeholder="Ej. 85">
           </div>
         </div>
+
+        <div class="row">
+          <div class="field">
+            <label>¿En qué quieres enfocarte?</label>
+            <select id="focusMode">
+              <option value="auto">Automático (recomendado)</option>
+              <option value="conv">Conversión</option>
+              <option value="ticket">Ticket promedio</option>
+              <option value="upsell">Upsell / Líneas de producto</option>
+              <option value="traffic">Tráfico / Oportunidades</option>
+              <option value="exec">Ejecución general</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nombre de la tienda (opcional)</label>
+            <input id="storeName" type="text" placeholder="Ej. Andares / Midtown / etc.">
+          </div>
+        </div>
+
+        <div class="tiny" style="margin-top:10px">
+          El enfoque que elijas manda: la estrategia cambia según eso.
+        </div>
       </div>
 
       <div class="box">
         <h3>Metas de KPIs</h3>
-        <p class="tiny">Para saber qué palanca mover: conversión o ticket.</p>
+        <p class="tiny">Para que el plan tenga dirección.</p>
 
         <div class="row">
           <div class="field">
@@ -317,7 +340,7 @@
         </div>
 
         <div class="tiny" style="margin-top:10px">
-          Si no tienes una meta formal, pon la que te gustaría lograr. El chiste es <strong>comparar</strong>.
+          Si no tienes metas oficiales, pon metas deseadas. El chiste es comparar.
         </div>
       </div>
     </div>
@@ -364,14 +387,13 @@
         </div>
 
         <div class="kpi">
-          <div class="label">Lo que te está pegando hoy</div>
+          <div class="label">Enfoque seleccionado</div>
           <div class="value" id="dashFocus">—</div>
           <div class="note" id="dashFocusNote">—</div>
         </div>
       </div>
 
       <div class="divider"></div>
-
       <div id="dashPills"></div>
     </div>
   </section>
@@ -494,13 +516,11 @@
   document.getElementById('year').textContent = new Date().getFullYear();
   const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
   const pctFmt = (n)=> (isFinite(n) ? (n*100).toFixed(1) + "%" : "—");
-
   function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
 
   // ===== Tabs
   const tabs = document.querySelectorAll('.tab[data-tab]');
   const panels = ['tab-inputs','tab-dashboard','tab-estrategia','tab-comision'].map(id => document.getElementById(id));
-
   tabs.forEach(t=>{
     t.addEventListener('click', ()=>{
       tabs.forEach(x=>x.classList.remove('active'));
@@ -510,6 +530,28 @@
       if(target) target.classList.remove('hidden');
     });
   });
+
+  // ===== Volver (ya sirve)
+  document.getElementById('btnBack').addEventListener('click', ()=>{
+    try{
+      if(window.history.length > 1) window.history.back();
+      else window.location.href = "index.html";
+    }catch(e){
+      window.location.href = "index.html";
+    }
+  });
+
+  // ===== Focus labels
+  function focusLabel(mode){
+    switch(mode){
+      case "conv": return "Conversión";
+      case "ticket": return "Ticket promedio";
+      case "upsell": return "Upsell / Líneas de producto";
+      case "traffic": return "Tráfico / Oportunidades";
+      case "exec": return "Ejecución general";
+      default: return "Automático";
+    }
+  }
 
   // ===== Core compute
   function compute(){
@@ -523,42 +565,55 @@
     const ticketNow = Number(document.getElementById('ticketNow').value || 0);
     const ticketGoal = Number(document.getElementById('ticketGoal').value || 0);
 
+    const focusMode = (document.getElementById('focusMode').value || "auto");
+    const storeName = (document.getElementById('storeName').value || "").trim();
+
     const remaining = Math.max(monthGoal - monthSales, 0);
     const paceNeed = (daysLeft > 0) ? (remaining / daysLeft) : 0;
     const pct = (monthGoal > 0) ? (monthSales / monthGoal) : 0;
 
-    // KPI gaps (positive = falta)
+    // gaps (relative)
     const gapConv = (convGoal > 0) ? ((convGoal - convNow) / convGoal) : 0;
     const gapTicket = (ticketGoal > 0) ? ((ticketGoal - ticketNow) / ticketGoal) : 0;
 
-    // Focus logic: tráfico only if provided
     // Potential daily sales from traffic (if provided)
-    const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0) ? (trafficDaily * convNow * ticketNow) : 0;
+    const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0)
+      ? (trafficDaily * convNow * ticketNow)
+      : 0;
 
-    let focus = "Ejecución general";
-    let focusNote = "Mete datos y te digo qué atacar primero.";
-    let focusKey = "general";
+    // ===== Decide focusKey
+    let focusKey = "exec";
+    let focus = focusLabel(focusMode);
+    let focusNote = "Selecciona un enfoque y calcula.";
 
-    // Determine main lever:
-    // 1) if paceNeed > potential and traffic given -> traffic-ish
-    // 2) else prioritize biggest relative gap between conv and ticket
-    if(trafficDaily > 0 && dailySalesPotentialNow > 0 && paceNeed > dailySalesPotentialNow * 1.05){
-      focus = "Tráfico (o más oportunidades)";
-      focusNote = "Tu proyección diaria se queda corta vs lo requerido. Hay que meter más oportunidades y no desperdiciar piso.";
-      focusKey = "traffic";
+    // If manual selection (not auto), force it:
+    if(focusMode !== "auto"){
+      focusKey = focusMode; // conv, ticket, upsell, traffic, exec
+      focusNote = `Enfoque manual: ${focus}.`;
     } else {
-      if(gapConv > 0.06 && gapConv >= gapTicket){
-        focus = "Conversión";
-        focusNote = "Ahorita lo que más te mueve la aguja es convertir mejor lo que ya entra.";
-        focusKey = "conv";
-      } else if(gapTicket > 0.06 && gapTicket > gapConv){
-        focus = "Ticket promedio";
-        focusNote = "Ahorita te conviene subir ticket: bundles, upsell y anclaje.";
-        focusKey = "ticket";
+      // Auto logic
+      focusKey = "exec";
+      focus = "Automático";
+      focusNote = "Yo elijo la palanca más urgente según tus datos.";
+
+      if(trafficDaily > 0 && dailySalesPotentialNow > 0 && paceNeed > dailySalesPotentialNow * 1.05){
+        focusKey = "traffic";
+        focus = "Tráfico / Oportunidades";
+        focusNote = "Con el tráfico actual no te da el ritmo. Hay que meter más oportunidades y no desperdiciar piso.";
       } else {
-        focus = "Ejecución + seguimiento";
-        focusNote = "Vas cerca de metas de KPI. Enfócate en ritmo diario, seguimiento y cierre.";
-        focusKey = "exec";
+        if(gapConv > 0.06 && gapConv >= gapTicket){
+          focusKey = "conv";
+          focus = "Conversión";
+          focusNote = "Lo que más te mueve la aguja ahorita es convertir mejor lo que ya entra.";
+        } else if(gapTicket > 0.06 && gapTicket > gapConv){
+          focusKey = "ticket";
+          focus = "Ticket promedio";
+          focusNote = "Ahorita te conviene subir ticket: bundles y recomendación clara.";
+        } else {
+          focusKey = "exec";
+          focus = "Ejecución general";
+          focusNote = "Vas cerca de metas. Toca disciplina de piso y seguimiento.";
+        }
       }
     }
 
@@ -576,8 +631,7 @@
     document.getElementById('dashFocusNote').textContent = focusNote;
 
     const bar = document.getElementById('barPct');
-    const w = clamp(pct*100, 0, 100);
-    bar.style.width = w.toFixed(1) + "%";
+    bar.style.width = clamp(pct*100, 0, 100).toFixed(1) + "%";
 
     // Pills (status)
     const pills = [];
@@ -585,23 +639,19 @@
       const dot = state === 'good' ? 'good' : state === 'warn' ? 'warn' : 'bad';
       return `<span class="pill"><span class="dot ${dot}"></span>${text}</span>`;
     }
-
-    // monthly pace status
     if(monthGoal>0 && daysLeft>0){
       if(remaining === 0) pills.push(pill("Meta del mes: cerrada ✅","good"));
-      else if(paceNeed > 0) pills.push(pill(`Ritmo diario requerido: ${money(paceNeed)}`,(paceNeed>0?'warn':'good')));
+      else pills.push(pill(`Ritmo requerido: ${money(paceNeed)}`,(paceNeed>0?'warn':'good')));
     }
-    // conv status
     if(convGoal>0){
       const st = convNow >= convGoal ? "good" : (convNow >= convGoal*0.9 ? "warn" : "bad");
       pills.push(pill(`Conversión: ${(convNow*100).toFixed(1)}%`, st));
     }
-    // ticket status
     if(ticketGoal>0){
       const st = ticketNow >= ticketGoal ? "good" : (ticketNow >= ticketGoal*0.9 ? "warn" : "bad");
       pills.push(pill(`Ticket: ${money(ticketNow)}`, st));
     }
-
+    pills.push(pill(`Enfoque: ${focus}`, "warn"));
     document.getElementById('dashPills').innerHTML = pills.join("");
 
     // ===== Strategy outputs
@@ -614,100 +664,147 @@
 
     const dailyNeedTxt = (daysLeft>0) ? money(paceNeed) : "—";
     const projTxt = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
+    const storeTxt = storeName ? ` (${storeName})` : "";
 
-    let title = "Estrategia base: ejecución + seguimiento";
+    // Base defaults
+    let title = `Estrategia base${storeTxt}: ejecución + seguimiento`;
     let intro = `Hoy necesitas ${dailyNeedTxt} por día para cerrar meta.`;
-
     let actions = [
       "<strong>Brief 5 min:</strong> 1 KPI + 1 foco del día (en una frase).",
       "<strong>Rondas cortas:</strong> cada 90 min revisa: ¿qué está frenando hoy?",
-      "<strong>Cierre 10 min:</strong> ¿qué repetimos mañana? (sin drama, solo claro).",
-      "<strong>WhatsApp/CRM:</strong> 10 mensajes por asesor/día + 3 citas reales."
+      "<strong>Cierre 10 min:</strong> ¿qué repetimos mañana? (claro y sin rollo).",
+      "<strong>Seguimiento:</strong> 10 mensajes por asesor/día + 2 citas reales."
     ];
     let measure = [
-      "Venta vs ritmo: a media jornada y al cierre.",
-      "Notas rápidas: qué franja vendió y por qué.",
-      "Conversión: aunque baje el tráfico, si sube conv, vas bien.",
-      "Ticket: bundles / upsell medidos por tickets."
+      "Venta vs ritmo: mitad de jornada y cierre.",
+      "Notas: qué franja vendió y por qué (2 renglones).",
+      "Conversión: aunque baje tráfico, si sube conv, vas mejor.",
+      "Ticket: bundles/upsell medidos por tickets."
     ];
     let coaching = [
       "Apertura en 10 segundos: pregunta poderosa + guía.",
-      "Roleplay: 3 aperturas + 3 objeciones comunes.",
-      "Checklist por asesor: 1 cosa a mejorar hoy (solo una)."
+      "Roleplay: 3 aperturas + 2 objeciones comunes.",
+      "Feedback corto: 1 cosa bien + 1 cosa a mejorar (máximo)."
     ];
 
+    // ===== Manual/Auto focus strategies
     if(focusKey === "traffic"){
-      title = "Enfoque: levantar oportunidades (tráfico y contacto)";
-      intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter más oportunidades y no desperdiciar piso.`;
+      title = `Enfoque${storeTxt}: Tráfico / Oportunidades`;
+      intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter oportunidades y no desperdiciar piso.`;
       actions = [
-        "<strong>Greeter en puerta:</strong> saludo + pregunta + dirigir (picos).",
+        "<strong>Puerta / Greeter:</strong> saludo + pregunta + dirigir (en picos).",
         "<strong>Activación rápida:</strong> WhatsApp/CRM: 10 mensajes por asesor + 2 citas cada uno.",
         "<strong>Staff por franja:</strong> más manos donde sí entra gente.",
-        "<strong>Demo en 2 min:</strong> que cada visita vea el “wow” rápido.",
-        "<strong>Alianzas express:</strong> convenio local / referidos (hoy mismo)."
+        "<strong>Demo en 2 min:</strong> que cada visita vea el 'wow' rápido.",
+        "<strong>Referidos:</strong> pedir 1 referido por compra (hoy mismo)."
       ];
       measure = [
         "Oportunidades generadas por hora (contactos/citas).",
         "Asistencias a citas vs agenda.",
-        "Tráfico por franja (si lo tienes) y venta por franja.",
+        "Venta por franja (si lo tienes).",
         "Conversión: si sube, aunque entre menos, mejora."
       ];
       coaching = [
-        "Entrenamiento de bienvenida: 2 guiones cortos (uno directo, uno suave).",
-        "Roleplay: 5 minutos por asesor con el guion de entrada.",
-        "Regla: nadie deja ir a un cliente sin siguiente paso (cita / contacto)."
+        "Entrenamiento de bienvenida: 2 guiones cortos (directo y suave).",
+        "Roleplay 5 min por asesor con el guion de entrada.",
+        "Regla: nadie se va sin siguiente paso (cita o contacto)."
       ];
     }
 
     if(focusKey === "conv"){
-      title = "Enfoque: subir conversión (hacer que SÍ compre el que ya entra)";
-      intro = `Tu conversión actual va debajo de meta. No necesitas magia: necesitas consistencia en piso.`;
+      title = `Enfoque${storeTxt}: Conversión`;
+      intro = `Hoy no es meter más gente: es convertir mejor lo que ya entra.`;
       actions = [
-        "<strong>1 foco hoy:</strong> pasar de “saludo” a “diagnóstico” (preguntar y guiar).",
+        "<strong>1 cosa hoy:</strong> pasar de 'saludo' a 'diagnóstico' (preguntar y guiar).",
         "<strong>Regla 2-2-2:</strong> 2 preguntas + 2 opciones + 2 cierres suaves.",
-        "<strong>Demo obligatoria:</strong> sin demo, la venta se cae.",
+        "<strong>Demo obligatoria:</strong> sin demo, se cae la venta.",
         "<strong>Objeciones:</strong> elige 1 objeción del día y practícala.",
-        "<strong>Seguimiento:</strong> quien no compró, se convierte en cita (mínimo 1 intento)."
+        "<strong>Seguimiento:</strong> quien no compró → cita/contacto (mínimo 1 intento)."
       ];
       measure = [
-        "Conversión por franja (mañana / tarde).",
-        "Conversión por asesor (no para castigar: para entrenar).",
+        "Conversión por franja (mañana/tarde).",
+        "Conversión por asesor (para entrenar, no para regañar).",
         "Razón de no compra (3 categorías máximo).",
-        "Citas agendadas vs compra inmediata."
+        "Citas agendadas vs compras inmediatas."
       ];
       coaching = [
         "Guion simple: '¿Qué buscas? ¿Para cuándo? ¿Qué te importa más?'",
         "Roleplay 7 min: 1 apertura + 1 cierre suave.",
-        "Micro-feedback en piso: 1 cosa bien + 1 cosa a mejorar (máximo)."
+        "Micro-feedback en piso: 30 segundos por interacción."
       ];
     }
 
     if(focusKey === "ticket"){
-      title = "Enfoque: subir ticket promedio (sin forzar, con bundles)";
-      intro = `Tu ticket va debajo de meta. Aquí se gana con bundles, anclaje y recomendación clara.`;
+      title = `Enfoque${storeTxt}: Ticket promedio`;
+      intro = `Subir ticket sin forzar: bundles, anclaje y recomendación clara.`;
       actions = [
-        "<strong>Bundle definido:</strong> 2 combos claros (bueno/mejor) y se ofrecen siempre.",
-        "<strong>Anclaje:</strong> enseña primero el paquete “mejor” y luego el “bueno”.",
+        "<strong>2 bundles listos:</strong> (bueno / mejor). Se ofrecen siempre.",
+        "<strong>Anclaje:</strong> enseña primero el paquete 'mejor' y luego el 'bueno'.",
         "<strong>Upsell elegante:</strong> 1 mejora por ticket (no 5 cosas).",
-        "<strong>Regla:</strong> cada ticket debe llevar 1 accesorio/extra (si aplica).",
+        "<strong>Regla:</strong> cada ticket intenta llevar 1 extra (si aplica).",
         "<strong>Cierre:</strong> '¿Te lo dejo en el paquete que más te conviene?'"
       ];
       measure = [
         "Ticket promedio por franja.",
-        "Tickets con bundle vs sin bundle.",
-        "Top 3 productos extra que suben ticket.",
-        "Porcentaje de tickets con upsell."
+        "% tickets con bundle (sí/no).",
+        "Top 3 extras que suben ticket.",
+        "Tickets con upsell vs sin upsell."
       ];
       coaching = [
         "Ensayar 2 bundles (palabras exactas).",
-        "Practicar anclaje: 'este es el completo; este el esencial'.",
+        "Practicar anclaje: 'completo' vs 'esencial'.",
         "Feedback por ticket: 1 oportunidad de bundle detectada."
+      ];
+    }
+
+    if(focusKey === "upsell"){
+      title = `Enfoque${storeTxt}: Upsell / Líneas de producto`;
+      intro = `No es “meter accesorios”, es recomendar lo lógico para que el cliente se lleve mejor solución.`;
+      actions = [
+        "<strong>Define 3 combos:</strong> (1) esencial, (2) completo, (3) premium.",
+        "<strong>Regla de recomendación:</strong> cada venta incluye 1 recomendación extra (solo 1).",
+        "<strong>Guion fácil:</strong> 'Para que te funcione mejor, te recomiendo X por Y razón'.",
+        "<strong>Exhibición:</strong> pon el combo armado visible (que se antoje).",
+        "<strong>Cierre:</strong> '¿Te lo dejo como combo o solo la pieza?'"
+      ];
+      measure = [
+        "Attach rate (simple): % tickets con 'algo extra'.",
+        "Top 5 extras que sí salen (no inventes, los reales).",
+        "Venta por línea (si la tienes), si no: conteo de combos.",
+        "Ticket promedio (de rebote sube)."
+      ];
+      coaching = [
+        "Roleplay 10 min: 3 formas de recomendar sin sonar intenso.",
+        "1 frase por asesor: que sea natural, no robot.",
+        "En piso: feedback inmediato cuando sí lo ofrezcan bien."
+      ];
+    }
+
+    if(focusKey === "exec"){
+      title = `Enfoque${storeTxt}: Ejecución general`;
+      intro = `Vas a cerrar por disciplina: ritmo, seguimiento y coaching corto.`;
+      actions = [
+        "<strong>Ritmo por franja:</strong> define micro-meta por hora (simple).",
+        "<strong>Brief + ajuste:</strong> 5 min al inicio y 5 min a media jornada.",
+        "<strong>Seguimiento:</strong> 10 mensajes por asesor + 2 citas.",
+        "<strong>Checar piso:</strong> producto top siempre a la mano y demo lista.",
+        "<strong>Cierre:</strong> lista de pendientes y prioridad de mañana."
+      ];
+      measure = [
+        "Venta vs ritmo (por franja).",
+        "Conversión y ticket (solo ver si suben/bajan).",
+        "Citas agendadas y asistencias.",
+        "Qué acción sí funcionó (1 cosa)."
+      ];
+      coaching = [
+        "Feedback corto: 1 cosa a mejorar hoy por asesor.",
+        "Roleplay 5 min: apertura + cierre.",
+        "Que todos sepan el foco del día en una frase."
       ];
     }
 
     strTitle.textContent = title;
     strIntro.textContent = intro;
-
     strActions.innerHTML = actions.map(x=>`<li>${x}</li>`).join("");
     strMeasure.innerHTML = measure.map(x=>`<li>${x}</li>`).join("");
     strCoaching.innerHTML = coaching.map(x=>`<li>${x}</li>`).join("");
@@ -715,14 +812,15 @@
     // WhatsApp message
     const wa = [
       "Equipo 👊",
-      `Hoy el foco es: ${focus.toUpperCase()}.`,
+      storeName ? `Hoy en ${storeName}:` : "Hoy:",
+      `Foco: ${focus.toUpperCase()}.`,
       (daysLeft>0 && monthGoal>0) ? `Ritmo requerido: ${money(paceNeed)} por día.` : "",
-      "1 cosa clara: no queremos 'intentar', queremos ejecutar.",
+      "1 cosa clara: ejecutar sin rollo.",
       "A media jornada revisamos 5 min y ajustamos. Va?"
     ].filter(Boolean).join("\n");
     waText.textContent = wa;
 
-    // Switch to dashboard automatically after calculate (para que se vea rápido)
+    // Switch to dashboard after calculate (para que se vea rápido)
     document.querySelector('.tab[data-tab="tab-dashboard"]').click();
 
     // Keep commission updated
@@ -766,15 +864,20 @@
 
   // ===== Events
   document.getElementById('btnRun').addEventListener('click', compute);
+
   document.getElementById('btnReset').addEventListener('click', ()=>{
     [
       'monthGoal','monthSales','daysLeft','trafficDaily',
       'convNow','convGoal','ticketNow','ticketGoal',
-      'sellerGoal','sellerSales','sellerCommPct'
+      'sellerGoal','sellerSales','sellerCommPct',
+      'storeName'
     ].forEach(id=>{
       const el = document.getElementById(id);
       if(el) el.value = "";
     });
+
+    const focusSel = document.getElementById('focusMode');
+    if(focusSel) focusSel.value = "auto";
 
     // reset visible stuff
     document.getElementById('dashPct').textContent = "—";
@@ -802,10 +905,25 @@
     computeCommissionOnly();
   });
 
+  // Auto-cálculo de comisión
   ['sellerGoal','sellerSales','sellerCommPct'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.addEventListener('input', computeCommissionOnly);
   });
+
+  // Si cambias enfoque, recalcula si ya estabas viendo resultados (opcional)
+  const focusModeEl = document.getElementById('focusMode');
+  if(focusModeEl){
+    focusModeEl.addEventListener('change', ()=>{
+      // Si ya hay datos, recalcula rápido
+      const anyData =
+        Number(document.getElementById('monthGoal').value || 0) > 0 ||
+        Number(document.getElementById('monthSales').value || 0) > 0 ||
+        Number(document.getElementById('convNow').value || 0) > 0 ||
+        Number(document.getElementById('ticketNow').value || 0) > 0;
+      if(anyData) compute();
+    });
+  }
 
   // First run commission placeholders
   computeCommissionOnly();
