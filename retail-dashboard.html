@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Andrés González | Estrategia Comercial & Operaciones</title>
-  <meta name="description" content="Portafolio profesional de Andrés González: estrategia comercial, liderazgo, KPIs, eficiencia operativa y equipos de alto desempeño.">
+  <title>Andrés González | Estrategia y Desarrollo Comercial</title>
+  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y equipos de alto desempeño.">
   <meta property="og:image" content="assets/profile.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -114,167 +114,23 @@
     .bd p{margin:0 0 12px}
     .bd p:last-child{margin-bottom:0}
 
-    .exp-item{border-left:3px solid var(--brand);padding-left:14px;margin:0 0 22px}
-    .exp-item h4{margin:0 0 6px}
-    .exp-item .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
-    .exp-item ul{margin:8px 0 0 18px}
-    .exp-item li{margin:6px 0}
-
-    /* CERTS */
-    .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    .cert{
-      background:#0e151f;
-      border:1px solid #1f2b3d;
-      border-radius:14px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:.2s;
-    }
-    .cert:hover{transform:translateY(-2px)}
-    .cert img{
-      width:100%;
-      height:150px;
-      object-fit:cover;
-      background:#0b111b;
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .cap{padding:12px}
-    .cap strong{display:block;font-size:14px;line-height:1.25}
-    .cap span{font-size:12px;color:var(--muted)}
-
-    /* MODALES */
-    dialog{
-      border:none;
-      border-radius:20px;
-      padding:0;
-      width:min(1400px,96vw);
-      background:#0b111b;
-      box-shadow:var(--shadow);
-    }
-    dialog::backdrop{background:rgba(4,10,16,.86);backdrop-filter:blur(4px)}
-    .modal-hd{
-      display:flex;align-items:center;justify-content:space-between;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#061018;
-      padding:14px 18px;
-      border-top-left-radius:20px;border-top-right-radius:20px;
-      gap:12px;
-    }
-    .modal-hd strong{font-weight:900}
-    .close{
-      background:#0e1522;border:1px solid #334155;color:#d8e7f9;
-      border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:800;
-    }
-
-    .modal-bd{padding:14px 18px}
-    .cv-stage{
-      height:calc(92vh - 64px);
-      border-radius:16px;
-      border:1px solid #2a3643;
-      background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      overflow:auto;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:22px 18px;
-      box-shadow:0 22px 60px rgba(0,0,0,.65);
-    }
-    .cv-paper{
-      background:#fff;
-      border-radius:14px;
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-      padding:14px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-    .cv-img{
-      width:min(1200px, 94vw);
-      height:auto;
-      border-radius:10px;
-      display:block;
-    }
-    .cv-img{image-rendering:auto}
-    @media(min-width:1100px){
-      .cv-img{width:1180px}
-    }
-
-    .cert-modal-wrap{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:8px 0 2px;
-    }
-    .modal-img{
-      width:100%;
-      max-width:min(1100px,96vw);
-      max-height:80vh;
-      object-fit:contain;
-      border-radius:16px;
-      border:1px solid #2a3643;
-      box-shadow:0 22px 60px rgba(0,0,0,.65);
-      background:#0b111b;
-    }
-    .modal-sub{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
-
     .vision p{
       font-size:16px;
-      line-height:1.75;
-      margin-bottom:18px;
+      line-height:1.8;
+      margin-bottom:22px;
     }
-    .vision p strong{color:#ffffff}
-    .vision p:first-child{font-size:17px;font-weight:600}
+    .vision p:first-child{
+      font-size:18px;
+      font-weight:600;
+    }
     .vision p::before{
       content:"";
       display:block;
-      width:32px;
+      width:40px;
       height:3px;
       background:linear-gradient(90deg,var(--brand),var(--brand2));
       border-radius:2px;
-      margin-bottom:10px;
-    }
-
-    /* ✅ NUEVO: PROYECTO DESTACADO (Strategy Lab) */
-    .project{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    @media(max-width:900px){
-      .project{grid-template-columns:1fr}
-    }
-    .project-card{
-      background:#0e151f;
-      border:1px solid #1f2b3d;
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-    }
-    .project-title{
-      font-size:18px;
-      font-weight:900;
-      margin-bottom:8px;
-    }
-    .project-desc{
-      color:#c8d4e3;
       margin-bottom:12px;
-    }
-    .project-bullets{
-      margin:10px 0 0 18px;
-      color:#c8d4e3;
-    }
-    .project-bullets li{margin:6px 0}
-    .project-cta{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-    .hint{
-      color:var(--muted);
-      font-size:13px;
-      margin-top:10px;
     }
 
     .cta{display:flex;justify-content:center;padding:10px 0 40px}
@@ -299,228 +155,53 @@
 
 <main class="container">
 
-  <section class="top">
-    <div class="avatar">
-      <img src="assets/profile.jpg" alt="Foto de Andrés González">
-    </div>
-
-    <div>
-      <h1>Estrategia Comercial & Operaciones</h1>
-      <div class="subtitle">Ejecución · Liderazgo · KPIs · Rentabilidad</div>
-
-      <div class="badges">
-        <span class="chip">Gestión operativa</span>
-        <span class="chip">Estrategia comercial</span>
-        <span class="chip">Optimización de inventarios</span>
-        <span class="chip">Análisis y reporteo</span>
-        <span class="chip">HubSpot · SAP</span>
-      </div>
-
-      <div class="links" style="margin-top:14px">
-        <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
-        <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
-        <a class="btn" href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener">📄 Ver CV (PDF)</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="sobre-mi" class="card">
-    <div class="hd">Sobre mí</div>
-    <div class="bd">
-      <p>Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos y operaciones comerciales</strong>, enfocado en convertir objetivos en resultados a través de <strong>personas, procesos y ejecución</strong>.</p>
-      <p>Mi liderazgo se basa en <strong>cercanía + claridad</strong>: el equipo entiende el <em>por qué</em> de cada indicador y cómo impacta en conversión, ticket, experiencia y rentabilidad. Esto me permite alinear operación y venta con un plan simple: <strong>prioridades claras, seguimiento diario y coaching en piso</strong>.</p>
-      <p>Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque creo que el crecimiento sostenible viene de integrar <strong>liderazgo humano + datos + tecnología</strong> para tomar mejores decisiones y ejecutar más rápido.</p>
-    </div>
-  </section>
-
-  <section id="experiencia" class="card">
-    <div class="hd">Experiencia profesional</div>
-    <div class="bd">
-      <div class="exp-item">
-        <h4>Store Manager Boutique Showroom — Luuna</h4>
-        <div class="meta">04/2022 – 06/2025</div>
-        <ul>
-          <li><strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta, destacando por desempeño sostenido.</li>
-          <li>Posicioné una <strong>unidad nueva</strong> dentro de las <strong>mejores</strong> en <strong>menos de un año</strong>, consolidando ejecución comercial y disciplina operativa.</li>
-          <li>Diseñé y ejecuté <strong>estrategias orientadas a resultados</strong> (metas por hora, coaching en piso, seguimiento diario) para sostener crecimiento.</li>
-          <li>Logré <strong>98.88% de confiabilidad</strong> de inventario, mejorando disponibilidad de producto y control de merma.</li>
-          <li>Capacité y desarrollé equipos en <strong>15+ unidades</strong>, fortaleciendo estándares comerciales y liderazgo de mandos medios.</li>
-        </ul>
-      </div>
-
-      <div class="exp-item">
-        <h4>Gerente de Boutique — GAP</h4>
-        <div class="meta">10/2014 – 07/2021</div>
-        <ul>
-          <li>Recibí una unidad con retos de desempeño y la llevé a <strong>rentabilidad en menos de un año</strong>.</li>
-          <li>Mantuve <strong>rentabilidad durante la pandemia (2020)</strong>, asegurando continuidad operativa con disciplina comercial y control.</li>
-          <li>Mejoré la <strong>confiabilidad de inventario de 85% a 98.88%</strong>.</li>
-          <li>Construí y fidelicé un <strong>equipo sólido</strong> (hasta 30 personas) con entrenamiento y cultura de estándares.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="certificaciones" class="card">
-    <div class="hd">Certificaciones destacadas</div>
-    <div class="bd">
-      <div class="certs">
-
-        <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
-          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
-          <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
-        </div>
-
-        <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
-          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS Academy – Cloud Foundations">
-          <div class="cap"><strong>AWS Academy – Cloud Foundations</strong><span>2025</span></div>
-        </div>
-
-        <div class="cert" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg','Cisco – Python Essentials 1','Emitido 2025')">
-          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco – Python Essentials 1">
-          <div class="cap"><strong>Cisco – Python Essentials 1</strong><span>2025</span></div>
-        </div>
-
-        <div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
-          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Gestión de Proyectos y Metodología Agile">
-          <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
-        </div>
-
-        <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
-          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
-          <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
-        </div>
-
-        <!-- ✅ ENGLISH (IMAGEN, MISMO MODAL) -->
-        <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
-          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals – Boost your job search and CV">
-          <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ✅ PROYECTO / HERRAMIENTA (Strategy Lab) -->
-  <section id="proyecto" class="card">
-    <div class="hd">Proyecto práctico</div>
-    <div class="bd">
-      <div class="project">
-        <div class="project-card">
-          <div class="project-title">Strategy Lab (KPIs & Ejecución Comercial)</div>
-          <div class="project-desc">
-            Esta mini-herramienta la construí para mostrar cómo me gusta trabajar: convertir metas en ejecución.
-            Metes tus números reales y te devuelve enfoque, ritmo y acciones claras para mover indicadores.
-          </div>
-          <ul class="project-bullets">
-            <li>Define tu objetivo y el tiempo que te queda (días a cierre).</li>
-            <li>Elige en qué quieres enfocarte (conversión, ticket promedio, UPT, mix de producto).</li>
-            <li>Recibe una estrategia accionable (coaching, seguimiento y prioridades).</li>
-          </ul>
-          <div class="project-cta">
-            <!-- 🔁 Si tu archivo NO se llama strategy-lab.html, cambia SOLO el href -->
-            <a class="btn primary" href="strategy-lab.html" target="_blank" rel="noopener">🚀 Abrir Strategy Lab</a>
-            <a class="btn" href="#contacto">¿Quieres que lo adapte a tu negocio?</a>
-          </div>
-          <div class="hint">Es un prototipo pensado para ser simple y práctico: claridad → acción → resultado.</div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-title">¿Qué evalúa y qué refleja?</div>
-          <div class="project-desc">
-            Para mí, una buena operación comercial no se trata de “hacer más”, sino de hacer mejor:
-            saber qué KPI mover, cómo medirlo y cómo entrenar al equipo para ejecutarlo.
-          </div>
-          <ul class="project-bullets">
-            <li>Priorización: lo que no mueve el KPI, se elimina.</li>
-            <li>Ritmo: seguimiento diario y ajustes rápidos.</li>
-            <li>Liderazgo: coaching y accountability con enfoque humano.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="vision" class="card vision">
-    <div class="hd">Mi visión del negocio y del liderazgo</div>
-    <div class="bd">
-      <p>Creo en construir resultados con <strong>ejecución diaria</strong>, sin perder lo humano: claridad, energía y disciplina para que el equipo sepa exactamente qué hacer y por qué importa.</p>
-
-      <p>Mi visión es simple: los resultados sostenibles se construyen cuando alineas <strong>personas</strong>, <strong>procesos</strong> e <strong>indicadores</strong>. No importa la industria: cuando el sistema está bien diseñado y se ejecuta con consistencia, el crecimiento deja de ser “suerte” y se vuelve un método.</p>
-
-      <p>Un líder hoy no solo dirige: <strong>estructura</strong>, <strong>entrena</strong> y <strong>acompaña</strong>. Me importa que el equipo entienda el “por qué” de cada meta, tenga herramientas para medir su avance y reciba coaching práctico para mejorar semana a semana.</p>
-
-      <p>Mi propósito es seguir evolucionando como un líder que une <strong>estrategia comercial</strong>, <strong>disciplina operativa</strong> y <strong>tecnología</strong> para construir equipos que generen resultados medibles, mejoren la experiencia del cliente y mantengan crecimiento real.</p>
-    </div>
-  </section>
-
-  <section id="contacto" class="card">
-    <div class="hd">Contacto</div>
-    <div class="bd" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
-      <div><strong>Correo</strong><p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p></div>
-      <div><strong>Teléfono</strong><p><a href="tel:+523323430043">+52 33 2343 0043</a></p></div>
-      <div><strong>LinkedIn</strong><p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">/in/andresglez89</a></p></div>
-      <div><strong>Ubicación</strong><p>Zapopan, Jalisco, México</p></div>
-    </div>
-  </section>
-
-  <div class="cta">
-    <a class="btn primary" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
+<section class="top">
+  <div class="avatar">
+    <img src="assets/profile.jpg" alt="Foto de Andrés González">
   </div>
+
+  <div>
+    <h1>Estrategia y Desarrollo Comercial</h1>
+    <div class="subtitle">Liderazgo · Crecimiento · KPIs · Rentabilidad</div>
+
+    <div class="badges">
+      <span class="chip">Gestión comercial</span>
+      <span class="chip">Estrategia de crecimiento</span>
+      <span class="chip">Optimización operativa</span>
+      <span class="chip">Análisis y toma de decisiones</span>
+      <span class="chip">HubSpot · SAP</span>
+    </div>
+
+    <div class="links" style="margin-top:14px">
+      <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank">LinkedIn</a>
+      <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">Correo</a>
+      <a class="btn" href="tel:+523323430043">Teléfono</a>
+      <a class="btn primary" href="strategy-lab/index.html" target="_blank">Strategy Lab</a>
+    </div>
+  </div>
+</section>
+
+<section id="vision" class="card vision">
+  <div class="hd">Mi visión del negocio y del liderazgo</div>
+  <div class="bd">
+    <p>Creo en construir organizaciones que no dependan del impulso momentáneo, sino de estructuras sólidas, disciplina estratégica y liderazgo consciente.</p>
+
+    <p>Para mí, liderar no es supervisar: es desarrollar criterio, formar mentalidad y crear equipos que entiendan el impacto real de su desempeño en el crecimiento del negocio.</p>
+
+    <p>Mi enfoque combina claridad estratégica, ejecución diaria y desarrollo humano. No importa la industria: cuando existen metas claras, indicadores bien definidos y una cultura fuerte, los resultados llegan.</p>
+
+    <p>Mi propósito profesional es generar crecimiento sostenible, fortalecer equipos de alto desempeño y construir modelos comerciales que funcionen incluso cuando el entorno cambia.</p>
+  </div>
+</section>
 
 </main>
 
 <footer class="container">
-  <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
+  <small>© <span id="year"></span> Andrés González · Estrategia Comercial</small>
 </footer>
 
-<!-- MODAL CV (ARREGLADO) -->
-<dialog id="cvModal">
-  <div class="modal-hd">
-    <strong>CV – Andrés González</strong>
-    <button class="close" onclick="cvModal.close()">Cerrar</button>
-  </div>
-  <div class="modal-bd">
-    <div class="cv-stage">
-      <div class="cv-paper">
-        <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV de Andrés González" class="cv-img">
-      </div>
-    </div>
-  </div>
-</dialog>
-
-<!-- MODAL CERT (OK) -->
-<dialog id="certModal">
-  <div class="modal-hd">
-    <strong id="certTitle">Certificado</strong>
-    <button class="close" onclick="certModal.close()">Cerrar</button>
-  </div>
-  <div class="modal-bd">
-    <div class="cert-modal-wrap">
-      <img id="certImg" alt="" class="modal-img">
-    </div>
-    <div id="certDetail" class="modal-sub"></div>
-  </div>
-</dialog>
-
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const cvModal = document.getElementById('cvModal');
-  document.getElementById('verCV').addEventListener('click',()=>cvModal.showModal());
-
-  const certModal = document.getElementById('certModal');
-  const certImg = document.getElementById('certImg');
-  const certTitle = document.getElementById('certTitle');
-  const certDetail = document.getElementById('certDetail');
-
-  function showCert(src,title,detail){
-    certImg.src = src;
-    certTitle.textContent = title || 'Certificado';
-    certDetail.textContent = detail || '';
-    certModal.showModal();
-  }
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
 </body>
