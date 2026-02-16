@@ -73,7 +73,7 @@
     }
 
     .hero{
-      padding:26px 0 10px;
+      padding:22px 0 10px;
       display:grid;
       grid-template-columns:1.2fr .8fr;
       gap:16px;
@@ -137,6 +137,41 @@
       appearance:none;
     }
     .field input:focus, .field select:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
+
+    /* ===== NUEVO: selector visible de enfoque ===== */
+    .focus-card{
+      margin-top:4px;
+    }
+    .focus-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    @media(max-width:960px){ .focus-grid{grid-template-columns:repeat(2,1fr)} }
+    .focus-btn{
+      border:1px solid #2b3a4f;
+      background:#0b111b;
+      border-radius:16px;
+      padding:12px;
+      cursor:pointer;
+      transition:.18s;
+      text-align:left;
+      min-height:74px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:6px;
+    }
+    .focus-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,180,255,.14)}
+    .focus-btn.active{
+      border:none;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#051018;
+    }
+    .focus-btn .t{font-weight:900}
+    .focus-btn .d{font-size:12px;color:var(--muted)}
+    .focus-btn.active .d{color:rgba(5,16,24,.8)}
 
     .mini-kpis{
       display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;
@@ -229,13 +264,13 @@
       <div class="bd">
         <h1>Simulador rápido: metas, KPIs y plan de acción</h1>
         <p>
-          Mete tus números reales y te doy un plan simple. Y ahora tú eliges:
-          <strong>¿en qué quieres enfocarte?</strong>
+          Mete tus números reales y listo. Aquí lo chido:
+          <strong>tú eliges el enfoque</strong> y la estrategia cambia al instante.
         </p>
         <div class="hint">
           <span class="chip">Meta mensual + ventas</span>
           <span class="chip">Días a cierre</span>
-          <span class="chip">Enfoque manual (o automático)</span>
+          <span class="chip">KPIs (conv / ticket / UPT)</span>
           <span class="chip">Estrategia + coaching</span>
         </div>
         <div class="actions">
@@ -249,15 +284,58 @@
       <div class="bd">
         <h3 style="margin-bottom:6px">Tip rápido</h3>
         <p class="tiny">
-          Si no quieres que yo “adivine” el foco, abajo puedes escogerlo manual:
-          <strong>Conversión</strong>, <strong>Ticket</strong>, <strong>Upsell/Líneas</strong> o <strong>Tráfico</strong>.
+          Si eliges un enfoque (abajo), yo te doy:
+          <strong>acciones</strong>, <strong>cómo medir</strong> y <strong>coaching</strong>.
         </p>
         <div class="divider"></div>
         <div class="tiny">
-          Si lo dejas en <strong>Automático</strong>, yo te digo cuál palanca mover primero.
+          Si lo dejas en <strong>Automático</strong>, te digo cuál palanca mover primero.
         </div>
       </div>
     </section>
+  </section>
+
+  <!-- ===== NUEVO: ENFOQUE VISIBLE EN BOTONES ===== -->
+  <section class="card focus-card">
+    <div class="hd">¿Cómo quieres tu estrategia?</div>
+    <div class="bd">
+      <div class="focus-grid" id="focusGrid">
+        <button class="focus-btn active" data-focus="auto" type="button">
+          <div class="t">🤖 Automático</div>
+          <div class="d">Yo elijo la palanca más urgente</div>
+        </button>
+        <button class="focus-btn" data-focus="conv" type="button">
+          <div class="t">🎯 Conversión</div>
+          <div class="d">Convertir mejor lo que entra</div>
+        </button>
+        <button class="focus-btn" data-focus="ticket" type="button">
+          <div class="t">🧾 Ticket promedio</div>
+          <div class="d">Subir ticket sin forzar</div>
+        </button>
+        <button class="focus-btn" data-focus="upt" type="button">
+          <div class="t">🧩 Unidades por ticket (UPT)</div>
+          <div class="d">Attach rate: % tickets con extra</div>
+        </button>
+        <button class="focus-btn" data-focus="traffic" type="button">
+          <div class="t">🚪 Tráfico</div>
+          <div class="d">Más oportunidades y citas</div>
+        </button>
+      </div>
+
+      <!-- Select oculto para que el motor use un valor único -->
+      <select id="focusMode" class="hidden" aria-hidden="true">
+        <option value="auto" selected>Automático</option>
+        <option value="conv">Conversión</option>
+        <option value="ticket">Ticket</option>
+        <option value="upt">UPT</option>
+        <option value="traffic">Tráfico</option>
+        <option value="exec">Ejecución</option>
+      </select>
+
+      <div class="tiny" style="margin-top:10px">
+        *Puedes cambiar el enfoque cuando quieras y recalcula.
+      </div>
+    </div>
   </section>
 
   <!-- TAB: INPUTS -->
@@ -292,24 +370,17 @@
 
         <div class="row">
           <div class="field">
-            <label>¿En qué quieres enfocarte?</label>
-            <select id="focusMode">
-              <option value="auto">Automático (recomendado)</option>
-              <option value="conv">Conversión</option>
-              <option value="ticket">Ticket promedio</option>
-              <option value="upsell">Upsell / Líneas de producto</option>
-              <option value="traffic">Tráfico / Oportunidades</option>
-              <option value="exec">Ejecución general</option>
-            </select>
-          </div>
-          <div class="field">
             <label>Nombre de la tienda (opcional)</label>
             <input id="storeName" type="text" placeholder="Ej. Andares / Midtown / etc.">
+          </div>
+          <div class="field">
+            <label>Notas (opcional)</label>
+            <input id="notes" type="text" placeholder="Ej. promo, baja afluencia, etc.">
           </div>
         </div>
 
         <div class="tiny" style="margin-top:10px">
-          El enfoque que elijas manda: la estrategia cambia según eso.
+          Si vas a usar Tráfico, mete tráfico diario y conversión/ticket.
         </div>
       </div>
 
@@ -339,8 +410,20 @@
           </div>
         </div>
 
+        <!-- NUEVO: Attach Rate (UPT simple) -->
+        <div class="row">
+          <div class="field">
+            <label>% tickets con extra (actual)</label>
+            <input id="attachNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 35">
+          </div>
+          <div class="field">
+            <label>Meta % tickets con extra</label>
+            <input id="attachGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 45">
+          </div>
+        </div>
+
         <div class="tiny" style="margin-top:10px">
-          Si no tienes metas oficiales, pon metas deseadas. El chiste es comparar.
+          “% tickets con extra” = attach rate (UPT simplificado).
         </div>
       </div>
     </div>
@@ -387,9 +470,31 @@
         </div>
 
         <div class="kpi">
+          <div class="label">UPT: % tickets con extra</div>
+          <div class="value" id="dashAttach">—</div>
+          <div class="note" id="dashAttachNote">—</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="mini-kpis">
+        <div class="kpi">
           <div class="label">Enfoque seleccionado</div>
           <div class="value" id="dashFocus">—</div>
           <div class="note" id="dashFocusNote">—</div>
+        </div>
+
+        <div class="kpi">
+          <div class="label">Proyección por tráfico (si aplica)</div>
+          <div class="value" id="dashTrafficProj">—</div>
+          <div class="note" id="dashTrafficProjNote">—</div>
+        </div>
+
+        <div class="kpi">
+          <div class="label">Notas</div>
+          <div class="value" id="dashNotes">—</div>
+          <div class="note">Contexto</div>
         </div>
       </div>
 
@@ -541,12 +646,39 @@
     }
   });
 
-  // ===== Focus labels
+  // ===== Focus buttons (visible)
+  const focusGrid = document.getElementById('focusGrid');
+  const focusModeSelect = document.getElementById('focusMode');
+
+  function setFocus(mode){
+    focusModeSelect.value = mode;
+
+    // UI active
+    document.querySelectorAll('.focus-btn').forEach(btn=>{
+      btn.classList.toggle('active', btn.dataset.focus === mode);
+    });
+
+    // Si ya hay datos, recalcula
+    const anyData =
+      Number(document.getElementById('monthGoal').value || 0) > 0 ||
+      Number(document.getElementById('monthSales').value || 0) > 0 ||
+      Number(document.getElementById('convNow').value || 0) > 0 ||
+      Number(document.getElementById('ticketNow').value || 0) > 0 ||
+      Number(document.getElementById('attachNow').value || 0) > 0;
+    if(anyData) compute();
+  }
+
+  focusGrid.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.focus-btn');
+    if(!btn) return;
+    setFocus(btn.dataset.focus);
+  });
+
   function focusLabel(mode){
     switch(mode){
       case "conv": return "Conversión";
       case "ticket": return "Ticket promedio";
-      case "upsell": return "Upsell / Líneas de producto";
+      case "upt": return "Unidades por ticket (UPT)";
       case "traffic": return "Tráfico / Oportunidades";
       case "exec": return "Ejecución general";
       default: return "Automático";
@@ -565,8 +697,12 @@
     const ticketNow = Number(document.getElementById('ticketNow').value || 0);
     const ticketGoal = Number(document.getElementById('ticketGoal').value || 0);
 
-    const focusMode = (document.getElementById('focusMode').value || "auto");
+    const attachNow = Number(document.getElementById('attachNow').value || 0) / 100;
+    const attachGoal = Number(document.getElementById('attachGoal').value || 0) / 100;
+
+    const focusMode = (focusModeSelect.value || "auto");
     const storeName = (document.getElementById('storeName').value || "").trim();
+    const notes = (document.getElementById('notes').value || "").trim();
 
     const remaining = Math.max(monthGoal - monthSales, 0);
     const paceNeed = (daysLeft > 0) ? (remaining / daysLeft) : 0;
@@ -575,6 +711,7 @@
     // gaps (relative)
     const gapConv = (convGoal > 0) ? ((convGoal - convNow) / convGoal) : 0;
     const gapTicket = (ticketGoal > 0) ? ((ticketGoal - ticketNow) / ticketGoal) : 0;
+    const gapAttach = (attachGoal > 0) ? ((attachGoal - attachNow) / attachGoal) : 0;
 
     // Potential daily sales from traffic (if provided)
     const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0)
@@ -586,12 +723,10 @@
     let focus = focusLabel(focusMode);
     let focusNote = "Selecciona un enfoque y calcula.";
 
-    // If manual selection (not auto), force it:
     if(focusMode !== "auto"){
-      focusKey = focusMode; // conv, ticket, upsell, traffic, exec
+      focusKey = focusMode;
       focusNote = `Enfoque manual: ${focus}.`;
     } else {
-      // Auto logic
       focusKey = "exec";
       focus = "Automático";
       focusNote = "Yo elijo la palanca más urgente según tus datos.";
@@ -601,18 +736,25 @@
         focus = "Tráfico / Oportunidades";
         focusNote = "Con el tráfico actual no te da el ritmo. Hay que meter más oportunidades y no desperdiciar piso.";
       } else {
-        if(gapConv > 0.06 && gapConv >= gapTicket){
-          focusKey = "conv";
-          focus = "Conversión";
-          focusNote = "Lo que más te mueve la aguja ahorita es convertir mejor lo que ya entra.";
-        } else if(gapTicket > 0.06 && gapTicket > gapConv){
-          focusKey = "ticket";
-          focus = "Ticket promedio";
-          focusNote = "Ahorita te conviene subir ticket: bundles y recomendación clara.";
-        } else {
+        const topGap = Math.max(gapConv, gapTicket, gapAttach);
+        if(topGap <= 0.06){
           focusKey = "exec";
           focus = "Ejecución general";
           focusNote = "Vas cerca de metas. Toca disciplina de piso y seguimiento.";
+        } else {
+          if(topGap === gapConv){
+            focusKey = "conv";
+            focus = "Conversión";
+            focusNote = "Lo que más te mueve la aguja ahorita es convertir mejor lo que ya entra.";
+          } else if(topGap === gapTicket){
+            focusKey = "ticket";
+            focus = "Ticket promedio";
+            focusNote = "Ahorita te conviene subir ticket: bundles y recomendación clara.";
+          } else {
+            focusKey = "upt";
+            focus = "Unidades por ticket (UPT)";
+            focusNote = "Ahorita te conviene subir UPT: más tickets con extra (attach rate).";
+          }
         }
       }
     }
@@ -623,12 +765,22 @@
     document.getElementById('dashRemaining').textContent = money(remaining);
     document.getElementById('dashDailyNeed').textContent = (daysLeft>0) ? money(paceNeed) : "—";
     document.getElementById('dashDailyNeedNote').textContent = (daysLeft>0) ? `${daysLeft} días restantes` : "Pon días restantes";
+
     document.getElementById('dashConv').textContent = `${(convNow*100).toFixed(1)}% vs ${(convGoal*100).toFixed(1)}%`;
     document.getElementById('dashTicket').textContent = `${money(ticketNow)} vs ${money(ticketGoal)}`;
+
     document.getElementById('dashConvNote').textContent = (convGoal>0) ? `Gap: ${Math.max((convGoal-convNow)*100,0).toFixed(1)} pts` : "Pon meta conv";
     document.getElementById('dashTicketNote').textContent = (ticketGoal>0) ? `Gap: ${money(Math.max(ticketGoal-ticketNow,0))}` : "Pon meta ticket";
+
+    document.getElementById('dashAttach').textContent = `${(attachNow*100).toFixed(1)}% vs ${(attachGoal*100).toFixed(1)}%`;
+    document.getElementById('dashAttachNote').textContent = (attachGoal>0) ? `Gap: ${Math.max((attachGoal-attachNow)*100,0).toFixed(1)} pts` : "Pon meta UPT";
+
     document.getElementById('dashFocus').textContent = focus;
     document.getElementById('dashFocusNote').textContent = focusNote;
+
+    document.getElementById('dashTrafficProj').textContent = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
+    document.getElementById('dashTrafficProjNote').textContent = (dailySalesPotentialNow>0) ? "Tráfico × conv × ticket" : "Mete tráfico + conv + ticket";
+    document.getElementById('dashNotes').textContent = notes ? notes : "—";
 
     const bar = document.getElementById('barPct');
     bar.style.width = clamp(pct*100, 0, 100).toFixed(1) + "%";
@@ -641,7 +793,7 @@
     }
     if(monthGoal>0 && daysLeft>0){
       if(remaining === 0) pills.push(pill("Meta del mes: cerrada ✅","good"));
-      else pills.push(pill(`Ritmo requerido: ${money(paceNeed)}`,(paceNeed>0?'warn':'good')));
+      else pills.push(pill(`Ritmo requerido: ${money(paceNeed)}`,"warn"));
     }
     if(convGoal>0){
       const st = convNow >= convGoal ? "good" : (convNow >= convGoal*0.9 ? "warn" : "bad");
@@ -650,6 +802,10 @@
     if(ticketGoal>0){
       const st = ticketNow >= ticketGoal ? "good" : (ticketNow >= ticketGoal*0.9 ? "warn" : "bad");
       pills.push(pill(`Ticket: ${money(ticketNow)}`, st));
+    }
+    if(attachGoal>0){
+      const st = attachNow >= attachGoal ? "good" : (attachNow >= attachGoal*0.9 ? "warn" : "bad");
+      pills.push(pill(`UPT: ${(attachNow*100).toFixed(1)}%`, st));
     }
     pills.push(pill(`Enfoque: ${focus}`, "warn"));
     document.getElementById('dashPills').innerHTML = pills.join("");
@@ -666,7 +822,6 @@
     const projTxt = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
     const storeTxt = storeName ? ` (${storeName})` : "";
 
-    // Base defaults
     let title = `Estrategia base${storeTxt}: ejecución + seguimiento`;
     let intro = `Hoy necesitas ${dailyNeedTxt} por día para cerrar meta.`;
     let actions = [
@@ -678,7 +833,7 @@
     let measure = [
       "Venta vs ritmo: mitad de jornada y cierre.",
       "Notas: qué franja vendió y por qué (2 renglones).",
-      "Conversión: aunque baje tráfico, si sube conv, vas mejor.",
+      "Conversión: si sube conv, aunque baje tráfico, vas mejor.",
       "Ticket: bundles/upsell medidos por tickets."
     ];
     let coaching = [
@@ -687,7 +842,6 @@
       "Feedback corto: 1 cosa bien + 1 cosa a mejorar (máximo)."
     ];
 
-    // ===== Manual/Auto focus strategies
     if(focusKey === "traffic"){
       title = `Enfoque${storeTxt}: Tráfico / Oportunidades`;
       intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter oportunidades y no desperdiciar piso.`;
@@ -757,26 +911,27 @@
       ];
     }
 
-    if(focusKey === "upsell"){
-      title = `Enfoque${storeTxt}: Upsell / Líneas de producto`;
-      intro = `No es “meter accesorios”, es recomendar lo lógico para que el cliente se lleve mejor solución.`;
+    // NUEVO: UPT/Attach Rate
+    if(focusKey === "upt"){
+      title = `Enfoque${storeTxt}: Unidades por ticket (UPT)`;
+      intro = `No es “meter accesorios”. Es subir % tickets con extra (attach rate) con recomendación lógica.`;
       actions = [
-        "<strong>Define 3 combos:</strong> (1) esencial, (2) completo, (3) premium.",
-        "<strong>Regla de recomendación:</strong> cada venta incluye 1 recomendación extra (solo 1).",
-        "<strong>Guion fácil:</strong> 'Para que te funcione mejor, te recomiendo X por Y razón'.",
-        "<strong>Exhibición:</strong> pon el combo armado visible (que se antoje).",
-        "<strong>Cierre:</strong> '¿Te lo dejo como combo o solo la pieza?'"
+        "<strong>Define 3 combos:</strong> esencial / completo / premium (1 por categoría).",
+        "<strong>Regla:</strong> 1 recomendación extra por ticket (solo 1).",
+        "<strong>Frase mágica:</strong> 'Para que te funcione mejor, te recomiendo X por esta razón'.",
+        "<strong>Exhibición:</strong> combo armado visible (que se entienda en 5 segundos).",
+        "<strong>Meta del día:</strong> subir attach rate hoy (aunque sea +2 pts)."
       ];
       measure = [
-        "Attach rate (simple): % tickets con 'algo extra'.",
-        "Top 5 extras que sí salen (no inventes, los reales).",
-        "Venta por línea (si la tienes), si no: conteo de combos.",
-        "Ticket promedio (de rebote sube)."
+        "% tickets con extra (hoy) vs meta.",
+        "Top 5 extras reales que sí salen (no inventes).",
+        "¿En qué franja sube/baja el attach? (mañana/tarde).",
+        "Tickets con recomendación vs sin recomendación."
       ];
       coaching = [
         "Roleplay 10 min: 3 formas de recomendar sin sonar intenso.",
-        "1 frase por asesor: que sea natural, no robot.",
-        "En piso: feedback inmediato cuando sí lo ofrezcan bien."
+        "Cada asesor elige 1 combo favorito y lo domina.",
+        "Feedback inmediato cuando lo ofrezcan bien (30 seg)."
       ];
     }
 
@@ -793,7 +948,7 @@
       measure = [
         "Venta vs ritmo (por franja).",
         "Conversión y ticket (solo ver si suben/bajan).",
-        "Citas agendadas y asistencias.",
+        "Attach rate (si aplica): % tickets con extra.",
         "Qué acción sí funcionó (1 cosa)."
       ];
       coaching = [
@@ -809,7 +964,6 @@
     strMeasure.innerHTML = measure.map(x=>`<li>${x}</li>`).join("");
     strCoaching.innerHTML = coaching.map(x=>`<li>${x}</li>`).join("");
 
-    // WhatsApp message
     const wa = [
       "Equipo 👊",
       storeName ? `Hoy en ${storeName}:` : "Hoy:",
@@ -820,10 +974,9 @@
     ].filter(Boolean).join("\n");
     waText.textContent = wa;
 
-    // Switch to dashboard after calculate (para que se vea rápido)
+    // Switch a Dashboard
     document.querySelector('.tab[data-tab="tab-dashboard"]').click();
 
-    // Keep commission updated
     computeCommissionOnly();
   }
 
@@ -869,17 +1022,16 @@
     [
       'monthGoal','monthSales','daysLeft','trafficDaily',
       'convNow','convGoal','ticketNow','ticketGoal',
+      'attachNow','attachGoal',
       'sellerGoal','sellerSales','sellerCommPct',
-      'storeName'
+      'storeName','notes'
     ].forEach(id=>{
       const el = document.getElementById(id);
       if(el) el.value = "";
     });
 
-    const focusSel = document.getElementById('focusMode');
-    if(focusSel) focusSel.value = "auto";
+    setFocus("auto");
 
-    // reset visible stuff
     document.getElementById('dashPct').textContent = "—";
     document.getElementById('dashPctNote').textContent = "—";
     document.getElementById('dashRemaining').textContent = "—";
@@ -887,10 +1039,15 @@
     document.getElementById('dashDailyNeedNote').textContent = "—";
     document.getElementById('dashConv').textContent = "—";
     document.getElementById('dashTicket').textContent = "—";
+    document.getElementById('dashAttach').textContent = "—";
     document.getElementById('dashConvNote').textContent = "—";
     document.getElementById('dashTicketNote').textContent = "—";
+    document.getElementById('dashAttachNote').textContent = "—";
     document.getElementById('dashFocus').textContent = "—";
     document.getElementById('dashFocusNote').textContent = "—";
+    document.getElementById('dashTrafficProj').textContent = "—";
+    document.getElementById('dashTrafficProjNote').textContent = "—";
+    document.getElementById('dashNotes').textContent = "—";
     document.getElementById('dashPills').innerHTML = "";
     document.getElementById('barPct').style.width = "0%";
 
@@ -905,27 +1062,11 @@
     computeCommissionOnly();
   });
 
-  // Auto-cálculo de comisión
   ['sellerGoal','sellerSales','sellerCommPct'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.addEventListener('input', computeCommissionOnly);
   });
 
-  // Si cambias enfoque, recalcula si ya estabas viendo resultados (opcional)
-  const focusModeEl = document.getElementById('focusMode');
-  if(focusModeEl){
-    focusModeEl.addEventListener('change', ()=>{
-      // Si ya hay datos, recalcula rápido
-      const anyData =
-        Number(document.getElementById('monthGoal').value || 0) > 0 ||
-        Number(document.getElementById('monthSales').value || 0) > 0 ||
-        Number(document.getElementById('convNow').value || 0) > 0 ||
-        Number(document.getElementById('ticketNow').value || 0) > 0;
-      if(anyData) compute();
-    });
-  }
-
-  // First run commission placeholders
   computeCommissionOnly();
 </script>
 </body>
