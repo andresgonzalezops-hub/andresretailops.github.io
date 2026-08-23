@@ -3,259 +3,525 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strategy Lab | Retail Ops (Luis Andrés)</title>
-  <meta name="description" content="Simulador simple de KPIs retail: metas, proyección, estrategia recomendada y comisión estimada." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <title>Strategy Lab | Suite Comercial & Operaciones (Andrés González)</title>
+  <meta name="description" content="Simulador comercial, diagnóstico estratégico, proyección de KPIs, comisiones y cotizador profesional multi-industria." />
+  
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- HTML2PDF para exportación profesional -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#141a24;
-      --text:#e6edf3;
-      --muted:#9aa4b2;
-      --brand:#00b4ff;
-      --brand2:#00d1b2;
-      --radius:20px;
-      --shadow:0 14px 36px rgba(0,0,0,.38);
-      --stroke:#223043;
-      --good:#25d366;
-      --warn:#fbbf24;
-      --bad:#fb7185;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
-      line-height:1.65;
-    }
-    a{color:var(--brand);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-
-    header{
-      position:sticky;top:0;z-index:20;
-      background:#0d1219;
-      box-shadow:0 4px 14px rgba(0,0,0,.4);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:14px 0;flex-wrap:wrap;gap:12px;
-    }
-    .logo{
-      font-weight:900;color:#fff;letter-spacing:.02em;
-      display:flex;align-items:center;gap:10px;
-    }
-    .tag{
-      font-size:12px;color:#0b1220;font-weight:900;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      padding:6px 10px;border-radius:999px;
+    :root {
+      --bg-main: #0a0f18;
+      --bg-surface: #111a2e;
+      --bg-card: #16223b;
+      --bg-elevated: #1c2c4c;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(0, 210, 255, 0.35);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --accent-cyan: #00d2ff;
+      --accent-teal: #00e5a3;
+      --accent-gold: #f59e0b;
+      --accent-danger: #ef4444;
+      
+      --grad-brand: linear-gradient(135deg, #00d2ff 0%, #0077ff 100%);
+      --grad-surface: linear-gradient(180deg, rgba(22, 34, 59, 0.8) 0%, rgba(14, 23, 41, 0.95) 100%);
+      
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
     }
 
-    .tabs{
-      display:flex;gap:10px;flex-wrap:wrap;
-      align-items:center;justify-content:flex-end;
-    }
-    .tab{
-      border:1px solid #2b3a4f;
-      background:#0e141f;
-      color:#d6e9ff;
-      padding:10px 14px;border-radius:12px;
-      font-weight:800;cursor:pointer;transition:.18s;
-      display:inline-flex;align-items:center;gap:8px;
-      user-select:none;
-    }
-    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
-    .tab.active{
-      border:none;color:#051018;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-main);
+      background-image: radial-gradient(circle at 50% 0%, #1a2948 0%, #0a0f18 75%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
     }
 
-    .hero{
-      padding:22px 0 10px;
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media(max-width:860px){
-      .hero{grid-template-columns:1fr}
-      .tabs{justify-content:flex-start}
-    }
-    .hero h1{font-size:24px;line-height:1.2;margin-bottom:8px}
-    .hero p{color:var(--muted);font-size:14px}
-    .hero .hint{
-      margin-top:10px;
-      display:flex;gap:10px;flex-wrap:wrap;
-    }
-    .chip{
-      padding:6px 10px;border:1px solid #2a3343;border-radius:999px;
-      color:#b9c3d4;font-size:12px;background:rgba(255,255,255,.03)
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    section.card{
-      background:var(--card);
-      border:1px solid var(--stroke);
-      border-radius:var(--radius);
-      margin:16px 0;
-      box-shadow:var(--shadow);
-    }
-    .hd{
-      padding:16px 18px 0;
-      color:var(--muted);
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .bd{padding:18px}
-
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media(max-width:860px){.grid2{grid-template-columns:1fr}}
-
-    .box{
-      background:#0e151f;
-      border:1px solid #1f2b3d;
-      border-radius:16px;
-      padding:14px;
-    }
-    .box h3{font-size:15px;margin-bottom:6px}
-    .tiny{font-size:12px;color:var(--muted)}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-    @media(max-width:680px){.row{grid-template-columns:1fr}}
-
-    .field label{display:block;font-weight:800;font-size:12px;color:#c9d5e6;margin-bottom:6px}
-    .field input, .field select{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid #2b3a4f;
-      background:#0b111b;
-      color:#e6edf3;
-      outline:none;
-      font-weight:800;
-      appearance:none;
-    }
-    .field input:focus, .field select:focus{border-color:rgba(0,180,255,.65);box-shadow:0 0 0 3px rgba(0,180,255,.14)}
-
-    /* ===== selector visible de enfoque ===== */
-    .focus-card{
-      margin-top:4px;
-    }
-    .focus-grid{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    @media(max-width:960px){ .focus-grid{grid-template-columns:repeat(2,1fr)} }
-    .focus-btn{
-      border:1px solid #2b3a4f;
-      background:#0b111b;
-      border-radius:16px;
-      padding:12px;
-      cursor:pointer;
-      transition:.18s;
-      text-align:left;
-      min-height:74px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:6px;
-    }
-    .focus-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,180,255,.14)}
-    .focus-btn.active{
-      border:none;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#051018;
-    }
-    .focus-btn .t{font-weight:900}
-    .focus-btn .d{font-size:12px;color:var(--muted)}
-    .focus-btn.active .d{color:rgba(5,16,24,.8)}
-
-    .mini-kpis{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;
-    }
-    @media(max-width:900px){.mini-kpis{grid-template-columns:1fr}}
-    .kpi{
-      background:#0b111b;border:1px solid #223043;border-radius:14px;
-      padding:12px;
-    }
-    .kpi .label{color:#9fb0c9;font-size:12px;font-weight:800;margin-bottom:6px}
-    .kpi .value{font-size:18px;font-weight:900}
-    .kpi .note{color:var(--muted);font-size:12px;margin-top:4px}
-
-    .bar{
-      height:10px;border-radius:999px;background:#101827;border:1px solid #223043;
-      overflow:hidden;margin-top:8px;
-    }
-    .bar > div{
-      height:100%;width:0%;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      margin-bottom: 30px;
     }
 
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border-radius:999px;
-      background:#0b111b;border:1px solid #223043;
-      font-weight:900;font-size:12px;color:#dbe7ff;
-      margin:6px 6px 0 0;
+    .nav-inner {
+      background: rgba(17, 26, 46, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .dot{width:10px;height:10px;border-radius:50%}
-    .dot.good{background:var(--good)}
-    .dot.warn{background:var(--warn)}
-    .dot.bad{background:var(--bad)}
 
-    .list{
-      margin-top:10px;
-      padding-left:18px;
+    .brand {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .list li{margin:8px 0}
-    .subttl{margin-top:12px;font-weight:900;color:#dbe7ff}
-    .divider{height:1px;background:rgba(255,255,255,.06);margin:14px 0}
 
-    .actions{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:10px
+    .brand-badge {
+      background: var(--grad-brand);
+      color: #040914;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      border:1px solid #2b3a4f;
-      background:#0e141f;
-      color:#d6e9ff;
-      padding:10px 14px;border-radius:12px;
-      font-weight:900;
-      transition:.18s;
-      cursor:pointer;
-    }
-    .btn.primary{
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#051018;border:none;
-    }
-    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(0,180,255,.18)}
 
-    .hidden{display:none!important}
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-    footer{padding:28px 0;color:#8e9aaf;text-align:center;font-size:.95rem}
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .tab-btn.active {
+      background: var(--grad-brand);
+      color: #040914;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    }
+
+    .btn-portal {
+      background: rgba(0, 210, 255, 0.1);
+      border: 1px solid var(--border-accent);
+      color: var(--accent-cyan);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      transition: all 0.2s;
+    }
+
+    .btn-portal:hover {
+      background: var(--accent-cyan);
+      color: #040914;
+    }
+
+    /* CARD SYSTEM */
+    .card {
+      background: var(--grad-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(10px);
+    }
+
+    .card-head {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 14px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* GRID LAYOUTS */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* FORM ELEMENTS */
+    .field-group {
+      margin-bottom: 16px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: #0d1424;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
+      background: #111b30;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ENFOQUE Y PALANCAS */
+    .industry-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .ind-pill {
+      background: #0d1424;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ind-pill:hover { border-color: var(--accent-cyan); color: #fff; }
+    .ind-pill.active {
+      background: rgba(0, 210, 255, 0.15);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    /* KPI METRIC BOXES */
+    .kpi-box {
+      background: #0d1424;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .kpi-box:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .kpi-lbl {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .kpi-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .kpi-val.cyan { color: var(--accent-cyan); }
+    .kpi-val.teal { color: var(--accent-teal); }
+    .kpi-val.gold { color: var(--accent-gold); }
+
+    .kpi-sub {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--grad-brand);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    /* BOTONES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--grad-brand);
+      color: #040914;
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--accent-danger);
+    }
+
+    /* TABLA COTIZADOR */
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 14px;
+    }
+
+    table.quote-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    table.quote-table th {
+      background: #0d1424;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    table.quote-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    table.quote-table input {
+      width: 100%;
+      padding: 8px 10px;
+      background: #090e18;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .quote-summary {
+      background: #0d1424;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quote-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .quote-row.total {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    /* PLANTILLA EXPORTABLE PDF */
+    #pdfReportTemplate {
+      display: none;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 40px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+    }
+
+    #pdfReportTemplate .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    #pdfReportTemplate .pdf-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    #pdfReportTemplate .pdf-watermark {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 50px;
+      font-weight: 900;
+      color: rgba(2, 132, 199, 0.05);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    #pdfReportTemplate .pdf-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    #pdfReportTemplate .pdf-table th {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 10px 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      border: 1px solid #cbd5e1;
+    }
+
+    #pdfReportTemplate .pdf-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+      border: 1px solid #e2e8f0;
+    }
+
+    #pdfReportTemplate .pdf-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .hidden { display: none !important; }
   </style>
 </head>
-
 <body>
-<header>
-  <div class="container nav">
-    <div class="logo">
-      Strategy Lab
-      <span class="tag">Retail Ops</span>
-    </div>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="tab-inputs">🧾 Datos</button>
-      <button class="tab" data-tab="tab-dashboard">📊 Dashboard</button>
-      <button class="tab" data-tab="tab-estrategia">🎯 Estrategia</button>
-      <button class="tab" data-tab="tab-comision">💸 Comisión</button>
+<header class="container">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <span>Strategy Lab</span>
+      <span class="brand-badge">Sales Ops & Diagnostic Suite</span>
+    </a>
 
-      <!-- ✅ BOTÓN NUEVO: igual que los demás -->
-     <a class="tab" href="https://andresgonzalezops-hub.github.io/andresretailops.github.io/" target="_blank" rel="noopener noreferrer">
-        Created by Andrés González
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-diagnostico">🧠 Diagnóstico & Metas</button>
+      <button class="tab-btn" data-tab="tab-dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="tab-estrategia">🎯 Plan Táctico</button>
+      <button class="tab-btn" data-tab="tab-cotizador">📑 Cotizador & PDF</button>
+      <button class="tab-btn" data-tab="tab-comisiones">💸 Comisiones</button>
+      <a href="https://andresgonzalezops-hub.github.io/andresretailops.github.io/" target="_blank" rel="noopener noreferrer" class="btn-portal">
+        💼 Portafolio Oficial
       </a>
     </div>
   </div>
@@ -263,352 +529,286 @@
 
 <main class="container">
 
-  <section class="hero">
-    <section class="card" style="margin:0">
-      <div class="bd">
-        <h1>Simulador rápido: metas, KPIs y plan de acción</h1>
-        <p>
-          Mete tus números reales y listo. Aquí lo chido:
-          <strong>tú eliges el enfoque</strong> y la estrategia cambia al instante.
-        </p>
-        <div class="hint">
-          <span class="chip">Meta mensual + ventas</span>
-          <span class="chip">Días a cierre</span>
-          <span class="chip">KPIs (conv / ticket / UPT)</span>
-          <span class="chip">Estrategia + coaching</span>
+  <!-- TAB 1: DIAGNÓSTICO INTELIGENTE & METAS -->
+  <section id="tab-diagnostico" class="tab-content">
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">1. Selector de Modelo de Negocio & Contexto Comercial</div>
+          <div class="card-desc">El motor adapta KPIs, proyecciones y diagnósticos según tu tipo de operación.</div>
         </div>
-        <div class="actions">
-          <button class="btn primary" id="btnRun">Calcular</button>
-          <button class="btn" id="btnReset">Limpiar</button>
+        <div class="industry-pills" id="industryPills">
+          <button class="ind-pill active" data-ind="retail" type="button">🛍️ Retail & Boutiques</button>
+          <button class="ind-pill" data-ind="b2b" type="button">🏢 Servicios B2B / Consultoría</button>
+          <button class="ind-pill" data-ind="highticket" type="button">💎 High-Ticket & Asesoría</button>
+          <button class="ind-pill" data-ind="distribution" type="button">📦 Distribución / Mayoreo</button>
         </div>
       </div>
-    </section>
 
-    <section class="card" style="margin:0">
-      <div class="bd">
-        <h3 style="margin-bottom:6px">Tip rápido</h3>
-        <p class="tiny">
-          Si eliges un enfoque (abajo), yo te doy:
-          <strong>acciones</strong>, <strong>cómo medir</strong> y <strong>coaching</strong>.
-        </p>
-        <div class="divider"></div>
-        <div class="tiny">
-          Si lo dejas en <strong>Automático</strong>, te digo cuál palanca mover primero.
+      <div class="field-group">
+        <label>Diagnóstico Situacional / Reto Actual (Describe el problema comercial)</label>
+        <textarea id="bizSituation" rows="3" placeholder="Ej. Caída en la tasa de conversión durante fines de semana, ticket promedio estancado, baja efectividad en prospección o desabasto en productos de alta rotación..."></textarea>
+      </div>
+
+      <div class="grid-2">
+        <!-- METAS FINANCIERAS -->
+        <div class="card" style="margin: 0; background: #0d1424;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 14px;">🎯 Metas & Ventas del Periodo</h3>
+          
+          <div class="field-row">
+            <div class="field-group">
+              <label>Meta del Mes (MXN)</label>
+              <input type="number" id="inGoal" placeholder="Ej. 650000" value="650000">
+            </div>
+            <div class="field-group">
+              <label>Venta Acumulada (MXN)</label>
+              <input type="number" id="inSales" placeholder="Ej. 420000" value="420000">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label>Días Restantes a Cierre</label>
+              <input type="number" id="inDaysLeft" placeholder="Ej. 8" value="8">
+            </div>
+            <div class="field-group">
+              <label>Oportunidades / Tráfico Diario</label>
+              <input type="number" id="inTraffic" placeholder="Ej. 95" value="95">
+            </div>
+          </div>
+        </div>
+
+        <!-- KPIs CLAVE -->
+        <div class="card" style="margin: 0; background: #0d1424;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 14px;">📈 Métricas Comerciales Clave</h3>
+          
+          <div class="field-row">
+            <div class="field-group">
+              <label>Conversión Actual (%)</label>
+              <input type="number" id="inConvNow" step="0.1" placeholder="Ej. 18.5" value="18.5">
+            </div>
+            <div class="field-group">
+              <label>Meta Conversión (%)</label>
+              <input type="number" id="inConvGoal" step="0.1" placeholder="Ej. 22.0" value="22.0">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label>Ticket Promedio Actual ($)</label>
+              <input type="number" id="inTicketNow" placeholder="Ej. 1450" value="1450">
+            </div>
+            <div class="field-group">
+              <label>Meta Ticket ($)</label>
+              <input type="number" id="inTicketGoal" placeholder="Ej. 1750" value="1750">
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-  </section>
 
-  <!-- ===== ENFOQUE VISIBLE EN BOTONES ===== -->
-  <section class="card focus-card">
-    <div class="hd">¿Cómo quieres tu estrategia?</div>
-    <div class="bd">
-      <div class="focus-grid" id="focusGrid">
-        <button class="focus-btn active" data-focus="auto" type="button">
-          <div class="t">🤖 Automático</div>
-          <div class="d">Yo elijo la palanca más urgente</div>
-        </button>
-        <button class="focus-btn" data-focus="conv" type="button">
-          <div class="t">🎯 Conversión</div>
-          <div class="d">Convertir mejor lo que entra</div>
-        </button>
-        <button class="focus-btn" data-focus="ticket" type="button">
-          <div class="t">🧾 Ticket promedio</div>
-          <div class="d">Subir ticket sin forzar</div>
-        </button>
-        <button class="focus-btn" data-focus="upt" type="button">
-          <div class="t">🧩 Unidades por ticket (UPT)</div>
-          <div class="d">Attach rate: % tickets con extra</div>
-        </button>
-        <button class="focus-btn" data-focus="traffic" type="button">
-          <div class="t">🚪 Tráfico</div>
-          <div class="d">Más oportunidades y citas</div>
-        </button>
-      </div>
-
-      <!-- Select oculto para que el motor use un valor único -->
-      <select id="focusMode" class="hidden" aria-hidden="true">
-        <option value="auto" selected>Automático</option>
-        <option value="conv">Conversión</option>
-        <option value="ticket">Ticket</option>
-        <option value="upt">UPT</option>
-        <option value="traffic">Tráfico</option>
-        <option value="exec">Ejecución</option>
-      </select>
-
-      <div class="tiny" style="margin-top:10px">
-        *Puedes cambiar el enfoque cuando quieras y recalcula.
+      <div style="display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end;">
+        <button class="btn btn-secondary" id="btnResetAll">Limpiar Datos</button>
+        <button class="btn btn-primary" id="btnRunDiagnostic">⚡ Procesar Diagnóstico & KPIs</button>
       </div>
     </div>
   </section>
 
-  <!-- TAB: INPUTS -->
-  <section id="tab-inputs" class="card">
-    <div class="hd">Datos</div>
-    <div class="bd grid2">
-      <div class="box">
-        <h3>Meta mensual</h3>
-        <p class="tiny">Lo básico para proyección y ritmo diario.</p>
-
-        <div class="row">
-          <div class="field">
-            <label>Meta del mes (MXN)</label>
-            <input id="monthGoal" type="number" min="0" step="1000" placeholder="Ej. 550000">
-          </div>
-          <div class="field">
-            <label>Venta acumulada actual (MXN)</label>
-            <input id="monthSales" type="number" min="0" step="1000" placeholder="Ej. 310000">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label>Días restantes a cierre</label>
-            <input id="daysLeft" type="number" min="0" step="1" placeholder="Ej. 10">
-          </div>
-          <div class="field">
-            <label>Tráfico diario (opcional)</label>
-            <input id="trafficDaily" type="number" min="0" step="1" placeholder="Ej. 85">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label>Nombre de la tienda (opcional)</label>
-            <input id="storeName" type="text" placeholder="Ej. Andares / Midtown / etc.">
-          </div>
-          <div class="field">
-            <label>Notas (opcional)</label>
-            <input id="notes" type="text" placeholder="Ej. promo, baja afluencia, etc.">
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">
-          Si vas a usar Tráfico, mete tráfico diario y conversión/ticket.
-        </div>
+  <!-- TAB 2: DASHBOARD EJECUTIVO -->
+  <section id="tab-dashboard" class="tab-content hidden">
+    <div class="grid-4">
+      <div class="kpi-box">
+        <div class="kpi-lbl">Cumplimiento de Meta</div>
+        <div class="kpi-val cyan" id="dashPacePct">0.0%</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="dashPaceBar"></div></div>
+        <div class="kpi-sub" id="dashPaceSub">Venta vs Presupuesto</div>
       </div>
 
-      <div class="box">
-        <h3>Metas de KPIs</h3>
-        <p class="tiny">Para que el plan tenga dirección.</p>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Ritmo Diario Requerido</div>
+        <div class="kpi-val teal" id="dashDailyPace">$0</div>
+        <div class="kpi-sub" id="dashDailyPaceSub">Para cerrar al 100%</div>
+      </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Conversión actual (%)</label>
-            <input id="convNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 18">
-          </div>
-          <div class="field">
-            <label>Meta conversión (%)</label>
-            <input id="convGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 22">
-          </div>
+      <div class="kpi-box">
+        <div class="kpi-lbl">Brecha Comercial (Gap)</div>
+        <div class="kpi-val gold" id="dashGapRemaining">$0</div>
+        <div class="kpi-sub">Faltante absoluto</div>
+      </div>
+
+      <div class="kpi-box">
+        <div class="kpi-lbl">Proyección de Cierre</div>
+        <div class="kpi-val" id="dashEstimatedClose">$0</div>
+        <div class="kpi-sub" id="dashEstimatedCloseSub">Ritmo actual</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-head">
+        <div class="card-title">🔍 Matriz de Eficiencia Operativa</div>
+        <span class="brand-badge" id="dashIndustryBadge">Modelo: Retail</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="kpi-box">
+          <div class="kpi-lbl">Conversión Actual vs Meta</div>
+          <div class="kpi-val" id="dashConvMetric">0% vs 0%</div>
+          <div class="kpi-sub" id="dashConvGap">Gap: 0 pts</div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Ticket actual (MXN)</label>
-            <input id="ticketNow" type="number" min="0" step="1" placeholder="Ej. 1250">
-          </div>
-          <div class="field">
-            <label>Meta ticket (MXN)</label>
-            <input id="ticketGoal" type="number" min="0" step="1" placeholder="Ej. 1400">
-          </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Ticket Promedio vs Meta</div>
+          <div class="kpi-val" id="dashTicketMetric">$0 vs $0</div>
+          <div class="kpi-sub" id="dashTicketGap">Gap: $0</div>
         </div>
 
-        <!-- Attach Rate (UPT simple) -->
-        <div class="row">
-          <div class="field">
-            <label>% tickets con extra (actual)</label>
-            <input id="attachNow" type="number" min="0" max="100" step="0.1" placeholder="Ej. 35">
-          </div>
-          <div class="field">
-            <label>Meta % tickets con extra</label>
-            <input id="attachGoal" type="number" min="0" max="100" step="0.1" placeholder="Ej. 45">
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">
-          “% tickets con extra” = attach rate (UPT simplificado).
+        <div class="kpi-box">
+          <div class="kpi-lbl">Capacidad de Facturación por Tráfico</div>
+          <div class="kpi-val cyan" id="dashCapacityMetric">$0 / día</div>
+          <div class="kpi-sub">Tráfico × Conv × Ticket</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TAB: DASHBOARD -->
-  <section id="tab-dashboard" class="card hidden">
-    <div class="hd">Dashboard</div>
-    <div class="bd">
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">% avance a meta mensual</div>
-          <div class="value" id="dashPct">—</div>
-          <div class="bar"><div id="barPct"></div></div>
-          <div class="note" id="dashPctNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Venta diaria requerida</div>
-          <div class="value" id="dashDailyNeed">—</div>
-          <div class="note" id="dashDailyNeedNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Lo que falta para cerrar meta</div>
-          <div class="value" id="dashRemaining">—</div>
-          <div class="note">Meta − Venta actual</div>
-        </div>
+  <!-- TAB 3: PLAN TÁCTICO & COACHING -->
+  <section id="tab-estrategia" class="tab-content hidden">
+    <div class="grid-2">
+      <div class="card" style="margin: 0;">
+        <div class="card-title" style="color: var(--accent-cyan); margin-bottom: 12px;">📋 Plan de Acción Prioritario (7 Días)</div>
+        <p class="card-desc" id="planIntroText" style="margin-bottom: 16px;">Acciones tácticas derivadas del análisis de datos:</p>
+        <ul id="planActionList" style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;"></ul>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">Conversión: actual vs meta</div>
-          <div class="value" id="dashConv">—</div>
-          <div class="note" id="dashConvNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Ticket: actual vs meta</div>
-          <div class="value" id="dashTicket">—</div>
-          <div class="note" id="dashTicketNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">UPT: % tickets con extra</div>
-          <div class="value" id="dashAttach">—</div>
-          <div class="note" id="dashAttachNote">—</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="mini-kpis">
-        <div class="kpi">
-          <div class="label">Enfoque seleccionado</div>
-          <div class="value" id="dashFocus">—</div>
-          <div class="note" id="dashFocusNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Proyección por tráfico (si aplica)</div>
-          <div class="value" id="dashTrafficProj">—</div>
-          <div class="note" id="dashTrafficProjNote">—</div>
-        </div>
-
-        <div class="kpi">
-          <div class="label">Notas</div>
-          <div class="value" id="dashNotes">—</div>
-          <div class="note">Contexto</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-      <div id="dashPills"></div>
-    </div>
-  </section>
-
-  <!-- TAB: ESTRATEGIA -->
-  <section id="tab-estrategia" class="card hidden">
-    <div class="hd">Estrategia (clara)</div>
-    <div class="bd grid2">
-      <div class="box">
-        <h3 id="strTitle">—</h3>
-        <p class="tiny" id="strIntro">Haz clic en Calcular.</p>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Acciones (7 días)</div>
-        <ul class="list" id="strActions"></ul>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Cómo medir (sin complicarte)</div>
-        <ul class="list" id="strMeasure"></ul>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Coaching al equipo</div>
-        <ul class="list" id="strCoaching"></ul>
-      </div>
-
-      <div class="box">
-        <h3>Checklist de piso (rápido)</h3>
-        <p class="tiny">Esto es lo que yo haría hoy, sin drama.</p>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Hoy (20 min total)</div>
-        <ul class="list" id="todayList">
-          <li><strong>Brief 5 min:</strong> 1 KPI del día + 1 enfoque (claro).</li>
-          <li><strong>Roleplay 7 min:</strong> apertura + 1 objeción.</li>
-          <li><strong>Revisión 8 min:</strong> mitad de jornada: ajustar y seguir.</li>
-        </ul>
-
-        <div class="divider"></div>
-
-        <div class="subttl">Mensaje de WhatsApp listo</div>
-        <div class="kpi" style="margin-top:10px">
-          <div class="label">Texto</div>
-          <div class="note" id="waText" style="margin-top:8px;white-space:pre-wrap">Haz clic en Calcular.</div>
-        </div>
+      <div class="card" style="margin: 0;">
+        <div class="card-title" style="color: var(--accent-teal); margin-bottom: 12px;">🎯 Protocolo de Coaching & Clínicas de Venta</div>
+        <p class="card-desc" style="margin-bottom: 16px;">Enfoque de retroalimentación diaria en piso / reuniones 1:1:</p>
+        <ul id="planCoachingList" style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;"></ul>
       </div>
     </div>
   </section>
 
-  <!-- TAB: COMISIÓN -->
-  <section id="tab-comision" class="card hidden">
-    <div class="hd">Comisión (estimada)</div>
-    <div class="bd">
-      <div class="box">
-        <h3>¿Cuánto comisiona el asesor?</h3>
-        <p class="tiny">
-          Meta + venta actual + % comisión. Te calculo avance y comisión <strong>(sin impuestos)</strong>.
-        </p>
+  <!-- TAB 4: COTIZADOR COMERCIAL & GENERADOR DE PDF -->
+  <section id="tab-cotizador" class="tab-content hidden">
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="card-title">📑 Cotizador Ejecutivo & Generador de Propuestas</div>
+          <div class="card-desc">Calcula partidas, impuestos (IVA 16%), descuentos y genera reportes formales en PDF.</div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <label style="font-size: 0.85rem; font-weight: 700; color: #cbd5e1; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="chkIva" checked style="width: 18px; height: 18px; accent-color: var(--accent-cyan);"> Aplicar IVA (16%)
+          </label>
+        </div>
+      </div>
 
-        <div class="row">
-          <div class="field">
-            <label>Meta del asesor (MXN)</label>
-            <input id="sellerGoal" type="number" min="0" step="100" placeholder="Ej. 180000">
-          </div>
-          <div class="field">
-            <label>Venta actual del asesor (MXN)</label>
-            <input id="sellerSales" type="number" min="0" step="100" placeholder="Ej. 125000">
-          </div>
+      <div class="grid-2" style="margin-bottom: 16px;">
+        <div class="field-group">
+          <label>Cliente / Razón Social</label>
+          <input type="text" id="quoteClient" placeholder="Ej. Corporativo Retail México S.A. de C.V.">
+        </div>
+        <div class="field-group">
+          <label>Atención / Contacto Principal</label>
+          <input type="text" id="quoteContact" placeholder="Ej. Lic. Carlos Mendoza · Dirección de Compras">
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="quote-table" id="quoteTable">
+          <thead>
+            <tr>
+              <th style="width: 45%;">Descripción del Producto / Servicio</th>
+              <th style="width: 15%;">Cantidad</th>
+              <th style="width: 20%;">Precio Unitario ($)</th>
+              <th style="width: 15%;">Total ($)</th>
+              <th style="width: 5%;"></th>
+            </tr>
+          </thead>
+          <tbody id="quoteBody">
+            <tr>
+              <td><input type="text" class="item-desc" value="Consultoría Comercial & Estandarización de Procesos"></td>
+              <td><input type="number" class="item-qty" value="1" min="1"></td>
+              <td><input type="number" class="item-price" value="35000" min="0"></td>
+              <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$35,000</td>
+              <td><button type="button" class="btn btn-danger" onclick="removeQuoteRow(this)" style="padding: 4px 8px; font-size: 0.75rem;">✕</button></td>
+            </tr>
+            <tr>
+              <td><input type="text" class="item-desc" value="Módulo de Capacitación en Ventas Consultivas & CRM (15 Sucursales)"></td>
+              <td><input type="number" class="item-qty" value="1" min="1"></td>
+              <td><input type="number" class="item-price" value="28000" min="0"></td>
+              <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$28,000</td>
+              <td><button type="button" class="btn btn-danger" onclick="removeQuoteRow(this)" style="padding: 4px 8px; font-size: 0.75rem;">✕</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <button type="button" class="btn btn-secondary" id="btnAddRow" style="padding: 8px 16px; font-size: 0.85rem;">+ Agregar Partida</button>
+      </div>
+
+      <div class="quote-summary">
+        <div class="quote-row">
+          <span>Subtotal:</span>
+          <span id="outQuoteSubtotal" style="font-weight: 700;">$63,000</span>
+        </div>
+        <div class="quote-row">
+          <span>IVA (16%):</span>
+          <span id="outQuoteIva" style="font-weight: 700;">$10,080</span>
+        </div>
+        <div class="quote-row total">
+          <span>Total Final:</span>
+          <span id="outQuoteTotal">$73,080 MXN</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 14px; margin-top: 24px; justify-content: flex-end; flex-wrap: wrap;">
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Vista Previa</button>
+        <button class="btn btn-primary" id="btnExportPDF">📄 Descargar Propuesta en PDF Oficial</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: CALCULADORA DE COMISIONES -->
+  <section id="tab-comisiones" class="tab-content hidden">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">💸 Calculadora de Comisiones & Rendimiento de Asesores</div>
+        <div class="card-desc">Proyección de esquemas de incentivos basados en metas individuales.</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="field-group">
+          <label>Meta Individual ($ MXN)</label>
+          <input type="number" id="inRepGoal" value="180000" placeholder="Ej. 180000">
+        </div>
+        <div class="field-group">
+          <label>Venta Facturada Actual ($ MXN)</label>
+          <input type="number" id="inRepSales" value="145000" placeholder="Ej. 145000">
+        </div>
+        <div class="field-group">
+          <label>% Comisión Base</label>
+          <input type="number" id="inRepCommPct" value="2.5" step="0.1" placeholder="Ej. 2.5">
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 20px;">
+        <div class="kpi-box">
+          <div class="kpi-lbl">Cumplimiento del Asesor</div>
+          <div class="kpi-val cyan" id="outRepPace">0.0%</div>
+          <div class="kpi-sub" id="outRepStatus">En progreso</div>
         </div>
 
-        <div class="row">
-          <div class="field">
-            <label>% de avance a meta</label>
-            <input id="sellerPct" type="text" value="—" disabled style="opacity:.95">
-          </div>
-          <div class="field">
-            <label>% de comisión (editable)</label>
-            <input id="sellerCommPct" type="number" min="0" max="30" step="0.1" placeholder="Ej. 1.5">
-          </div>
+        <div class="kpi-box">
+          <div class="kpi-lbl">Comisión Acumulada Estimada</div>
+          <div class="kpi-val teal" id="outRepCommission">$0</div>
+          <div class="kpi-sub">Sin retenciones</div>
         </div>
 
-        <div class="mini-kpis" style="margin-top:12px">
-          <div class="kpi">
-            <div class="label">Comisión estimada (sin impuestos)</div>
-            <div class="value" id="outCommission">$—</div>
-            <div class="note" id="outCommNote">—</div>
-          </div>
-
-          <div class="kpi">
-            <div class="label">Lo que falta para meta</div>
-            <div class="value" id="outToGoal">$—</div>
-            <div class="note">Meta − Venta actual</div>
-          </div>
-
-          <div class="kpi">
-            <div class="label">Mensaje rápido</div>
-            <div class="value" id="outCommMsg">—</div>
-            <div class="note">Para explicarlo fácil</div>
-          </div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">
-          *Estimado simple: <strong>Comisión = venta × % comisión</strong>. (Sin ISR/IMSS, etc.)
+        <div class="kpi-box">
+          <div class="kpi-lbl">Faltante para Meta Individual</div>
+          <div class="kpi-val gold" id="outRepRemaining">$0</div>
+          <div class="kpi-sub">Brecha de cierre</div>
         </div>
       </div>
     </div>
@@ -616,451 +816,282 @@
 
 </main>
 
-<footer class="container">
-  <small>© <span id="year"></span> Strategy Lab · Luis Andrés González</small>
-</footer>
+<!-- PLANTILLA OCULTA PARA GENERAR PDF LIMPIO -->
+<div id="pdfReportTemplate">
+  <div class="pdf-watermark">ANDRÉS GONZÁLEZ · STRATEGY LAB</div>
+  
+  <div class="pdf-header">
+    <div>
+      <div class="pdf-title">PROPUESTA COMERCIAL & ESTRATÉGICA</div>
+      <div style="font-size: 13px; color: #64748b; margin-top: 4px;">Emisión: <span id="pdfDate"></span></div>
+    </div>
+    <div style="text-align: right;">
+      <strong style="font-size: 14px; color: #0284c7;">Andrés González</strong><br>
+      <span style="font-size: 12px; color: #64748b;">Dirección Comercial & Retail Operations</span><br>
+      <span style="font-size: 12px; color: #64748b;">andresgonzalez.ops@gmail.com</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 20px; font-size: 13px;">
+    <strong>Cliente:</strong> <span id="pdfClientName">—</span><br>
+    <strong>Atención:</strong> <span id="pdfContactName">—</span>
+  </div>
+
+  <table class="pdf-table">
+    <thead>
+      <tr>
+        <th>Concepto / Partida</th>
+        <th style="width: 12%; text-align: center;">Cant.</th>
+        <th style="width: 20%; text-align: right;">P. Unitario</th>
+        <th style="width: 20%; text-align: right;">Total</th>
+      </tr>
+    </thead>
+    <tbody id="pdfTableRows"></tbody>
+  </table>
+
+  <div style="margin-left: auto; width: 280px; font-size: 13px; margin-top: 10px;">
+    <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+      <span>Subtotal:</span>
+      <strong id="pdfSubtotal">$0</strong>
+    </div>
+    <div style="display: flex; justify-content: space-between; padding: 4px 0;">
+      <span>IVA (16%):</span>
+      <strong id="pdfIva">$0</strong>
+    </div>
+    <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid #0f172a; margin-top: 6px; font-size: 15px; color: #0284c7;">
+      <span>Total:</span>
+      <strong id="pdfTotal">$0 MXN</strong>
+    </div>
+  </div>
+
+  <div class="pdf-footer">
+    <div>
+      Desarrollado y estructurado por <strong>Andrés González</strong>
+    </div>
+    <div>
+      <a href="https://andresgonzalezops-hub.github.io/andresretailops.github.io/" style="color: #0284c7; text-decoration: none; font-weight: 700;">
+        Ver Portafolio Online & Volver a Cotizar ↗
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
-  // ===== Helpers
-  document.getElementById('year').textContent = new Date().getFullYear();
-  const money = (n)=> (isFinite(n) ? n : 0).toLocaleString('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
-  const pctFmt = (n)=> (isFinite(n) ? (n*100).toFixed(1) + "%" : "—");
-  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+  const money = (n) => (isFinite(n) ? n : 0).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+  const pctFmt = (n) => (isFinite(n) ? (n * 100).toFixed(1) + "%" : "0.0%");
 
-  // ===== Tabs
-  const tabs = document.querySelectorAll('.tab[data-tab]');
-  const panels = ['tab-inputs','tab-dashboard','tab-estrategia','tab-comision'].map(id => document.getElementById(id));
-  tabs.forEach(t=>{
-    t.addEventListener('click', ()=>{
-      tabs.forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      panels.forEach(p=>p.classList.add('hidden'));
-      const target = document.getElementById(t.dataset.tab);
-      if(target) target.classList.remove('hidden');
+  // NAVEGACIÓN POR TABS
+  const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      tabContents.forEach(c => c.classList.add('hidden'));
+      document.getElementById(btn.dataset.tab).classList.remove('hidden');
     });
   });
 
-  // ===== Focus buttons (visible)
-  const focusGrid = document.getElementById('focusGrid');
-  const focusModeSelect = document.getElementById('focusMode');
-
-  function setFocus(mode){
-    focusModeSelect.value = mode;
-
-    // UI active
-    document.querySelectorAll('.focus-btn').forEach(btn=>{
-      btn.classList.toggle('active', btn.dataset.focus === mode);
+  // SELECTOR DE INDUSTRIA
+  let activeIndustry = "retail";
+  const indPills = document.querySelectorAll('.ind-pill');
+  indPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      indPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeIndustry = pill.dataset.ind;
+      document.getElementById('dashIndustryBadge').textContent = `Modelo: ${pill.textContent}`;
+      calculateDashboard();
     });
-
-    // Si ya hay datos, recalcula
-    const anyData =
-      Number(document.getElementById('monthGoal').value || 0) > 0 ||
-      Number(document.getElementById('monthSales').value || 0) > 0 ||
-      Number(document.getElementById('convNow').value || 0) > 0 ||
-      Number(document.getElementById('ticketNow').value || 0) > 0 ||
-      Number(document.getElementById('attachNow').value || 0) > 0;
-    if(anyData) compute();
-  }
-
-  focusGrid.addEventListener('click', (e)=>{
-    const btn = e.target.closest('.focus-btn');
-    if(!btn) return;
-    setFocus(btn.dataset.focus);
   });
 
-  function focusLabel(mode){
-    switch(mode){
-      case "conv": return "Conversión";
-      case "ticket": return "Ticket promedio";
-      case "upt": return "Unidades por ticket (UPT)";
-      case "traffic": return "Tráfico / Oportunidades";
-      case "exec": return "Ejecución general";
-      default: return "Automático";
-    }
+  // MOTOR DE CÁLCULO DE KPIS Y DIAGNÓSTICO
+  function calculateDashboard() {
+    const goal = Number(document.getElementById('inGoal').value || 0);
+    const sales = Number(document.getElementById('inSales').value || 0);
+    const daysLeft = Number(document.getElementById('inDaysLeft').value || 1);
+    const traffic = Number(document.getElementById('inTraffic').value || 0);
+
+    const convNow = Number(document.getElementById('inConvNow').value || 0) / 100;
+    const convGoal = Number(document.getElementById('inConvGoal').value || 0) / 100;
+    const ticketNow = Number(document.getElementById('inTicketNow').value || 0);
+    const ticketGoal = Number(document.getElementById('inTicketGoal').value || 0);
+
+    const pace = goal > 0 ? sales / goal : 0;
+    const remaining = Math.max(goal - sales, 0);
+    const dailyNeeded = daysLeft > 0 ? remaining / daysLeft : 0;
+    const capacityDaily = traffic * convNow * ticketNow;
+    const projectedFinal = sales + (capacityDaily * daysLeft);
+
+    // Dashboard values
+    document.getElementById('dashPacePct').textContent = pctFmt(pace);
+    document.getElementById('dashPaceBar').style.width = Math.min(pace * 100, 100) + "%";
+    document.getElementById('dashDailyPace').textContent = money(dailyNeeded);
+    document.getElementById('dashGapRemaining').textContent = money(remaining);
+    document.getElementById('dashEstimatedClose').textContent = money(projectedFinal);
+    document.getElementById('dashEstimatedCloseSub').textContent = projectedFinal >= goal ? "Supera meta estimada" : "Por debajo de presupuesto";
+
+    document.getElementById('dashConvMetric').textContent = `${(convNow * 100).toFixed(1)}% vs ${(convGoal * 100).toFixed(1)}%`;
+    document.getElementById('dashConvGap').textContent = `Gap: ${Math.max((convGoal - convNow) * 100, 0).toFixed(1)} pts`;
+
+    document.getElementById('dashTicketMetric').textContent = `${money(ticketNow)} vs ${money(ticketGoal)}`;
+    document.getElementById('dashTicketGap').textContent = `Gap: ${money(Math.max(ticketGoal - ticketNow, 0))}`;
+
+    document.getElementById('dashCapacityMetric').textContent = money(capacityDaily);
+
+    // Generar Plan de Acción según industria y situación
+    generateStrategicPlan(pace, convNow, convGoal, ticketNow, ticketGoal);
   }
 
-  // ===== Core compute
-  function compute(){
-    const monthGoal = Number(document.getElementById('monthGoal').value || 0);
-    const monthSales = Number(document.getElementById('monthSales').value || 0);
-    const daysLeft = Number(document.getElementById('daysLeft').value || 0);
-    const trafficDaily = Number(document.getElementById('trafficDaily').value || 0);
+  function generateStrategicPlan(pace, convNow, convGoal, ticketNow, ticketGoal) {
+    const actionList = document.getElementById('planActionList');
+    const coachingList = document.getElementById('planCoachingList');
 
-    const convNow = Number(document.getElementById('convNow').value || 0) / 100;
-    const convGoal = Number(document.getElementById('convGoal').value || 0) / 100;
-    const ticketNow = Number(document.getElementById('ticketNow').value || 0);
-    const ticketGoal = Number(document.getElementById('ticketGoal').value || 0);
+    let actions = [];
+    let coaching = [];
 
-    const attachNow = Number(document.getElementById('attachNow').value || 0) / 100;
-    const attachGoal = Number(document.getElementById('attachGoal').value || 0) / 100;
-
-    const focusMode = (focusModeSelect.value || "auto");
-    const storeName = (document.getElementById('storeName').value || "").trim();
-    const notes = (document.getElementById('notes').value || "").trim();
-
-    const remaining = Math.max(monthGoal - monthSales, 0);
-    const paceNeed = (daysLeft > 0) ? (remaining / daysLeft) : 0;
-    const pct = (monthGoal > 0) ? (monthSales / monthGoal) : 0;
-
-    // gaps (relative)
-    const gapConv = (convGoal > 0) ? ((convGoal - convNow) / convGoal) : 0;
-    const gapTicket = (ticketGoal > 0) ? ((ticketGoal - ticketNow) / ticketGoal) : 0;
-    const gapAttach = (attachGoal > 0) ? ((attachGoal - attachNow) / attachGoal) : 0;
-
-    // Potential daily sales from traffic (if provided)
-    const dailySalesPotentialNow = (trafficDaily > 0 && convNow > 0 && ticketNow > 0)
-      ? (trafficDaily * convNow * ticketNow)
-      : 0;
-
-    // ===== Decide focusKey
-    let focusKey = "exec";
-    let focus = focusLabel(focusMode);
-    let focusNote = "Selecciona un enfoque y calcula.";
-
-    if(focusMode !== "auto"){
-      focusKey = focusMode;
-      focusNote = `Enfoque manual: ${focus}.`;
+    if (activeIndustry === "retail" || activeIndustry === "highticket") {
+      actions.push("<strong>Estructuración de Bundles:</strong> Armar combinaciones sugeridas de producto prémium con complementos para elevar el ticket promedio de forma inmediata.");
+      actions.push("<strong>Clínica de Abordaje Consultivo:</strong> Entrenar al equipo en protocolo de apertura en piso en menos de 30 segundos, orientando la conversación a diagnóstico y no a venta forzada.");
+      actions.push("<strong>Control y Auditoría de Stock:</strong> Asegurar disponibilidad y visibilidad inmediata en exhibición de los productos con mayor rotación.");
+      
+      coaching.push("<strong>Roleplay de Manejo de Objeciones (10 min):</strong> Simular respuestas ante objeción de precio anclando el valor y financiamiento disponible.");
+      coaching.push("<strong>Briefing Matutino:</strong> Asignar a cada asesor un solo KPI foco por turno (Conversión o UPT) para mantener claridad operativa.");
     } else {
-      focusKey = "exec";
-      focus = "Automático";
-      focusNote = "Yo elijo la palanca más urgente según tus datos.";
+      actions.push("<strong>Auditoría de Pipeline en CRM (Odoo/HubSpot):</strong> Depurar oportunidades estancadas y calendarizar reactivación de contactos clave.");
+      actions.push("<strong>Prospección B2B Dirigida:</strong> Asignar cuota diaria de 10 cuentas estratégicas institucionales con propuesta de valor ajustada.");
+      actions.push("<strong>Revisión de Márgenes de Compra:</strong> Negociar condiciones por volumen con proveedores nacionales e internacionales para proteger rentabilidad.");
 
-      if(trafficDaily > 0 && dailySalesPotentialNow > 0 && paceNeed > dailySalesPotentialNow * 1.05){
-        focusKey = "traffic";
-        focus = "Tráfico / Oportunidades";
-        focusNote = "Con el tráfico actual no te da el ritmo. Hay que meter más oportunidades y no desperdiciar piso.";
-      } else {
-        const topGap = Math.max(gapConv, gapTicket, gapAttach);
-        if(topGap <= 0.06){
-          focusKey = "exec";
-          focus = "Ejecución general";
-          focusNote = "Vas cerca de metas. Toca disciplina de piso y seguimiento.";
-        } else {
-          if(topGap === gapConv){
-            focusKey = "conv";
-            focus = "Conversión";
-            focusNote = "Lo que más te mueve la aguja ahorita es convertir mejor lo que ya entra.";
-          } else if(topGap === gapTicket){
-            focusKey = "ticket";
-            focus = "Ticket promedio";
-            focusNote = "Ahorita te conviene subir ticket: bundles y recomendación clara.";
-          } else {
-            focusKey = "upt";
-            focus = "Unidades por ticket (UPT)";
-            focusNote = "Ahorita te conviene subir UPT: más tickets con extra (attach rate).";
-          }
-        }
-      }
+      coaching.push("<strong>Revisión 1:1 de Embudo Comercial:</strong> Identificar cuellos de botella en la etapa de propuesta a cierre.");
+      coaching.push("<strong>Estandarización de Propuestas:</strong> Unificar cotizaciones con valor agregado y garantías de servicio post-venta.");
     }
 
-    // ===== Dashboard outputs
-    document.getElementById('dashPct').textContent = pctFmt(pct);
-    document.getElementById('dashPctNote').textContent = `Venta ${money(monthSales)} / Meta ${money(monthGoal)}`;
-    document.getElementById('dashRemaining').textContent = money(remaining);
-    document.getElementById('dashDailyNeed').textContent = (daysLeft>0) ? money(paceNeed) : "—";
-    document.getElementById('dashDailyNeedNote').textContent = (daysLeft>0) ? `${daysLeft} días restantes` : "Pon días restantes";
-
-    document.getElementById('dashConv').textContent = `${(convNow*100).toFixed(1)}% vs ${(convGoal*100).toFixed(1)}%`;
-    document.getElementById('dashTicket').textContent = `${money(ticketNow)} vs ${money(ticketGoal)}`;
-
-    document.getElementById('dashConvNote').textContent = (convGoal>0) ? `Gap: ${Math.max((convGoal-convNow)*100,0).toFixed(1)} pts` : "Pon meta conv";
-    document.getElementById('dashTicketNote').textContent = (ticketGoal>0) ? `Gap: ${money(Math.max(ticketGoal-ticketNow,0))}` : "Pon meta ticket";
-
-    document.getElementById('dashAttach').textContent = `${(attachNow*100).toFixed(1)}% vs ${(attachGoal*100).toFixed(1)}%`;
-    document.getElementById('dashAttachNote').textContent = (attachGoal>0) ? `Gap: ${Math.max((attachGoal-attachNow)*100,0).toFixed(1)} pts` : "Pon meta UPT";
-
-    document.getElementById('dashFocus').textContent = focus;
-    document.getElementById('dashFocusNote').textContent = focusNote;
-
-    document.getElementById('dashTrafficProj').textContent = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
-    document.getElementById('dashTrafficProjNote').textContent = (dailySalesPotentialNow>0) ? "Tráfico × conv × ticket" : "Mete tráfico + conv + ticket";
-    document.getElementById('dashNotes').textContent = notes ? notes : "—";
-
-    const bar = document.getElementById('barPct');
-    bar.style.width = clamp(pct*100, 0, 100).toFixed(1) + "%";
-
-    // Pills (status)
-    const pills = [];
-    function pill(text, state){
-      const dot = state === 'good' ? 'good' : state === 'warn' ? 'warn' : 'bad';
-      return `<span class="pill"><span class="dot ${dot}"></span>${text}</span>`;
-    }
-    if(monthGoal>0 && daysLeft>0){
-      if(remaining === 0) pills.push(pill("Meta del mes: cerrada ✅","good"));
-      else pills.push(pill(`Ritmo requerido: ${money(paceNeed)}`,"warn"));
-    }
-    if(convGoal>0){
-      const st = convNow >= convGoal ? "good" : (convNow >= convGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`Conversión: ${(convNow*100).toFixed(1)}%`, st));
-    }
-    if(ticketGoal>0){
-      const st = ticketNow >= ticketGoal ? "good" : (ticketNow >= ticketGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`Ticket: ${money(ticketNow)}`, st));
-    }
-    if(attachGoal>0){
-      const st = attachNow >= attachGoal ? "good" : (attachNow >= attachGoal*0.9 ? "warn" : "bad");
-      pills.push(pill(`UPT: ${(attachNow*100).toFixed(1)}%`, st));
-    }
-    pills.push(pill(`Enfoque: ${focus}`, "warn"));
-    document.getElementById('dashPills').innerHTML = pills.join("");
-
-    // ===== Strategy outputs
-    const strTitle = document.getElementById('strTitle');
-    const strIntro = document.getElementById('strIntro');
-    const strActions = document.getElementById('strActions');
-    const strMeasure = document.getElementById('strMeasure');
-    const strCoaching = document.getElementById('strCoaching');
-    const waText = document.getElementById('waText');
-
-    const dailyNeedTxt = (daysLeft>0) ? money(paceNeed) : "—";
-    const projTxt = (dailySalesPotentialNow>0) ? money(dailySalesPotentialNow) : "—";
-    const storeTxt = storeName ? ` (${storeName})` : "";
-
-    let title = `Estrategia base${storeTxt}: ejecución + seguimiento`;
-    let intro = `Hoy necesitas ${dailyNeedTxt} por día para cerrar meta.`;
-    let actions = [
-      "<strong>Brief 5 min:</strong> 1 KPI + 1 foco del día (en una frase).",
-      "<strong>Rondas cortas:</strong> cada 90 min revisa: ¿qué está frenando hoy?",
-      "<strong>Cierre 10 min:</strong> ¿qué repetimos mañana? (claro y sin rollo).",
-      "<strong>Seguimiento:</strong> 10 mensajes por asesor/día + 2 citas reales."
-    ];
-    let measure = [
-      "Venta vs ritmo: mitad de jornada y cierre.",
-      "Notas: qué franja vendió y por qué (2 renglones).",
-      "Conversión: si sube conv, aunque baje tráfico, vas mejor.",
-      "Ticket: bundles/upsell medidos por tickets."
-    ];
-    let coaching = [
-      "Apertura en 10 segundos: pregunta poderosa + guía.",
-      "Roleplay: 3 aperturas + 2 objeciones comunes.",
-      "Feedback corto: 1 cosa bien + 1 cosa a mejorar (máximo)."
-    ];
-
-    if(focusKey === "traffic"){
-      title = `Enfoque${storeTxt}: Tráfico / Oportunidades`;
-      intro = `Proyección diaria ${projTxt} vs requerido ${dailyNeedTxt}. Hoy toca meter oportunidades y no desperdiciar piso.`;
-      actions = [
-        "<strong>Puerta / Greeter:</strong> saludo + pregunta + dirigir (en picos).",
-        "<strong>Activación rápida:</strong> WhatsApp/CRM: 10 mensajes por asesor + 2 citas cada uno.",
-        "<strong>Staff por franja:</strong> más manos donde sí entra gente.",
-        "<strong>Demo en 2 min:</strong> que cada visita vea el 'wow' rápido.",
-        "<strong>Referidos:</strong> pedir 1 referido por compra (hoy mismo)."
-      ];
-      measure = [
-        "Oportunidades generadas por hora (contactos/citas).",
-        "Asistencias a citas vs agenda.",
-        "Venta por franja (si lo tienes).",
-        "Conversión: si sube, aunque entre menos, mejora."
-      ];
-      coaching = [
-        "Entrenamiento de bienvenida: 2 guiones cortos (directo y suave).",
-        "Roleplay 5 min por asesor con el guion de entrada.",
-        "Regla: nadie se va sin siguiente paso (cita o contacto)."
-      ];
-    }
-
-    if(focusKey === "conv"){
-      title = `Enfoque${storeTxt}: Conversión`;
-      intro = `Hoy no es meter más gente: es convertir mejor lo que ya entra.`;
-      actions = [
-        "<strong>1 cosa hoy:</strong> pasar de 'saludo' a 'diagnóstico' (preguntar y guiar).",
-        "<strong>Regla 2-2-2:</strong> 2 preguntas + 2 opciones + 2 cierres suaves.",
-        "<strong>Demo obligatoria:</strong> sin demo, se cae la venta.",
-        "<strong>Objeciones:</strong> elige 1 objeción del día y practícala.",
-        "<strong>Seguimiento:</strong> quien no compró → cita/contacto (mínimo 1 intento)."
-      ];
-      measure = [
-        "Conversión por franja (mañana/tarde).",
-        "Conversión por asesor (para entrenar, no para regañar).",
-        "Razón de no compra (3 categorías máximo).",
-        "Citas agendadas vs compras inmediatas."
-      ];
-      coaching = [
-        "Guion simple: '¿Qué buscas? ¿Para cuándo? ¿Qué te importa más?'",
-        "Roleplay 7 min: 1 apertura + 1 cierre suave.",
-        "Micro-feedback en piso: 30 segundos por interacción."
-      ];
-    }
-
-    if(focusKey === "ticket"){
-      title = `Enfoque${storeTxt}: Ticket promedio`;
-      intro = `Subir ticket sin forzar: bundles, anclaje y recomendación clara.`;
-      actions = [
-        "<strong>2 bundles listos:</strong> (bueno / mejor). Se ofrecen siempre.",
-        "<strong>Anclaje:</strong> enseña primero el paquete 'mejor' y luego el 'bueno'.",
-        "<strong>Upsell elegante:</strong> 1 mejora por ticket (no 5 cosas).",
-        "<strong>Regla:</strong> cada ticket intenta llevar 1 extra (si aplica).",
-        "<strong>Cierre:</strong> '¿Te lo dejo en el paquete que más te conviene?'"
-      ];
-      measure = [
-        "Ticket promedio por franja.",
-        "% tickets con bundle (sí/no).",
-        "Top 3 extras que suben ticket.",
-        "Tickets con upsell vs sin upsell."
-      ];
-      coaching = [
-        "Ensayar 2 bundles (palabras exactas).",
-        "Practicar anclaje: 'completo' vs 'esencial'.",
-        "Feedback por ticket: 1 oportunidad de bundle detectada."
-      ];
-    }
-
-    if(focusKey === "upt"){
-      title = `Enfoque${storeTxt}: Unidades por ticket (UPT)`;
-      intro = `No es “meter accesorios”. Es subir % tickets con extra (attach rate) con recomendación lógica.`;
-      actions = [
-        "<strong>Define 3 combos:</strong> esencial / completo / premium (1 por categoría).",
-        "<strong>Regla:</strong> 1 recomendación extra por ticket (solo 1).",
-        "<strong>Frase mágica:</strong> 'Para que te funcione mejor, te recomiendo X por esta razón'.",
-        "<strong>Exhibición:</strong> combo armado visible (que se entienda en 5 segundos).",
-        "<strong>Meta del día:</strong> subir attach rate hoy (aunque sea +2 pts)."
-      ];
-      measure = [
-        "% tickets con extra (hoy) vs meta.",
-        "Top 5 extras reales que sí salen (no inventes).",
-        "¿En qué franja sube/baja el attach? (mañana/tarde).",
-        "Tickets con recomendación vs sin recomendación."
-      ];
-      coaching = [
-        "Roleplay 10 min: 3 formas de recomendar sin sonar intenso.",
-        "Cada asesor elige 1 combo favorito y lo domina.",
-        "Feedback inmediato cuando lo ofrezcan bien (30 seg)."
-      ];
-    }
-
-    if(focusKey === "exec"){
-      title = `Enfoque${storeTxt}: Ejecución general`;
-      intro = `Vas a cerrar por disciplina: ritmo, seguimiento y coaching corto.`;
-      actions = [
-        "<strong>Ritmo por franja:</strong> define micro-meta por hora (simple).",
-        "<strong>Brief + ajuste:</strong> 5 min al inicio y 5 min a media jornada.",
-        "<strong>Seguimiento:</strong> 10 mensajes por asesor + 2 citas.",
-        "<strong>Checar piso:</strong> producto top siempre a la mano y demo lista.",
-        "<strong>Cierre:</strong> lista de pendientes y prioridad de mañana."
-      ];
-      measure = [
-        "Venta vs ritmo (por franja).",
-        "Conversión y ticket (solo ver si suben/bajan).",
-        "Attach rate (si aplica): % tickets con extra.",
-        "Qué acción sí funcionó (1 cosa)."
-      ];
-      coaching = [
-        "Feedback corto: 1 cosa a mejorar hoy por asesor.",
-        "Roleplay 5 min: apertura + cierre.",
-        "Que todos sepan el foco del día en una frase."
-      ];
-    }
-
-    strTitle.textContent = title;
-    strIntro.textContent = intro;
-    strActions.innerHTML = actions.map(x=>`<li>${x}</li>`).join("");
-    strMeasure.innerHTML = measure.map(x=>`<li>${x}</li>`).join("");
-    strCoaching.innerHTML = coaching.map(x=>`<li>${x}</li>`).join("");
-
-    const wa = [
-      "Equipo 👊",
-      storeName ? `Hoy en ${storeName}:` : "Hoy:",
-      `Foco: ${focus.toUpperCase()}.`,
-      (daysLeft>0 && monthGoal>0) ? `Ritmo requerido: ${money(paceNeed)} por día.` : "",
-      "1 cosa clara: ejecutar sin rollo.",
-      "A media jornada revisamos 5 min y ajustamos. Va?"
-    ].filter(Boolean).join("\n");
-    waText.textContent = wa;
-
-    // Switch a Dashboard
-    document.querySelector('.tab[data-tab="tab-dashboard"]').click();
-
-    computeCommissionOnly();
+    actionList.innerHTML = actions.map(a => `<li style="padding-left: 20px; position: relative;">• ${a}</li>`).join("");
+    coachingList.innerHTML = coaching.map(c => `<li style="padding-left: 20px; position: relative;">• ${c}</li>`).join("");
   }
 
-  // ===== Commission compute (simple)
-  function computeCommissionOnly(){
-    const goal = Number(document.getElementById('sellerGoal')?.value || 0);
-    const sales = Number(document.getElementById('sellerSales')?.value || 0);
-    const commPct = Number(document.getElementById('sellerCommPct')?.value || 0);
+  document.getElementById('btnRunDiagnostic').addEventListener('click', () => {
+    calculateDashboard();
+    document.querySelector('.tab-btn[data-tab="tab-dashboard"]').click();
+  });
 
-    const pct = (goal > 0) ? (sales / goal) : 0;
-    const pctTxt = (goal > 0) ? (pct*100).toFixed(1) + "%" : "—";
-
-    const commission = sales * (commPct/100);
-    const toGoal = Math.max(goal - sales, 0);
-
-    const sellerPctEl = document.getElementById('sellerPct');
-    if(sellerPctEl) sellerPctEl.value = pctTxt;
-
-    const outCommission = document.getElementById('outCommission');
-    const outCommNote = document.getElementById('outCommNote');
-    const outToGoal = document.getElementById('outToGoal');
-    const outCommMsg = document.getElementById('outCommMsg');
-
-    if(outCommission) outCommission.textContent = money(commission);
-    if(outCommNote) outCommNote.textContent = `Venta ${money(sales)} × ${commPct.toFixed(1)}%`;
-    if(outToGoal) outToGoal.textContent = money(toGoal);
-
-    let msg = "Mete meta y venta";
-    if(commPct <= 0) msg = "Falta % de comisión";
-    else if(goal > 0){
-      if(pct >= 1.0) msg = "Ya está en meta ✅";
-      else if(pct >= 0.85) msg = "Ya casi, aprieta cierre";
-      else if(pct >= 0.60) msg = "Vas bien, acelera por franja";
-      else msg = "Vas bajo, enfócate en 1 cosa hoy";
-    }
-    if(outCommMsg) outCommMsg.textContent = msg;
-  }
-
-  // ===== Events
-  document.getElementById('btnRun').addEventListener('click', compute);
-
-  document.getElementById('btnReset').addEventListener('click', ()=>{
-    [
-      'monthGoal','monthSales','daysLeft','trafficDaily',
-      'convNow','convGoal','ticketNow','ticketGoal',
-      'attachNow','attachGoal',
-      'sellerGoal','sellerSales','sellerCommPct',
-      'storeName','notes'
-    ].forEach(id=>{
-      const el = document.getElementById(id);
-      if(el) el.value = "";
+  // COTIZADOR & TOTALES
+  function updateQuoteTotals() {
+    let subtotal = 0;
+    const rows = document.querySelectorAll('#quoteBody tr');
+    
+    rows.forEach(r => {
+      const qty = Number(r.querySelector('.item-qty').value || 0);
+      const price = Number(r.querySelector('.item-price').value || 0);
+      const total = qty * price;
+      r.querySelector('.item-total').textContent = money(total);
+      subtotal += total;
     });
 
-    setFocus("auto");
+    const hasIva = document.getElementById('chkIva').checked;
+    const iva = hasIva ? subtotal * 0.16 : 0;
+    const finalTotal = subtotal + iva;
 
-    document.getElementById('dashPct').textContent = "—";
-    document.getElementById('dashPctNote').textContent = "—";
-    document.getElementById('dashRemaining').textContent = "—";
-    document.getElementById('dashDailyNeed').textContent = "—";
-    document.getElementById('dashDailyNeedNote').textContent = "—";
-    document.getElementById('dashConv').textContent = "—";
-    document.getElementById('dashTicket').textContent = "—";
-    document.getElementById('dashAttach').textContent = "—";
-    document.getElementById('dashConvNote').textContent = "—";
-    document.getElementById('dashTicketNote').textContent = "—";
-    document.getElementById('dashAttachNote').textContent = "—";
-    document.getElementById('dashFocus').textContent = "—";
-    document.getElementById('dashFocusNote').textContent = "—";
-    document.getElementById('dashTrafficProj').textContent = "—";
-    document.getElementById('dashTrafficProjNote').textContent = "—";
-    document.getElementById('dashNotes').textContent = "—";
-    document.getElementById('dashPills').innerHTML = "";
-    document.getElementById('barPct').style.width = "0%";
+    document.getElementById('outQuoteSubtotal').textContent = money(subtotal);
+    document.getElementById('outQuoteIva').textContent = money(iva);
+    document.getElementById('outQuoteTotal').textContent = `${money(finalTotal)} MXN`;
+  }
 
-    document.getElementById('strTitle').textContent = "—";
-    document.getElementById('strIntro').textContent = "Haz clic en Calcular.";
-    document.getElementById('strActions').innerHTML = "";
-    document.getElementById('strMeasure').innerHTML = "";
-    document.getElementById('strCoaching').innerHTML = "";
-    document.getElementById('waText').textContent = "Haz clic en Calcular.";
+  document.getElementById('quoteBody').addEventListener('input', updateQuoteTotals);
+  document.getElementById('chkIva').addEventListener('change', updateQuoteTotals);
 
-    document.querySelector('.tab[data-tab="tab-inputs"]').click();
-    computeCommissionOnly();
+  document.getElementById('btnAddRow').addEventListener('click', () => {
+    const tbody = document.getElementById('quoteBody');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" class="item-desc" placeholder="Nueva partida o servicio..."></td>
+      <td><input type="number" class="item-qty" value="1" min="1"></td>
+      <td><input type="number" class="item-price" value="0" min="0"></td>
+      <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$0</td>
+      <td><button type="button" class="btn btn-danger" onclick="removeQuoteRow(this)" style="padding: 4px 8px; font-size: 0.75rem;">✕</button></td>
+    `;
+    tbody.appendChild(tr);
   });
 
-  ['sellerGoal','sellerSales','sellerCommPct'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.addEventListener('input', computeCommissionOnly);
+  function removeQuoteRow(btn) {
+    btn.closest('tr').remove();
+    updateQuoteTotals();
+  }
+
+  // CÁLCULO DE COMISIONES
+  function updateRepCommission() {
+    const goal = Number(document.getElementById('inRepGoal').value || 0);
+    const sales = Number(document.getElementById('inRepSales').value || 0);
+    const commPct = Number(document.getElementById('inRepCommPct').value || 0) / 100;
+
+    const pace = goal > 0 ? sales / goal : 0;
+    const commission = sales * commPct;
+    const remaining = Math.max(goal - sales, 0);
+
+    document.getElementById('outRepPace').textContent = pctFmt(pace);
+    document.getElementById('outRepCommission').textContent = money(commission);
+    document.getElementById('outRepRemaining').textContent = money(remaining);
+    document.getElementById('outRepStatus').textContent = pace >= 1 ? "Meta Superada ✅" : "En seguimiento diario";
+  }
+
+  ['inRepGoal', 'inRepSales', 'inRepCommPct'].forEach(id => {
+    document.getElementById(id).addEventListener('input', updateRepCommission);
   });
 
-  computeCommissionOnly();
+  // GENERADOR DE PDF OFICIAL
+  document.getElementById('btnExportPDF').addEventListener('click', () => {
+    const client = document.getElementById('quoteClient').value || "Cliente Corporativo";
+    const contact = document.getElementById('quoteContact').value || "Dirección de Operaciones / Compras";
+    
+    document.getElementById('pdfClientName').textContent = client;
+    document.getElementById('pdfContactName').textContent = contact;
+    document.getElementById('pdfDate').textContent = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Clonar filas a la plantilla PDF
+    const pdfRows = document.getElementById('pdfTableRows');
+    pdfRows.innerHTML = "";
+    
+    document.querySelectorAll('#quoteBody tr').forEach(r => {
+      const desc = r.querySelector('.item-desc').value || "Servicio comercial";
+      const qty = r.querySelector('.item-qty').value || "1";
+      const price = Number(r.querySelector('.item-price').value || 0);
+      const total = Number(qty) * price;
+
+      pdfRows.innerHTML += `
+        <tr>
+          <td>${desc}</td>
+          <td style="text-align: center;">${qty}</td>
+          <td style="text-align: right;">${money(price)}</td>
+          <td style="text-align: right;"><strong>${money(total)}</strong></td>
+        </tr>
+      `;
+    });
+
+    document.getElementById('pdfSubtotal').textContent = document.getElementById('outQuoteSubtotal').textContent;
+    document.getElementById('pdfIva').textContent = document.getElementById('outQuoteIva').textContent;
+    document.getElementById('pdfTotal').textContent = document.getElementById('outQuoteTotal').textContent;
+
+    const element = document.getElementById('pdfReportTemplate');
+    element.style.display = "block";
+
+    const opt = {
+      margin: 10,
+      filename: `Propuesta_Comercial_${client.replace(/\s+/g, '_')}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save().then(() => {
+      element.style.display = "none";
+    });
+  });
+
+  // Inicialización
+  calculateDashboard();
+  updateQuoteTotals();
+  updateRepCommission();
 </script>
 </body>
 </html>
