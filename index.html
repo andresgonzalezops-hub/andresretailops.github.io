@@ -436,7 +436,7 @@
 
     .cert-thumb {
       width: 100%;
-      height: 140px;
+      height: 145px;
       object-fit: cover;
       background: #05080e;
     }
@@ -457,7 +457,7 @@
       color: var(--text-dim);
     }
 
-    /* CONTACT CARD REDISEÑADO PREMIUM (IMPACTO VISUAL) */
+    /* CONTACT CARD PREMIUM */
     .contact-card {
       background: radial-gradient(circle at 50% 0%, #152238 0%, #080d16 100%);
       border: 1px solid rgba(0, 210, 255, 0.3);
@@ -493,7 +493,6 @@
       backdrop-filter: blur(12px);
     }
 
-    /* ESTILOS Y EFECTOS ESPECÍFICOS POR TARJETA */
     .contact-card-item.whatsapp-card:hover {
       border-color: #25D366;
       background: linear-gradient(180deg, rgba(37, 211, 102, 0.12) 0%, rgba(14, 21, 35, 0.9) 100%);
@@ -855,7 +854,7 @@
       </div>
     </section>
 
-    <!-- CERTS -->
+    <!-- CERTS (LOS 7 CERTIFICADOS EXACTOS DE TU REPOSITORIO) -->
     <section id="certificaciones">
       <div class="section-head">
         <div class="section-eyebrow">Validación Técnica</div>
@@ -863,14 +862,28 @@
       </div>
 
       <div class="certs-grid">
+        <!-- 1. CÁMARA DE COMERCIO GUADALAJARA -->
+        <div class="cert-box" onclick="showCert('assets/certs/Cómo Aumentar Más Ventas y Atención a Clientes.jpeg', 'Ventas, Negociación & Atención al Cliente')">
+          <img 
+            src="assets/certs/Cómo Aumentar Más Ventas y Atención a Clientes.jpeg" 
+            alt="Cámara de Comercio de Guadalajara" 
+            class="cert-thumb">
+          <div class="cert-info">
+            <div class="cert-title">Ventas, Negociación & Atención al Cliente</div>
+            <div class="cert-meta">Cámara de Comercio GDL / CEFOR · 2026</div>
+          </div>
+        </div>
+
+        <!-- 2. HUBSPOT / CRM -->
         <div class="cert-box" onclick="showCert('assets/certs/HUBSPOT.jpg', 'Software de Ventas & CRM')">
           <img src="assets/certs/HUBSPOT.jpg" alt="CRM & Ventas" class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Software de Ventas & CRM</div>
-            <div class="cert-meta">Certificación Profesional · 2025–2026</div>
+            <div class="cert-meta">HubSpot Academy · 2025–2026</div>
           </div>
         </div>
 
+        <!-- 3. AWS -->
         <div class="cert-box" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg', 'AWS Cloud Foundations')">
           <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS" class="cert-thumb">
           <div class="cert-info">
@@ -879,6 +892,7 @@
           </div>
         </div>
 
+        <!-- 4. CISCO -->
         <div class="cert-box" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg', 'Cisco Python Essentials')">
           <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco" class="cert-thumb">
           <div class="cert-info">
@@ -887,7 +901,8 @@
           </div>
         </div>
 
-        <div class="cert-box" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg', 'Gestión Ágil de Proyectos')">
+        <!-- 5. GESTIÓN ÁGIL / AGILE (171) -->
+        <div class="cert-box" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg', 'Gestión Ágil de Proyectos (Agile)')">
           <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Agile" class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Gestión Ágil de Proyectos (Agile)</div>
@@ -895,10 +910,19 @@
           </div>
         </div>
 
-        <div class="cert-box" onclick="showCert(this.querySelector('img').src, 'English Fundamentals')">
+        <!-- 6. COMERCIO DIGITAL / PYMES (110) -->
+        <div class="cert-box" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg', 'Comercio Digital & Estrategia PyMEs')">
+          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Comercio Digital" class="cert-thumb">
+          <div class="cert-info">
+            <div class="cert-title">Comercio Digital & Estrategia PyMEs</div>
+            <div class="cert-meta">Acreditación Profesional · 2025–2026</div>
+          </div>
+        </div>
+
+        <!-- 7. INGLÉS (ENGLISH FUNDAMENTALS) -->
+        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg', 'English Fundamentals')">
           <img 
-            src="assets/certs/english-fundamentals-2026.jpg.jpg" 
-            onerror="if(!this.dataset.tried1){this.dataset.tried1=true;this.src='assets/english-fundamentals-2026.jpg.jpg';}else if(!this.dataset.tried2){this.dataset.tried2=true;this.src='assets/certs/english-fundamentals-2026.jpg';}else{this.src='assets/english-fundamentals-2026.jpg';}" 
+            src="assets/certs/english-fundamentals-2026.jpg" 
             alt="English Fundamentals" 
             class="cert-thumb">
           <div class="cert-info">
