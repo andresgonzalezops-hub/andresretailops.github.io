@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Andrés González | Retail Operations & Desarrollo Comercial</title>
+  <title>Andrés González | Ventas Consultivas, High-Ticket & Operaciones Comerciales</title>
 
   <!-- META -->
-  <meta name="description" content="Portafolio profesional de Andrés González: liderazgo comercial, estrategia, KPIs, eficiencia operativa y equipos de alto desempeño (retail y negocio en general).">
+  <meta name="description" content="Portafolio profesional de Andrés González: Ventas consultivas, negociación high-ticket, dirección de operaciones comerciales, KPIs y equipos de alto rendimiento.">
   <meta property="og:image" content="assets/profile.jpg" />
 
   <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#141a24;
-      --card2:#0e151f;
+      --bg:#090d12;
+      --card:#111722;
+      --card2:#0d131d;
       --text:#e6edf3;
       --muted:#9aa4b2;
 
       --brand:#00b4ff;
       --brand2:#00d1b2;
+      --brand-gradient: linear-gradient(135deg, #00b4ff, #00d1b2);
 
-      --radius:20px;
-      --shadow:0 14px 36px rgba(0,0,0,.38);
-      --stroke:#223043;
-
-      --stroke2:#1f2b3d;
-      --glow:0 18px 60px rgba(0,180,255,.18);
+      --radius:18px;
+      --shadow:0 14px 36px rgba(0,0,0,.45);
+      --stroke:#1e293b;
+      --stroke2:#16202e;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
 
     body{
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      background:linear-gradient(180deg,#0b0f14,#0d1219 60%,#0b0f14);
+      background:linear-gradient(180deg,#090d12 0%, #0d131d 50%, #090d12 100%);
       line-height:1.65;
+      -webkit-font-smoothing:antialiased;
     }
 
-    a{color:var(--brand);text-decoration:none}
-    a:hover{opacity:.95}
+    a{color:var(--brand);text-decoration:none;transition:0.2s}
+    a:hover{opacity:.9}
 
     img{max-width:100%;display:block}
 
@@ -57,10 +57,11 @@
     header{
       position:sticky;
       top:0;
-      z-index:10;
-      background:#0d1219;
-      box-shadow:0 4px 14px rgba(0,0,0,.4);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:20;
+      background:rgba(13, 19, 29, 0.88);
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,.4);
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
 
     .nav{
@@ -75,7 +76,8 @@
     .logo{
       font-weight:900;
       color:#fff;
-      letter-spacing:.02em
+      letter-spacing:.03em;
+      font-size:1.1rem;
     }
 
     .nav ul{
@@ -88,7 +90,8 @@
 
     .nav a{
       color:#b7c2d1;
-      font-weight:700
+      font-weight:600;
+      font-size:0.92rem;
     }
 
     .nav a:hover{
@@ -99,20 +102,21 @@
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:10px 14px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      padding:9px 15px;
+      border-radius:10px;
+      background:var(--brand-gradient);
       color:#061018;
-      font-weight:900;
+      font-weight:800;
+      font-size:0.9rem;
       border:none;
       cursor:pointer;
-      box-shadow:0 10px 28px rgba(0,180,255,.15);
-      transition:.18s;
+      box-shadow:0 8px 24px rgba(0,180,255,.2);
+      transition:.2s;
     }
 
     .nav .btn:hover{
       transform:translateY(-1px);
-      box-shadow:0 14px 36px rgba(0,180,255,.22);
+      box-shadow:0 12px 30px rgba(0,180,255,.3);
     }
 
     /* =========================
@@ -121,8 +125,8 @@
     .top{
       display:grid;
       grid-template-columns:160px 1fr;
-      gap:24px;
-      padding:42px 0 18px;
+      gap:30px;
+      padding:48px 0 24px;
       align-items:center;
     }
 
@@ -142,84 +146,88 @@
       border-radius:22px;
       overflow:hidden;
       box-shadow:var(--shadow);
-      border:2px solid #1f2a38;
+      border:2px solid #243245;
       background:#0b111b;
     }
 
     h1{
-      font-size:34px;
-      line-height:1.15;
-      margin-bottom:10px
+      font-size:32px;
+      line-height:1.2;
+      font-weight:900;
+      letter-spacing:-0.01em;
+      margin-bottom:8px;
     }
 
     .subtitle{
-      color:var(--muted);
-      font-size:15px
+      color:#bac7d5;
+      font-size:15px;
+      font-weight:500;
     }
 
     .badges{
       display:flex;
-      gap:10px;
+      gap:8px;
       margin-top:14px;
       flex-wrap:wrap
     }
 
     .chip{
-      padding:6px 10px;
-      border:1px solid #2a3343;
+      padding:6px 12px;
+      border:1px solid #263345;
       border-radius:999px;
-      color:#b9c3d4;
+      color:#c5d2e0;
       font-size:12px;
-      background:rgba(255,255,255,.03)
+      font-weight:600;
+      background:rgba(255,255,255,.04);
     }
 
     .links{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:14px
+      margin-top:16px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      border:1px solid #2b3a4f;
-      background:#0e141f;
-      color:#d6e9ff;
-      padding:10px 14px;
+      border:1px solid #28374d;
+      background:#0e1522;
+      color:#e2efff;
+      padding:10px 16px;
       border-radius:12px;
-      font-weight:800;
-      transition:.18s;
+      font-weight:700;
+      font-size:14px;
+      transition:.2s;
       cursor:pointer;
     }
 
     .btn.primary{
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      background:var(--brand-gradient);
       color:#051018;
       border:none;
-      box-shadow:0 12px 34px rgba(0,180,255,.16);
+      box-shadow:0 10px 30px rgba(0,180,255,.2);
     }
 
     .btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 6px 22px rgba(0,180,255,.25)
+      box-shadow:0 6px 20px rgba(0,180,255,.25)
     }
 
     .btn.big{
-      padding:14px 18px;
+      padding:13px 20px;
       border-radius:14px;
-      font-size:14px;
-      font-weight:900;
+      font-size:15px;
+      font-weight:800;
     }
 
     .btn.neon{
       border:1px solid rgba(0,180,255,.55);
-      box-shadow:0 0 0 rgba(0,0,0,0);
     }
 
     .btn.neon:hover{
-      box-shadow:0 18px 46px rgba(0,180,255,.22);
+      box-shadow:0 14px 38px rgba(0,180,255,.25);
     }
 
     /* =========================
@@ -229,29 +237,32 @@
       background:var(--card);
       border:1px solid var(--stroke);
       border-radius:var(--radius);
-      margin:22px 0;
+      margin:26px 0;
       box-shadow:var(--shadow);
       overflow:hidden;
     }
 
     .hd{
-      padding:18px 18px 0;
-      font-size:14px;
-      letter-spacing:.09em;
+      padding:20px 22px 0;
+      font-size:13px;
+      letter-spacing:.1em;
       text-transform:uppercase;
-
-      /* MÁS CONTRASTE (pediste que se vieran) */
       color:#ffffff;
       font-weight:900;
       opacity:.95;
     }
 
     .bd{
-      padding:18px
+      padding:22px
     }
 
     .bd p{
-      margin:0 0 12px
+      margin:0 0 14px;
+      color:#caced4;
+    }
+
+    .bd p strong{
+      color:#ffffff;
     }
 
     .bd p:last-child{
@@ -260,8 +271,8 @@
 
     .hr-soft{
       height:1px;
-      background:rgba(255,255,255,.06);
-      margin:14px 0;
+      background:rgba(255,255,255,.07);
+      margin:18px 0;
     }
 
     /* =========================
@@ -269,18 +280,25 @@
     ========================== */
     .exp-item{
       border-left:3px solid var(--brand);
-      padding-left:14px;
-      margin:0 0 22px
+      padding-left:16px;
+      margin:0 0 24px
+    }
+
+    .exp-item:last-child{
+      margin-bottom:0;
     }
 
     .exp-item h4{
-      margin:0 0 6px
+      font-size:18px;
+      color:#ffffff;
+      margin:0 0 4px
     }
 
     .exp-item .meta{
       color:var(--muted);
       font-size:13px;
-      margin-bottom:8px
+      font-weight:600;
+      margin-bottom:10px
     }
 
     .exp-item ul{
@@ -288,80 +306,62 @@
     }
 
     .exp-item li{
-      margin:7px 0
+      margin:8px 0;
+      color:#caced4;
+    }
+
+    .exp-item li strong{
+      color:#ffffff;
     }
 
     .exp-note{
-      margin-top:10px;
-      color:var(--muted);
+      margin-top:12px;
+      color:#a6b2c2;
       font-size:13px;
       line-height:1.65;
+      background:rgba(255,255,255,.03);
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.05);
     }
 
     /* =========================
-       STRATEGY LAB - HERO (CENTRADO, SIN COLUMNAS)
+       STRATEGY LAB - HERO
     ========================== */
     .strategy-hero{
-      margin:26px 0 22px;
-      border-radius:24px;
-      border:1px solid rgba(0,180,255,.32);
+      margin:10px 0;
+      border-radius:20px;
+      border:1px solid rgba(0,180,255,.35);
       background:
-        radial-gradient(900px 420px at 20% 10%, rgba(0,180,255,.22), transparent 60%),
-        radial-gradient(900px 420px at 80% 20%, rgba(0,209,178,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:0 26px 70px rgba(0,0,0,.55);
+        radial-gradient(900px 420px at 20% 10%, rgba(0,180,255,.18), transparent 60%),
+        radial-gradient(900px 420px at 80% 20%, rgba(0,209,178,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      box-shadow:0 24px 60px rgba(0,0,0,.5);
       padding:34px 22px;
       text-align:center;
       position:relative;
       overflow:hidden;
     }
 
-    .strategy-hero::before{
-      content:"";
-      position:absolute;
-      width:560px;
-      height:560px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(0,180,255,.22) 0%, transparent 70%);
-      top:-240px;
-      left:-240px;
-      filter:blur(0px);
-      opacity:.95;
-      pointer-events:none;
-    }
-
-    .strategy-hero::after{
-      content:"";
-      position:absolute;
-      width:520px;
-      height:520px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(0,209,178,.18) 0%, transparent 70%);
-      bottom:-240px;
-      right:-240px;
-      opacity:.9;
-      pointer-events:none;
-    }
-
     .strategy-badge{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:10px 14px;
+      padding:8px 16px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      font-weight:900;
-      letter-spacing:.02em;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.3);
+      font-weight:800;
+      font-size:13px;
       margin-bottom:14px;
       position:relative;
       z-index:1;
     }
 
     .strategy-title{
-      font-size:30px;
+      font-size:28px;
       font-weight:900;
-      line-height:1.15;
+      line-height:1.2;
       margin:10px auto 12px;
       max-width:920px;
       position:relative;
@@ -369,10 +369,9 @@
     }
 
     .strategy-sub{
-      color:#cfe7ff;
-      opacity:.95;
-      font-weight:700;
-      max-width:900px;
+      color:#d2e6fa;
+      font-size:15px;
+      max-width:850px;
       margin:0 auto 16px;
       position:relative;
       z-index:1;
@@ -383,19 +382,19 @@
       justify-content:center;
       flex-wrap:wrap;
       gap:10px;
-      margin:14px auto 18px;
+      margin:16px auto 20px;
       max-width:980px;
       position:relative;
       z-index:1;
     }
 
     .point{
-      padding:8px 12px;
+      padding:7px 14px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      color:#dbe7f6;
-      font-weight:800;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.25);
+      color:#e2ecf7;
+      font-weight:700;
       font-size:12px;
     }
 
@@ -410,7 +409,7 @@
     }
 
     .strategy-tip{
-      margin-top:12px;
+      margin-top:14px;
       font-size:12px;
       color:var(--muted);
       position:relative;
@@ -437,8 +436,8 @@
 
     .cert:hover{
       transform:translateY(-2px);
-      box-shadow:0 18px 48px rgba(0,0,0,.35);
-      border-color:rgba(0,180,255,.35);
+      box-shadow:0 18px 48px rgba(0,0,0,.4);
+      border-color:rgba(0,180,255,.4);
     }
 
     .cert img{
@@ -456,7 +455,8 @@
     .cap strong{
       display:block;
       font-size:14px;
-      line-height:1.25
+      line-height:1.25;
+      color:#ffffff;
     }
 
     .cap span{
@@ -468,29 +468,17 @@
        VISION
     ========================== */
     .vision p{
-      font-size:16px;
-      line-height:1.78;
-      margin-bottom:18px;
+      font-size:15px;
+      line-height:1.75;
+      margin-bottom:16px;
+    }
+
+    .vision p:last-child{
+      margin-bottom:0;
     }
 
     .vision p strong{
       color:#ffffff
-    }
-
-    .vision p:first-child{
-      font-size:17px;
-      font-weight:700
-    }
-
-    .vision p::before{
-      content:"";
-      display:block;
-      width:32px;
-      height:3px;
-      background:linear-gradient(90deg,var(--brand),var(--brand2));
-      border-radius:2px;
-      margin-bottom:10px;
-      opacity:.95;
     }
 
     /* =========================
@@ -507,14 +495,14 @@
       background:var(--card2);
       border:1px solid var(--stroke2);
       border-radius:16px;
-      padding:14px 14px;
+      padding:16px;
       transition:.18s;
     }
 
     .contact-card:hover{
       transform:translateY(-2px);
       border-color:rgba(0,180,255,.35);
-      box-shadow:0 18px 44px rgba(0,0,0,.25);
+      box-shadow:0 18px 44px rgba(0,0,0,.3);
     }
 
     .contact-card strong{
@@ -523,11 +511,12 @@
       gap:8px;
       font-size:13px;
       margin-bottom:6px;
+      color:#ffffff;
     }
 
     .contact-card a{
       color:#d6e9ff;
-      font-weight:800;
+      font-weight:700;
       word-break:break-word;
     }
 
@@ -547,7 +536,7 @@
       padding:40px 0;
       color:#8e9aaf;
       text-align:center;
-      font-size:.95rem
+      font-size:.9rem
     }
 
     /* =========================
@@ -563,15 +552,15 @@
     }
 
     dialog::backdrop{
-      background:rgba(4,10,16,.86);
-      backdrop-filter:blur(4px)
+      background:rgba(4,10,16,.88);
+      backdrop-filter:blur(6px)
     }
 
     .modal-hd{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      background:var(--brand-gradient);
       color:#061018;
       padding:14px 18px;
       border-top-left-radius:20px;
@@ -588,64 +577,54 @@
       border:1px solid #334155;
       color:#d8e7f9;
       border-radius:8px;
-      padding:6px 10px;
+      padding:6px 12px;
       cursor:pointer;
       font-weight:800;
     }
 
     .modal-bd{
-      padding:14px 18px
+      padding:16px
     }
 
     .cv-stage{
-      height:calc(92vh - 64px);
-      border-radius:16px;
+      height:calc(90vh - 64px);
+      border-radius:14px;
       border:1px solid #2a3643;
       background:radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,.02));
       overflow:auto;
       display:flex;
       justify-content:center;
       align-items:flex-start;
-      padding:22px 18px;
-      box-shadow:0 22px 60px rgba(0,0,0,.65);
+      padding:20px;
     }
 
     .cv-paper{
       background:#fff;
-      border-radius:14px;
-      box-shadow:0 18px 50px rgba(0,0,0,.28);
-      padding:14px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      border-radius:12px;
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+      padding:12px;
     }
 
     .cv-img{
-      width:min(1200px, 94vw);
+      width:min(1150px, 92vw);
       height:auto;
-      border-radius:10px;
+      border-radius:8px;
       display:block;
-    }
-
-    .cv-img{image-rendering:auto}
-
-    @media(min-width:1100px){
-      .cv-img{width:1180px}
     }
 
     .cert-modal-wrap{
       display:flex;
       justify-content:center;
       align-items:center;
-      padding:8px 0 2px;
+      padding:8px 0;
     }
 
     .modal-img{
       width:100%;
       max-width:min(1100px,96vw);
-      max-height:80vh;
+      max-height:78vh;
       object-fit:contain;
-      border-radius:16px;
+      border-radius:14px;
       border:1px solid #2a3643;
       box-shadow:0 22px 60px rgba(0,0,0,.65);
       background:#0b111b;
@@ -688,115 +667,110 @@
     ========================== -->
     <section class="top">
       <div class="avatar">
-        <!-- FOTO: NO se toca -->
         <img src="assets/profile.jpg" alt="Foto de Andrés González">
       </div>
 
       <div>
-        <h1>Retail Operations & Desarrollo Comercial</h1>
+        <h1>Ventas Consultivas, High-Ticket & Operaciones Comerciales</h1>
 
         <div class="subtitle">
-          Estrategia · Liderazgo · KPIs · Rentabilidad · Ejecución aplicable a negocio
+          Estrategia Comercial · Diagnóstico y Cierre de Alto Valor · Cultura de KPIs · Gestión de Pipeline & CRM
         </div>
 
         <div class="badges">
-          <span class="chip">Gestión operativa</span>
-          <span class="chip">Estrategia comercial</span>
-          <span class="chip">Optimización de procesos</span>
-          <span class="chip">Análisis y reporteo</span>
-          <span class="chip">HubSpot · SAP</span>
+          <span class="chip">Venta Consultiva & High-Ticket</span>
+          <span class="chip">Desarrollo de Negocios (B2B/B2C)</span>
+          <span class="chip">Dirección de Equipos de Venta</span>
+          <span class="chip">Optimización de KPIs & Rentabilidad</span>
+          <span class="chip">HubSpot CRM · SAP</span>
         </div>
 
-        <!-- CONTACTO ARRIBA (como pediste) -->
-        <div class="links" style="margin-top:14px">
+        <div class="links">
           <a class="btn primary" href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a>
           <a class="btn" href="tel:+523323430043">+52 33 2343 0043</a>
-
-          <!-- Botón CV PDF arriba -->
           <a class="btn neon" href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener">📄 Ver CV (PDF)</a>
         </div>
       </div>
     </section>
 
     <!-- =========================
-         SOBRE MÍ (más turbo)
+         SOBRE MÍ
     ========================== -->
     <section id="sobre-mi" class="card">
       <div class="hd">Sobre mí</div>
       <div class="bd">
         <p>
-          Soy <strong>Luis Andrés González Martínez</strong>, profesional con más de <strong>10 años liderando equipos, operación y resultados comerciales</strong>.
-          Mi base viene del retail (donde se aprende la disciplina real), pero mi enfoque es <strong>totalmente trasladable</strong> a cualquier negocio que viva de
-          <strong>ventas, servicio, ejecución y rentabilidad</strong>.
+          Soy <strong>Andrés González</strong>, profesional comercial con más de <strong>10 años de trayectoria liderando ventas consultivas, desarrollo de negocios y optimización de operaciones comerciales</strong> en entornos de alto valor (high-ticket), retail prémium y B2B[cite: 6].
         </p>
 
         <p>
-          Trabajo con una lógica simple y agresivamente práctica: <strong>prioridades claras</strong>, <strong>KPIs accionables</strong> y <strong>seguimiento constante</strong>.
-          No me clavo en teoría: convierto estrategia en hábitos operativos —qué se revisa, cuándo se ejecuta, quién es dueño del indicador y cómo se mide el impacto.
-          Ahí es donde pasan los resultados (conversión, ticket, productividad, inventario, experiencia y margen).
+          Mi enfoque combina la <strong>disciplina operativa</strong> con el <strong>cierre estratégico</strong>: no creo en picos de venta aislados ni en la improvisación, sino en construir <strong>sistemas comerciales repetibles</strong> basados en diagnóstico de necesidades, gestión rigurosa de embudos (HubSpot/SAP), seguimiento analítico de KPIs y una experiencia de cliente impecable[cite: 6].
         </p>
 
         <p>
-          Mi estilo de liderazgo es de <strong>presencia + claridad</strong>: el equipo entiende el “por qué” del número y la acción concreta que lo mueve.
-          Eso eleva desempeño sin desgaste, porque deja de depender de motivación y se vuelve un <strong>sistema repetible</strong>.
+          Mi liderazgo se fundamenta en la <strong>claridad y el criterio</strong>: capacito a los equipos comerciales para entender la relación directa entre el indicador y la acción en piso o negociación, elevando la tasa de conversión, el ticket promedio y la retención sin fricción operativa[cite: 6].
         </p>
 
         <p>
-          Actualmente estudio <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio) porque tengo clarísimo que el crecimiento hoy se potencia cuando conectas
-          <strong>negocio + datos + tecnología</strong> para decidir mejor, ejecutar más rápido y escalar con estructura.
+          Complemento mi visión de negocio con formación en <strong>Ingeniería en Desarrollo de Software</strong> (Universidad Tecmilenio), lo que me permite conectar estrategia comercial, análisis de datos y tecnología para optimizar procesos y escalar operaciones con rentabilidad.
         </p>
       </div>
     </section>
 
     <!-- =========================
-         LOGROS (no “experiencia”, como pediste)
+         LOGROS COMERCIALES Y RESULTADOS
     ========================== -->
     <section id="logros" class="card">
-      <div class="hd">Logros principales y resultados</div>
+      <div class="hd">Logros Comerciales & Resultados Clave</div>
       <div class="bd">
 
-        <!-- LUUNA -->
+        <!-- YATLA -->
         <div class="exp-item">
-          <h4>Store Manager Boutique Showroom — Luuna</h4>
-          <div class="meta">04/2022 – 06/2025</div>
+          <h4>Coordinador Comercial & Ventas Regionales — YATLA</h4>
+          <div class="meta">06/2026 – Actual</div>
 
           <ul>
             <li>
-              <strong>2º lugar nacional (2023)</strong> en indicadores comerciales y venta:
-              resultado de disciplina diaria, coaching en piso y seguimiento por KPI (no “suerte”).
+              <strong>Liderazgo y ejecución estratégica</strong> en múltiples puntos de atención comercial, impulsando la captación y fidelización de clientes de alto valor[cite: 6].
             </li>
-
             <li>
-              Posicioné una <strong>unidad nueva</strong> dentro de las <strong>mejores tiendas</strong> en <strong>menos de 12 meses</strong>,
-              consolidando ejecución, servicio y consistencia comercial.
+              <strong>Optimización continua del pipeline y métricas de venta</strong> (tasa de conversión, ticket promedio y unidades por ticket) asegurando el sobrecumplimiento sistemático de objetivos[cite: 6].
             </li>
-
             <li>
-              Implementé rutinas de alto impacto: <strong>metas por hora</strong>, priorización por KPI,
-              roles claros y revisión corta diaria para sostener crecimiento sin depender de “picos”.
-            </li>
-
-            <li>
-              Logré <strong>100% de confiabilidad de inventario</strong>,
-              elevando disponibilidad, reduciendo fricción operativa y protegiendo la experiencia del cliente.
-            </li>
-
-            <li>
-              Fortalecí estándares operativos (orden de piso, productividad, servicio, cierres y control),
-              elevando <strong>conversión</strong> y consistencia en desempeño comercial.
-            </li>
-
-            <li>
-              Apoyé capacitación y desarrollo de equipos en <strong>15+ sucursales</strong>, compartiendo estructura de seguimiento,
-              hábitos de ejecución y enfoque por KPI.
+              <strong>Implementación de iniciativas comerciales B2B e institucionales</strong>, estructurando el seguimiento integral de prospección mediante <strong>HubSpot CRM</strong> y análisis de datos de rendimiento[cite: 6].
             </li>
           </ul>
 
           <div class="exp-note">
-            <strong>¿Por qué se logró el ranking nacional?</strong> Porque se ejecutó con método:
-            objetivos claros, medición diaria, coaching real en piso y decisiones basadas en datos.
-            Cuando el equipo entiende el KPI y la acción, el resultado se vuelve repetible.
+            <strong>Impacto Estratégico:</strong> Estandarización de modelos comerciales y desarrollo de talento para consolidar operaciones rentables y escalables en la región[cite: 2].
+          </div>
+        </div>
+
+        <div class="hr-soft"></div>
+
+        <!-- LUUNA -->
+        <div class="exp-item">
+          <h4>Store Manager — Asesoría Consultiva & Ventas High-Ticket — LUUNA</h4>
+          <div class="meta">04/2022 – 06/2025</div>
+
+          <ul>
+            <li>
+              <strong>2º lugar nacional (2023)</strong> y reconocimiento nacional por superación sostenida de metas de venta y excelencia comercial[cite: 6].
+            </li>
+            <li>
+              Especialización en <strong>venta consultiva de alto valor (high-ticket)</strong>, acelerando ciclos de decisión y cierre mediante seguimiento personalizado a prospectos y clientes recurrentes[cite: 6].
+            </li>
+            <li>
+              Capacitación y mentoría a equipos comerciales en <strong>más de 15 sucursales</strong>, implementando metodologías de abordaje, manejo de objeciones y cierres efectivos[cite: 6].
+            </li>
+            <li>
+              Mantenimiento de <strong>100% de confiabilidad de inventario</strong> y activos[cite: 3], eliminando discrepancias operativas y asegurando disponibilidad inmediata para entregas prémium.
+            </li>
+          </ul>
+
+          <div class="exp-note">
+            <strong>¿Cómo se logró el ranking nacional?</strong> Mediante asesoría orientada al valor del producto, disciplina diaria en prospección y seguimiento estricto de KPIs de conversión en piso de venta[cite: 6].
           </div>
         </div>
 
@@ -804,39 +778,26 @@
 
         <!-- GAP -->
         <div class="exp-item">
-          <h4>Gerente de Boutique — GAP</h4>
+          <h4>Gerente de Boutique — Dirección Comercial & Liderazgo — GAP</h4>
           <div class="meta">10/2014 – 07/2021</div>
 
           <ul>
             <li>
-              Transformé una unidad con bajo desempeño en una operación <strong>rentable en menos de un año</strong>,
-              ajustando ejecución, indicadores, disciplina operativa y liderazgo del equipo.
+              Transformación integral de unidad de bajo desempeño en una operación <strong>altamente rentable en menos de un año</strong> mediante reestructuración de metas y coaching comercial.
             </li>
-
             <li>
-              Mantuvimos <strong>resultados positivos durante la pandemia (2020)</strong>,
-              sosteniendo continuidad con control, enfoque por franja, prioridades claras y hábitos operativos.
+              Dirección y coordinación de equipos de hasta <strong>30 asesores comerciales</strong>, ejecutando tácticas de <em>cross-selling</em> y <em>up-selling</em> para elevar el ticket promedio[cite: 6].
             </li>
-
             <li>
-              Mejoré la confiabilidad de inventario de <strong>85% a 98.88%</strong> mediante procesos, auditorías,
-              conteos cíclicos y cultura de control (hábitos, no “eventos”).
+              Optimización de la precisión de inventario del <strong>85% al 98.88%</strong> a través de controles cíclicos y auditorías rigurosas[cite: 2, 3].
             </li>
-
             <li>
-              Construí y fidelicé un equipo de hasta <strong>30 personas</strong>,
-              desarrollando cultura de estándares, responsabilidad por KPI y ejecución consistente.
-            </li>
-
-            <li>
-              Empujé ejecución en piso (visual, foco por producto, coaching y priorización),
-              elevando la capacidad de convertir tráfico en venta de forma más estable.
+              Mantenimiento de <strong>rentabilidad y retención de clientes clave</strong> durante entornos comerciales complejos (2020) gracias al control de costos operativos y servicio personalizado[cite: 3, 6].
             </li>
           </ul>
 
           <div class="exp-note">
-            <strong>¿Qué significa “hacer rentable”?</strong> No es solo vender más:
-            es estabilizar conversión, proteger margen, controlar merma, ordenar operación y sostener hábitos que el equipo pueda repetir semana tras semana.
+            <strong>Clave de Rentabilidad:</strong> Protección de márgenes comerciales, fidelización de clientes y construcción de hábitos de venta repetibles semana tras semana[cite: 6].
           </div>
         </div>
 
@@ -844,41 +805,39 @@
     </section>
 
     <!-- =========================
-         STRATEGY LAB (APARTE + CENTRADO + PUNCH + LINK ARREGLADO)
+         STRATEGY LAB
     ========================== -->
     <section id="strategy-lab" class="card">
-      <div class="hd">Strategy Lab</div>
+      <div class="hd">Strategy Lab · Simulador Interactivo</div>
       <div class="bd">
 
         <div class="strategy-hero">
-          <div class="strategy-badge">🧪⚡ <span>STRATEGY LAB</span> · <span style="color:#bfefff">Proyecto práctico</span></div>
+          <div class="strategy-badge">🧪⚡ <span>STRATEGY LAB</span> · <span style="color:#bfefff">Simulador de Toma de Decisiones</span></div>
 
           <div class="strategy-title">
-            🚀 Generador de Estrategia (KPIs + Ejecución) <br />
-            <span style="color:#bfefff">aplicable a tu negocio</span>
+            🚀 Generador de Estrategia Comercial & KPIs <br />
+            <span style="color:#bfefff">Simulación Práctica para Diagnóstico de Negocio</span>
           </div>
 
           <div class="strategy-sub">
-            Este es un proyecto mío para que veas <strong>cómo me gusta trabajar</strong>:
-            diagnóstico → prioridades → decisiones → impacto en KPIs → plan simple de ejecución.
+            Herramienta interactiva diseñada para demostrar la metodología de trabajo:
+            <strong>Diagnóstico → Priorización Estratégica → Decisiones Operativas → Impacto en Rentabilidad</strong>.
           </div>
 
           <div class="strategy-points">
-            <span class="point">✅ Diagnóstico rápido (qué pasa y por qué)</span>
-            <span class="point">✅ Priorización (qué mover primero)</span>
-            <span class="point">✅ Acciones concretas (ejecución diaria)</span>
-            <span class="point">✅ KPIs proyectados (visual y entendible)</span>
+            <span class="point">✅ Diagnóstico comercial rápido</span>
+            <span class="point">✅ Priorización de palancas de crecimiento</span>
+            <span class="point">✅ Acciones tácticas aplicables</span>
+            <span class="point">✅ Proyección visual de KPIs comerciales</span>
           </div>
 
           <div class="strategy-actions">
-            <!-- LINK ARREGLADO: strategy-lab/ -->
             <a class="btn primary big" href="strategy-lab.html" target="_blank" rel="noopener">🚀 Abrir Strategy Lab</a>
             <a class="btn big neon" href="strategy-lab.html" target="_blank" rel="noopener">🧭 Abrir en nueva pestaña</a>
           </div>
 
           <div class="strategy-tip">
-            Tip: elige un escenario → selecciona hasta 3 acciones → calcula → revisa el impacto.
-            (Simulación educativa, sin backend)
+            Selecciona un escenario de negocio → define hasta 3 acciones comerciales → calcula el impacto proyectado en KPIs.
           </div>
         </div>
 
@@ -886,51 +845,36 @@
     </section>
 
     <!-- =========================
-         VISIÓN (más larga, más punch)
+         VISIÓN
     ========================== -->
     <section id="vision" class="card vision">
-      <div class="hd">Mi visión del liderazgo y los resultados</div>
+      <div class="hd">Visión de Liderazgo & Crecimiento</div>
       <div class="bd">
         <p>
-          Creo en negocios que crecen por diseño, no por suerte:
-          <strong>claridad</strong>, <strong>estructura</strong> y <strong>ejecución</strong>.
-          Mi base viene del retail (una escuela dura), pero el principio es universal:
-          si alineas equipo, proceso e indicadores, el resultado deja de ser “variable” y se vuelve <strong>repetible</strong>.
+          Los negocios sostenibles crecen por diseño, no por casualidad: <strong>claridad en el objetivo</strong>, <strong>estructura en el proceso</strong> y <strong>disciplina en la ejecución</strong>. El principio es universal para el retail prémium, las ventas consultivas B2B, el sector inmobiliario o las operaciones corporativas.
         </p>
 
         <p>
-          Para mí, el liderazgo no es “mandar”: es <strong>crear criterio</strong>.
-          Un líder efectivo define prioridades, baja la estrategia a hábitos simples y construye un sistema donde el equipo
-          entiende qué indicador mueve el resultado y qué acción concreta lo cambia.
-          Cuando eso pasa, la operación deja de depender de “héroes” y empieza a funcionar con <strong>consistencia</strong>.
+          Liderar no es supervisar tareas rutinarias, es <strong>crear criterio en el equipo</strong>. Un líder comercial efectivo establece prioridades, traduce metas complejas en hábitos diarios y construye un ecosistema donde cada colaborador domina qué acción mueve la aguja del negocio.
         </p>
 
         <p>
-          Me gusta trabajar con ciclos cortos: <strong>medir → ajustar → ejecutar</strong>.
-          Eso aplica igual para una tienda, un equipo comercial, un servicio, un coworking, una inmobiliaria,
-          o cualquier operación que busque crecer con control.
-          Lo que se mide bien, se mejora; lo que se ejecuta diario, se vuelve ventaja.
-        </p>
-
-        <p>
-          Mi propósito es seguir evolucionando como líder que une <strong>estrategia comercial</strong>,
-          <strong>disciplina operativa</strong> y <strong>tecnología</strong> para construir equipos de alto desempeño,
-          elevar productividad y sostener resultados medibles con estructura.
+          Mi metodología opera en ciclos ágiles: <strong>Medir → Ajustar → Ejecutar</strong>. Lo que se mide con precisión se optimiza; lo que se ejecuta con consistencia se convierte en una ventaja competitiva sostenible.
         </p>
       </div>
     </section>
 
     <!-- =========================
-         CERTIFICACIONES (todas, sin quitar)
+         CERTIFICACIONES
     ========================== -->
     <section id="certificaciones" class="card">
-      <div class="hd">Certificaciones destacadas</div>
+      <div class="hd">Certificaciones & Especializaciones</div>
       <div class="bd">
         <div class="certs">
 
-          <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de ventas','Válido 2025–2026')">
+          <div class="cert" onclick="showCert('assets/certs/HUBSPOT.jpg','HubSpot – Software de Ventas & CRM','Válido 2025–2026')">
             <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot – Software de ventas">
-            <div class="cap"><strong>HubSpot – Software de ventas</strong><span>2025–2026</span></div>
+            <div class="cap"><strong>HubSpot – Software de Ventas & CRM</strong><span>2025–2026</span></div>
           </div>
 
           <div class="cert" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg','AWS Academy – Cloud Foundations','Emitido 2025')">
@@ -945,18 +889,17 @@
 
           <div class="cert" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg','Gestión de Proyectos y Metodología Agile','Open Academy · 2026')">
             <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Gestión de Proyectos y Metodología Agile">
-            <div class="cap"><strong>Gestión de Proyectos y Metodología Agile</strong><span>Open Academy · 2026</span></div>
+            <div class="cap"><strong>Gestión de Proyectos & Metodología Agile</strong><span>Open Academy · 2026</span></div>
           </div>
 
-          <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce para PyMEs: vende más online','Open Academy · 2026')">
+          <div class="cert" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg','Ecommerce & Negociación para PyMEs','Open Academy · 2026')">
             <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Ecommerce para PyMEs: vende más online">
-            <div class="cap"><strong>Ecommerce para PyMEs</strong><span>Open Academy · 2026</span></div>
+            <div class="cap"><strong>Ecommerce & Negociación Comercial</strong><span>Open Academy · 2026</span></div>
           </div>
 
-          <!-- ✅ ENGLISH (IMAGEN, MISMO MODAL) -->
-          <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Boost your job search and CV','Open Academy · 2026')">
+          <div class="cert" onclick="showCert('assets/certs/english-fundamentals-2026.jpg','English Fundamentals – Professional CV & Search','Open Academy · 2026')">
             <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals – Boost your job search and CV">
-            <div class="cap"><strong>English Fundamentals – Boost your job search and CV</strong><span>Open Academy · 2026</span></div>
+            <div class="cap"><strong>English Fundamentals – Professional Search</strong><span>Open Academy · 2026</span></div>
           </div>
 
         </div>
@@ -964,36 +907,36 @@
     </section>
 
     <!-- =========================
-         CONTACTO (más bonito)
+         CONTACTO
     ========================== -->
     <section id="contacto" class="card">
-      <div class="hd">Contacto</div>
+      <div class="hd">Contacto Directo</div>
       <div class="bd">
 
         <div class="contact-grid">
 
           <div class="contact-card">
-            <strong>📩 Correo</strong>
+            <strong>📩 Correo Electrónico</strong>
             <p><a href="mailto:andresgonzalez.ops@gmail.com">andresgonzalez.ops@gmail.com</a></p>
-            <p>Respuesta rápida · contacto directo</p>
+            <p>Contacto profesional directo</p>
           </div>
 
           <div class="contact-card">
-            <strong>📱 Teléfono</strong>
+            <strong>📱 Teléfono / WhatsApp</strong>
             <p><a href="tel:+523323430043">+52 33 2343 0043</a></p>
-            <p>Disponible para llamada / WhatsApp</p>
+            <p>Llamadas y mensajería directa</p>
           </div>
 
           <div class="contact-card">
             <strong>💼 LinkedIn</strong>
             <p><a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener">/in/andresglez89</a></p>
-            <p>Networking · oportunidades · mensajes</p>
+            <p>Conexión y red profesional</p>
           </div>
 
           <div class="contact-card">
             <strong>📍 Ubicación</strong>
             <p>Zapopan, Jalisco, México</p>
-            <p>Abierto a oportunidades y crecimiento</p>
+            <p>Disponible para nuevos retos comerciales</p>
           </div>
 
         </div>
@@ -1001,7 +944,7 @@
       </div>
     </section>
 
-    <!-- CTA DOWNLOAD (abajo como antes) -->
+    <!-- CTA DOWNLOAD -->
     <div class="cta">
       <a class="btn primary big" href="assets/CV-Andres-Gonzalez.pdf" download>⬇️ Descargar CV (PDF)</a>
     </div>
@@ -1009,7 +952,7 @@
   </main>
 
   <footer class="container">
-    <small>© <span id="year"></span> Andrés González · Portafolio profesional</small>
+    <small>© <span id="year"></span> Andrés González · Consultoría Comercial & Operaciones</small>
   </footer>
 
   <!-- =========================
