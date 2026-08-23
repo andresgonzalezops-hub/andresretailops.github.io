@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js para gráficas interactivas y html2pdf para PDF en 1 página -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -384,6 +387,65 @@
       margin-top: 4px;
     }
 
+    /* VISTA PREVIA PROFESIONAL DE LA COTIZACIÓN */
+    .preview-wrapper {
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #00a8cc;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .preview-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .preview-table th {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 10px 12px;
+      font-size: 12px;
+      text-transform: uppercase;
+      border: 1px solid #cbd5e1;
+      text-align: left;
+    }
+
+    .preview-table td {
+      padding: 10px 12px;
+      font-size: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .preview-footer {
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* CONTENEDOR EXCLUSIVO PARA IMPRESIÓN PDF (1 PÁGINA) */
     #pdfCleanView {
       display: none;
       background: #ffffff;
@@ -393,53 +455,6 @@
       padding: 24px 30px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       box-sizing: border-box;
-    }
-
-    #pdfCleanView .p-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 2px solid #00a8cc;
-      padding-bottom: 12px;
-      margin-bottom: 14px;
-    }
-
-    #pdfCleanView .p-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-
-    #pdfCleanView .p-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-    }
-
-    #pdfCleanView .p-table th {
-      background: #f1f5f9;
-      color: #334155;
-      padding: 8px 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      border: 1px solid #cbd5e1;
-    }
-
-    #pdfCleanView .p-table td {
-      padding: 8px 10px;
-      font-size: 11px;
-      border: 1px solid #e2e8f0;
-    }
-
-    #pdfCleanView .p-footer {
-      margin-top: 18px;
-      padding-top: 10px;
-      border-top: 1px solid #cbd5e1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 10.5px;
-      color: #64748b;
     }
 
     .hidden { display: none !important; }
@@ -456,7 +471,7 @@
 
     <div class="nav-tabs">
       <button class="tab-btn active" data-tab="tab-estrategia">🧠 Generador Estratégico</button>
-      <button class="tab-btn" data-tab="tab-dashboard">📊 Dashboard de Metas</button>
+      <button class="tab-btn" data-tab="tab-dashboard">📊 Dashboard Avanzado</button>
       <button class="tab-btn" data-tab="tab-cotizador">📑 Cotizador & PDF</button>
       <button class="tab-btn" data-tab="tab-comisiones">💸 Comisiones</button>
       <a href="index.html" class="btn-portal">💼 Volver al Portafolio</a>
@@ -479,11 +494,11 @@
       <div class="grid-2">
         <div class="field-group">
           <label>1. ¿A qué se dedica tu empresa / negocio?</label>
-          <textarea id="inGiro" rows="3" placeholder="Ej. Comercializadora de colchones prémium y descanso / Empresa B2B de suministros médicos / Boutique de moda retail..."></textarea>
+          <textarea id="inGiro" rows="3" placeholder="Ej. Comercializadora de descanso prémium / Empresa B2B de suministros industriales / Boutique de moda retail..."></textarea>
         </div>
         <div class="field-group">
           <label>2. ¿Qué quieres lograr exactamente? (Meta o Reto)</label>
-          <textarea id="inMeta" rows="3" placeholder="Ej. Aumentar el ticket promedio un 25%, cerrar cuentas corporativas grandes, capacitar al equipo en manejo de objeciones o abrir 3 sucursales rentables..."></textarea>
+          <textarea id="inMeta" rows="3" placeholder="Ej. Aumentar el ticket promedio un 25%, cerrar cuentas corporativas grandes o mejorar la conversión de piso..."></textarea>
         </div>
       </div>
 
@@ -531,13 +546,13 @@
     </div>
   </section>
 
-  <!-- TAB 2: DASHBOARD DE METAS -->
+  <!-- TAB 2: DASHBOARD AVANZADO CON GRÁFICA -->
   <section id="tab-dashboard" class="tab-content hidden">
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="card-title">Calculadora de Cierre & Ritmo de Ventas</div>
-          <div class="card-desc">Monitorea el cumplimiento y la velocidad diaria requerida.</div>
+          <div class="card-title">Dashboard Ejecutivo de Rendimiento & Proyecciones</div>
+          <div class="card-desc">Monitoreo continuo de KPIs, velocidad comercial y visualización gráfica interactiva.</div>
         </div>
       </div>
 
@@ -555,44 +570,54 @@
           <input type="number" id="dashDays" value="8" oninput="updateDashboard()">
         </div>
         <div class="field-group">
-          <label>Tráfico / Leads Diarios</label>
-          <input type="number" id="dashTraffic" value="85" oninput="updateDashboard()">
+          <label>Días Transcurridos</label>
+          <input type="number" id="dashDaysPassed" value="22" oninput="updateDashboard()">
         </div>
       </div>
 
-      <div class="grid-4">
+      <div class="grid-4" style="margin-bottom: 24px;">
         <div class="kpi-box">
-          <div class="kpi-lbl">Cumplimiento</div>
+          <div class="kpi-lbl">Cumplimiento (Pace)</div>
           <div class="kpi-val cyan" id="kpiPace">0%</div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" id="kpiPaceBar"></div></div>
-          <div class="kpi-sub" id="kpiPaceSub">Avance del presupuesto</div>
+          <div class="kpi-sub" id="kpiPaceSub">Avance real vs presupuesto</div>
         </div>
         <div class="kpi-box">
-          <div class="kpi-lbl">Faltante (Gap)</div>
+          <div class="kpi-lbl">Brecha de Cierre (Gap)</div>
           <div class="kpi-val gold" id="kpiGap">$0</div>
-          <div class="kpi-sub">Brecha de cierre</div>
+          <div class="kpi-sub">Faltante monetario a meta</div>
         </div>
         <div class="kpi-box">
-          <div class="kpi-lbl">Ritmo Diario Necesario</div>
+          <div class="kpi-lbl">Ritmo Diario Requerido</div>
           <div class="kpi-val green" id="kpiDailyReq">$0</div>
-          <div class="kpi-sub">Para llegar al 100%</div>
+          <div class="kpi-sub">Velocidad para cerrar al 100%</div>
         </div>
         <div class="kpi-box">
           <div class="kpi-lbl">Cierre Estimado</div>
           <div class="kpi-val" id="kpiProjected">$0</div>
-          <div class="kpi-sub" id="kpiProjectedSub">A ritmo constante</div>
+          <div class="kpi-sub" id="kpiProjectedSub">Proyección a ritmo actual</div>
+        </div>
+      </div>
+
+      <!-- GRÁFICA INTERACTIVA CHART.JS -->
+      <div style="background: #080b12; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px;">
+        <div style="font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+          <span>📈</span> Comparativa Visual: Venta Real vs Meta vs Proyección
+        </div>
+        <div style="position: relative; height: 320px; width: 100%;">
+          <canvas id="salesPerformanceChart"></canvas>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TAB 3: COTIZADOR & PDF -->
+  <!-- TAB 3: COTIZADOR & VISTA PREVIA DE PDF -->
   <section id="tab-cotizador" class="tab-content hidden">
     <div class="card">
       <div class="card-head">
         <div>
           <div class="card-title">Cotizador Comercial Corporativo</div>
-          <div class="card-desc">Genera propuestas y descárgalas en formato PDF formal de 1 sola página.</div>
+          <div class="card-desc">Configura partidas y revisa la vista previa en vivo antes de exportar el PDF en 1 página.</div>
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #cbd5e1; display: flex; align-items: center; gap: 6px; cursor: pointer;">
@@ -605,11 +630,11 @@
       <div class="grid-2">
         <div class="field-group">
           <label>Cliente / Razón Social</label>
-          <input type="text" id="quoteClient" placeholder="Ej. Distribuidora del Bajío S.A. de C.V.">
+          <input type="text" id="quoteClient" placeholder="Ej. Distribuidora del Bajío S.A. de C.V." oninput="updateLivePreview()">
         </div>
         <div class="field-group">
           <label>Atención / Contacto</label>
-          <input type="text" id="quoteContact" placeholder="Ej. Lic. Roberto Morales · Dirección de Compras">
+          <input type="text" id="quoteContact" placeholder="Ej. Lic. Roberto Morales · Dirección de Compras" oninput="updateLivePreview()">
         </div>
       </div>
 
@@ -626,14 +651,14 @@
           </thead>
           <tbody id="quoteBody">
             <tr>
-              <td><input type="text" class="item-desc" value="Consultoría en Operaciones Comerciales & KPIs"></td>
+              <td><input type="text" class="item-desc" value="Consultoría en Operaciones Comerciales & KPIs" oninput="updateQuoteTotals()"></td>
               <td><input type="number" class="item-qty" value="1" min="1" oninput="updateQuoteTotals()"></td>
               <td><input type="number" class="item-price" value="35000" min="0" oninput="updateQuoteTotals()"></td>
               <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$35,000</td>
               <td><button type="button" class="btn btn-danger" onclick="removeQuoteRow(this)" style="padding: 4px 8px; font-size: 0.75rem;">✕</button></td>
             </tr>
             <tr>
-              <td><input type="text" class="item-desc" value="Taller de Cierre High-Ticket y Manejo de Objeciones"></td>
+              <td><input type="text" class="item-desc" value="Taller de Cierre High-Ticket y Manejo de Objeciones" oninput="updateQuoteTotals()"></td>
               <td><input type="number" class="item-qty" value="1" min="1" oninput="updateQuoteTotals()"></td>
               <td><input type="number" class="item-price" value="22000" min="0" oninput="updateQuoteTotals()"></td>
               <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$22,000</td>
@@ -658,8 +683,65 @@
         </div>
       </div>
 
+      <!-- VISTA PREVIA EN VIVO DE LA COTIZACIÓN -->
+      <div style="margin-top: 30px;">
+        <div style="font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <span>👁️</span> Vista Previa Oficial del Documento (Hoja A4 Única)
+        </div>
+        
+        <div class="preview-wrapper" id="quoteLivePreview">
+          <div class="preview-header">
+            <div>
+              <div class="preview-title">PROPUESTA COMERCIAL</div>
+              <div style="font-size: 11.5px; color: #64748b; margin-top: 3px;">Fecha de emisión: <span id="prevDate"></span></div>
+            </div>
+            <div style="text-align: right;">
+              <strong style="font-size: 13.5px; color: #0077b5;">Andrés González</strong><br>
+              <span style="font-size: 11px; color: #64748b;">Dirección Comercial & Retail Operations</span><br>
+              <span style="font-size: 11px; color: #64748b;">andresgonzalez.ops@gmail.com</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 14px; font-size: 11.5px; background: #f8fafc; padding: 10px 14px; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <strong>Cliente:</strong> <span id="prevClient">Distribuidora del Bajío S.A. de C.V.</span> &nbsp;|&nbsp; <strong>Atención:</strong> <span id="prevContact">Lic. Roberto Morales</span>
+          </div>
+
+          <table class="preview-table">
+            <thead>
+              <tr>
+                <th style="width: 50%;">Descripción</th>
+                <th style="width: 12%; text-align: center;">Cant.</th>
+                <th style="width: 18%; text-align: right;">P. Unitario</th>
+                <th style="width: 20%; text-align: right;">Total</th>
+              </tr>
+            </thead>
+            <tbody id="prevRows"></tbody>
+          </table>
+
+          <div style="margin-left: auto; width: 250px; font-size: 12px; margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; padding: 2px 0;">
+              <span>Subtotal:</span>
+              <strong id="prevSub">$57,000</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 2px 0;">
+              <span>IVA (16%):</span>
+              <strong id="prevIva">$9,120</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid #0f172a; margin-top: 6px; font-size: 14px; color: #0077b5;">
+              <span>Total:</span>
+              <strong id="prevTot">$66,120 MXN</strong>
+            </div>
+          </div>
+
+          <div class="preview-footer">
+            <div>Elaborado profesionalmente por <strong>Andrés González</strong></div>
+            <div><a href="https://andresgonzalezops-hub.github.io/andresretailops.github.io/" style="color: #0077b5; text-decoration: none; font-weight: 700;">Ver Portafolio Online ↗</a></div>
+          </div>
+        </div>
+      </div>
+
       <div style="display: flex; gap: 14px; margin-top: 24px; justify-content: flex-end;">
-        <button class="btn btn-primary" onclick="exportSinglePagePDF()">📄 Descargar PDF Oficial (1 Página)</button>
+        <button class="btn btn-primary" onclick="exportSinglePagePDF()">📄 Descargar PDF Oficial (1 Página Exacta)</button>
       </div>
     </div>
   </section>
@@ -711,61 +793,10 @@
 
 </main>
 
-<!-- PLANTILLA EXCLUSIVA PARA PDF (1 PÁGINA EXACTA) -->
-<div id="pdfCleanView">
-  <div class="p-head">
-    <div>
-      <div class="p-title">PROPUESTA COMERCIAL</div>
-      <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Fecha de emisión: <span id="pDate"></span></div>
-    </div>
-    <div style="text-align: right;">
-      <strong style="font-size: 13px; color: #0077b5;">Andrés González</strong><br>
-      <span style="font-size: 10.5px; color: #64748b;">Dirección Comercial & Retail Operations</span><br>
-      <span style="font-size: 10.5px; color: #64748b;">andresgonzalez.ops@gmail.com</span>
-    </div>
-  </div>
-
-  <div style="margin-bottom: 12px; font-size: 11px; background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
-    <strong>Cliente:</strong> <span id="pClient">—</span> &nbsp;|&nbsp; <strong>Atención:</strong> <span id="pContact">—</span>
-  </div>
-
-  <table class="p-table">
-    <thead>
-      <tr>
-        <th style="width: 50%;">Descripción</th>
-        <th style="width: 12%; text-align: center;">Cant.</th>
-        <th style="width: 18%; text-align: right;">P. Unitario</th>
-        <th style="width: 20%; text-align: right;">Total</th>
-      </tr>
-    </thead>
-    <tbody id="pRows"></tbody>
-  </table>
-
-  <div style="margin-left: auto; width: 240px; font-size: 11.5px; margin-top: 8px;">
-    <div style="display: flex; justify-content: space-between; padding: 2px 0;">
-      <span>Subtotal:</span>
-      <strong id="pSub">$0</strong>
-    </div>
-    <div style="display: flex; justify-content: space-between; padding: 2px 0;">
-      <span>IVA (16%):</span>
-      <strong id="pIva">$0</strong>
-    </div>
-    <div style="display: flex; justify-content: space-between; padding: 4px 0; border-top: 1.5px solid #0f172a; margin-top: 4px; font-size: 13px; color: #0077b5;">
-      <span>Total:</span>
-      <strong id="pTot">$0 MXN</strong>
-    </div>
-  </div>
-
-  <div class="p-footer">
-    <div>Elaborado profesionalmente por <strong>Andrés González</strong></div>
-    <div><a href="https://andresgonzalezops-hub.github.io/andresretailops.github.io/" style="color: #0077b5; text-decoration: none; font-weight: 700;">Ver Portafolio Online ↗</a></div>
-  </div>
-</div>
-
 <script>
   const money = (n) => (isFinite(n) ? n : 0).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
 
-  // TABS
+  // 1. TABS DE NAVEGACIÓN
   const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
   const tabContents = document.querySelectorAll('.tab-content');
 
@@ -775,10 +806,15 @@
       tabContents.forEach(c => c.classList.add('hidden'));
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.remove('hidden');
+      
+      // Si entra a Dashboard, asegurar que el render de Chart.js se ajuste
+      if (btn.dataset.tab === 'tab-dashboard') {
+        updateDashboard();
+      }
     });
   });
 
-  // GENERADOR ESTRATÉGICO DINÁMICO
+  // 2. GENERADOR ESTRATÉGICO DINÁMICO
   function generateDynamicStrategy() {
     const giro = document.getElementById('inGiro').value.trim() || "Empresa Comercial / Retail";
     const meta = document.getElementById('inMeta').value.trim() || "Aumentar ventas y rentabilidad";
@@ -791,8 +827,6 @@
 
     document.getElementById('outStratHeader').textContent = `Estrategia de Crecimiento: ${giro.slice(0, 40)}...`;
     document.getElementById('outStratSub').textContent = `Foco Principal: "${meta}" | Canal: ${canal.toUpperCase()} | Equipo: ${equipo} pax`;
-
-    const randomSeed = Math.floor(Math.random() * 4);
 
     let tacticas = [];
 
@@ -852,8 +886,8 @@
 
     if (urgencia === 'inmediato') {
       tacticas.unshift({
-        title: "⚡ ACCIÓN INMEDIATA (Primeros 3 Días)",
-        desc: `Revisar todas las cotizaciones abiertas de los últimos 30 días. Ofrecer condición comercial especial exclusiva para quienes cierren antes del fin de semana.`
+        title: "⚡ ACCIÓN INMEDIATA (Sprint Inicial)",
+        desc: `Revisar cotizaciones abiertas y ofrecer condición comercial preferente solo para órdenes cerradas dentro de las próximas 48 horas.`
       });
     }
 
@@ -877,33 +911,90 @@
     document.getElementById('strategyOutputSection').classList.add('hidden');
   }
 
-  // DASHBOARD DE METAS
+  // 3. DASHBOARD DE METAS Y GRÁFICA INTERACTIVA
+  let performanceChart = null;
+
   function updateDashboard() {
     const goal = Number(document.getElementById('dashGoal').value || 0);
     const sales = Number(document.getElementById('dashSales').value || 0);
-    const days = Number(document.getElementById('dashDays').value || 1);
-    const traffic = Number(document.getElementById('dashTraffic').value || 0);
+    const daysLeft = Number(document.getElementById('dashDays').value || 1);
+    const daysPassed = Number(document.getElementById('dashDaysPassed').value || 1);
 
     const pace = goal > 0 ? (sales / goal) : 0;
     const gap = Math.max(goal - sales, 0);
-    const dailyReq = days > 0 ? (gap / days) : 0;
-    const projected = sales + ((sales / Math.max(30 - days, 1)) * days);
+    const dailyReq = daysLeft > 0 ? (gap / daysLeft) : 0;
+    const currentRunRate = sales / Math.max(daysPassed, 1);
+    const projected = sales + (currentRunRate * daysLeft);
 
     document.getElementById('kpiPace').textContent = `${(pace * 100).toFixed(1)}%`;
     document.getElementById('kpiPaceBar').style.width = `${Math.min(pace * 100, 100)}%`;
     document.getElementById('kpiGap').textContent = money(gap);
     document.getElementById('kpiDailyReq').textContent = `${money(dailyReq)} / día`;
     document.getElementById('kpiProjected').textContent = money(projected);
-    document.getElementById('kpiProjectedSub').textContent = projected >= goal ? "Meta alcanzable" : "Por debajo de objetivo";
+    document.getElementById('kpiProjectedSub').textContent = projected >= goal ? "Meta alcanzable a este ritmo" : "Por debajo del presupuesto";
+
+    // Actualizar Gráfica
+    renderChart(sales, goal, projected);
   }
 
-  // COTIZADOR
+  function renderChart(sales, goal, projected) {
+    const ctx = document.getElementById('salesPerformanceChart').getContext('2d');
+
+    if (performanceChart) {
+      performanceChart.destroy();
+    }
+
+    performanceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Venta Acumulada Actual', 'Meta del Periodo', 'Proyección de Cierre'],
+        datasets: [{
+          label: 'Monto en $ MXN',
+          data: [sales, goal, projected],
+          backgroundColor: [
+            'rgba(0, 210, 255, 0.75)',
+            'rgba(245, 158, 11, 0.75)',
+            projected >= goal ? 'rgba(16, 185, 129, 0.75)' : 'rgba(239, 68, 68, 0.75)'
+          ],
+          borderColor: [
+            '#00d2ff',
+            '#f59e0b',
+            projected >= goal ? '#10b981' : '#ef4444'
+          ],
+          borderWidth: 2,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            ticks: {
+              color: '#94a3b8',
+              callback: (value) => '$' + (value / 1000).toLocaleString() + 'k'
+            },
+            grid: { color: 'rgba(255, 255, 255, 0.05)' }
+          },
+          x: {
+            ticks: { color: '#cbd5e1', font: { weight: 'bold' } },
+            grid: { display: false }
+          }
+        }
+      }
+    });
+  }
+
+  // 4. COTIZADOR Y VISTA PREVIA EN VIVO
   const quoteBody = document.getElementById('quoteBody');
 
   function addQuoteRow() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><input type="text" class="item-desc" placeholder="Nueva partida o servicio..."></td>
+      <td><input type="text" class="item-desc" placeholder="Nueva partida o servicio..." oninput="updateQuoteTotals()"></td>
       <td><input type="number" class="item-qty" value="1" min="1" oninput="updateQuoteTotals()"></td>
       <td><input type="number" class="item-price" value="0" min="0" oninput="updateQuoteTotals()"></td>
       <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$0</td>
@@ -937,19 +1028,20 @@
     document.getElementById('outSubtotal').textContent = money(subtotal);
     document.getElementById('outIva').textContent = money(iva);
     document.getElementById('outTotal').textContent = `${money(total)} MXN`;
+
+    updateLivePreview();
   }
 
-  // EXPORTACIÓN A PDF EN 1 SOLA PÁGINA ESTRICTA
-  function exportSinglePagePDF() {
-    const client = document.getElementById('quoteClient').value.trim() || "Cliente Corporativo";
-    const contact = document.getElementById('quoteContact').value.trim() || "Dirección de Compras / Operaciones";
+  function updateLivePreview() {
+    const client = document.getElementById('quoteClient').value.trim() || "Distribuidora del Bajío S.A. de C.V.";
+    const contact = document.getElementById('quoteContact').value.trim() || "Lic. Roberto Morales · Dirección de Compras";
 
-    document.getElementById('pDate').textContent = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
-    document.getElementById('pClient').textContent = client;
-    document.getElementById('pContact').textContent = contact;
+    document.getElementById('prevDate').textContent = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('prevClient').textContent = client;
+    document.getElementById('prevContact').textContent = contact;
 
-    const pRows = document.getElementById('pRows');
-    pRows.innerHTML = "";
+    const prevRows = document.getElementById('prevRows');
+    prevRows.innerHTML = "";
 
     quoteBody.querySelectorAll('tr').forEach(r => {
       const desc = r.querySelector('.item-desc').value || "Concepto comercial";
@@ -957,7 +1049,7 @@
       const p = Number(r.querySelector('.item-price').value || 0);
       const tot = Number(q) * p;
 
-      pRows.innerHTML += `
+      prevRows.innerHTML += `
         <tr>
           <td>${desc}</td>
           <td style="text-align: center;">${q}</td>
@@ -967,12 +1059,15 @@
       `;
     });
 
-    document.getElementById('pSub').textContent = document.getElementById('outSubtotal').textContent;
-    document.getElementById('pIva').textContent = document.getElementById('outIva').textContent;
-    document.getElementById('pTot').textContent = document.getElementById('outTotal').textContent;
+    document.getElementById('prevSub').textContent = document.getElementById('outSubtotal').textContent;
+    document.getElementById('prevIva').textContent = document.getElementById('outIva').textContent;
+    document.getElementById('prevTot').textContent = document.getElementById('outTotal').textContent;
+  }
 
-    const element = document.getElementById('pdfCleanView');
-    element.style.display = 'block';
+  // 5. DESCARGA DE PDF ESTRICTO EN 1 PÁGINA (A partir de la vista previa)
+  function exportSinglePagePDF() {
+    const client = document.getElementById('quoteClient').value.trim() || "Cliente";
+    const element = document.getElementById('quoteLivePreview');
 
     const opt = {
       margin: 8,
@@ -982,12 +1077,10 @@
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(element).save().then(() => {
-      element.style.display = 'none';
-    });
+    html2pdf().set(opt).from(element).save();
   }
 
-  // COMISIONES
+  // 6. CALCULADORA DE COMISIONES
   function calcRep() {
     const goal = Number(document.getElementById('inRepGoal').value || 0);
     const sales = Number(document.getElementById('inRepSales').value || 0);
@@ -1003,7 +1096,7 @@
     document.getElementById('outRepStatus').textContent = pace >= 1 ? "Meta Superada ✅" : "En seguimiento";
   }
 
-  // Init
+  // Inicialización
   updateDashboard();
   updateQuoteTotals();
   calcRep();
