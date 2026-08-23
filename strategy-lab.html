@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Chart.js para gráficas interactivas y html2pdf para PDF en 1 página -->
+  <!-- Chart.js & html2pdf.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
@@ -387,14 +387,18 @@
       margin-top: 4px;
     }
 
-    /* VISTA PREVIA PROFESIONAL DE LA COTIZACIÓN */
+    /* VISTA PREVIA PROFESIONAL */
     .preview-wrapper {
       background: #ffffff;
       color: #0f172a;
       border-radius: 12px;
-      padding: 30px;
-      margin-top: 24px;
+      padding: 28px 32px;
+      margin-top: 20px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      width: 100%;
+      max-width: 794px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .preview-header {
@@ -402,59 +406,49 @@
       justify-content: space-between;
       align-items: flex-start;
       border-bottom: 2px solid #00a8cc;
-      padding-bottom: 14px;
-      margin-bottom: 16px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .preview-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #0f172a;
+      line-height: 1.2;
     }
 
     .preview-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
     .preview-table th {
       background: #f1f5f9;
       color: #334155;
-      padding: 10px 12px;
-      font-size: 12px;
+      padding: 8px 10px;
+      font-size: 11px;
       text-transform: uppercase;
       border: 1px solid #cbd5e1;
       text-align: left;
     }
 
     .preview-table td {
-      padding: 10px 12px;
-      font-size: 12px;
+      padding: 8px 10px;
+      font-size: 11px;
       border: 1px solid #e2e8f0;
+      color: #1e293b;
     }
 
     .preview-footer {
-      margin-top: 20px;
-      padding-top: 12px;
+      margin-top: 16px;
+      padding-top: 10px;
       border-top: 1px solid #cbd5e1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 11px;
+      font-size: 10.5px;
       color: #64748b;
-    }
-
-    /* CONTENEDOR EXCLUSIVO PARA IMPRESIÓN PDF (1 PÁGINA) */
-    #pdfCleanView {
-      display: none;
-      background: #ffffff;
-      color: #0f172a;
-      width: 790px;
-      margin: 0 auto;
-      padding: 24px 30px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      box-sizing: border-box;
     }
 
     .hidden { display: none !important; }
@@ -599,7 +593,7 @@
         </div>
       </div>
 
-      <!-- GRÁFICA INTERACTIVA CHART.JS -->
+      <!-- GRÁFICA INTERACTIVA -->
       <div style="background: #080b12; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px;">
         <div style="font-weight: 800; font-size: 1rem; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
           <span>📈</span> Comparativa Visual: Venta Real vs Meta vs Proyección
@@ -683,7 +677,7 @@
         </div>
       </div>
 
-      <!-- VISTA PREVIA EN VIVO DE LA COTIZACIÓN -->
+      <!-- VISTA PREVIA EN VIVO -->
       <div style="margin-top: 30px;">
         <div style="font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
           <span>👁️</span> Vista Previa Oficial del Documento (Hoja A4 Única)
@@ -693,16 +687,16 @@
           <div class="preview-header">
             <div>
               <div class="preview-title">PROPUESTA COMERCIAL</div>
-              <div style="font-size: 11.5px; color: #64748b; margin-top: 3px;">Fecha de emisión: <span id="prevDate"></span></div>
+              <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Fecha de emisión: <span id="prevDate"></span></div>
             </div>
             <div style="text-align: right;">
-              <strong style="font-size: 13.5px; color: #0077b5;">Andrés González</strong><br>
-              <span style="font-size: 11px; color: #64748b;">Dirección Comercial & Retail Operations</span><br>
-              <span style="font-size: 11px; color: #64748b;">andresgonzalez.ops@gmail.com</span>
+              <strong style="font-size: 13px; color: #0077b5;">Andrés González</strong><br>
+              <span style="font-size: 10.5px; color: #64748b;">Dirección Comercial & Retail Operations</span><br>
+              <span style="font-size: 10.5px; color: #64748b;">andresgonzalez.ops@gmail.com</span>
             </div>
           </div>
 
-          <div style="margin-bottom: 14px; font-size: 11.5px; background: #f8fafc; padding: 10px 14px; border-radius: 6px; border: 1px solid #e2e8f0;">
+          <div style="margin-bottom: 12px; font-size: 11px; background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0; color: #334155;">
             <strong>Cliente:</strong> <span id="prevClient">Distribuidora del Bajío S.A. de C.V.</span> &nbsp;|&nbsp; <strong>Atención:</strong> <span id="prevContact">Lic. Roberto Morales</span>
           </div>
 
@@ -718,16 +712,16 @@
             <tbody id="prevRows"></tbody>
           </table>
 
-          <div style="margin-left: auto; width: 250px; font-size: 12px; margin-top: 10px;">
+          <div style="margin-left: auto; width: 240px; font-size: 11.5px; margin-top: 8px;">
             <div style="display: flex; justify-content: space-between; padding: 2px 0;">
-              <span>Subtotal:</span>
-              <strong id="prevSub">$57,000</strong>
+              <span style="color: #64748b;">Subtotal:</span>
+              <strong id="prevSub" style="color: #0f172a;">$57,000</strong>
             </div>
             <div style="display: flex; justify-content: space-between; padding: 2px 0;">
-              <span>IVA (16%):</span>
-              <strong id="prevIva">$9,120</strong>
+              <span style="color: #64748b;">IVA (16%):</span>
+              <strong id="prevIva" style="color: #0f172a;">$9,120</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 6px 0; border-top: 2px solid #0f172a; margin-top: 6px; font-size: 14px; color: #0077b5;">
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; border-top: 1.5px solid #0f172a; margin-top: 4px; font-size: 13px; color: #0077b5;">
               <span>Total:</span>
               <strong id="prevTot">$66,120 MXN</strong>
             </div>
@@ -796,7 +790,7 @@
 <script>
   const money = (n) => (isFinite(n) ? n : 0).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
 
-  // 1. TABS DE NAVEGACIÓN
+  // 1. TABS
   const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
   const tabContents = document.querySelectorAll('.tab-content');
 
@@ -807,14 +801,13 @@
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.remove('hidden');
       
-      // Si entra a Dashboard, asegurar que el render de Chart.js se ajuste
       if (btn.dataset.tab === 'tab-dashboard') {
         updateDashboard();
       }
     });
   });
 
-  // 2. GENERADOR ESTRATÉGICO DINÁMICO
+  // 2. GENERADOR ESTRATÉGICO
   function generateDynamicStrategy() {
     const giro = document.getElementById('inGiro').value.trim() || "Empresa Comercial / Retail";
     const meta = document.getElementById('inMeta').value.trim() || "Aumentar ventas y rentabilidad";
@@ -911,7 +904,7 @@
     document.getElementById('strategyOutputSection').classList.add('hidden');
   }
 
-  // 3. DASHBOARD DE METAS Y GRÁFICA INTERACTIVA
+  // 3. DASHBOARD Y CHART.JS
   let performanceChart = null;
 
   function updateDashboard() {
@@ -933,12 +926,13 @@
     document.getElementById('kpiProjected').textContent = money(projected);
     document.getElementById('kpiProjectedSub').textContent = projected >= goal ? "Meta alcanzable a este ritmo" : "Por debajo del presupuesto";
 
-    // Actualizar Gráfica
     renderChart(sales, goal, projected);
   }
 
   function renderChart(sales, goal, projected) {
-    const ctx = document.getElementById('salesPerformanceChart').getContext('2d');
+    const canvas = document.getElementById('salesPerformanceChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
 
     if (performanceChart) {
       performanceChart.destroy();
@@ -968,9 +962,7 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
+        plugins: { legend: { display: false } },
         scales: {
           y: {
             ticks: {
@@ -988,7 +980,7 @@
     });
   }
 
-  // 4. COTIZADOR Y VISTA PREVIA EN VIVO
+  // 4. COTIZADOR Y VISTA PREVIA
   const quoteBody = document.getElementById('quoteBody');
 
   function addQuoteRow() {
@@ -1064,23 +1056,50 @@
     document.getElementById('prevTot').textContent = document.getElementById('outTotal').textContent;
   }
 
-  // 5. DESCARGA DE PDF ESTRICTO EN 1 PÁGINA (A partir de la vista previa)
+  // 5. EXPORTACIÓN A PDF EN 1 PÁGINA DIRECTA
   function exportSinglePagePDF() {
     const client = document.getElementById('quoteClient').value.trim() || "Cliente";
-    const element = document.getElementById('quoteLivePreview');
+    const srcElement = document.getElementById('quoteLivePreview');
+
+    // Clonar elemento en un contenedor temporal fuera de pantalla
+    const clone = srcElement.cloneNode(true);
+    clone.style.position = 'fixed';
+    clone.style.top = '0';
+    clone.style.left = '0';
+    clone.style.width = '794px';
+    clone.style.zIndex = '999999';
+    clone.style.background = '#ffffff';
+    clone.style.color = '#0f172a';
+    clone.style.boxShadow = 'none';
+    clone.style.margin = '0';
+    clone.style.padding = '32px 36px';
+
+    document.body.appendChild(clone);
 
     const opt = {
-      margin: 8,
+      margin: 0,
       filename: `Cotizacion_${client.replace(/\s+/g, '_')}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        width: 794
+      },
+      jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(element).save();
+    html2pdf().set(opt).from(clone).save().then(() => {
+      document.body.removeChild(clone);
+    }).catch(err => {
+      console.error(err);
+      if (clone.parentNode) {
+        document.body.removeChild(clone);
+      }
+    });
   }
 
-  // 6. CALCULADORA DE COMISIONES
+  // 6. COMISIONES
   function calcRep() {
     const goal = Number(document.getElementById('inRepGoal').value || 0);
     const sales = Number(document.getElementById('inRepSales').value || 0);
