@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrés González | Dirección Comercial & Ventas Consultivas</title>
+  <title>Andrés González | Liderazgo Comercial, Retail Ops & Estrategia B2B</title>
   
   <!-- META -->
-  <meta name="description" content="Portafolio profesional de Andrés González: Ventas consultivas, negociación high-ticket, desarrollo comercial B2B/B2C y liderazgo de operaciones.">
+  <meta name="description" content="Portafolio profesional de Andrés González: Dirección comercial, retail operations, negociación high-ticket, desarrollo de cuentas B2B e institucionales y liderazgo de equipos.">
   <meta property="og:image" content="assets/profile.jpg" />
 
   <!-- FONTS -->
@@ -204,7 +204,7 @@
     .hero-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
-      max-width: 680px;
+      max-width: 720px;
       margin-bottom: 24px;
     }
 
@@ -226,12 +226,12 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 22px 16px;
       text-align: center;
     }
 
     .stat-num {
-      font-size: 2rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.02em;
@@ -445,7 +445,7 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px;
       margin-top: 24px;
     }
@@ -453,11 +453,14 @@
     .contact-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
-      padding: 18px;
+      padding: 18px 14px;
       border-radius: var(--radius-md);
       text-decoration: none;
       color: var(--text-main);
       transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .contact-item:hover {
@@ -475,25 +478,26 @@
     }
 
     .contact-item-val {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: #fff;
+      word-break: break-all;
     }
 
-    /* MODAL CERTS */
+    /* MODALES */
     dialog {
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 0;
-      width: min(850px, 92vw);
+      width: min(920px, 94vw);
       background: var(--bg-surface);
       color: #fff;
       margin: auto;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85);
     }
 
     dialog::backdrop {
-      background: rgba(4, 9, 17, 0.85);
+      background: rgba(4, 9, 17, 0.88);
       backdrop-filter: blur(8px);
     }
 
@@ -509,28 +513,32 @@
       background: transparent;
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: var(--radius-sm);
       cursor: pointer;
       font-weight: 700;
+      font-size: 1rem;
     }
 
     .modal-close:hover { color: #fff; border-color: #fff; }
 
     .modal-body {
       padding: 24px;
-      max-height: 80vh;
+      max-height: 82vh;
       overflow-y: auto;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       background: #06090e;
     }
 
     .modal-body img {
-      max-width: 100%;
+      width: 100%;
+      max-width: 820px;
       height: auto;
       border-radius: var(--radius-sm);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: block;
     }
 
     footer {
@@ -569,7 +577,7 @@
           <li><a href="#certificaciones">Certificaciones</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
-        <a href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener" class="btn btn-primary">Ver CV</a>
+        <button class="btn btn-primary" id="btnOpenCV">Ver CV</button>
       </div>
     </nav>
 
@@ -579,10 +587,10 @@
         <img src="assets/profile.jpg" alt="Andrés González" class="hero-avatar">
       </div>
       <div>
-        <div class="hero-tag">Dirección Comercial & Negociación</div>
-        <h1 class="hero-title">Ventas Consultivas, <span>High-Ticket</span> & Operaciones.</h1>
+        <div class="hero-tag">Dirección Comercial · Retail Ops · Estrategia B2B</div>
+        <h1 class="hero-title">Ventas Consultivas, <span>High-Ticket</span> & Cierres Estratégicos.</h1>
         <p class="hero-desc">
-          Más de 10 años transformando operaciones comerciales, cerrando acuerdos de alto valor y estructurando sistemas de venta basados en diagnóstico, KPIs y retención de clientes.
+          Líder comercial y de operaciones con más de una década impulsando rentabilidad, optimizando inventarios y acelerando ciclos de venta en entornos B2C, B2B e institucionales mediante CRM, análisis de KPIs y liderazgo de equipos de alto rendimiento.
         </p>
         <div class="hero-actions">
           <a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
@@ -595,20 +603,20 @@
     <!-- STATS BENTO -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-num accent">10+</div>
-        <div class="stat-label">Años Liderando Ventas</div>
+        <div class="stat-num accent">+10 Años</div>
+        <div class="stat-label">Liderazgo Comercial & Retail</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num gold">2º Nac.</div>
-        <div class="stat-label">Ranking Comercial Luuna</div>
+        <div class="stat-num gold">#2 Nac.</div>
+        <div class="stat-label">Rendimiento Luuna México</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">98.8%</div>
-        <div class="stat-label">Confiabilidad Operativa</div>
+        <div class="stat-num">Hasta 50</div>
+        <div class="stat-label">Colaboradores Dirigidos</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num accent">30+</div>
-        <div class="stat-label">Equipos Dirigidos</div>
+        <div class="stat-num accent">$2.0M+</div>
+        <div class="stat-label">Proyectos B2B / Institucionales</div>
       </div>
     </div>
 
@@ -630,10 +638,10 @@
             <span class="exp-period">Junio 2026 – Actual</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Estrategia Comercial Regional:</strong> Dirección y supervisión de la ejecución comercial en múltiples unidades de negocio, alineando estándares de servicio de alto nivel, disciplina operativa y cumplimiento sistemático de objetivos de venta.</li>
-            <li><strong>Optimización de Embudos & KPIs:</strong> Monitoreo diario y ajuste táctico de indicadores comerciales clave (tasa de conversión, ticket promedio, ventas por metro cuadrado y UPT) para maximizar la rentabilidad regional y la rotación de producto.</li>
-            <li><strong>Desarrollo B2B & Prospección Estratégica:</strong> Implementación de iniciativas comerciales institucionales y de alto valor corporativo, gestionando el ciclo de prospección completo y trazabilidad de cartera mediante <strong>HubSpot CRM</strong>.</li>
-            <li><strong>Cultura de Control y Rentabilidad:</strong> Supervisión del abastecimiento estratégico y control de inventarios regionales en <strong>SAP</strong>, protegiendo márgenes comerciales y eliminando fricciones operativas.</li>
+            <li><strong>Gestión Comercial & Cuentas Estratégicas:</strong> Prospección y captación continua de clientes clave de alto valor y desarrollo de cuentas estratégicas, maximizando el ticket promedio y la rentabilidad regional mediante seguimiento integral en <strong>Odoo CRM</strong>.</li>
+            <li><strong>Atención Institucional & B2B:</strong> Colaboración directa con la gerencia en la canalización, estructuración y soporte comercial para dependencias de gobierno y licitaciones institucionales con operaciones de hasta <strong>$2,000,000+ MXN</strong>.</li>
+            <li><strong>Compras Estratégicas Nacionales e Internacionales:</strong> Participación activa en la planeación y negociación de compras con proveedores locales y del extranjero, asegurando abastecimiento óptimo y márgenes comerciales sólidos.</li>
+            <li><strong>Control Operativo e Indicadores:</strong> Supervisión de inventarios y logística mediante <strong>SAP</strong> y <strong>Odoo</strong>, manteniendo consistencia en métricas clave (tasa de conversión, UPT y rotación de stock).</li>
           </ul>
         </div>
 
@@ -647,10 +655,10 @@
             <span class="exp-period">Abril 2022 – Junio 2025</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Reconocimiento Nacional (2º Lugar 2023):</strong> Posicionamiento de unidad nueva dentro de los primeros lugares de desempeño a nivel nacional en menos de 12 meses, logrando superación consistente de cuotas comerciales mediante método y disciplina diaria.</li>
-            <li><strong>Venta Consultiva & High-Ticket:</strong> Diagnóstico personalizado de necesidades y estructuración de propuestas de alto valor, acelerando los ciclos de decisión del cliente y construyendo relaciones de largo plazo orientadas a la recomendación y recompra.</li>
-            <li><strong>Eficiencia Operativa Récord (1.1 / 100% Precisión):</strong> Control integral de activos e inventarios sin discrepancias, garantizando disponibilidad inmediata de producto prémium y una experiencia post-venta sin fallas operativas.</li>
-            <li><strong>Mentoría & Coaching Regional:</strong> Capacitación directa a equipos comerciales de más de <strong>15 sucursales</strong> en técnicas de abordaje consultivo, manejo avanzado de objeciones y protocolos de cierre efectivo.</li>
+            <li><strong>Reconocimiento Nacional (2º Lugar 2023):</strong> Posicionamiento de sucursal dentro de los primeros lugares de desempeño en el ranking comercial nacional de la marca en menos de 12 meses, superando cuotas comerciales de forma consistente.</li>
+            <li><strong>Venta Consultiva & High-Ticket:</strong> Construcción, prospección y fidelización activa de cartera de clientes a través del CRM corporativo, logrando cierres de alto valor con tickets de hasta <strong>$35,000 MXN</strong> por operación mediante asesoría especializada.</li>
+            <li><strong>Capacitación Continua Multitienda:</strong> Diseño e impartición regular de clínicas de ventas, protocolos de abordaje consultivo y manejo de objeciones a la fuerza comercial de más de <strong>15 sucursales</strong>.</li>
+            <li><strong>Precisión Operativa Récord (1.1 / 100% Exactitud):</strong> Control integral de auditoría de inventarios sin discrepancias, asegurando entrega inmediata y cumplimiento estricto de estándares de experiencia post-venta.</li>
           </ul>
         </div>
 
@@ -664,10 +672,10 @@
             <span class="exp-period">Octubre 2014 – Julio 2021</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Transformación y Recuperación de Rentabilidad:</strong> Reestructuración operativa y comercial de una unidad con bajo rendimiento, convirtiéndola en una operación rentable en menos de un año mediante análisis de indicadores y enfoque por franjas horarias.</li>
-            <li><strong>Liderazgo de Equipos Masivos:</strong> Reclutamiento, formación y dirección de un equipo de hasta <strong>30 asesores comerciales</strong>, fomentando técnicas de <em>cross-selling</em> y <em>up-selling</em> para elevar sustancialmente el ticket promedio de compra.</li>
-            <li><strong>Excelencia en Inventarios (85% a 98.88%):</strong> Reducción drástica de mermas y optimización de confiabilidad de stock mediante auditorías periódicas, conteos cíclicos y rigurosos protocolos de control.</li>
-            <li><strong>Resiliencia Comercial (Contingencia 2020):</strong> Mantenimiento del ROI y rentabilidad del negocio durante períodos de alta complejidad mediante contención estratégica del gasto operativo y fidelización de clientes clave.</li>
+            <li><strong>Transformación de Unidad a Alta Rentabilidad:</strong> Reestructuración operativa y comercial de boutique con desempeño por debajo de presupuesto, logrando rentabilidad positiva en menos de un año mediante análisis de tráfico y franjas horarias.</li>
+            <li><strong>Dirección de Equipos de Alto Rendimiento:</strong> Reclutamiento, formación y liderazgo directo de equipos de hasta <strong>30 asesores comerciales</strong> (con impacto ampliado de hasta 50 colaboradores en plantilla general y temporadas altas), elevando el cross-selling y el UPT de boutique.</li>
+            <li><strong>Eficiencia en Auditorías de Stock (85% a 98.88%):</strong> Disminución sistemática de mermas e incremento de confiabilidad de inventario mediante auditorías periódicas y conteos cíclicos estrictos.</li>
+            <li><strong>Continuidad de Negocio (Contingencia 2020):</strong> Preservación de márgenes operativos y contención de costos fijos, fidelizando clientes clave durante períodos de contingencia.</li>
           </ul>
         </div>
       </div>
@@ -704,11 +712,11 @@
       </div>
 
       <div class="certs-grid">
-        <div class="cert-box" onclick="showCert('assets/certs/HUBSPOT.jpg', 'HubSpot Sales & CRM')">
-          <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot" class="cert-thumb">
+        <div class="cert-box" onclick="showCert('assets/certs/HUBSPOT.jpg', 'Software de Ventas & CRM')">
+          <img src="assets/certs/HUBSPOT.jpg" alt="CRM & Ventas" class="cert-thumb">
           <div class="cert-info">
-            <div class="cert-title">HubSpot Sales & CRM</div>
-            <div class="cert-meta">HubSpot Academy · 2025–2026</div>
+            <div class="cert-title">Software de Ventas & CRM</div>
+            <div class="cert-meta">Certificación Profesional · 2025–2026</div>
           </div>
         </div>
 
@@ -736,8 +744,12 @@
           </div>
         </div>
 
-        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg.jpg', 'English Fundamentals')">
-          <img src="assets/certs/english-fundamentals-2026.jpg.jpg" alt="English Fundamentals" class="cert-thumb">
+        <div class="cert-box" onclick="showCert(this.querySelector('img').src, 'English Fundamentals')">
+          <img 
+            src="assets/certs/english-fundamentals-2026.jpg.jpg" 
+            onerror="if(!this.dataset.tried1){this.dataset.tried1=true;this.src='assets/english-fundamentals-2026.jpg.jpg';}else if(!this.dataset.tried2){this.dataset.tried2=true;this.src='assets/certs/english-fundamentals-2026.jpg';}else{this.src='assets/english-fundamentals-2026.jpg';}" 
+            alt="English Fundamentals" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">English Fundamentals</div>
             <div class="cert-meta">Acreditación Profesional · 2026</div>
@@ -749,34 +761,41 @@
     <!-- CONTACTO -->
     <section id="contacto" class="contact-card">
       <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Conectemos</h2>
-      <p style="color: var(--text-muted); font-size: 0.95rem;">Disponible para retos de alta exigencia comercial y liderazgo operativo.</p>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Disponible para retos de alta exigencia comercial, dirección operativa y desarrollo de negocios.</p>
       
       <div class="contact-grid">
         <a href="mailto:andresgonzalez.ops@gmail.com" class="contact-item">
-          <div class="contact-item-label">Email Principal</div>
+          <div class="contact-item-label">Email Profesional</div>
           <div class="contact-item-val">andresgonzalez.ops@gmail.com</div>
         </a>
         <a href="https://wa.me/523347181280" target="_blank" rel="noopener" class="contact-item">
-          <div class="contact-item-label">WhatsApp Directo</div>
-          <div class="contact-item-val">+52 33 4718 1280</div>
-        </a>
-        <a href="tel:+523347181280" class="contact-item">
-          <div class="contact-item-label">Teléfono Móvil</div>
+          <div class="contact-item-label">WhatsApp / Teléfono Móvil</div>
           <div class="contact-item-val">+52 33 4718 1280</div>
         </a>
         <a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener" class="contact-item">
-          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-label">LinkedIn Oficial</div>
           <div class="contact-item-val">/in/andresglez89</div>
         </a>
       </div>
     </section>
 
     <footer>
-      <p>© <span id="year"></span> Andrés González · Estrategia Comercial & Operaciones</p>
+      <p>© <span id="year"></span> Andrés González · Dirección Comercial & Retail Operations</p>
     </footer>
   </div>
 
-  <!-- MODAL CERT -->
+  <!-- MODAL CV -->
+  <dialog id="modalCV">
+    <div class="modal-head">
+      <strong>Currículum Vitae — Andrés González</strong>
+      <button class="modal-close" onclick="modalCV.close()">✕</button>
+    </div>
+    <div class="modal-body">
+      <img src="assets/CV-Andres-Gonzalez.jpg" alt="Currículum Vitae Andrés González">
+    </div>
+  </dialog>
+
+  <!-- MODAL CERTIFICADOS -->
   <dialog id="modalCert">
     <div class="modal-head">
       <strong id="certModalTitle">Certificado</strong>
@@ -790,6 +809,13 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // MODAL CV
+    const modalCV = document.getElementById('modalCV');
+    document.getElementById('btnOpenCV').addEventListener('click', () => {
+      modalCV.showModal();
+    });
+
+    // MODAL CERTIFICADOS
     const modalCert = document.getElementById('modalCert');
     const certModalImg = document.getElementById('certModalImg');
     const certModalTitle = document.getElementById('certModalTitle');
