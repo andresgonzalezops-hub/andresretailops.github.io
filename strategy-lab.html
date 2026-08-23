@@ -9,9 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Chart.js & html2pdf.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
     :root {
@@ -389,8 +387,8 @@
 
     /* VISTA PREVIA PROFESIONAL */
     .preview-wrapper {
-      background: #ffffff;
-      color: #0f172a;
+      background: #ffffff !important;
+      color: #0f172a !important;
       border-radius: 12px;
       padding: 28px 32px;
       margin-top: 20px;
@@ -452,6 +450,34 @@
     }
 
     .hidden { display: none !important; }
+
+    /* CSS ESTRICTO PARA IMPRESIÓN DIRECTA EN 1 HOJA A4 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 15mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+      }
+      header, .card, nav, .nav-inner, button, #tab-estrategia, #tab-dashboard, #tab-comisiones, .quote-summary, .table-responsive, .grid-2 {
+        display: none !important;
+      }
+      #tab-cotizador {
+        display: block !important;
+      }
+      .preview-wrapper {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -611,7 +637,7 @@
       <div class="card-head">
         <div>
           <div class="card-title">Cotizador Comercial Corporativo</div>
-          <div class="card-desc">Configura partidas y revisa la vista previa en vivo antes de exportar el PDF en 1 página.</div>
+          <div class="card-desc">Configura partidas y genera el documento oficial de 1 página exacta.</div>
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
           <label style="font-size: 0.85rem; font-weight: 700; color: #cbd5e1; display: flex; align-items: center; gap: 6px; cursor: pointer;">
@@ -735,7 +761,7 @@
       </div>
 
       <div style="display: flex; gap: 14px; margin-top: 24px; justify-content: flex-end;">
-        <button class="btn btn-primary" onclick="exportSinglePagePDF()">📄 Descargar PDF Oficial (1 Página Exacta)</button>
+        <button class="btn btn-primary" onclick="exportSinglePagePDF()">📄 Guardar / Descargar PDF (1 Página)</button>
       </div>
     </div>
   </section>
@@ -1056,47 +1082,10 @@
     document.getElementById('prevTot').textContent = document.getElementById('outTotal').textContent;
   }
 
-  // 5. EXPORTACIÓN A PDF EN 1 PÁGINA DIRECTA
+  // 5. EXPORTACIÓN NATIVA 1 PÁGINA (Sin páginas en blanco)
   function exportSinglePagePDF() {
-    const client = document.getElementById('quoteClient').value.trim() || "Cliente";
-    const srcElement = document.getElementById('quoteLivePreview');
-
-    // Clonar elemento en un contenedor temporal fuera de pantalla
-    const clone = srcElement.cloneNode(true);
-    clone.style.position = 'fixed';
-    clone.style.top = '0';
-    clone.style.left = '0';
-    clone.style.width = '794px';
-    clone.style.zIndex = '999999';
-    clone.style.background = '#ffffff';
-    clone.style.color = '#0f172a';
-    clone.style.boxShadow = 'none';
-    clone.style.margin = '0';
-    clone.style.padding = '32px 36px';
-
-    document.body.appendChild(clone);
-
-    const opt = {
-      margin: 0,
-      filename: `Cotizacion_${client.replace(/\s+/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        width: 794
-      },
-      jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(clone).save().then(() => {
-      document.body.removeChild(clone);
-    }).catch(err => {
-      console.error(err);
-      if (clone.parentNode) {
-        document.body.removeChild(clone);
-      }
-    });
+    updateLivePreview();
+    window.print();
   }
 
   // 6. COMISIONES
