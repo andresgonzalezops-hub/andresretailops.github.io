@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strategy Lab | Suite Comercial & Operaciones (Andrés González)</title>
-  <meta name="description" content="Simulador comercial, diagnóstico estratégico, proyección de KPIs y cotizador profesional." />
+  <meta name="description" content="Simulador comercial, diagnóstico estratégico, proyección de KPIs, comisiones y cotizador profesional." />
   
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,8 +34,6 @@
       --accent-danger: #ef4444;
       
       --grad-brand: linear-gradient(135deg, #00d2ff 0%, #0077ff 100%);
-      --grad-surface: linear-gradient(180deg, rgba(22, 34, 59, 0.8) 0%, rgba(14, 23, 41, 0.95) 100%);
-      
       --radius-lg: 20px;
       --radius-md: 14px;
       --radius-sm: 8px;
@@ -104,15 +102,38 @@
       letter-spacing: 0.05em;
     }
 
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--grad-brand);
+      color: #040914;
+    }
+
     /* CARD SYSTEM */
     .card {
-      background: var(--grad-surface);
+      background: rgba(22, 34, 59, 0.7);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 28px;
       margin-bottom: 24px;
       box-shadow: var(--shadow-card);
-      backdrop-filter: blur(10px);
     }
 
     .card-head {
@@ -190,6 +211,43 @@
       font-size: 0.75rem;
     }
 
+    /* KPIS & PROGRESS */
+    .kpi-box {
+      background: #0d1424;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .kpi-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--grad-brand);
+      border-radius: 999px;
+      transition: width 0.4s;
+    }
+
     /* TABLA COTIZADOR */
     table.quote-table {
       width: 100%;
@@ -254,6 +312,7 @@
       font-size: 12px;
     }
 
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
@@ -264,13 +323,93 @@
       <span>Strategy Lab</span>
       <span class="brand-badge">Diagnostic & Simulation Suite</span>
     </a>
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-diagnostico">🧠 Diagnóstico</button>
+      <button class="tab-btn" data-tab="tab-dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="tab-estrategia">🎯 Estrategia</button>
+      <button class="tab-btn" data-tab="tab-cotizador">📑 Cotizador & PDF</button>
+      <button class="tab-btn" data-tab="tab-comisiones">💸 Comisiones</button>
+    </div>
   </div>
 </header>
 
 <main class="container">
 
-  <!-- TAB 1: COTIZADOR COMERCIAL -->
-  <section id="tab-cotizador" class="tab-content">
+  <!-- TAB 1: DIAGNÓSTICO -->
+  <section id="tab-diagnostico" class="tab-content">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">1. Contexto Comercial y Metas</div>
+        <div class="card-desc">Ingresa los datos actuales para diagnosticar la salud comercial.</div>
+      </div>
+      
+      <div class="field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
+        <div class="field-group">
+          <label>Modelo de Negocio</label>
+          <select id="bizModel" style="width: 100%; padding: 12px; background: #0d1424; color: #fff; border: 1px solid var(--border-subtle);">
+            <option value="retail">🛍️ Retail & Boutiques</option>
+            <option value="b2b">🏢 Servicios B2B / Institucional</option>
+            <option value="highticket">💎 High-Ticket & Consultoría</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Días Restantes a Cierre</label>
+          <input type="number" id="inDaysLeft" value="10">
+        </div>
+      </div>
+
+      <div class="field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
+        <div class="field-group">
+          <label>Meta del Mes ($ MXN)</label>
+          <input type="number" id="inGoal" value="500000">
+        </div>
+        <div class="field-group">
+          <label>Venta Acumulada ($ MXN)</label>
+          <input type="number" id="inSales" value="300000">
+        </div>
+      </div>
+
+      <div style="text-align: right;">
+        <button class="btn btn-primary" onclick="processDiagnostic()">⚡ Procesar Diagnóstico & KPIs</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: DASHBOARD -->
+  <section id="tab-dashboard" class="tab-content hidden">
+    <div class="card">
+      <div class="card-head"><div class="card-title">📊 Proyección de Cierre</div></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div class="kpi-box">
+          <div class="kpi-sub">Cumplimiento Actual</div>
+          <div class="kpi-val" id="dashPacePct" style="color: var(--accent-cyan);">0%</div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" id="dashPaceBar"></div></div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-sub">Brecha de Cierre (Gap)</div>
+          <div class="kpi-val" id="dashGapRemaining" style="color: var(--accent-danger);">$0</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-sub">Ritmo Diario Requerido</div>
+          <div class="kpi-val" id="dashDailyPace" style="color: var(--accent-gold);">$0 / día</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: ESTRATEGIA -->
+  <section id="tab-estrategia" class="tab-content hidden">
+    <div class="card">
+      <div class="card-head"><div class="card-title">🎯 Plan Táctico Derivado</div></div>
+      <p class="card-desc" style="margin-bottom: 16px;">Basado en el cumplimiento actual y el modelo de negocio:</p>
+      <ul id="planActionList" style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+        <!-- Se llena dinámicamente -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- TAB 4: COTIZADOR & PDF -->
+  <section id="tab-cotizador" class="tab-content hidden">
     <div class="card">
       <div class="card-head">
         <div class="card-title">📑 Cotizador Profesional & Generador de Propuestas</div>
@@ -280,7 +419,7 @@
       <div class="field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
         <div class="field-group">
           <label>Cliente / Razón Social</label>
-          <input type="text" id="quoteClient" placeholder="Ej. Corporativo Retail México S.A. de C.V.">
+          <input type="text" id="quoteClient" placeholder="Ej. Corporativo México S.A. de C.V.">
         </div>
         <div class="field-group">
           <label>Atención / Contacto Principal</label>
@@ -324,6 +463,27 @@
 
       <div style="display: flex; gap: 14px; margin-top: 24px; justify-content: flex-end;">
         <button class="btn btn-primary" onclick="exportSinglePagePDF()">📄 Descargar PDF (1 Página)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: COMISIONES -->
+  <section id="tab-comisiones" class="tab-content hidden">
+    <div class="card">
+      <div class="card-head"><div class="card-title">💸 Calculadora de Comisiones</div></div>
+      <div class="field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
+        <div class="field-group">
+          <label>Meta Individual ($)</label>
+          <input type="number" id="repGoal" value="100000" oninput="calculateCommission()">
+        </div>
+        <div class="field-group">
+          <label>Venta Facturada ($)</label>
+          <input type="number" id="repSales" value="80000" oninput="calculateCommission()">
+        </div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-sub">Comisión Estimada (2.5% base)</div>
+        <div class="kpi-val" id="repCommission" style="color: var(--accent-teal);">$0</div>
       </div>
     </div>
   </section>
@@ -373,13 +533,57 @@
 </div>
 
 <script>
-  // UTILIDADES GLOBALES
   const money = (n) => (isFinite(n) ? n : 0).toLocaleString('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
 
-  // 1. MANEJO DEL COTIZADOR DINÁMICO
-  const quoteBody = document.getElementById('quoteBody');
+  // 1. MANEJO DE PESTAÑAS
+  const tabs = document.querySelectorAll('.tab-btn[data-tab]');
+  const contents = document.querySelectorAll('.tab-content');
 
-  // Agregar una línea predeterminada al cargar
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.add('hidden'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.remove('hidden');
+    });
+  });
+
+  // 2. MOTOR DE DIAGNÓSTICO
+  function processDiagnostic() {
+    const goal = Number(document.getElementById('inGoal').value);
+    const sales = Number(document.getElementById('inSales').value);
+    const days = Number(document.getElementById('inDaysLeft').value);
+    const model = document.getElementById('bizModel').value;
+
+    const pace = goal > 0 ? (sales / goal) : 0;
+    const remaining = Math.max(goal - sales, 0);
+    const dailyNeeded = days > 0 ? (remaining / days) : remaining;
+
+    // Dashboard
+    document.getElementById('dashPacePct').textContent = `${(pace * 100).toFixed(0)}%`;
+    document.getElementById('dashPaceBar').style.width = `${Math.min(pace * 100, 100)}%`;
+    document.getElementById('dashGapRemaining').textContent = money(remaining);
+    document.getElementById('dashDailyPace').textContent = `${money(dailyNeeded)} / día`;
+
+    // Estrategia
+    const actionList = document.getElementById('planActionList');
+    actionList.innerHTML = '';
+    
+    if (pace < 0.8) {
+      actionList.innerHTML += '<li>⚠️ <strong>Enfoque de Cierre:</strong> Roleplays intensivos de manejo de objeciones.</li>';
+    }
+    
+    if (model === 'retail') {
+      actionList.innerHTML += '<li>🛍️ <strong>Retail Ops:</strong> Revisión de exhibición y Bundles de fin de mes.</li>';
+    } else {
+      actionList.innerHTML += '<li>🏢 <strong>B2B Táctico:</strong> Seguimiento agresivo a propuestas estancadas en CRM.</li>';
+    }
+
+    alert('Diagnóstico procesado. Revisa las pestañas Dashboard y Estrategia.');
+  }
+
+  // 3. COTIZADOR
+  const quoteBody = document.getElementById('quoteBody');
   addQuoteRow();
 
   function addQuoteRow() {
@@ -395,83 +599,58 @@
   }
 
   function removeQuoteRow(btn) {
-    const tr = btn.closest('tr');
-    if (quoteBody.querySelectorAll('tr').length > 1) {
-      tr.remove();
-      calculateQuote();
-    }
+    if (quoteBody.querySelectorAll('tr').length > 1) { btn.closest('tr').remove(); calculateQuote(); }
   }
 
   function calculateQuote() {
     let subtotal = 0;
-    const rows = quoteBody.querySelectorAll('tr');
-    
-    rows.forEach(r => {
-      const qty = Number(r.querySelector('.item-qty').value || 0);
-      const price = Number(r.querySelector('.item-price').value || 0);
-      const total = qty * price;
-      r.querySelector('.item-total').textContent = money(total);
-      subtotal += total;
+    quoteBody.querySelectorAll('tr').forEach(r => {
+      const q = Number(r.querySelector('.item-qty').value || 0);
+      const p = Number(r.querySelector('.item-price').value || 0);
+      const t = q * p;
+      r.querySelector('.item-total').textContent = money(t);
+      subtotal += t;
     });
-
     const iva = subtotal * 0.16;
-    const total = subtotal + iva;
-
     document.getElementById('outQuoteSubtotal').textContent = money(subtotal);
     document.getElementById('outQuoteIva').textContent = money(iva);
-    document.getElementById('outQuoteTotal').textContent = `${money(total)} MXN`;
+    document.getElementById('outQuoteTotal').textContent = `${money(subtotal + iva)} MXN`;
   }
 
-  // 2. EXPORTACIÓN ESTRICTA A PDF DE UNA SOLA PÁGINA
+  // 4. PDF (Una sola página)
   function exportSinglePagePDF() {
-    const client = document.getElementById('quoteClient').value || "Cliente Corporativo";
-    const contact = document.getElementById('quoteContact').value || "Dirección de Operaciones";
-
-    // Llenar la plantilla oculta del PDF
+    const client = document.getElementById('quoteClient').value || "Cliente";
     document.getElementById('pdfDate').textContent = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById('pdfClientName').textContent = client;
-    document.getElementById('pdfContactName').textContent = contact;
+    document.getElementById('pdfContactName').textContent = document.getElementById('quoteContact').value || "Atención";
 
-    const quoteRows = quoteBody.querySelectorAll('tr');
     const pdfTableRows = document.getElementById('pdfTableRows');
-    pdfTableRows.innerHTML = ""; // Limpiar antes de llenar
-
-    quoteRows.forEach(r => {
-      const desc = r.querySelector('.item-desc').value || "Servicio";
-      const qty = r.querySelector('.item-qty').value || "1";
-      const price = Number(r.querySelector('.item-price').value || 0);
-      const total = Number(qty) * price;
-
-      pdfTableRows.innerHTML += `
-        <tr>
-          <td>${desc}</td>
-          <td style="text-align: center;">${qty}</td>
-          <td style="text-align: right;">${money(price)}</td>
-          <td style="text-align: right;"><strong>${money(total)}</strong></td>
-        </tr>
-      `;
+    pdfTableRows.innerHTML = '';
+    quoteBody.querySelectorAll('tr').forEach(r => {
+      pdfTableRows.innerHTML += `<tr>
+        <td>${r.querySelector('.item-desc').value || "Servicio"}</td>
+        <td style="text-align:center;">${r.querySelector('.item-qty').value}</td>
+        <td style="text-align:right;">${money(Number(r.querySelector('.item-price').value))}</td>
+        <td style="text-align:right;"><strong>${r.querySelector('.item-total').textContent}</strong></td>
+      </tr>`;
     });
 
     document.getElementById('pdfSubtotal').textContent = document.getElementById('outQuoteSubtotal').textContent;
     document.getElementById('pdfIva').textContent = document.getElementById('outQuoteIva').textContent;
     document.getElementById('pdfTotal').textContent = document.getElementById('outQuoteTotal').textContent;
 
-    // Lógica estricta de exportación a una sola página
     const element = document.getElementById('pdfReportTemplate');
-    element.style.display = "block"; // Asegurar que sea visible para html2pdf
-
-    const opt = {
-      margin: 10,
-      filename: `Propuesta_Comercial_${client.replace(/\s+/g, '_')}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 }, // Escala 2 para nitidez pero manteniendo una sola página
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(element).save().then(() => {
-      element.style.display = "none"; // Ocultar tras exportar
-    });
+    element.style.display = 'block';
+    const opt = { margin: 10, filename: `Propuesta_${client.replace(/\s+/g, '_')}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+    html2pdf().set(opt).from(element).save().then(() => element.style.display = 'none');
   }
+
+  // 5. COMISIONES
+  function calculateCommission() {
+    const sales = Number(document.getElementById('repSales').value);
+    document.getElementById('repCommission').textContent = money(sales * 0.025);
+  }
+  calculateCommission();
 </script>
 </body>
 </html>
