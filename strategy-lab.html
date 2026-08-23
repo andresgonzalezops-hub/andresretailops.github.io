@@ -16,29 +16,31 @@
 
   <style>
     :root {
-      --bg-main: #0a0f18;
-      --bg-surface: #111a2e;
-      --bg-card: #16223b;
-      --bg-elevated: #1c2c4c;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(0, 210, 255, 0.35);
+      /* PALETA CORPORATIVA: NEGRO, GRIS, PLATA Y ORO */
+      --bg-main: #07090e; /* Negro Profundo */
+      --bg-surface: #111116; /* Antracita */
+      --bg-card: #181a1f; /* Gris Oscuro */
+      --bg-elevated: #212429; /* Gris Elevado */
       
-      --text-main: #f8fafc;
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      
+      --text-main: #f1f5f9;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       
+      /* ACENTOS METÁLICOS PREMIMUM */
+      --accent-silver: linear-gradient(135deg, #cfd8dc 0%, #90a4ae 50%, #cfd8dc 100%);
+      --accent-gold: linear-gradient(135deg, #f6e0b2 0%, #e0b863 50%, #f6e0b2 100%);
       --accent-cyan: #00d2ff;
-      --accent-teal: #00e5a3;
-      --accent-gold: #f59e0b;
       --accent-danger: #ef4444;
       
-      --grad-brand: linear-gradient(135deg, #00d2ff 0%, #0077ff 100%);
-      --grad-surface: linear-gradient(180deg, rgba(22, 34, 59, 0.8) 0%, rgba(14, 23, 41, 0.95) 100%);
+      --grad-brand: linear-gradient(135deg, #cfd8dc 0%, #607d8b 100%); /* Plata Principal */
+      --grad-surface: linear-gradient(180deg, rgba(24, 26, 31, 0.8) 0%, rgba(17, 17, 22, 0.95) 100%);
       
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 8px;
-      --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,7 +48,7 @@
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg-main);
-      background-image: radial-gradient(circle at 50% 0%, #1a2948 0%, #0a0f18 75%);
+      background-image: radial-gradient(circle at 50% 0%, #1a1c22 0%, #07090e 75%);
       background-attachment: fixed;
       color: var(--text-main);
       line-height: 1.6;
@@ -63,41 +65,41 @@
     /* HEADER */
     header {
       position: sticky;
-      top: 14px;
+      top: 12px;
       z-index: 100;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .nav-inner {
-      background: rgba(17, 26, 46, 0.85);
-      backdrop-filter: blur(16px);
+      background: rgba(17, 17, 22, 0.9);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
-      padding: 10px 24px;
+      padding: 8px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
     .brand {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: #fff;
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .brand-badge {
       background: var(--grad-brand);
       color: #040914;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -105,52 +107,52 @@
 
     .nav-tabs {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .tab-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .tab-btn.active {
-      background: var(--grad-brand);
+      background: var(--accent-gold);
       color: #040914;
       border-color: transparent;
-      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(224, 184, 99, 0.3);
     }
 
     .btn-portal {
-      background: rgba(0, 210, 255, 0.1);
-      border: 1px solid var(--border-accent);
-      color: var(--accent-cyan);
+      background: rgba(207, 216, 220, 0.1);
+      border: 1px solid rgba(207, 216, 220, 0.3);
+      color: #cfd8dc;
       text-decoration: none;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 800;
       transition: all 0.2s;
     }
 
     .btn-portal:hover {
-      background: var(--accent-cyan);
+      background: #cfd8dc;
       color: #040914;
     }
 
@@ -159,25 +161,25 @@
       background: var(--grad-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 28px;
-      margin-bottom: 24px;
+      padding: 24px;
+      margin-bottom: 20px;
       box-shadow: var(--shadow-card);
       backdrop-filter: blur(10px);
     }
 
     .card-head {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 14px;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: 12px;
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -187,13 +189,13 @@
 
     .card-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     /* GRID LAYOUTS */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 
     @media (max-width: 900px) {
       .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -201,126 +203,126 @@
 
     /* FORM ELEMENTS */
     .field-group {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .field-group label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: #cbd5e1;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
 
     .field-group input, .field-group select, .field-group textarea {
       width: 100%;
-      padding: 12px 14px;
-      background: #0d1424;
+      padding: 10px 12px;
+      background: #0d0e11;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       color: #fff;
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 600;
       outline: none;
       transition: all 0.2s;
     }
 
     .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
-      background: #111b30;
+      border-color: #90a4ae;
+      box-shadow: 0 0 0 3px rgba(144, 164, 174, 0.15);
+      background: #111216;
     }
 
     .field-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     /* ENFOQUE Y PALANCAS */
     .industry-pills {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .ind-pill {
-      background: #0d1424;
+      background: #0d0e11;
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
     }
 
-    .ind-pill:hover { border-color: var(--accent-cyan); color: #fff; }
+    .ind-pill:hover { border-color: #cfd8dc; color: #fff; }
     .ind-pill.active {
-      background: rgba(0, 210, 255, 0.15);
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
+      background: rgba(207, 216, 220, 0.1);
+      border-color: #cfd8dc;
+      color: #cfd8dc;
+      box-shadow: 0 0 10px rgba(207, 216, 220, 0.2);
     }
 
     /* KPI METRIC BOXES */
     .kpi-box {
-      background: #0d1424;
+      background: #0d0e11;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 20px;
+      padding: 16px;
       text-align: center;
       transition: all 0.2s;
     }
 
     .kpi-box:hover {
-      border-color: var(--border-accent);
+      border-color: rgba(207, 216, 220, 0.3);
       transform: translateY(-2px);
     }
 
     .kpi-lbl {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .kpi-val {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 800;
       color: #fff;
     }
 
-    .kpi-val.cyan { color: var(--accent-cyan); }
-    .kpi-val.teal { color: var(--accent-teal); }
-    .kpi-val.gold { color: var(--accent-gold); }
+    .kpi-val.silver { background: var(--accent-silver); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .kpi-val.gold { background: var(--accent-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
     .kpi-sub {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--text-dim);
-      margin-top: 4px;
+      margin-top: 3px;
       font-weight: 600;
     }
 
     .progress-bar-bg {
       width: 100%;
-      height: 8px;
-      background: #1e293b;
+      height: 6px;
+      background: #1e1e24;
       border-radius: 999px;
       overflow: hidden;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .progress-bar-fill {
       height: 100%;
       width: 0%;
-      background: var(--grad-brand);
+      background: var(--accent-gold);
       border-radius: 999px;
       transition: width 0.4s ease;
     }
@@ -330,37 +332,37 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
+      gap: 6px;
+      padding: 10px 20px;
       border-radius: 999px;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 800;
       cursor: pointer;
       border: none;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       text-decoration: none;
     }
 
     .btn-primary {
-      background: var(--grad-brand);
+      background: var(--accent-gold);
       color: #040914;
-      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(224, 184, 99, 0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+      box-shadow: 0 6px 20px rgba(224, 184, 99, 0.5);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
       color: #fff;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .btn-danger {
@@ -369,10 +371,10 @@
       color: var(--accent-danger);
     }
 
-    /* TABLA COTIZADOR */
+    /* TABLA COTIZADOR CABRÓN */
     .table-responsive {
       overflow-x: auto;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     table.quote-table {
@@ -382,58 +384,61 @@
     }
 
     table.quote-table th {
-      background: #0d1424;
-      padding: 12px 14px;
-      font-size: 0.8rem;
+      background: #0d0e11;
+      padding: 10px 12px;
+      font-size: 0.75rem;
       text-transform: uppercase;
       color: var(--text-muted);
       border-bottom: 1px solid var(--border-subtle);
     }
 
     table.quote-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
     table.quote-table input {
       width: 100%;
-      padding: 8px 10px;
-      background: #090e18;
+      padding: 7px 9px;
+      background: #08080a;
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
+      border-radius: 4px;
       color: #fff;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
     }
 
     .quote-summary {
-      background: #0d1424;
+      background: #0d0e11;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 20px;
-      margin-top: 20px;
+      padding: 16px;
+      margin-top: 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .quote-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
 
     .quote-row.total {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 800;
-      color: var(--accent-cyan);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 10px;
-      margin-top: 4px;
+      color: #fff;
+      background: var(--accent-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 8px;
+      margin-top: 3px;
     }
 
-    /* PLANTILLA EXPORTABLE PDF */
+    /* PLANTILLA EXPORTABLE PDF OFICIAL */
     #pdfReportTemplate {
       display: none;
       background: #ffffff;
@@ -447,7 +452,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 2px solid #0284c7;
+      border-bottom: 2px solid #90a4ae; /* Plata */
       padding-bottom: 20px;
       margin-bottom: 24px;
     }
@@ -465,7 +470,7 @@
       transform: translate(-50%, -50%) rotate(-30deg);
       font-size: 50px;
       font-weight: 900;
-      color: rgba(2, 132, 199, 0.05);
+      color: rgba(144, 164, 174, 0.04); /* Plata sutil */
       white-space: nowrap;
       pointer-events: none;
     }
@@ -552,8 +557,8 @@
 
       <div class="grid-2">
         <!-- METAS FINANCIERAS -->
-        <div class="card" style="margin: 0; background: #0d1424;">
-          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 14px;">🎯 Metas & Ventas del Periodo</h3>
+        <div class="card" style="margin: 0; background: #0d0e11;">
+          <h3 style="font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 12px; background: var(--accent-silver); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">🎯 Metas & Ventas del Periodo</h3>
           
           <div class="field-row">
             <div class="field-group">
@@ -579,8 +584,8 @@
         </div>
 
         <!-- KPIs CLAVE -->
-        <div class="card" style="margin: 0; background: #0d1424;">
-          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--accent-teal); margin-bottom: 14px;">📈 Métricas Comerciales Clave</h3>
+        <div class="card" style="margin: 0; background: #0d0e11;">
+          <h3 style="font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 12px; background: var(--accent-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">📈 Métricas Comerciales Clave</h3>
           
           <div class="field-row">
             <div class="field-group">
@@ -606,7 +611,7 @@
         </div>
       </div>
 
-      <div style="display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end;">
+      <div style="display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end;">
         <button class="btn btn-secondary" id="btnResetAll">Limpiar Datos</button>
         <button class="btn btn-primary" id="btnRunDiagnostic">⚡ Procesar Diagnóstico & KPIs</button>
       </div>
@@ -618,14 +623,14 @@
     <div class="grid-4">
       <div class="kpi-box">
         <div class="kpi-lbl">Cumplimiento de Meta</div>
-        <div class="kpi-val cyan" id="dashPacePct">0.0%</div>
+        <div class="kpi-val silver" id="dashPacePct">0.0%</div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="dashPaceBar"></div></div>
         <div class="kpi-sub" id="dashPaceSub">Venta vs Presupuesto</div>
       </div>
 
       <div class="kpi-box">
         <div class="kpi-lbl">Ritmo Diario Requerido</div>
-        <div class="kpi-val teal" id="dashDailyPace">$0</div>
+        <div class="kpi-val gold" id="dashDailyPace">$0</div>
         <div class="kpi-sub" id="dashDailyPaceSub">Para cerrar al 100%</div>
       </div>
 
@@ -642,7 +647,7 @@
       </div>
     </div>
 
-    <div class="card" style="margin-top: 20px;">
+    <div class="card" style="margin-top: 18px;">
       <div class="card-head">
         <div class="card-title">🔍 Matriz de Eficiencia Operativa</div>
         <span class="brand-badge" id="dashIndustryBadge">Modelo: Retail</span>
@@ -663,7 +668,7 @@
 
         <div class="kpi-box">
           <div class="kpi-lbl">Capacidad de Facturación por Tráfico</div>
-          <div class="kpi-val cyan" id="dashCapacityMetric">$0 / día</div>
+          <div class="kpi-val silver" id="dashCapacityMetric">$0 / día</div>
           <div class="kpi-sub">Tráfico × Conv × Ticket</div>
         </div>
       </div>
@@ -674,20 +679,20 @@
   <section id="tab-estrategia" class="tab-content hidden">
     <div class="grid-2">
       <div class="card" style="margin: 0;">
-        <div class="card-title" style="color: var(--accent-cyan); margin-bottom: 12px;">📋 Plan de Acción Prioritario (7 Días)</div>
-        <p class="card-desc" id="planIntroText" style="margin-bottom: 16px;">Acciones tácticas derivadas del análisis de datos:</p>
-        <ul id="planActionList" style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;"></ul>
+        <div class="card-title" style="color: #fff; background: var(--accent-silver); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">📋 Plan de Acción Prioritario (7 Días)</div>
+        <p class="card-desc" id="planIntroText" style="margin-bottom: 14px;">Acciones tácticas derivadas del análisis de datos:</p>
+        <ul id="planActionList" style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;"></ul>
       </div>
 
       <div class="card" style="margin: 0;">
-        <div class="card-title" style="color: var(--accent-teal); margin-bottom: 12px;">🎯 Protocolo de Coaching & Clínicas de Venta</div>
-        <p class="card-desc" style="margin-bottom: 16px;">Enfoque de retroalimentación diaria en piso / reuniones 1:1:</p>
-        <ul id="planCoachingList" style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;"></ul>
+        <div class="card-title" style="color: #fff; background: var(--accent-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">🎯 Protocolo de Coaching & Clínicas de Venta</div>
+        <p class="card-desc" style="margin-bottom: 14px;">Enfoque de retroalimentación diaria en piso / reuniones 1:1:</p>
+        <ul id="planCoachingList" style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem;"></ul>
       </div>
     </div>
   </section>
 
-  <!-- TAB 4: COTIZADOR COMERCIAL & GENERADOR DE PDF -->
+  <!-- TAB 4: COTIZADOR COMERCIAL & GENERADOR DE PDF OFICIAL -->
   <section id="tab-cotizador" class="tab-content hidden">
     <div class="card">
       <div class="card-head">
@@ -700,7 +705,7 @@
         </div>
       </div>
 
-      <div class="grid-2" style="margin-bottom: 16px;">
+      <div class="grid-2" style="margin-bottom: 14px;">
         <div class="field-group">
           <label>Cliente / Razón Social</label>
           <input type="text" id="quoteClient" placeholder="Ej. Corporativo Retail México S.A. de C.V.">
@@ -754,7 +759,7 @@
         </div>
       </div>
 
-      <div style="display: flex; gap: 14px; margin-top: 24px; justify-content: flex-end;">
+      <div style="display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end;">
         <button class="btn btn-secondary" onclick="window.print()">🖨️ Vista Previa</button>
         <button class="btn btn-primary" onclick="exportPDF()">📄 Descargar Propuesta en PDF Oficial</button>
       </div>
@@ -784,16 +789,16 @@
         </div>
       </div>
 
-      <div class="grid-3" style="margin-top: 20px;">
+      <div class="grid-3" style="margin-top: 18px;">
         <div class="kpi-box">
           <div class="kpi-lbl">Cumplimiento del Asesor</div>
-          <div class="kpi-val cyan" id="outRepPace">0.0%</div>
+          <div class="kpi-val silver" id="outRepPace">0.0%</div>
           <div class="kpi-sub" id="outRepStatus">En progreso</div>
         </div>
 
         <div class="kpi-box">
           <div class="kpi-lbl">Comisión Acumulada Estimada</div>
-          <div class="kpi-val teal" id="outRepCommission">$0</div>
+          <div class="kpi-val gold" id="outRepCommission">$0</div>
           <div class="kpi-sub">Sin retenciones</div>
         </div>
 
@@ -1002,7 +1007,7 @@
       <td><input type="text" class="item-desc" placeholder="Descripción del producto o servicio..." required></td>
       <td><input type="number" class="item-qty" value="1" min="1" oninput="calculateQuote()"></td>
       <td><input type="number" class="item-price" placeholder="0" min="0" oninput="calculateQuote()"></td>
-      <td class="item-total" style="font-weight: 700; color: var(--accent-cyan);">$0</td>
+      <td class="item-total" style="font-weight: 700; color: #cfd8dc;">$0</td>
       <td><button type="button" class="btn btn-danger" onclick="removeQuoteRow(this)" style="padding: 4px 8px; font-size: 0.75rem;">✕</button></td>
     `;
     quoteBody.appendChild(tr);
