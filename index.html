@@ -854,7 +854,7 @@
       </div>
     </section>
 
-    <!-- CERTS (LOS 7 CERTIFICADOS EXACTOS DE TU REPOSITORIO) -->
+    <!-- CERTS (LOS 7 CERTIFICADOS CON CARGA ROBUSTA) -->
     <section id="certificaciones">
       <div class="section-head">
         <div class="section-eyebrow">Validación Técnica</div>
@@ -866,6 +866,7 @@
         <div class="cert-box" onclick="showCert('assets/certs/Cómo Aumentar Más Ventas y Atención a Clientes.jpeg', 'Ventas, Negociación & Atención al Cliente')">
           <img 
             src="assets/certs/Cómo Aumentar Más Ventas y Atención a Clientes.jpeg" 
+            onerror="if(!this.dataset.tried){this.dataset.tried=true;this.src='assets/Cómo Aumentar Más Ventas y Atención a Clientes.jpeg';}" 
             alt="Cámara de Comercio de Guadalajara" 
             class="cert-thumb">
           <div class="cert-info">
@@ -875,8 +876,12 @@
         </div>
 
         <!-- 2. HUBSPOT / CRM -->
-        <div class="cert-box" onclick="showCert('assets/certs/HUBSPOT.jpg', 'Software de Ventas & CRM')">
-          <img src="assets/certs/HUBSPOT.jpg" alt="CRM & Ventas" class="cert-thumb">
+        <div class="cert-box" onclick="showCert(this.querySelector('img').src, 'Software de Ventas & CRM')">
+          <img 
+            src="assets/certs/HUBSPOT.jpg" 
+            onerror="if(!this.dataset.t1){this.dataset.t1=true;this.src='assets/certs/HUBSPOT.jpg.jpg';}else if(!this.dataset.t2){this.dataset.t2=true;this.src='assets/certs/hubspot.jpg';}else if(!this.dataset.t3){this.dataset.t3=true;this.src='assets/HUBSPOT.jpg';}else{this.src='assets/hubspot.jpg';}" 
+            alt="CRM & Ventas" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Software de Ventas & CRM</div>
             <div class="cert-meta">HubSpot Academy · 2025–2026</div>
@@ -885,7 +890,11 @@
 
         <!-- 3. AWS -->
         <div class="cert-box" onclick="showCert('assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg', 'AWS Cloud Foundations')">
-          <img src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" alt="AWS" class="cert-thumb">
+          <img 
+            src="assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg" 
+            onerror="if(!this.dataset.tried){this.dataset.tried=true;this.src='assets/certs/certificado-aws-academy-cloud-foundations_page-0001.jpg.jpg';}" 
+            alt="AWS Cloud Foundations" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">AWS Cloud Foundations</div>
             <div class="cert-meta">AWS Academy · 2025</div>
@@ -894,7 +903,11 @@
 
         <!-- 4. CISCO -->
         <div class="cert-box" onclick="showCert('assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg', 'Cisco Python Essentials')">
-          <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco" class="cert-thumb">
+          <img 
+            src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" 
+            onerror="if(!this.dataset.tried){this.dataset.tried=true;this.src='assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg.jpg';}" 
+            alt="Cisco Python Essentials" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Cisco Python Essentials</div>
             <div class="cert-meta">Cisco Networking Academy · 2025</div>
@@ -903,7 +916,10 @@
 
         <!-- 5. GESTIÓN ÁGIL / AGILE (171) -->
         <div class="cert-box" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg', 'Gestión Ágil de Proyectos (Agile)')">
-          <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Agile" class="cert-thumb">
+          <img 
+            src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" 
+            alt="Gestión Ágil" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Gestión Ágil de Proyectos (Agile)</div>
             <div class="cert-meta">Open Academy · 2026</div>
@@ -912,7 +928,10 @@
 
         <!-- 6. COMERCIO DIGITAL / PYMES (110) -->
         <div class="cert-box" onclick="showCert('assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg', 'Comercio Digital & Estrategia PyMEs')">
-          <img src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" alt="Comercio Digital" class="cert-thumb">
+          <img 
+            src="assets/certs/110_luis_andres_89hotmail.com_page-0001.jpg" 
+            alt="Comercio Digital" 
+            class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Comercio Digital & Estrategia PyMEs</div>
             <div class="cert-meta">Acreditación Profesional · 2025–2026</div>
@@ -920,9 +939,10 @@
         </div>
 
         <!-- 7. INGLÉS (ENGLISH FUNDAMENTALS) -->
-        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg', 'English Fundamentals')">
+        <div class="cert-box" onclick="showCert(this.querySelector('img').src, 'English Fundamentals')">
           <img 
             src="assets/certs/english-fundamentals-2026.jpg" 
+            onerror="if(!this.dataset.tried1){this.dataset.tried1=true;this.src='assets/certs/english-fundamentals-2026.jpg.jpg';}else if(!this.dataset.tried2){this.dataset.tried2=true;this.src='assets/english-fundamentals-2026.jpg';}" 
             alt="English Fundamentals" 
             class="cert-thumb">
           <div class="cert-info">
