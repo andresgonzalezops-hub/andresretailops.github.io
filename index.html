@@ -480,7 +480,7 @@
       color: #fff;
     }
 
-    /* MODAL */
+    /* MODAL CERTS */
     dialog {
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
@@ -533,16 +533,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .modal-fallback {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--text-muted);
-    }
-
     footer {
       text-align: center;
       padding: 40px 0 60px;
@@ -579,7 +569,7 @@
           <li><a href="#certificaciones">Certificaciones</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
-        <button class="btn btn-primary" id="btnOpenCV">Ver CV</button>
+        <a href="assets/CV-Andres-Gonzalez.pdf" target="_blank" rel="noopener" class="btn btn-primary">Ver CV</a>
       </div>
     </nav>
 
@@ -746,8 +736,8 @@
           </div>
         </div>
 
-        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg', 'English Fundamentals')">
-          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals" class="cert-thumb">
+        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg.jpg', 'English Fundamentals')">
+          <img src="assets/certs/english-fundamentals-2026.jpg.jpg" alt="English Fundamentals" class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">English Fundamentals</div>
             <div class="cert-meta">Acreditación Profesional · 2026</div>
@@ -786,17 +776,6 @@
     </footer>
   </div>
 
-  <!-- MODAL CV -->
-  <dialog id="modalCV">
-    <div class="modal-head">
-      <strong>Currículum Vitae — Andrés González</strong>
-      <button class="modal-close" onclick="modalCV.close()">✕</button>
-    </div>
-    <div class="modal-body" id="modalCVBody">
-      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV Andrés González" id="cvImg" onerror="handleCVFallback()">
-    </div>
-  </dialog>
-
   <!-- MODAL CERT -->
   <dialog id="modalCert">
     <div class="modal-head">
@@ -810,20 +789,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const modalCV = document.getElementById('modalCV');
-    document.getElementById('btnOpenCV').addEventListener('click', () => modalCV.showModal());
-
-    function handleCVFallback() {
-      const cvBody = document.getElementById('modalCVBody');
-      cvBody.innerHTML = `
-        <div class="modal-fallback">
-          <p style="font-size: 1.1rem; color: #fff; font-weight: 700;">Vista previa de imagen no disponible</p>
-          <p>Puedes consultar y descargar el currículum completo en formato oficial PDF directamente aquí:</p>
-          <a href="assets/CV-Andres-Gonzalez.pdf" target="_blank" class="btn btn-primary">Abrir CV en PDF</a>
-        </div>
-      `;
-    }
 
     const modalCert = document.getElementById('modalCert');
     const certModalImg = document.getElementById('certModalImg');
