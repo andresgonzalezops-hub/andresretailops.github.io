@@ -65,7 +65,7 @@
     }
 
     .nav-inner {
-      background: rgba(14, 19, 31, 0.75);
+      background: rgba(14, 19, 31, 0.85);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
@@ -445,7 +445,7 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
       margin-top: 24px;
     }
@@ -453,7 +453,7 @@
     .contact-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-subtle);
-      padding: 16px;
+      padding: 18px;
       border-radius: var(--radius-md);
       text-decoration: none;
       color: var(--text-main);
@@ -485,11 +485,11 @@
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 0;
-      width: min(1000px, 94vw);
+      width: min(850px, 92vw);
       background: var(--bg-surface);
       color: #fff;
       margin: auto;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
     }
 
     dialog::backdrop {
@@ -518,17 +518,29 @@
     .modal-close:hover { color: #fff; border-color: #fff; }
 
     .modal-body {
-      padding: 20px;
+      padding: 24px;
       max-height: 80vh;
       overflow-y: auto;
       display: flex;
       justify-content: center;
+      background: #06090e;
     }
 
     .modal-body img {
       max-width: 100%;
       height: auto;
       border-radius: var(--radius-sm);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .modal-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-muted);
     }
 
     footer {
@@ -580,7 +592,7 @@
         <div class="hero-tag">Dirección Comercial & Negociación</div>
         <h1 class="hero-title">Ventas Consultivas, <span>High-Ticket</span> & Operaciones.</h1>
         <p class="hero-desc">
-          Más de 10 años transformando operaciones comerciales, cerrando acuerdos de alto valor y estructurando sistemas de venta basados en diagnóstico, KPIs y retención de clientes[cite: 6].
+          Más de 10 años transformando operaciones comerciales, cerrando acuerdos de alto valor y estructurando sistemas de venta basados en diagnóstico, KPIs y retención de clientes.
         </p>
         <div class="hero-actions">
           <a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
@@ -594,19 +606,19 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-num accent">10+</div>
-        <div class="stat-label">Años Liderando Ventas[cite: 6]</div>
+        <div class="stat-label">Años Liderando Ventas</div>
       </div>
       <div class="stat-card">
         <div class="stat-num gold">2º Nac.</div>
-        <div class="stat-label">Ranking Comercial Luuna[cite: 6]</div>
+        <div class="stat-label">Ranking Comercial Luuna</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">98.8%</div>
-        <div class="stat-label">Confiabilidad Operativa[cite: 2, 3]</div>
+        <div class="stat-label">Confiabilidad Operativa</div>
       </div>
       <div class="stat-card">
         <div class="stat-num accent">30+</div>
-        <div class="stat-label">Equipos Dirigidos[cite: 2, 6]</div>
+        <div class="stat-label">Equipos Dirigidos</div>
       </div>
     </div>
 
@@ -622,16 +634,16 @@
         <div class="card-exp">
           <div class="exp-header">
             <div>
-              <div class="exp-role">Coordinador Comercial & Ventas Regionales[cite: 6]</div>
-              <div class="exp-company">YATLA[cite: 6]</div>
+              <div class="exp-role">Coordinador Comercial & Ventas Regionales</div>
+              <div class="exp-company">YATLA</div>
             </div>
-            <span class="exp-period">Junio 2026 – Actual[cite: 6]</span>
+            <span class="exp-period">Junio 2026 – Actual</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Estrategia Comercial Regional:</strong> Dirección y supervisión de la ejecución comercial en múltiples unidades de negocio, alineando estándares de servicio de alto nivel, disciplina operativa y cumplimiento sistemático de objetivos de venta[cite: 2, 3].</li>
-            <li><strong>Optimización de Embudos & KPIs:</strong> Monitoreo diario y ajuste táctico de indicadores comerciales clave (tasa de conversión, ticket promedio, ventas por metro cuadrado y UPT) para maximizar la rentabilidad regional y la rotación de producto[cite: 3, 6].</li>
-            <li><strong>Desarrollo B2B & Prospección Estratégica:</strong> Implementación de iniciativas comerciales institucionales y de alto valor corporativo, gestionando el ciclo de prospección completo y trazabilidad de cartera mediante <strong>HubSpot CRM</strong>[cite: 6].</li>
-            <li><strong>Cultura de Control y Rentabilidad:</strong> Supervisión del abastecimiento estratégico y control de inventarios regionales en <strong>SAP</strong>, protegiendo márgenes comerciales y eliminando fricciones operativas[cite: 2, 3].</li>
+            <li><strong>Estrategia Comercial Regional:</strong> Dirección y supervisión de la ejecución comercial en múltiples unidades de negocio, alineando estándares de servicio de alto nivel, disciplina operativa y cumplimiento sistemático de objetivos de venta.</li>
+            <li><strong>Optimización de Embudos & KPIs:</strong> Monitoreo diario y ajuste táctico de indicadores comerciales clave (tasa de conversión, ticket promedio, ventas por metro cuadrado y UPT) para maximizar la rentabilidad regional y la rotación de producto.</li>
+            <li><strong>Desarrollo B2B & Prospección Estratégica:</strong> Implementación de iniciativas comerciales institucionales y de alto valor corporativo, gestionando el ciclo de prospección completo y trazabilidad de cartera mediante <strong>HubSpot CRM</strong>.</li>
+            <li><strong>Cultura de Control y Rentabilidad:</strong> Supervisión del abastecimiento estratégico y control de inventarios regionales en <strong>SAP</strong>, protegiendo márgenes comerciales y eliminando fricciones operativas.</li>
           </ul>
         </div>
 
@@ -639,16 +651,16 @@
         <div class="card-exp">
           <div class="exp-header">
             <div>
-              <div class="exp-role">Store Manager — Consultoría & Ventas High-Ticket[cite: 6]</div>
-              <div class="exp-company">LUUNA[cite: 6]</div>
+              <div class="exp-role">Store Manager — Consultoría & Ventas High-Ticket</div>
+              <div class="exp-company">LUUNA</div>
             </div>
-            <span class="exp-period">Abril 2022 – Junio 2025[cite: 6]</span>
+            <span class="exp-period">Abril 2022 – Junio 2025</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Reconocimiento Nacional (2º Lugar 2023):</strong> Posicionamiento de unidad nueva dentro de los primeros lugares de desempeño a nivel nacional en menos de 12 meses, logrando superación consistente de cuotas comerciales mediante método y disciplina diaria[cite: 6].</li>
-            <li><strong>Venta Consultiva & High-Ticket:</strong> Diagnóstico personalizado de necesidades y estructuración de propuestas de alto valor, acelerando los ciclos de decisión del cliente y construyendo relaciones de largo plazo orientadas a la recomendación y recompra[cite: 6].</li>
-            <li><strong>Eficiencia Operativa Récord (1.1 / 100% Precisión):</strong> Control integral de activos e inventarios sin discrepancias[cite: 3], garantizando disponibilidad inmediata de producto prémium y una experiencia post-venta sin fallas operativas[cite: 1, 3].</li>
-            <li><strong>Mentoría & Coaching Regional:</strong> Capacitación directa a equipos comerciales de más de <strong>15 sucursales</strong> en técnicas de abordaje consultivo, manejo avanzado de objeciones y protocolos de cierre efectivo[cite: 6].</li>
+            <li><strong>Reconocimiento Nacional (2º Lugar 2023):</strong> Posicionamiento de unidad nueva dentro de los primeros lugares de desempeño a nivel nacional en menos de 12 meses, logrando superación consistente de cuotas comerciales mediante método y disciplina diaria.</li>
+            <li><strong>Venta Consultiva & High-Ticket:</strong> Diagnóstico personalizado de necesidades y estructuración de propuestas de alto valor, acelerando los ciclos de decisión del cliente y construyendo relaciones de largo plazo orientadas a la recomendación y recompra.</li>
+            <li><strong>Eficiencia Operativa Récord (1.1 / 100% Precisión):</strong> Control integral de activos e inventarios sin discrepancias, garantizando disponibilidad inmediata de producto prémium y una experiencia post-venta sin fallas operativas.</li>
+            <li><strong>Mentoría & Coaching Regional:</strong> Capacitación directa a equipos comerciales de más de <strong>15 sucursales</strong> en técnicas de abordaje consultivo, manejo avanzado de objeciones y protocolos de cierre efectivo.</li>
           </ul>
         </div>
 
@@ -656,16 +668,16 @@
         <div class="card-exp">
           <div class="exp-header">
             <div>
-              <div class="exp-role">Gerente de Boutique — Dirección Comercial & Liderazgo[cite: 6]</div>
-              <div class="exp-company">GAP[cite: 6]</div>
+              <div class="exp-role">Gerente de Boutique — Dirección Comercial & Liderazgo</div>
+              <div class="exp-company">GAP</div>
             </div>
-            <span class="exp-period">Octubre 2014 – Julio 2021[cite: 6]</span>
+            <span class="exp-period">Octubre 2014 – Julio 2021</span>
           </div>
           <ul class="exp-bullets">
-            <li><strong>Transformación y Recuperación de Rentabilidad:</strong> Reestructuración operativa y comercial de una unidad con bajo rendimiento, convirtiéndola en una operación rentable en menos de un año mediante análisis de indicadores y enfoque por franjas horarias[cite: 2].</li>
-            <li><strong>Liderazgo de Equipos Masivos:</strong> Reclutamiento, formación y dirección de un equipo de hasta <strong>30 asesores comerciales</strong>[cite: 3, 6], fomentando técnicas de <em>cross-selling</em> y <em>up-selling</em> para elevar sustancialmente el ticket promedio de compra[cite: 6].</li>
-            <li><strong>Excelencia en Inventarios (85% a 98.88%):</strong> Reducción drástica de mermas y optimización de confiabilidad de stock mediante auditorías periódicas, conteos cíclicos y rigurosos protocolos de control[cite: 2, 3].</li>
-            <li><strong>Resiliencia Comercial (Contingencia 2020):</strong> Mantenimiento del ROI y rentabilidad del negocio durante períodos de alta complejidad mediante contención estratégica del gasto operativo y fidelización de clientes clave[cite: 3, 6].</li>
+            <li><strong>Transformación y Recuperación de Rentabilidad:</strong> Reestructuración operativa y comercial de una unidad con bajo rendimiento, convirtiéndola en una operación rentable en menos de un año mediante análisis de indicadores y enfoque por franjas horarias.</li>
+            <li><strong>Liderazgo de Equipos Masivos:</strong> Reclutamiento, formación y dirección de un equipo de hasta <strong>30 asesores comerciales</strong>, fomentando técnicas de <em>cross-selling</em> y <em>up-selling</em> para elevar sustancialmente el ticket promedio de compra.</li>
+            <li><strong>Excelencia en Inventarios (85% a 98.88%):</strong> Reducción drástica de mermas y optimización de confiabilidad de stock mediante auditorías periódicas, conteos cíclicos y rigurosos protocolos de control.</li>
+            <li><strong>Resiliencia Comercial (Contingencia 2020):</strong> Mantenimiento del ROI y rentabilidad del negocio durante períodos de alta complejidad mediante contención estratégica del gasto operativo y fidelización de clientes clave.</li>
           </ul>
         </div>
       </div>
@@ -706,7 +718,7 @@
           <img src="assets/certs/HUBSPOT.jpg" alt="HubSpot" class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">HubSpot Sales & CRM</div>
-            <div class="cert-meta">2025–2026</div>
+            <div class="cert-meta">HubSpot Academy · 2025–2026</div>
           </div>
         </div>
 
@@ -722,15 +734,23 @@
           <img src="assets/certs/certificado-cisco-python-essentials-1_page-0001.jpg" alt="Cisco" class="cert-thumb">
           <div class="cert-info">
             <div class="cert-title">Cisco Python Essentials</div>
-            <div class="cert-meta">Cisco · 2025</div>
+            <div class="cert-meta">Cisco Networking Academy · 2025</div>
           </div>
         </div>
 
-        <div class="cert-box" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg', 'Metodologías Agile')">
+        <div class="cert-box" onclick="showCert('assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg', 'Gestión Ágil de Proyectos')">
           <img src="assets/certs/171_luis_andres_89hotmail.com_page-0001.jpg" alt="Agile" class="cert-thumb">
           <div class="cert-info">
-            <div class="cert-title">Gestión Ágil de Proyectos</div>
+            <div class="cert-title">Gestión Ágil de Proyectos (Agile)</div>
             <div class="cert-meta">Open Academy · 2026</div>
+          </div>
+        </div>
+
+        <div class="cert-box" onclick="showCert('assets/certs/english-fundamentals-2026.jpg', 'English Fundamentals')">
+          <img src="assets/certs/english-fundamentals-2026.jpg" alt="English Fundamentals" class="cert-thumb">
+          <div class="cert-info">
+            <div class="cert-title">English Fundamentals</div>
+            <div class="cert-meta">Acreditación Profesional · 2026</div>
           </div>
         </div>
       </div>
@@ -743,12 +763,16 @@
       
       <div class="contact-grid">
         <a href="mailto:andresgonzalez.ops@gmail.com" class="contact-item">
-          <div class="contact-item-label">Email</div>
+          <div class="contact-item-label">Email Principal</div>
           <div class="contact-item-val">andresgonzalez.ops@gmail.com</div>
         </a>
-        <a href="tel:+523323430043" class="contact-item">
-          <div class="contact-item-label">Teléfono / WhatsApp</div>
-          <div class="contact-item-val">+52 33 2343 0043</div>
+        <a href="https://wa.me/523347181280" target="_blank" rel="noopener" class="contact-item">
+          <div class="contact-item-label">WhatsApp Directo</div>
+          <div class="contact-item-val">+52 33 4718 1280</div>
+        </a>
+        <a href="tel:+523347181280" class="contact-item">
+          <div class="contact-item-label">Teléfono Móvil</div>
+          <div class="contact-item-val">+52 33 4718 1280</div>
         </a>
         <a href="https://www.linkedin.com/in/andresglez89/" target="_blank" rel="noopener" class="contact-item">
           <div class="contact-item-label">LinkedIn</div>
@@ -765,11 +789,11 @@
   <!-- MODAL CV -->
   <dialog id="modalCV">
     <div class="modal-head">
-      <strong>Currículum Vitae</strong>
+      <strong>Currículum Vitae — Andrés González</strong>
       <button class="modal-close" onclick="modalCV.close()">✕</button>
     </div>
-    <div class="modal-body">
-      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV Andrés González">
+    <div class="modal-body" id="modalCVBody">
+      <img src="assets/CV-Andres-Gonzalez.jpg" alt="CV Andrés González" id="cvImg" onerror="handleCVFallback()">
     </div>
   </dialog>
 
@@ -789,6 +813,17 @@
 
     const modalCV = document.getElementById('modalCV');
     document.getElementById('btnOpenCV').addEventListener('click', () => modalCV.showModal());
+
+    function handleCVFallback() {
+      const cvBody = document.getElementById('modalCVBody');
+      cvBody.innerHTML = `
+        <div class="modal-fallback">
+          <p style="font-size: 1.1rem; color: #fff; font-weight: 700;">Vista previa de imagen no disponible</p>
+          <p>Puedes consultar y descargar el currículum completo en formato oficial PDF directamente aquí:</p>
+          <a href="assets/CV-Andres-Gonzalez.pdf" target="_blank" class="btn btn-primary">Abrir CV en PDF</a>
+        </div>
+      `;
+    }
 
     const modalCert = document.getElementById('modalCert');
     const certModalImg = document.getElementById('certModalImg');
